@@ -1,0 +1,102 @@
+@import '../../../vars.css';
+
+.menuItem {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    
+    &.mobile {
+        height: 36px;
+        display: flex;
+        align-items: flex-end;
+
+        button {
+            padding: 0px 12px;
+
+            span {
+                text-align: right;
+            }
+        }
+    }
+    
+    &.desktop {
+        height: 48px; 
+
+        button {
+            padding: 0px 24px;
+            
+            span {
+                text-align: center;
+            }
+        }
+    }
+
+    &.menuOpened {
+        button span {
+            color: var(--color-bg1);
+        }
+    }
+
+    &.subItem {
+        button {
+            span {
+                color: var(--color-bg1);
+                font-weight: 400;
+            }
+        }
+    }
+
+    &:hover {
+        transition: var(--trans-hover);
+        button {
+            background: var(--color-link-hover);
+            border-radius: var(--number-cornerRadius);
+            cursor: pointer;
+
+            span {
+                color: var(--color-bg1-hover);
+            }
+        }
+    }
+
+    &:active {
+        padding: 4px;
+        transition: var(--trans-active);
+        button {
+            padding: 0px 20px;
+            background: var(--color-link-active);
+            border-radius: var(--number-cornerRadius);
+            cursor: pointer;
+            
+            span {
+                color: var(--color-bg1-active);
+            }
+        }
+    }
+}
+
+button {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    text-decoration: none;
+    transition: inherit;
+}
+
+span {
+    color: var(--color-link);
+    font-variant-numeric: lining-nums proportional-nums;
+    
+    /* label/desktop/semibold */
+    font-family: var(--var-noto-sans);
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    transition: inherit;
+}

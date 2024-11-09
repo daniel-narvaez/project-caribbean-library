@@ -1,0 +1,76 @@
+@import "../../vars.css";
+
+.burgerBooksButton {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    .icon span { background-color: var(--color-link); }
+
+    &:hover {
+        transition: var(--trans-hover);
+        cursor: pointer;
+
+        .icon span { background-color: var(--color-link-hover); }
+    }
+    
+    &:active {
+        transition: var(--trans-active);
+        cursor: pointer;
+
+        .icon span { background-color: var(--color-link-active); }
+    }
+    
+    
+    
+    &.menuOpened {
+        width: 48px;
+        height: 36px;
+        padding: 8px 12px;
+        .icon span { background-color: var(--color-bg1); }
+
+        &:hover {
+            transition: var(--trans-hover);
+            .icon span { background-color: var(--color-bg1-hover); }
+        }
+        
+        &:active {
+            transition: var(--trans-active);
+            .icon span { background-color: var(--color-bg1-active); }
+        }
+
+        .icon {
+            span {
+                &.one { transform: rotate(-60deg) translate(-11px, -3px); }
+                &.two { transform: rotate(-75deg) translate(0.5px, -0.25px); }
+                &.three { transform: rotate(-90deg) translate(8px, 8px); }
+            }
+        }
+    }
+}
+
+.icon {
+    display: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    span {
+        display: block;
+        width: 20px;
+        height: 4px;
+        margin-bottom: 4px;
+
+        &:last-child { margin-bottom: 0px; }
+
+        &.one, &.two, &.three {
+            transform: rotate(0deg) translate(0px, 0px);
+            transition: var(--trans-hamburgerMenu);
+        }
+    }
+}
+
+

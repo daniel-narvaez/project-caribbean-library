@@ -1,0 +1,33 @@
+@import '../../vars.css';
+@import '../../text.css';
+
+.title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: var(--color-text);
+
+    &.mobile {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+
+    &.desktop {
+        width: 48px;
+        height: 48px;
+        padding: 8px;
+    }
+}
+
+.fullName {
+    text-align: center;
+    color: var(--color-text);
+}

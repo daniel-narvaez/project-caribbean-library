@@ -1,0 +1,12 @@
+@import "../../vars.css";
+
+.navbar {
+    display: flex;
+    width: 100vw;
+    padding: 16px;
+    justify-content: space-between; 
+    align-items: flex-start;
+
+    position: absolute;
+    z-index: 2;
+}
