@@ -2,15 +2,18 @@ import React from 'react'
 
 import { Title } from '../Title/Title';
 import { MainMenu } from '../MainMenu/MainMenu';
-import { NewMenu } from '../MainMenu/NewMenu/Menu';
+import { MainDropdown } from '../DropdownMenu/DropdownMenu';
 
 import { MenuProvider } from '../../contexts/MenuContext';
+
 import styles from './Navbar.module.css'
+
+import { mainMenuData } from '../../dropdownItemData';
 
 export const Navbar = () => {
   return <nav className={styles.navbar}>
     <Title />
-    <NewMenu menuLabel={"Dropdown Menu"} items={[{title: "Games"}, {title: "Contact"}, {title:'About'}]} />
+    <MainDropdown buttonLabel={'Main Menu'} items={mainMenuData} />
     <MenuProvider>
       <MainMenu />
     </MenuProvider>
