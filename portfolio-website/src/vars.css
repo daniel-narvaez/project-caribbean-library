@@ -12,9 +12,9 @@
     --celeste: #b2ffff;
 
     /* Fonts */
-    --font-baskervville-sc: "Baskervville SC";
+    --font-baskervvilleSC: "Baskervville SC";
     --font-baskervville: "Baskervville";
-    --font-noto-sans: "Noto Sans Variable";
+    --font-notoSans: "Noto Sans Variable";
 
     /* Numbers */
     --number-cornerRadius: 2.33px;

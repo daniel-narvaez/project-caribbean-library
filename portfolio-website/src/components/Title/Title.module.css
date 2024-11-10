@@ -1,5 +1,4 @@
 @import '../../vars.css';
-@import '../../text.css';
 
 .title {
     display: inline-flex;
@@ -29,5 +28,4 @@
 
 .fullName {
     text-align: center;
-    color: var(--color-text);
 }

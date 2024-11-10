@@ -1,0 +1,97 @@
+/**
+* Typography Styles
+* 
+* This file defines the core typography styles for the application.
+* It works in conjunction with Typography.jsx to create a responsive type system.
+*
+* Type Scales Used:
+* Desktop: Minor Third Scale (1.2) with base size of 1rem/16px
+* Mobile: Major Second Scale (1.125) with base size of 1rem/16px
+*
+* Scale calculations:
+* Desktop (1.2 ratio): 1rem × 1.2^n
+* Mobile (1.125 ratio): 1rem × 1.125^n
+*
+* @file typography.css
+* @requires vars.css - Contains color and font family variables
+*/
+
+@import './vars.css';
+
+/* 
+* Root Typography Variables
+* Font families are imported from vars.css and aliased here for semantic usage
+*/
+:root {
+  --heading-display: var(--font-baskervvilleSC);  /* Used for H1 - special display font */
+  --heading-text: var(--font-baskervville);       /* Used for H2, H3 */
+  --body-text: var(--font-notoSans);              /* Used for inline and body text */
+}
+
+/* 
+* Shared Heading Styles
+* Applied to all heading levels for consistency
+*/
+h1, h2, h3 {
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-text);
+}
+
+/* 
+* Individual Heading Styles
+* Font sizes are set via CSS variables from Typography.jsx context
+*/
+h1 {
+  font-family: var(--heading-display);
+  text-transform: capitalize;
+  font-size: var(--h1-size);
+  /* Desktop: 1.728rem/27.65px (1.2^3) */
+  /* Mobile: 1.602rem/25.63px (1.125^4) */
+  color: var(--color-text);
+}
+
+h2 {
+  font-family: var(--heading-text);
+  font-size: var(--h2-size);
+  /* Desktop: 1.44rem/23.04px (1.2^2) */
+  /* Mobile: 1.424rem/22.78px (1.125^3) */
+  color: var(--color-text);
+}
+
+h3 {
+  font-family: var(--heading-text);
+  font-size: var(--h3-size);
+  /* Desktop: 1.2rem/19.2px (1.2^1) */
+  /* Mobile: 1.266rem/20.25px (1.125^2) */
+  color: var(--color-text);
+}
+
+/* 
+* Inline Text Elements
+* Used for spans and labels that appear inline with other content
+*/
+span, label {
+  font-family: var(--body-text);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: var(--inline-size);
+  /* Desktop: 1.2rem/19.2px (1.2^1) */
+  /* Mobile: 1.125rem/18px (1.125^1) */
+  color: var(--color-text);
+}
+
+/* 
+* Paragraph Text
+* Used for body copy with fixed size regardless of screen size
+*/
+p {
+  font-family: var(--body-text);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;  /* 24px */
+  font-size: 1rem;      /* 16px - Base size */
+  color: var(--color-text);
+}
