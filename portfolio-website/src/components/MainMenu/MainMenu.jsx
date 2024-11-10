@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useContext } from 'react';
 
 import { Menu } from './Menu/Menu';
-import { BurgerBooksButton } from '../BookshelfButton/BurgerBooksButton';
+import { Burgershelf } from '../Burgershelf/Burgershelf';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import { MenuProvider, MenuContext } from '../../contexts/MenuContext';
@@ -21,7 +21,7 @@ export const MainMenu = () => {
                 ${menuOpened && styles.menuOpened}
             `}
         >
-            <BurgerBooksButton />
+            <Burgershelf />
             <MenuProvider>
                 <Menu 
                     mainLabel='Games' 

@@ -1,0 +1,56 @@
+/**
+* DropdownMenu Class Reference
+* All classes used in the component hierarchy
+*/
+
+/** Main Navigation Container 
+* mainNav
+* mainNavMobile
+* mainNavDesktop
+
+/* Level 0 (Top Level) Container 
+* menuLevel0
+* menuLevel0Mobile
+* menuLevel0Desktop
+* menuVisible
+* menuHidden
+
+/* Menu Items (All Levels) 
+* menuItem
+* menuItemMobile
+* menuItemDesktop
+* menuItemActive
+* menuItemHidden    /* For accordion behavior
+* hasSubmenu       /* Indicates item has children
+
+/* Menu Links/Buttons 
+* menuLink
+* menuLinkActive
+* menuButton
+* menuButtonActive
+* menuContent      /* Button content wrapper
+* menuIcon
+* menuText
+
+/* Submenu Containers 
+* submenuContainer
+* submenuMobile
+* submenuDesktop
+* submenuVisible
+* submenuHidden
+* submenuLevel1    /* Dynamic level classes
+* submenuLevel2
+* submenuLevel3
+* etc...
+
+/* Level-specific Item Classes 
+* menuLevel0
+* menuLevel1
+* menuLevel2
+* menuLevel3
+* etc...
+*/
+
+.menuItemHidden {
+  display: none;
+}

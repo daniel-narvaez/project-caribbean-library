@@ -1,6 +1,6 @@
 @import "../../vars.css";
 
-.burgerBooksButton {
+.burgershelf {
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -26,7 +26,7 @@
     
     
     
-    &.menuOpened {
+    &.open {
         width: 48px;
         height: 36px;
         padding: 8px 12px;
