@@ -51,15 +51,40 @@
 * etc...
 */
 
+/* Base Elements */
+.mainNavMobile {  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: fit-content;
+  height: fit-content;
+
+  > button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-style: inset;
+    border-radius: var(--number-cornerRadius);
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
+  }
+}
+
 .menuItem {
   width: fit-content;
   height: fit-content;
   position: relative;
   z-index: 1;
+
+  &:hover { 
+    z-index: 2;
+  }
 }
 
-.menuItemActive {
-  z-index: 2;
+.menuItemMobile {
+  display: flex;
+  justify-content: flex-end;
+  /* width: 100%; */
 }
 
 .phantom {
@@ -67,36 +92,54 @@
   height: 3rem;
 }
 
-.wrapper {
-  position: absolute;
-  width: max-content;
-  z-index: 2;
-  top: 0;          /* Position at vertical center */
-  left: 50%;         /* Position at horizontal center */
-  transform: translateX(-50%);  /* Pull back by half width/height */
+.menuItemMobile .phantom {
+  visibility: hidden;
+  height: 2.25rem;
+}
 
+/* Mobile wrapper positioning */
+.menuItemMobile .wrapper {
+  position: static;  /* or relative */
+  /* width: 100%; */
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.menuItemDesktop .wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   border: 0px solid transparent;
   border-style: inset;
   border-radius: var(--number-cornerRadius);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border-radius: var(--number-cornerRadius);
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: var(--closing-dropdown);
+  }
 }
 
-.wrapper:has(.menuButtonActive),
-.wrapper:has(.menuLinkActive) {
-  background-color: var(--color-link);
-  box-shadow: var(--effect-poolShadow);
-  padding: 0.5rem;
-  margin: -0.5rem;
-}
-
+/* Menu Controls */
 .menuButton,
 .menuLink {
   padding: 0 1.5rem;
   background-color: transparent;
-  /* inherit the same border from .wrapper */
   border: inherit;
   border-style: inherit;
   border-radius: inherit;
@@ -105,64 +148,165 @@
 
   &:hover {
     background-color: var(--color-link-hover);
-
     span {
       color: var(--color-bg1-hover);
     }
   }
 }
 
+.menuItemMobile .menuButton,
+.menuItemMobile .menuLink {
+  height: 2.25rem;
+}
+
+/* Ensure button/link content is right-aligned */
+.menuItemMobile .menuButton,
+.menuItemMobile .menuLink {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* Submenu Container */
 .submenuContainer {
-  position: relative; /* This should pop out */
+  position: relative;
   width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: var(--closing-dropdown);
+
+  .menuItem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
-/* Target level 0 menu items in desktop mode */
+/* Level 0 Mobile Styles */
+.menuLevel0Mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* width: 100%; */
+
+  .menuButton,
+  .menuLink {
+    span {
+      color: var(--color-bg1);
+      font-weight: 400;
+    }
+  }
+}
+
+/* Level 0 Desktop Styles */
 .menuLevel0Desktop {
-  display: flex;  /* Horizontal expansion */
+  display: flex;
   align-items: center;
-}
 
-/* Target buttons and links within level 0 desktop items */
-.menuLevel0Desktop .menuButton,
-.menuLevel0Desktop .menuLink {
+  .menuButton,
+  .menuLink {
+    span {
+      color: var(--color-link);
+      font-weight: 700;
+    }
+  }
 
-  span {
-    color: var(--color-link);  /* Blue text */
-    font-weight: 700;          /* Bold text */
+  .menuButton:hover span,
+  .menuLink:hover span {
+    color: var(--color-bg1);
+    font-weight: 400;
+  }
+
+  .menuButtonActive,
+  .menuLinkActive {
+    span {
+      color: var(--color-bg1);
+      font-weight: 400;
+    }
+  }
+
+  .wrapper:has(.menuButtonActive),
+  .wrapper:has(.menuLinkActive) {
+    &::before {
+      background-color: var(--color-link);
+      box-shadow: var(--effect-poolShadow);
+      opacity: 1;
+      transform: translateY(0);
+      transition: var(--opening-dropdown);
+    }
+
+    .submenuContainer { 
+      overflow: visible;
+    }
   }
 }
 
-/* Specific override for level 0 hover text */
-.menuLevel0Desktop .menuButton:hover span,
-.menuLevel0Desktop .menuLink:hover span {
-  color: var(--color-bg1);
-  font-weight: 400;
-}
+/* Level 1+ Desktop Styles */
+.menuLevel1Desktop,
+.menuLevel2Desktop {
+  .menuButton span,
+  .menuLink span {
+    color: var(--color-bg1);
+    font-weight: 400;
+  }
 
-/* Level 0 items when submenu is expanded */
-.menuLevel0Desktop .menuButtonActive,
-.menuLevel0Desktop .menuLinkActive {
-
-  span {
-    color: var(--color-bg1);  /* Blue text */
-    font-weight: 400;          /* Bold text */
+  .wrapper:has(.menuButtonActive)::before,
+  .wrapper:has(.menuLinkActive)::before {
+    background-color: transparent;
+    box-shadow: none;
   }
 }
 
-/* All levels after 0 - lighter color and weight */
-.menuLevel1Desktop .menuButton span,
-.menuLevel1Desktop .menuLink span,
-.menuLevel2Desktop .menuButton span,
-.menuLevel2Desktop .menuLink span {
-  color: var(--color-bg1);
-  font-weight: 400;
+.submenuVisible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: var(--opening-dropdown);
+}
+
+/* Level 1+ Submenu Specific */
+.submenuMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.submenuDesktop.level1 .submenuContainer,
+.submenuDesktop.level2 .submenuContainer {
+  position: absolute;
+  right: calc(100% + 1rem);
+  top: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 1rem;
+    height: 100%;
+    background: transparent;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border-radius: var(--number-cornerRadius);
+    z-index: 1;
+    background-color: var(--color-link);
+    box-shadow: var(--effect-poolShadow);
+  }
 }
 
 
+/* Utility Classes
 .menuItemHidden {
   display: none;
-}
+} */

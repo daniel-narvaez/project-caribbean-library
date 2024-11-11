@@ -62,6 +62,8 @@ import { ScreenSizeContext } from '../../contexts/ScreenSize';
  */
 import styles from './DropdownMenu.module.css';
 
+import { zeroToAutoHeight } from '../../utils';
+
 /**********************************
  * DROPDOWN ITEM COMPONENT
  **********************************/
@@ -95,6 +97,7 @@ const DropdownItem = memo(({
   const { size } = useContext(ScreenSizeContext);  // Viewport size
   const [isOpen, setIsOpen] = useState(false);     // Local submenu state
   const hasSubmenu = item.submenu && item.submenu.length > 0;  // Submenu check
+  const submenuRef = useRef(null);
 
   /**
    * Path & Activity Calculations
@@ -115,14 +118,21 @@ const DropdownItem = memo(({
   * Control submenu visibility through mouse events on desktop only
   */
   const handleMouseEnter = useCallback(() => {
-  if(hasSubmenu && size === 'Desktop')
-    setIsOpen(true);
-  }, [hasSubmenu, size]);
+    if((hasSubmenu || level === 0) && size === 'Desktop') {
+      if (submenuRef.current) {
+        zeroToAutoHeight(submenuRef.current, true);
+      }
+      setIsOpen(true);
+    }
+  }, [hasSubmenu, size, level]);
 
   const handleMouseLeave = useCallback(() => {
-    if(hasSubmenu && size === 'Desktop')
+    if((hasSubmenu || level === 0) && size === 'Desktop')
+      if (submenuRef.current) {
+        zeroToAutoHeight(submenuRef.current, false);
+      }
       setIsOpen(false);
-  }, [hasSubmenu, size]);
+  }, [hasSubmenu, size, level]);
 
   /**
    * Mobile & Action Handlers
@@ -151,24 +161,6 @@ const DropdownItem = memo(({
     e.preventDefault();
     size === 'Mobile' ? handleItemToggle() : handleAction();
   }, [size, handleItemToggle, handleAction]);
-
-  /**
-   * Submenu Items Generation
-   * Memoized recursive rendering of child menu items
-   */
-  const submenuItems = useMemo(() =>
-    item.submenu?.map((subItem, subIndex) => (
-      <DropdownItem
-        key={`${subItem.title}-${subIndex}`}
-        item={subItem}
-        level={level + 1}
-        itemPath={[...itemPath, subIndex]}
-        activePath={activePath}
-        onMenuToggle={onMenuToggle}
-        onClose={onClose}
-      />
-    ))
-  , [item.submenu, level, itemPath, activePath, onMenuToggle, onClose]);
 
   const menuControl = useMemo(() =>
     /**
@@ -204,7 +196,23 @@ const DropdownItem = memo(({
     }, [item.url, item.icon, item.title, handleClick]
   );
 
-
+  /**
+   * Submenu Items Generation
+   * Memoized recursive rendering of child menu items
+   */
+  const submenuItems = useMemo(() =>
+    item.submenu?.map((subItem, subIndex) => (
+      <DropdownItem
+        key={`${subItem.title}-${subIndex}`}
+        item={subItem}
+        level={level + 1}
+        itemPath={[...itemPath, subIndex]}
+        activePath={activePath}
+        onMenuToggle={onMenuToggle}
+        onClose={onClose}
+      />
+    ))
+  , [item.submenu, level, itemPath, activePath, onMenuToggle, onClose]);
 
   /**********************************
   * RENDER LOGIC
@@ -213,12 +221,12 @@ const DropdownItem = memo(({
   return (
     <li
       className={`
-        ${styles.menuItem}              {/* Base menu item styling */}
-        ${styles['menuLevel'+level+size]}       {/* Level-specific styling */}
-        ${styles['menuItem'+size]}  {/* Responsive styling */}
-        ${isInActivePath ? styles.menuItemActive : ''}     {/* Active state styling */}
-        ${hasSubmenu ? styles.hasSubmenu : ''}            {/* Submenu indicator styling */}
-        ${size === 'Mobile' && isSiblingActive ? styles.menuItemHidden : ''}  {/* Mobile accordion visibility */}
+        ${styles.menuItem}
+        ${styles['menuLevel'+level+size]}
+        ${styles['menuItem'+size]} 
+        ${isInActivePath ? styles.menuItemActive : ''}    
+        ${hasSubmenu ? styles.hasSubmenu : ''}           
+        ${size === 'Mobile' && isSiblingActive ? styles.menuItemHidden : ''}
       `}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -236,12 +244,14 @@ const DropdownItem = memo(({
          * - Mobile: item is in active path
          * - Desktop: item is being hovered
          */}
-        {(hasSubmenu && (size === 'Mobile' ? isInActivePath : isOpen)) && (
-          <ul className={`
-            ${styles.submenuContainer}               {/* Base submenu styling */}
-            ${styles['submenuLevel'+(level + 1)]}      {/* Nested level styling */}
-            ${styles['submenu'+size]}  {/* Responsive styling */}
-            ${isOpen ? styles.submenuVisible : styles.submenuHidden}  {/* Visibility state */}
+        {hasSubmenu && (
+          <ul 
+            ref={submenuRef}
+            className={`
+              ${styles.submenuContainer} 
+              ${styles['submenu'+size]} 
+              ${styles['level'+(level+1)]}   
+              ${isOpen ? styles.submenuVisible : ''} 
           `}>
             {submenuItems}  {/* Memoized submenu items */}
           </ul>
