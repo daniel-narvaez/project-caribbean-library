@@ -38,14 +38,14 @@ export const TypographyProvider = ({ children }) => {
 
   // Define typography scales for different device sizes
   const fontSizes = {
-    desktop: {
+    Desktop: {
       // Minor Third Scale (1.2)
       h1: '1.728rem',    // 27.65px (1.2^3)
       h2: '1.44rem',     // 23.04px (1.2^2)
       h3: '1.2rem',      // 19.2px  (1.2^1)
       inline: '1.2rem'   // 19.2px  (1.2^1)
     },
-    mobile: {
+    Mobile: {
       // Major Second Scale (1.125)
       h1: '1.602rem',    // 25.63px (1.125^4)
       h2: '1.424rem',    // 22.78px (1.125^3)
@@ -68,7 +68,7 @@ export const TypographyProvider = ({ children }) => {
    */
   useEffect(() => {
     const root = document.documentElement;
-    const device = size; // 'mobile' or 'desktop' from ScreenSizeContext
+    const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
 
     // Set CSS custom properties for typography
     root.style.setProperty('--h1-size', fontSizes[device].h1);

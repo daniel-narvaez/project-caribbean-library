@@ -45,7 +45,7 @@ import { mainMenuData } from '../../data/dropdownItems';
 
 /**
  * Context Imports
- * ScreenSizeContext: Provides viewport size state ('mobile' or 'desktop')
+ * ScreenSizeContext: Provides viewport size state ('mobile' or 'Desktop')
  * Used throughout component to determine render behavior and interaction patterns
  */
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
@@ -101,7 +101,7 @@ const DropdownItem = memo(({
    * Determines item's state in the menu hierarchy
    */
   const isInActivePath = JSON.stringify(itemPath) === JSON.stringify(activePath.slice(0, itemPath.length));
-  const isActive = size === 'mobile' ? isInActivePath : isOpen;
+  const isActive = size === 'Mobile' ? isInActivePath : isOpen;
   const isSiblingActive = activePath.length > itemPath.length - 1
     && JSON.stringify(activePath.slice(0, itemPath.length - 1)) === JSON.stringify(itemPath.slice(0, -1))
     && activePath[itemPath.length - 1] !== itemPath[itemPath.length - 1];
@@ -115,12 +115,12 @@ const DropdownItem = memo(({
   * Control submenu visibility through mouse events on desktop only
   */
   const handleMouseEnter = useCallback(() => {
-  if(hasSubmenu && size === 'desktop')
+  if(hasSubmenu && size === 'Desktop')
     setIsOpen(true);
   }, [hasSubmenu, size]);
 
   const handleMouseLeave = useCallback(() => {
-    if(hasSubmenu && size === 'desktop')
+    if(hasSubmenu && size === 'Desktop')
       setIsOpen(false);
   }, [hasSubmenu, size]);
 
@@ -129,7 +129,7 @@ const DropdownItem = memo(({
    * Handle touch interactions and menu item actions
    */
   const handleItemToggle = useCallback(() => {
-    if (hasSubmenu && size === 'mobile') {
+    if (hasSubmenu && size === 'Mobile') {
       onMenuToggle(itemPath);    // Update accordion state
       setIsOpen(!isOpen);        // Toggle local submenu
     }
@@ -149,7 +149,7 @@ const DropdownItem = memo(({
    */
   const handleClick = useCallback((e) => {
     e.preventDefault();
-    size === 'mobile' ? handleItemToggle() : handleAction();
+    size === 'Mobile' ? handleItemToggle() : handleAction();
   }, [size, handleItemToggle, handleAction]);
 
   /**
@@ -170,6 +170,42 @@ const DropdownItem = memo(({
     ))
   , [item.submenu, level, itemPath, activePath, onMenuToggle, onClose]);
 
+  const menuControl = useMemo(() =>
+    /**
+    * Conditional Element Rendering
+    * Renders either an <a> tag for URL items
+    * or a <button> for action/submenu items
+    */
+    (isActive = false) => {
+      return item.url ? (
+        <a
+          href={item.url}
+          onClick={handleClick}
+          className={`
+            ${styles.menuLink}
+            ${isActive ? styles.menuLinkActive : ''}
+          `}
+        >
+          {item.icon}
+          {item.title}
+        </a>
+      ) : (
+        <button
+          type="button"
+          onClick={handleClick}
+          className={`${styles.menuButton} ${isActive ? styles.menuButtonActive : ''}`}
+        >
+          <div>
+            {item.icon}
+            <span>{item.title}</span>
+          </div>
+        </button>
+      )
+    }, [item.url, item.icon, item.title, handleClick]
+  );
+
+
+
   /**********************************
   * RENDER LOGIC
   **********************************/
@@ -177,60 +213,40 @@ const DropdownItem = memo(({
   return (
     <li
       className={`
-        menuItem                  {/* Base menu item styling */}
-        menuLevel${level}         {/* Level-specific styling */}
-        ${size === 'mobile' ? 'menuItemMobile' : 'menuItemDesktop'}  {/* Responsive styling */}
-        ${isInActivePath ? 'menuItemActive' : ''}     {/* Active state styling */}
-        ${hasSubmenu ? 'hasSubmenu' : ''}            {/* Submenu indicator styling */}
-        ${size === 'mobile' && isSiblingActive ? styles.menuItemHidden : ''}  {/* Mobile accordion visibility */}
+        ${styles.menuItem}              {/* Base menu item styling */}
+        ${styles['menuLevel'+level+size]}       {/* Level-specific styling */}
+        ${styles['menuItem'+size]}  {/* Responsive styling */}
+        ${isInActivePath ? styles.menuItemActive : ''}     {/* Active state styling */}
+        ${hasSubmenu ? styles.hasSubmenu : ''}            {/* Submenu indicator styling */}
+        ${size === 'Mobile' && isSiblingActive ? styles.menuItemHidden : ''}  {/* Mobile accordion visibility */}
       `}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/**
-       * Conditional Element Rendering
-       * Renders either an <a> tag for URL items
-       * or a <button> for action/submenu items
-       */}
-      {item.url ? (
-        <a
-          href={item.url}
-          onClick={handleClick}
-          className={`menuLink ${isActive ? 'menuLinkActive' : ''}`}
-        >
-          {item.icon}   {/* Optional icon */}
-          {item.title}  {/* Menu item text */}
-        </a>
-      ) : (
-        <button
-          type="button"
-          onClick={handleClick}
-          className={`menuButton ${isActive ? 'menuButtonActive' : ''}`}
-        >
-          <div>
-            {item.icon}  {/* Optional icon */}
-            <span>{item.title}</span>  {/* Menu item text */}
-          </div>
-        </button>
-      )}
+      <div className={styles.phantom}>
+        {menuControl()}
+      </div>
+      <div className={styles.wrapper}> {/* wrapper*/}
+        {menuControl(isActive)}
 
-      {/**
-       * Submenu Container
-       * Renders when:
-       * - Item has submenu AND
-       * - Mobile: item is in active path
-       * - Desktop: item is being hovered
-       */}
-      {(hasSubmenu && (size === 'mobile' ? isInActivePath : isOpen)) && (
-        <ul className={`
-          submenuContainer                {/* Base submenu styling */}
-          submenuLevel${level + 1}       {/* Nested level styling */}
-          ${size === 'mobile' ? 'submenuMobile' : 'submenuDesktop'}  {/* Responsive styling */}
-          ${isOpen ? 'submenuVisible' : 'submenuHidden'}  {/* Visibility state */}
-        `}>
-          {submenuItems}  {/* Memoized submenu items */}
-        </ul>
-      )}
+        {/**
+         * Submenu Container
+         * Renders when:
+         * - Item has submenu AND
+         * - Mobile: item is in active path
+         * - Desktop: item is being hovered
+         */}
+        {(hasSubmenu && (size === 'Mobile' ? isInActivePath : isOpen)) && (
+          <ul className={`
+            ${styles.submenuContainer}               {/* Base submenu styling */}
+            ${styles['submenuLevel'+(level + 1)]}      {/* Nested level styling */}
+            ${styles['submenu'+size]}  {/* Responsive styling */}
+            ${isOpen ? styles.submenuVisible : styles.submenuHidden}  {/* Visibility state */}
+          `}>
+            {submenuItems}  {/* Memoized submenu items */}
+          </ul>
+        )}
+      </div>
     </li>
   );
 });
@@ -268,7 +284,7 @@ const MainDropdown = ({ items = [] }) => {
    * Mobile: Closed by default
    */
   useEffect(() => {
-    setIsOpen(size === 'desktop');
+    setIsOpen(size === 'Desktop');
   }, [size]);
  
   /**
@@ -278,7 +294,7 @@ const MainDropdown = ({ items = [] }) => {
    * Mobile: Closes menu
    */
   useEffect(() => {
-    const handleNavigation = () => setIsOpen(size !== 'desktop');
+    const handleNavigation = () => setIsOpen(size !== 'Desktop');
     window.addEventListener('popstate', handleNavigation);
     return () => window.removeEventListener('popstate', handleNavigation);
   }, [size]);
@@ -290,7 +306,7 @@ const MainDropdown = ({ items = [] }) => {
    */
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (size === 'mobile' && menuRef.current && !menuRef.current.contains(event.target)) {
+      if (size === 'Mobile' && menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -316,7 +332,7 @@ const MainDropdown = ({ items = [] }) => {
     * @param {Event} e - Click/touch event
     */
   const handleTouchEnd = useCallback((e) => {
-    if (size === 'mobile') {
+    if (size === 'Mobile') {
       e.preventDefault();
       setIsOpen(!isOpen);
       if (isOpen) {
@@ -332,8 +348,8 @@ const MainDropdown = ({ items = [] }) => {
    * - Immediately reopens to maintain top-level visibility
    */
   const handleClose = useCallback(() => {
-    setIsOpen(size !== 'desktop');
-    {size === 'desktop' && setTimeout(() => setIsOpen(true), 0)};
+    setIsOpen(size !== 'Desktop');
+    {size === 'Desktop' && setTimeout(() => setIsOpen(true), 0)};
   }, [size]);
 
   /**
@@ -344,7 +360,7 @@ const MainDropdown = ({ items = [] }) => {
    * @param {Array} itemPath - Array of indices representing item's position
    */
   const handleMenuToggle = useCallback((itemPath) => {
-    if (size === 'mobile') {
+    if (size === 'Mobile') {
       setActivePath(prevPath => {
         if (JSON.stringify(prevPath) === JSON.stringify(itemPath)) {
           return itemPath.slice(0, -1); // Collapse if same path
@@ -363,7 +379,7 @@ const MainDropdown = ({ items = [] }) => {
       ref={menuRef}
       className={`
         mainNav                   {/* Base menu styling */}
-        ${size === 'mobile' ? 'mainNavMobile' : 'mainNavDesktop'}  {/* Responsive styling */}
+        ${size === 'Mobile' ? styles.mainNavMobile : styles.mainNavDesktop}  {/* Responsive styling */}
       `}
     >
       {/**
@@ -371,7 +387,7 @@ const MainDropdown = ({ items = [] }) => {
        * Only renders in mobile viewport
        * Contains Burgershelf component that animates on state change
        */}
-      {size === 'mobile' && (
+      {size === 'Mobile' && (
         <button
           type="button"
           onClick={(e) => handleTouchEnd(e)}
@@ -392,7 +408,7 @@ const MainDropdown = ({ items = [] }) => {
       {isOpen && (
         <ul className={`
           menuLevel0               {/* Top level menu container */}
-          ${size === 'mobile' ? 'menuLevel0Mobile' : 'menuLevel0Desktop'}  {/* Responsive styling */}
+          ${size === 'Mobile' ? styles.menuLevel0Mobile : styles.menuLevel0Desktop}  {/* Responsive styling */}
           ${isOpen ? 'menuVisible' : 'menuHidden'}  {/* Visibility state */}
         `}>
           {/**

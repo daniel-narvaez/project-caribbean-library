@@ -51,6 +51,118 @@
 * etc...
 */
 
+.menuItem {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  z-index: 1;
+}
+
+.menuItemActive {
+  z-index: 2;
+}
+
+.phantom {
+  visibility: hidden;
+  height: 3rem;
+}
+
+.wrapper {
+  position: absolute;
+  width: max-content;
+  z-index: 2;
+  top: 0;          /* Position at vertical center */
+  left: 50%;         /* Position at horizontal center */
+  transform: translateX(-50%);  /* Pull back by half width/height */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  border: 0px solid transparent;
+  border-style: inset;
+  border-radius: var(--number-cornerRadius);
+}
+
+.wrapper:has(.menuButtonActive),
+.wrapper:has(.menuLinkActive) {
+  background-color: var(--color-link);
+  box-shadow: var(--effect-poolShadow);
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+
+.menuButton,
+.menuLink {
+  padding: 0 1.5rem;
+  background-color: transparent;
+  /* inherit the same border from .wrapper */
+  border: inherit;
+  border-style: inherit;
+  border-radius: inherit;
+  white-space: nowrap;
+  height: 3rem;
+
+  &:hover {
+    background-color: var(--color-link-hover);
+
+    span {
+      color: var(--color-bg1-hover);
+    }
+  }
+}
+
+.submenuContainer {
+  position: relative; /* This should pop out */
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Target level 0 menu items in desktop mode */
+.menuLevel0Desktop {
+  display: flex;  /* Horizontal expansion */
+  align-items: center;
+}
+
+/* Target buttons and links within level 0 desktop items */
+.menuLevel0Desktop .menuButton,
+.menuLevel0Desktop .menuLink {
+
+  span {
+    color: var(--color-link);  /* Blue text */
+    font-weight: 700;          /* Bold text */
+  }
+}
+
+/* Specific override for level 0 hover text */
+.menuLevel0Desktop .menuButton:hover span,
+.menuLevel0Desktop .menuLink:hover span {
+  color: var(--color-bg1);
+  font-weight: 400;
+}
+
+/* Level 0 items when submenu is expanded */
+.menuLevel0Desktop .menuButtonActive,
+.menuLevel0Desktop .menuLinkActive {
+
+  span {
+    color: var(--color-bg1);  /* Blue text */
+    font-weight: 400;          /* Bold text */
+  }
+}
+
+/* All levels after 0 - lighter color and weight */
+.menuLevel1Desktop .menuButton span,
+.menuLevel1Desktop .menuLink span,
+.menuLevel2Desktop .menuButton span,
+.menuLevel2Desktop .menuLink span {
+  color: var(--color-bg1);
+  font-weight: 400;
+}
+
+
 .menuItemHidden {
   display: none;
 }

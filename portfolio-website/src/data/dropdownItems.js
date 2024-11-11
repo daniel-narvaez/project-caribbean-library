@@ -105,4 +105,5 @@ const contactItem = createDropdownItem({
 });
 
 /* Array of menu items */
-export const mainMenuData = [gamesItem, aboutItem, contactItem];
+export const mainMenuData = [gamesItem, aboutItem];
+

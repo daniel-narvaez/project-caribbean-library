@@ -3,15 +3,15 @@ import { createContext, useState, useEffect } from "react";
 export const ScreenSizeContext = createContext();
 
 export const ScreenSizeProvider = ({children}) => {
-  const [size, setSize] = useState('desktop');
+  const [size, setSize] = useState('Desktop');
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setSize('mobile');
+        setSize('Mobile');
         console.log(size);
       } else {
-        setSize('desktop');
+        setSize('Desktop');
       }
     };
 
