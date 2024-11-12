@@ -97,6 +97,7 @@ const DropdownItem = memo(({
   const { size } = useContext(ScreenSizeContext);  // Viewport size
   const [isOpen, setIsOpen] = useState(false);     // Local submenu state
   const hasSubmenu = item.submenu && item.submenu.length > 0;  // Submenu check
+  const itemRef = useRef(null);
   const submenuRef = useRef(null);
 
   /**
@@ -140,10 +141,20 @@ const DropdownItem = memo(({
    */
   const handleItemToggle = useCallback(() => {
     if (hasSubmenu && size === 'Mobile') {
+      console.log('Before toggle:', {
+        current: submenuRef.current,
+        height: submenuRef.current?.offsetHeight,
+        isOpen
+      });
+
       onMenuToggle(itemPath);    // Update accordion state
-      setIsOpen(!isOpen);        // Toggle local submenu
+      setIsOpen(!isOpen);  
+
+      if (submenuRef.current) {
+        zeroToAutoHeight(submenuRef.current, !isOpen);  // Expand/collapse submenu
+      }
     }
-  }, [hasSubmenu, size, isOpen]);
+  }, [hasSubmenu, size, isOpen, itemPath, onMenuToggle]);
 
   const handleAction = useCallback(() => {
     if (!hasSubmenu && item.action) {
@@ -175,7 +186,7 @@ const DropdownItem = memo(({
           onClick={handleClick}
           className={`
             ${styles.menuLink}
-            ${isActive ? styles.menuLinkActive : ''}
+            ${(isActive || (size === 'Mobile' && isInActivePath)) ? styles.menuLinkActive : ''}
           `}
         >
           {item.icon}
@@ -185,7 +196,10 @@ const DropdownItem = memo(({
         <button
           type="button"
           onClick={handleClick}
-          className={`${styles.menuButton} ${isActive ? styles.menuButtonActive : ''}`}
+          className={`
+            ${styles.menuButton} 
+            ${(isActive || (size === 'Mobile' && isInActivePath)) ? styles.menuButtonActive : ''}
+          `}
         >
           <div>
             {item.icon}
@@ -220,13 +234,13 @@ const DropdownItem = memo(({
 
   return (
     <li
+      ref={itemRef}
       className={`
         ${styles.menuItem}
         ${styles['menuLevel'+level+size]}
         ${styles['menuItem'+size]} 
         ${isInActivePath ? styles.menuItemActive : ''}    
-        ${hasSubmenu ? styles.hasSubmenu : ''}           
-        ${size === 'Mobile' && isSiblingActive ? styles.menuItemHidden : ''}
+        ${hasSubmenu ? styles.hasSubmenu : ''}
       `}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -251,7 +265,7 @@ const DropdownItem = memo(({
               ${styles.submenuContainer} 
               ${styles['submenu'+size]} 
               ${styles['level'+(level+1)]}   
-              ${isOpen ? styles.submenuVisible : ''} 
+              ${size === 'Mobile' ? (isInActivePath ? styles.submenuVisible : '') : (isOpen ? styles.submenuVisible : '')} 
           `}>
             {submenuItems}  {/* Memoized submenu items */}
           </ul>
@@ -390,6 +404,7 @@ const MainDropdown = ({ items = [] }) => {
       className={`
         mainNav                   {/* Base menu styling */}
         ${size === 'Mobile' ? styles.mainNavMobile : styles.mainNavDesktop}  {/* Responsive styling */}
+        ${isOpen ? styles.menuOpen : ''}
       `}
     >
       {/**
@@ -419,7 +434,7 @@ const MainDropdown = ({ items = [] }) => {
         <ul className={`
           menuLevel0               {/* Top level menu container */}
           ${size === 'Mobile' ? styles.menuLevel0Mobile : styles.menuLevel0Desktop}  {/* Responsive styling */}
-          ${isOpen ? 'menuVisible' : 'menuHidden'}  {/* Visibility state */}
+          ${isOpen ? styles.menuVisible : 'menuHidden'}  {/* Visibility state */}
         `}>
           {/**
            * Menu Items Mapping

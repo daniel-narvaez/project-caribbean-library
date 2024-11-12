@@ -7,8 +7,16 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
         onComplete
     } = options;
 
+    console.log('zeroToAutoHeight called:', {
+      element,
+      shouldExpand,
+      currentHeight: element.offsetHeight,
+      scrollHeight: element.scrollHeight
+    });
+
     // Store the current height of the element
     const currentHeight = element.offsetHeight;
+
     
     // Get the target height
     let targetHeight;
@@ -31,15 +39,4 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
         element.style.height = targetHeight;
         if (onComplete) onComplete({ height: targetHeight });
     });
-}
-
-export function transToAuto(element, shouldExpand) {
-    const closedHeight = element.style.height;
-    element.style.height = 'auto';
-    const openedHeight = element.offsetHeight + 'px';
-    element.style.height = closedHeight;
-
-    let height = shouldExpand ? openedHeight : closedHeight;
-    element.style.height = height;
-    console.log(shouldExpand, height);
 }
