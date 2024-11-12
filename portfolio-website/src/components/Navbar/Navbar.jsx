@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Title } from '../Title/Title';
-import { MainMenu } from '../DropdownMenu/DropdownMenu';
+import { MainMenu } from '../DropdownMenu/DropdownDesktop';
 
 import styles from './Navbar.module.css'
 
