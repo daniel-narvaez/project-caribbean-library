@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Title } from '../Title/Title';
-import { MainMenu } from '../DropdownMenu/DropdownDesktop';
+import { Chevron } from '../Chevron/Chevron';
+import { MobileDropdown } from '../DropdownMenu/DropdownMobile';
+import { DesktopDropdown } from '../DropdownMenu/DropdownDesktop';
+
+import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
 import styles from './Navbar.module.css'
 
 export const Navbar = () => {
+  const { size } = useContext(ScreenSizeContext);
   return <nav className={styles.navbar}>
     <Title />
-    <MainMenu />
+    {size === 'Mobile' ? 
+      <MobileDropdown /> : 
+      <DesktopDropdown />
+    }
   </nav>;
 }

@@ -1,0 +1,43 @@
+.chevron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: var(--menuControl-hover);
+
+  svg {
+    transition: var(--menuControl-hover);
+    width: 0.75rem;
+    height: 0.5rem;
+    path {
+      stroke: var(--color-bg1);
+      transition: var(--menuControl-hover);
+    }
+  }
+  
+  &.up {
+    transform: rotate(0deg); /* default upward */
+  }
+
+  &.down svg {
+    transform: rotate(180deg);
+  }
+
+  &.left svg {
+    transform: rotate(-90deg);
+  }
+
+  &.right svg {
+    transform: rotate(90deg);
+  }
+
+  &[data-hover="true"] svg path {
+    stroke: var(--color-bg1-hover);
+  }
+
+  &[data-active="true"] svg path {
+    stroke: var(--color-bg1-active);
+  }
+}
+

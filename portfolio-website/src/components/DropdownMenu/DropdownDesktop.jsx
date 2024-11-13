@@ -9,7 +9,7 @@ import {
   memo 
 } from 'react';
 
-import { Burgershelf } from '../Burgershelf/Burgershelf';
+import { Chevron } from '../Chevron/Chevron';
 import { mainMenuData } from '../../data/dropdownItems';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
@@ -49,15 +49,16 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     }
   }, [hasSubmenu, item.action, onClose]);
 
-  const menuControl = useMemo(() => (isActive = false) => {
+  const buttonContent = useMemo(() => (isActive = false) => {
     return item.url ? (
       <a
         href={item.url}
         onClick={handleClick}
         className={`${styles.menuLink} ${isActive ? styles.menuLinkActive : ''}`}
       >
+        {(hasSubmenu && level !== 0) && <Chevron direction={isActive ? 'right' : 'left'} />}
         {item.icon}
-        {item.title}
+        <span>{item.title}</span>
       </a>
     ) : (
       <button
@@ -66,12 +67,13 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
         className={`${styles.menuButton} ${isActive ? styles.menuButtonActive : ''}`}
       >
         <div>
+          {hasSubmenu && <Chevron direction={isActive ? 'right' : 'left'} />}
           {item.icon}
           <span>{item.title}</span>
         </div>
       </button>
     );
-  }, [item.url, item.icon, item.title, handleClick]);
+  }, [item.url, item.icon, item.title, handleClick, hasSubmenu]);
 
   const submenuItems = useMemo(() =>
     item.submenu?.map((subItem, subIndex) => (
@@ -95,10 +97,10 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.phantom}>
-        {menuControl()}
+        {buttonContent()}
       </div>
       <div className={styles.wrapper}>
-        {menuControl(isOpen)}
+        {buttonContent(isOpen)}
         {hasSubmenu && (
           <ul 
             ref={submenuRef}
@@ -142,9 +144,9 @@ const MainDropdown = ({ items = [] }) => {
   );
 };
 
-export const MainMenu = () => {
-  console.time('MainMenu Render');    // Performance monitoring
+export const DesktopDropdown = () => {
+  console.time('Desktop Dropdown Render');    // Performance monitoring
   const result = <MainDropdown items={mainMenuData}/>;
-  console.timeEnd('MainMenu Render'); // Performance monitoring
+  console.timeEnd('Desktop Dropdown Render'); // Performance monitoring
   return result;
   };

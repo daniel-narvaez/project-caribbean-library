@@ -60,6 +60,7 @@
   transition: var(--menuControl-active);
   display: flex;
   align-items: center;
+  text-decoration: none;
 
   span {
     position: relative;
@@ -128,6 +129,7 @@
 .menuLevel0 {
   display: flex;
   align-items: center;
+  gap: 1rem;
 
   .menuButton,
   .menuLink {
@@ -165,7 +167,9 @@
 
 /* Level 1+ Styles */
 .level1,
-.level2 {
+.level2,
+.level3,
+.level4 {
   .menuButton span,
   .menuLink span {
     color: var(--color-bg1);
@@ -181,9 +185,11 @@
 
 /* Submenu Positioning for Levels 1+ */
 .level1 .submenuContainer,
-.level2 .submenuContainer {
+.level2 .submenuContainer,
+.level3 .submenuContainer,
+.level4 .submenuContainer {
   position: absolute;
-  right: calc(100% + 1rem);
+  right: calc(100% + 0.75rem);
   top: 0;
 
   &::after {

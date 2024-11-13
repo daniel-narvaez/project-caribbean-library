@@ -55,31 +55,31 @@ export const createDropdownItem = ({
 /* Games */
 const gamesItem = createDropdownItem({
   title: 'Games',
-  url: '',
+  url: '/',
   submenu: [
     createDropdownItem({
       title: 'Chihuahua Champ',
-      url: '',
+      url: '/',
     }),
     createDropdownItem({
       title: 'Star Sweepers',
-      url: '',
+      url: '/',
     }),
     createDropdownItem({
       title: 'Project: Boricuas',
-      url: '',
+      url: '/',
       submenu: [
         createDropdownItem({
           title: 'Part 1',
-          url: '',
+          url: '/',
         }),
         createDropdownItem({
           title: 'Part 2',
-          url: '',
+          url: '/',
           submenu: [
             createDropdownItem({
               title: '2.1',
-              url: '',
+              url: '/',
             }),
           ]
         })
@@ -87,7 +87,7 @@ const gamesItem = createDropdownItem({
     }),
     createDropdownItem({
       title: 'Clock Out!!',
-      url: '',
+      url: '/',
     })
   ]
 });
@@ -95,13 +95,13 @@ const gamesItem = createDropdownItem({
 /* About */
 const aboutItem = createDropdownItem({
   title: 'About',
-  url: '',
+  url: '/',
 });
 
 /* Contact */
 const contactItem = createDropdownItem({
   title: 'Contact',
-  url: '',
+  url: '/',
 });
 
 /* Array of menu items */

@@ -1,0 +1,175 @@
+.mainNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: max-content;
+  position: relative;
+  z-index: 1;
+
+  > button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-style: inset;
+    border-radius: var(--number-cornerRadius);
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
+  }
+
+  &.menuOpen::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border-radius: var(--number-cornerRadius);
+    z-index: 0;
+    background-color: var(--color-link);
+    box-shadow: var(--effect-poolShadow);
+  }
+}
+
+.menuItem {
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden;
+  z-index: 2;
+  transition: var(--closing-dropdown);
+}
+
+.menuItem.menuItemHidden {
+  width: 0;
+  height: 0;
+  transition: var(--closing-dropdown);
+}
+
+.phantom {
+  visibility: hidden;
+  height: 2.25rem;
+}
+
+.wrapper {
+  width: max-content;
+  top: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.menuButton,
+.menuLink {
+  padding: 0 1rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-style: inset;
+  border-radius: var(--number-cornerRadius);
+  white-space: nowrap;
+  height: 2.25rem;
+  width: max-content;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  transition: var(--menuControl-active);
+  text-decoration: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--number-cornerRadius);
+    transition: var(--menuControl-hover);
+    transform-origin: top;
+    transform: scaleY(0);
+    background-color: var(--color-link-hover);
+    z-index: -1;
+  }
+
+  span {
+    color: var(--color-bg1);
+    font-weight: 400;
+    transition: var(--menuControl-active);
+  }
+  
+    &:hover {
+      &::before {
+        transform: scaleY(1);
+        background-color: var(--color-link-hover);
+      }
+      span { 
+        color: var(--color-bg1-hover); 
+      }
+      .chevron svg {
+        fill: red;
+      }
+    }
+
+  &.menuButtonActive,
+  &.menuLinkActive {
+    &::before {
+      transform: scaleY(1);
+      background-color: var(--color-link-active);
+    }
+    span { 
+      color: var(--color-bg1-active); 
+    }
+    .chevron svg path {
+      fill: var(--color-bg1-active);
+    }
+  }
+
+  &:active {
+    transform: scale(96%);
+    
+    span { 
+      transform: scale(104.2%); 
+    }
+    
+    &::before { 
+      background-color: var(--color-link-active); 
+    }
+  }
+}
+
+.menuLevel0 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: max-content;
+
+  > .menuItem {
+  align-self: flex-end;
+  }
+}
+
+.submenuContainer {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow: hidden;
+  height: 0;
+  transition: var(--closing-dropdown);
+  .menuItem {
+    display: none;
+    margin-left: auto;
+    transition: var(--opening-dropdown)
+  }
+}
+
+.submenuVisible {
+  height: auto;
+  overflow: visible;
+  transition: var(--opening-dropdown);
+  .menuItem {
+    display: flex;
+    transition: var(--opening-dropdown);
+  }
+}
