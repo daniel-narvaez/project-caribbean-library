@@ -76,12 +76,6 @@ const gamesItem = createDropdownItem({
         createDropdownItem({
           title: 'Part 2',
           url: '/',
-          submenu: [
-            createDropdownItem({
-              title: '2.1',
-              url: '/',
-            }),
-          ]
         })
       ]
     }),
@@ -105,5 +99,5 @@ const contactItem = createDropdownItem({
 });
 
 /* Array of menu items */
-export const mainMenuData = [gamesItem, aboutItem];
+export const mainMenuData = [gamesItem, aboutItem, contactItem];
 
