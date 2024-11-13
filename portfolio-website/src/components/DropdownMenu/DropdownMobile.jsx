@@ -1,7 +1,20 @@
+/**
+ * Mobile Dropdown Menu Components
+ * 
+ * A responsive accordion-style dropdown menu specifically designed for mobile interfaces.
+ * Features include:
+ * - Hamburger menu toggle (Burgershelf)
+ * - Accordion-style submenu expansion
+ * - Right-aligned menu items
+ * - Click-outside detection
+ * - Path tracking for nested menu state
+ * 
+ * @file DropdownMobile.jsx
+ */
+
 import React from 'react';
 import { 
   useState, 
-  useContext, 
   useRef, 
   useEffect, 
   useCallback, 
@@ -9,14 +22,21 @@ import {
   memo 
 } from 'react';
 
+// Component Imports
 import { Burgershelf } from '../Burgershelf/Burgershelf';
-import { mainMenuData } from '../../data/dropdownItems';
 import { Chevron } from '../Chevron/Chevron';
 
-import styles from './DropdownMobile.module.css';
-
+// Data and Utilities
+import { mainMenuData } from '../../data/dropdownItems';
 import { zeroToAutoHeight } from '../../utils';
 
+// Styles
+import styles from './DropdownMobile.module.css';
+
+/**
+ * Individual menu item component that handles both regular items and submenus
+ * Manages accordion behavior and submenu rendering
+ */
 const DropdownItem = memo(({
   item,
   level = 0,
@@ -28,25 +48,24 @@ const DropdownItem = memo(({
   const hasSubmenu = item.submenu && item.submenu.length > 0;
   const submenuRef = useRef(null);
   
-  // Check if this item or its sibling is active in accordion
+  // Determine item's state within the accordion
   const isInActivePath = JSON.stringify(itemPath) === JSON.stringify(activePath.slice(0, itemPath.length));
   const isSiblingActive = activePath.length > itemPath.length - 1
     && JSON.stringify(activePath.slice(0, itemPath.length - 1)) === JSON.stringify(itemPath.slice(0, -1))
     && activePath[itemPath.length - 1] !== itemPath[itemPath.length - 1];
 
+  // Handle clicks on menu items
   const handleClick = useCallback((e) => {
     e.preventDefault();
     if (hasSubmenu) {
       onMenuToggle(itemPath);
-      // if (submenuRef.current) {
-      //   zeroToAutoHeight(submenuRef.current, true);
-      // }
     } else if (item.action) {
       item.action();
       onClose();
     }
   }, [hasSubmenu, itemPath, item.action, onMenuToggle, onClose]);
 
+  // Generate nested menu items recursively
   const submenuItems = useMemo(() =>
     item.submenu?.map((subItem, subIndex) => (
       <DropdownItem
@@ -61,6 +80,7 @@ const DropdownItem = memo(({
     ))
   , [item.submenu, level, itemPath, activePath, onMenuToggle, onClose]);
 
+  // Unified content for both button and link variants
   const buttonContent = (
     <>
       {hasSubmenu && <Chevron 
@@ -114,11 +134,17 @@ const DropdownItem = memo(({
   );
 });
 
+/**
+ * Main container component for the mobile dropdown menu
+ * Manages overall menu state and handles click-outside behavior
+ */
 const MainDropdown = ({ items = [] }) => {
+  // State for menu visibility and active submenu path
   const [isOpen, setIsOpen] = useState(false);
   const [activePath, setActivePath] = useState([]);
   const menuRef = useRef(null);
 
+  // Handle clicks outside the menu
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -133,6 +159,7 @@ const MainDropdown = ({ items = [] }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
+  // Toggle submenu states in accordion
   const handleMenuToggle = useCallback((itemPath) => {
     setActivePath(prevPath => {
       if (JSON.stringify(prevPath) === JSON.stringify(itemPath)) {
@@ -142,6 +169,7 @@ const MainDropdown = ({ items = [] }) => {
     });
   }, []);
 
+  // Handle burger menu clicks
   const handleBurgerClick = useCallback(() => {
     setIsOpen(prev => {
       if (prev) setActivePath([]); // Reset accordion when closing
@@ -178,9 +206,12 @@ const MainDropdown = ({ items = [] }) => {
   );
 };
 
+/**
+ * Export wrapper with performance monitoring
+ */
 export const MobileDropdown = () => {
-  console.time('Mobile Dropdown Menu Render');    // Performance monitoring
+  console.time('Mobile Dropdown Menu Render');
   const result = <MainDropdown items={mainMenuData}/>;
-  console.timeEnd('Mobile Dropdown Menu Render'); // Performance monitoring
+  console.timeEnd('Mobile Dropdown Menu Render');
   return result;
-  };
+};

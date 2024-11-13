@@ -1,175 +1,199 @@
-.mainNav {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: max-content;
-  position: relative;
-  z-index: 1;
+/**
+ * Mobile Dropdown Menu Styles
+ *
+ * A mobile-first dropdown menu featuring:
+ * - Right-aligned accordion-style menu
+ * - Animated transitions
+ * - Interactive hover/active states
+ * - Height-based animations
+ */
 
-  > button {
+/* Main Navigation Container
+   ------------------------ */
+   .mainNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: max-content;
+    position: relative;
+    z-index: 1;
+  
+    /* Burger Menu Button */
+    > button {
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-style: inset;
+      border-radius: var(--number-cornerRadius);
+      padding: 0;
+      margin: 0;
+      align-self: flex-end;
+    }
+  
+    /* Menu Background when Open */
+    &.menuOpen::before {
+      content: '';
+      position: absolute;
+      top: -0.5rem;
+      left: -0.5rem;
+      right: -0.5rem;
+      bottom: -0.5rem;
+      border-radius: var(--number-cornerRadius);
+      z-index: 0;
+      background-color: var(--color-link);
+      box-shadow: var(--effect-poolShadow);
+    }
+  }
+  
+  /* Menu Item Container
+     ------------------ */
+  .menuItem {
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+    z-index: 2;
+    transition: var(--closing-dropdown);
+  
+    &.menuItemHidden {
+      width: 0;
+      height: 0;
+      transition: var(--closing-dropdown);
+    }
+  }
+  
+  /* Phantom Element (Space Maintainer)
+     --------------------------------- */
+  .phantom {
+    visibility: hidden;
+    height: 2.25rem;  /* Matches menu button height */
+  }
+  
+  /* Wrapper (Contains Button/Link and Submenu)
+     ----------------------------------------- */
+  .wrapper {
+    width: max-content;
+    top: 0;
+    margin-left: auto;  /* Right alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+  
+  /* Menu Controls (Button & Link)
+     ---------------------------- */
+  .menuButton,
+  .menuLink {
+    /* Base Layout */
+    padding: 0 1rem;
+    height: 2.25rem;
+    width: max-content;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  
+    /* Visual Styling */
     background-color: transparent;
     border: 1px solid transparent;
     border-style: inset;
     border-radius: var(--number-cornerRadius);
-    padding: 0;
-    margin: 0;
-    align-self: flex-end;
-  }
-
-  &.menuOpen::before {
-    content: '';
-    position: absolute;
-    top: -0.5rem;
-    left: -0.5rem;
-    right: -0.5rem;
-    bottom: -0.5rem;
-    border-radius: var(--number-cornerRadius);
-    z-index: 0;
-    background-color: var(--color-link);
-    box-shadow: var(--effect-poolShadow);
-  }
-}
-
-.menuItem {
-  width: fit-content;
-  height: fit-content;
-  overflow: hidden;
-  z-index: 2;
-  transition: var(--closing-dropdown);
-}
-
-.menuItem.menuItemHidden {
-  width: 0;
-  height: 0;
-  transition: var(--closing-dropdown);
-}
-
-.phantom {
-  visibility: hidden;
-  height: 2.25rem;
-}
-
-.wrapper {
-  width: max-content;
-  top: 0;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-}
-
-.menuButton,
-.menuLink {
-  padding: 0 1rem;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-style: inset;
-  border-radius: var(--number-cornerRadius);
-  white-space: nowrap;
-  height: 2.25rem;
-  width: max-content;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-  transition: var(--menuControl-active);
-  text-decoration: none;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: var(--number-cornerRadius);
-    transition: var(--menuControl-hover);
-    transform-origin: top;
-    transform: scaleY(0);
-    background-color: var(--color-link-hover);
-    z-index: -1;
-  }
-
-  span {
-    color: var(--color-bg1);
-    font-weight: 400;
+    white-space: nowrap;
+    text-decoration: none;
     transition: var(--menuControl-active);
-  }
   
+    /* Background Effect */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: var(--number-cornerRadius);
+      transition: var(--menuControl-hover);
+      transform-origin: top;
+      transform: scaleY(0);
+      background-color: var(--color-link-hover);
+      z-index: -1;
+    }
+  
+    /* Text Styling */
+    span {
+      color: var(--color-bg1);
+      font-weight: 400;
+      transition: var(--menuControl-active);
+    }
+  
+    /* Hover State */
     &:hover {
       &::before {
         transform: scaleY(1);
         background-color: var(--color-link-hover);
       }
-      span { 
-        color: var(--color-bg1-hover); 
+      span { color: var(--color-bg1-hover); }
+      .chevron svg { fill: red; }
+    }
+  
+    /* Active State */
+    &.menuButtonActive,
+    &.menuLinkActive {
+      &::before {
+        transform: scaleY(1);
+        background-color: var(--color-link-active);
       }
-      .chevron svg {
-        fill: red;
-      }
+      span { color: var(--color-bg1-active); }
+      .chevron svg path { fill: var(--color-bg1-active); }
     }
-
-  &.menuButtonActive,
-  &.menuLinkActive {
-    &::before {
-      transform: scaleY(1);
-      background-color: var(--color-link-active);
-    }
-    span { 
-      color: var(--color-bg1-active); 
-    }
-    .chevron svg path {
-      fill: var(--color-bg1-active);
+  
+    /* Click Animation */
+    &:active {
+      transform: scale(96%);
+      span { transform: scale(104.2%); /* Counteracts parent scale */ }
+      &::before { background-color: var(--color-link-active); }
     }
   }
-
-  &:active {
-    transform: scale(96%);
-    
-    span { 
-      transform: scale(104.2%); 
-    }
-    
-    &::before { 
-      background-color: var(--color-link-active); 
-    }
-  }
-}
-
-.menuLevel0 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: max-content;
-
-  > .menuItem {
-  align-self: flex-end;
-  }
-}
-
-.submenuContainer {
-  width: max-content;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  overflow: hidden;
-  height: 0;
-  transition: var(--closing-dropdown);
-  .menuItem {
-    display: none;
-    margin-left: auto;
-    transition: var(--opening-dropdown)
-  }
-}
-
-.submenuVisible {
-  height: auto;
-  overflow: visible;
-  transition: var(--opening-dropdown);
-  .menuItem {
+  
+  /* Top Level Menu Container
+     ----------------------- */
+  .menuLevel0 {
     display: flex;
-    transition: var(--opening-dropdown);
+    flex-direction: column;
+    align-items: flex-end;
+    width: max-content;
+  
+    > .menuItem {
+      align-self: flex-end;
+    }
   }
-}
+  
+  /* Submenu Container
+     ---------------- */
+  .submenuContainer {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow: hidden;
+    height: 0;
+    transition: var(--closing-dropdown);
+  
+    .menuItem {
+      display: none;
+      margin-left: auto;
+      transition: var(--opening-dropdown);
+    }
+  }
+  
+  /* Submenu Visible State
+     -------------------- */
+  .submenuVisible {
+    height: auto;
+    overflow: visible;
+    transition: var(--opening-dropdown);
+  
+    .menuItem {
+      display: flex;
+      transition: var(--opening-dropdown);
+    }
+  }

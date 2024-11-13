@@ -1,28 +1,46 @@
+/**
+ * Desktop Dropdown Menu Components
+ * 
+ * A hover-based dropdown menu designed for desktop interfaces.
+ * Features include:
+ * - Hover-triggered submenus
+ * - Smooth height transitions
+ * - Nested menu support
+ * - Horizontal top-level navigation
+ * - Directional indicators for submenus
+ * 
+ * @file DropdownDesktop.jsx
+ */
+
 import React from 'react';
-import { 
-  useState, 
-  useContext, 
-  useRef, 
-  useEffect, 
-  useCallback, 
-  useMemo, 
-  memo 
+import {
+  useState,
+  useRef,
+  useCallback,
+  useMemo,
+  memo
 } from 'react';
 
+// Component Imports
 import { Chevron } from '../Chevron/Chevron';
+
+// Data and Utilities
 import { mainMenuData } from '../../data/dropdownItems';
-
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
-
-import styles from './DropdownDesktop.module.css';
-
 import { zeroToAutoHeight } from '../../utils';
 
+// Styles
+import styles from './DropdownDesktop.module.css';
+
+/**
+ * Individual menu item component handling both regular items and submenus
+ * Controls hover-based interactions and submenu animations
+ */
 const DropdownItem = memo(({ item, level = 0, onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasSubmenu = item.submenu && item.submenu.length > 0;
   const submenuRef = useRef(null);
 
+  // Hover handlers for submenu interactions
   const handleMouseEnter = useCallback(() => {
     if (hasSubmenu || level === 0) {
       if (submenuRef.current) {
@@ -41,6 +59,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     }
   }, [hasSubmenu, level]);
 
+  // Click handler for action items
   const handleClick = useCallback((e) => {
     e.preventDefault();
     if (!hasSubmenu && item.action) {
@@ -49,6 +68,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     }
   }, [hasSubmenu, item.action, onClose]);
 
+  // Memoized button/link content creation
   const buttonContent = useMemo(() => (isActive = false) => {
     return item.url ? (
       <a
@@ -75,6 +95,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     );
   }, [item.url, item.icon, item.title, handleClick, hasSubmenu]);
 
+  // Generate nested menu items
   const submenuItems = useMemo(() =>
     item.submenu?.map((subItem, subIndex) => (
       <DropdownItem
@@ -102,7 +123,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
       <div className={styles.wrapper}>
         {buttonContent(isOpen)}
         {hasSubmenu && (
-          <ul 
+          <ul
             ref={submenuRef}
             className={`
               ${styles.submenuContainer}
@@ -118,9 +139,14 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
   );
 });
 
+/**
+ * Main container component for the desktop dropdown menu
+ * Handles top-level menu visibility and structure
+ */
 const MainDropdown = ({ items = [] }) => {
   const [isOpen, setIsOpen] = useState(true);
   
+  // Special close handling to maintain menu state
   const handleClose = useCallback(() => {
     setIsOpen(false);
     setTimeout(() => setIsOpen(true), 0);
@@ -144,9 +170,12 @@ const MainDropdown = ({ items = [] }) => {
   );
 };
 
+/**
+ * Export wrapper with performance monitoring
+ */
 export const DesktopDropdown = () => {
-  console.time('Desktop Dropdown Render');    // Performance monitoring
+  console.time('Desktop Dropdown Render');
   const result = <MainDropdown items={mainMenuData}/>;
-  console.timeEnd('Desktop Dropdown Render'); // Performance monitoring
+  console.timeEnd('Desktop Dropdown Render');
   return result;
-  };
+};
