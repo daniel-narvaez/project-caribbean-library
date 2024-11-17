@@ -10,15 +10,11 @@
   height: 100%;
   transform-style: preserve-3d;
   filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.35));
-
-  transition: scale 5s ease-in-out;
 }
 
 .mediaContainer.flipping {
   transition: transform var(--flip-duration) var(--flip-timing);
 }
-
-
 
 .mediaContent {
   width: 100%;
