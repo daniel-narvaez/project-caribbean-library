@@ -95,3 +95,8 @@ p {
   font-size: 1rem;      /* 16px - Base size */
   color: var(--color-text);
 }
+
+b {
+  font-family: inherit;
+  font-weight: 700;
+}

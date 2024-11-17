@@ -1,0 +1,44 @@
+:root {
+  --bg-heroSection: linear-gradient(var(--color-bg1-hover), var(--color-bg1-active));
+}
+
+main.heroSection {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 2.22vw 5.55vw; /* 2rem 5rem */
+  gap: 2.22vw;
+  align-items: center;
+  background-image: var(--bg-heroSection);
+}
+
+main > .heroContent {
+  height: 100%;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3.33vw;
+}
+
+main > .heroMedia {
+  height: 100%;
+  max-width: 40%;
+}
+
+.heroContent .headline {
+  font-family: var(--font-baskervville);
+  font-size: 5vw;
+}
+
+.heroContent .tagline {
+  font-size: 2.083vw;
+  line-height: normal;
+}
+
+.ctaMenu {
+  display: flex;
+  align-items: center;
+  gap: 2.22vw;
+}

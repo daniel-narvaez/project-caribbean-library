@@ -17,7 +17,7 @@
     --font-notoSans: "Noto Sans Variable";
 
     /* Numbers */
-    --number-cornerRadius: 2.33px;
+    --number-cornerRadius: 0.15rem;
 
     /* Effects */
     --effect-poolShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.25) inset;
@@ -26,10 +26,8 @@
     --trans-hover: all 150ms ease;
     --trans-active: all 50ms ease;
     --trans-hamburgerMenu: all 350ms cubic-bezier(0.22, 1, 0.36, 1);
-    /* Natural Waterfall (for a balanced, professional feel)*/
-    --opening-dropdown: all 250ms cubic-bezier(0.32, 0.95, 0.32, 1);
-    --closing-dropdown: all 350ms cubic-bezier(0.32, 0.95, 0.32, 1);
-
+    --opening-dropdown: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    --closing-dropdown: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
     --menuControl-hover: all 200ms cubic-bezier(0.21, 0.65, 0.32, 0.89);
     --menuControl-active: all 100ms ease;
 }

@@ -84,7 +84,7 @@
   .menuButton,
   .menuLink {
     /* Base Layout */
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     height: 2.25rem;
     width: max-content;
     margin-left: auto;

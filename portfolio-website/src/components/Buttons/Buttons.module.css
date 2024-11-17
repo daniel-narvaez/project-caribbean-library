@@ -1,0 +1,108 @@
+.ctaButton {
+  display: flex;
+  position: relative;
+  z-index: 0;
+  padding: 1.11vw 2.22vw;
+  /* 1.11vw = 1rem at 1440px */
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  text-decoration: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform-origin: center;
+    z-index: -1;
+  }
+
+  span {
+    font-family: var(--heading-text);
+    font-weight: 400;
+    text-align: center;
+    font-size: 2.083vw;
+    text-transform: capitalize;
+  }
+  
+  &.solid {
+
+    &::before {
+      background-color: var(--color-link);
+      border: 0vw solid transparent;
+      border-style: inset;
+      border-radius: 0.32vw;
+      /* 0.32vw = 4.66px at 1440px */
+      transition: var(--menuControl-hover);
+    } 
+    
+    span {
+      color: var(--color-bg1);
+      transition: var(--menuControl-hover);
+    }
+
+    &:hover {
+      &::before {
+        background-color: var(--color-link-hover);
+        transition: var(--menuControl-active);
+      }
+      
+      span {
+        color: var(--color-bg1-hover);
+        transition: var(--menuControl-active);
+      }
+    }
+
+    &:active {
+      &::before {
+        transform: scale(92%);
+        background-color: var(--color-link-active);
+      }
+
+      span {
+        transform: scale(92%);
+        color: var(--color-bg1-active)
+      }
+    }
+  }
+
+  &.island {
+    &::before {
+      border-radius: 0.32vw;
+      border: 0.32vw solid var(--color-link);
+      box-shadow: inset 0 0 0 0 var(--color-link);
+      transition: var(--menuControl-hover);
+    }
+
+    span {
+      color: var(--color-link);
+      transition: var(--menuControl-hover);
+    }
+
+    &:hover {
+      &::before {
+        border-color: var(--color-link-hover);
+        box-shadow: inset 0 0 0.16vw 0.16vw var(--color-link-hover);
+        transition: var(--menuControl-active);
+      }
+
+      span {
+        color: var(--color-link-hover);
+        transition: var(--menuControl-active);
+      }
+    }
+
+    &:active {
+      &::before {
+        transform: scale(92%);
+        border-color: var(--color-link-active);
+        box-shadow: inset 0 0 0.32vw 0.32vw var(--color-link-active);
+      }
+
+      span {
+        transform: scale(92%);
+        color: var(--color-link-active);
+      }
+    }
+  }
+}

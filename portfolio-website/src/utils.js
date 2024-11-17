@@ -7,13 +7,6 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
         onComplete
     } = options;
 
-    console.log('zeroToAutoHeight called:', {
-      element,
-      shouldExpand,
-      currentHeight: element.offsetHeight,
-      scrollHeight: element.scrollHeight
-    });
-
     // Store the current height of the element
     const currentHeight = element.offsetHeight;
 
