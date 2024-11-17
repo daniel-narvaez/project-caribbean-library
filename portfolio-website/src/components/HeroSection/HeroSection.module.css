@@ -6,7 +6,7 @@ main.heroSection {
   display: flex;
   width: 100vw;
   height: 100vh;
-  padding: 2.22vw 5.55vw; /* 2rem 5rem */
+  padding: 5rem 5.55vw;
   gap: 2.22vw;
   align-items: center;
   background-image: var(--bg-heroSection);
@@ -14,17 +14,18 @@ main.heroSection {
 
 main > .heroContent {
   height: 100%;
-  max-width: 60%;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 3.33vw;
+  flex-shrink: 0;
 }
 
 main > .heroMedia {
+  flex: 1;
   height: 100%;
-  max-width: 40%;
 }
 
 .heroContent .headline {

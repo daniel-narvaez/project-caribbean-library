@@ -22,15 +22,31 @@ export const Slideshow = ({ slides = []}) => {
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  const renderMedia = (slide) => {
+    return ((slide.type === 'video') ?
+      <video
+        autoPlay
+        muted
+        playsInline
+        loop
+        className={styles.mediaContent}
+      >
+        <source src={slide.url} type='video/mp4' />
+      </video> :
+      <img 
+        src={slide.url}
+        alt={slide.alt || 'Slideshow Image'}
+        className={styles.mediaContent}
+      />
+
+    )
+  }
+
   return (
     <section className={styles.slidesContainer}>
-      <div>
-        <div/>
-        <div>
-          <image>
-            
-          </image>
-        </div>
+      {/* Decorative frame was here */}
+      <div className={`${styles.mediaContainer} ${isTransitioning ? 'fade-out' : ''}`}>
+        {renderMedia(slides[currentIndex])}
       </div>
     </section>
   )

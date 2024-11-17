@@ -5,6 +5,8 @@ import { CTAButton } from "../Buttons/Buttons";
 
 import styles from './HeroSection.module.css';
 
+import { testSlides } from "../../data/HeroMedia";
+
 export const HeroSection = () => {
   return (
     <main className={styles.heroSection}>
@@ -25,7 +27,7 @@ export const HeroSection = () => {
         </div>
       </div>
       <div className={styles.heroMedia}>
-        <Slideshow/>
+        <Slideshow slides={testSlides}/>
       </div>
     </main>
   )

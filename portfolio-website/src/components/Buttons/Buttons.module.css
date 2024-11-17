@@ -1,49 +1,73 @@
-.ctaButton {
-  display: flex;
+/* 
+ * CTA Button Component
+ * Two variants: 'solid' (filled background) and 'island' (outlined)
+ * Uses viewport units for responsive scaling based on 1440px design
+ * --------------------------------------------------------
+ */
+
+ .ctaButton {
+  /* Core structure
+   * z-index creates stacking context for pseudo-elements
+   * align-self: stretch allows button to fill parent's width if needed
+   */
   position: relative;
-  z-index: 0;
-  padding: 1.11vw 2.22vw;
-  /* 1.11vw = 1rem at 1440px */
+  display: flex;
   justify-content: center;
   align-items: center;
   align-self: stretch;
+  z-index: 0;
+
+  /* Padding calculation:
+   * 1.11vw = 16px (1rem) at 1440px viewport
+   * 2.22vw = 32px (2rem) at 1440px viewport
+   */
+  padding: 1.11vw 2.22vw;
   text-decoration: none;
-  
+
+  /* Pseudo-element base styles
+   * Used for background/border effects
+   * Negative z-index places it behind content
+   */
   &::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 0;  /* Shorthand for top:0, right:0, bottom:0, left:0 */
     transform-origin: center;
     z-index: -1;
+    border-radius: 0.32vw;  /* 4.66px at 1440px */
+    transition: var(--menuControl-hover);  /* Duration defined in root variables */
   }
 
+  /* Text styling
+   * Font size: 2.083vw = 30px at 1440px viewport
+   * Uses CSS variable for consistent font family
+   */
   span {
     font-family: var(--heading-text);
+    font-size: 2.083vw;
     font-weight: 400;
     text-align: center;
-    font-size: 2.083vw;
     text-transform: capitalize;
+    transition: var(--menuControl-hover);
   }
-  
-  &.solid {
 
+  /* Solid Variant
+   * Used for primary actions
+   * Background color with light text
+   * -------------------------------- */
+  &.solid {
     &::before {
       background-color: var(--color-link);
-      border: 0vw solid transparent;
-      border-style: inset;
-      border-radius: 0.32vw;
-      /* 0.32vw = 4.66px at 1440px */
-      transition: var(--menuControl-hover);
-    } 
-    
-    span {
-      color: var(--color-bg1);
-      transition: var(--menuControl-hover);
     }
 
+    span {
+      color: var(--color-bg1);
+    }
+
+    /* Hover state changes background and text colors */
     &:hover {
       &::before {
-        background-color: var(--color-link-hover); 
+        background-color: var(--color-link-hover);
       }
       
       span {
@@ -51,38 +75,42 @@
       }
     }
 
+    /* Active state (click)
+     * Scales down to 92% for click feedback
+     * Uses faster transition timing
+     */
     &:active {
       &::before {
-        transform: scale(92%);
         background-color: var(--color-link-active);
+        transform: scale(92%);
         transition: var(--menuControl-active);
       }
 
       span {
-        transform: scale(92%);
         color: var(--color-bg1-active);
+        transform: scale(92%);
         transition: var(--menuControl-active);
       }
     }
   }
 
+  /* Island (Outlined) Variant
+   * Used for secondary actions
+   * Border with transparent background
+   * -------------------------------- */
   &.island {
     &::before {
-      border-radius: 0.32vw;
-      border: 0.32vw solid var(--color-link);
-      /* box-shadow: inset 0 0 0 0 var(--color-link); */
-      transition: var(--menuControl-hover);
+      border: 0.32vw solid var(--color-link);  /* 4.66px at 1440px */
     }
 
     span {
       color: var(--color-link);
-      transition: var(--menuControl-hover);
     }
 
+    /* Hover state changes border and text colors */
     &:hover {
       &::before {
         border-color: var(--color-link-hover);
-        /* box-shadow: inset 0 0 0.16vw 0.16vw var(--color-link-hover); */
       }
 
       span {
@@ -90,19 +118,34 @@
       }
     }
 
+    /* Active state (click)
+     * Matches solid variant's scale animation
+     */
     &:active {
       &::before {
-        transform: scale(92%);
         border-color: var(--color-link-active);
-        /* box-shadow: inset 0 0 0.32vw 0.32vw var(--color-link-active); */
+        transform: scale(92%);
         transition: var(--menuControl-active);
       }
 
       span {
-        transform: scale(92%);
         color: var(--color-link-active);
+        transform: scale(92%);
         transition: var(--menuControl-active);
       }
     }
   }
 }
+
+/*
+ * CSS Variables Used (defined elsewhere):
+ * --heading-text: Font family for button text
+ * --color-link: Primary button color
+ * --color-link-hover: Button hover state color
+ * --color-link-active: Button active state color
+ * --color-bg1: Text color for solid variant
+ * --color-bg1-hover: Text hover color for solid variant
+ * --color-bg1-active: Text active color for solid variant
+ * --menuControl-hover: Transition timing for hover states
+ * --menuControl-active: Transition timing for active states
+ */
