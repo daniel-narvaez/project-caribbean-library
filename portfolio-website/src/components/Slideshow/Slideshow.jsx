@@ -2,8 +2,17 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 import styles from './Slideshow.module.css';
+import { usePreloader } from '../../mediaPreloader';
 
-export const Slideshow = ({ slides = []}) => {
+export const Slideshow = ({ slides = [] }) => {
+  const {
+    isLoading,
+    progress,
+    hasErrors
+  } = usePreloader(slides, {
+    stopOnError: false
+  });
+
   const [rotationDegrees, setRotationDegrees] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
@@ -23,9 +32,6 @@ export const Slideshow = ({ slides = []}) => {
     if (!containerRef.current) 
       return;
 
-    if (rotationDegrees === -360)
-      setRotationDegrees(0);
-
     containerRef.current.style.setProperty('--flip-duration', `${TRANSITION_DURATION/2}ms`);
     containerRef.current.style.setProperty('--flip-timing', FIRST_HALF)
 
@@ -38,7 +44,7 @@ export const Slideshow = ({ slides = []}) => {
         containerRef.current.style.setProperty('--flip-timing', SECOND_HALF);
         setRotationDegrees(prev => prev - 90);
       }
-    }, TRANSITION_DURATION/2);
+    }, TRANSITION_DURATION/2 - 16);
   }
 
   const renderMedia = (slide) => {
@@ -59,6 +65,22 @@ export const Slideshow = ({ slides = []}) => {
       />
 
     )
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.loadingState}>
+        <p>Loading... {Math.round(progress)}%</p>
+      </div>
+    );
+  }
+
+  if (hasErrors) {
+    return (
+      <div>
+        Some media failed to load.
+      </div>
+    );
   }
 
   return (

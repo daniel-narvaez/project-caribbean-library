@@ -9,6 +9,7 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.35));
 }
 
 .mediaContainer.flipping {
@@ -19,8 +20,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  backface-visibility: hidden;
   position: absolute;
+  border-radius: 1rem;
   top: 0;
   left: 0;
 }
@@ -39,7 +40,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
 }
 
 .currentSlide {
@@ -48,4 +49,13 @@
 
 .nextSlide {
   transform: rotateY(180deg);
+}
+
+.loadingState {
+  width: 100%;
+  height: 100%;
+  inset: 0;  /* This is shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
