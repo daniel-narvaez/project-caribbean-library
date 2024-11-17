@@ -1,5 +1,5 @@
 .slidesContainer {
-  position: relative;
+  perspective: 100vw;
   width: 100%;
   height: 100%;
 }
@@ -8,10 +8,44 @@
   position: relative;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
+}
+
+.mediaContainer.flipping {
+  transition: transform var(--flip-duration) var(--flip-timing);
 }
 
 .mediaContent {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* .frame {
+  position: absolute;
+  inset: 0;
+  border: 8px solid #78350F;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  pointer-events: none;
+} */
+
+/* Current and next slide containers */
+.slideWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.currentSlide {
+  transform: rotateY(0deg);
+}
+
+.nextSlide {
+  transform: rotateY(180deg);
 }
