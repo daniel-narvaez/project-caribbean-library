@@ -15,13 +15,47 @@ export const Slideshow = ({ slides = [] }) => {
 
   const [rotationDegrees, setRotationDegrees] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef(null);
+  const [tiltTransform, setTiltTransform] = useState({scale: 1, tiltX: 0, tiltY: 0});
 
+  const containerRef = useRef(null);
   const TRANSITION_DURATION = 2000; // Duration of the transition effect
   const INTERVAL_DURATION = 8000; // Duration that each slide is presented.
 
   const FIRST_HALF = 'cubic-bezier(0.4, 0.02, 0.95, 0.3)';
   const SECOND_HALF = 'cubic-bezier(0.05, 0.7, 0.3, 0.98)';
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current)
+      return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    // Get relative mouse position
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    //calculate rocations (20 is the intensity factor)
+    const xRot = -10 * ((mouseY - height / 2) / height);
+    const yRot = 10 * ((mouseX - width / 2) / width);
+
+    //combine with current rotation degrees
+    setTiltTransform({
+      scale: 1.042,
+      tiltX: xRot,
+      tiltY: yRot
+    });
+  };
+
+  const handleMouseLeave = () => {
+    //combine with current rotation degrees
+    setTiltTransform({
+      scale: 1,
+      tiltX: 0,
+      tiltY: 0
+    });
+  }
 
   useEffect(() => {
     const interval = setInterval(startTransition, INTERVAL_DURATION);
@@ -88,7 +122,15 @@ export const Slideshow = ({ slides = [] }) => {
       <div 
         ref={containerRef}
         className={`${styles.mediaContainer} ${styles.flipping}`} 
-        style={{transform: `rotateY(${rotationDegrees}deg)`}}
+        style={{
+          transform: ` 
+            rotateX(${tiltTransform.tiltX}deg) 
+            rotateY(${rotationDegrees + tiltTransform.tiltY}deg)
+          `,
+          scale: `${tiltTransform.scale}`
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Current slide side */}
         <div className={`${styles.slideWrapper} ${styles.currentSlide}`}>
