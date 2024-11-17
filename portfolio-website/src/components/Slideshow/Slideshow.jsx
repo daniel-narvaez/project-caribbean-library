@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 import styles from './Slideshow.module.css';
+
 import { usePreloader } from '../../mediaPreloader';
 
 export const Slideshow = ({ slides = [] }) => {
@@ -91,15 +92,8 @@ export const Slideshow = ({ slides = [] }) => {
         style={{transform: `rotateY(${rotationDegrees}deg)`}}
       >
         {/* Current slide side */}
-        <div className={`${styles.slideWrapper} ${styles.currentSlide}`}>
+        <div className={`${styles.slideWrapper}`}>
           {renderMedia(slides[currentIndex])}
-          {/* Decorative frame was here */}
-        </div>
-
-        {/* Next slide side (back face) */}
-        <div className={`${styles.slideWrapper} ${styles.nextSlide}`}>
-          {renderMedia(slides[currentIndex])}
-          {/* Decorative frame was here */}
         </div>
       </div>
     </section>

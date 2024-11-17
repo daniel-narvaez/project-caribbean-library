@@ -21,7 +21,7 @@
    * 1.11vw = 16px (1rem) at 1440px viewport
    * 2.22vw = 32px (2rem) at 1440px viewport
    */
-  padding: 1.11vw 2.22vw;
+  padding: 1vw 2vw;
   text-decoration: none;
 
   /* Pseudo-element base styles
@@ -44,7 +44,7 @@
    */
   span {
     font-family: var(--heading-text);
-    font-size: 2.083vw;
+    font-size: 1.85vw;
     font-weight: 400;
     text-align: center;
     text-transform: capitalize;

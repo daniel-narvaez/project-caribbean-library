@@ -26,29 +26,12 @@
   left: 0;
 }
 
-/* .frame {
-  position: absolute;
-  inset: 0;
-  border: 8px solid #78350F;
-  border-radius: 0.5rem;
-  backface-visibility: hidden;
-  pointer-events: none;
-} */
-
 /* Current and next slide containers */
 .slideWrapper {
   position: absolute;
   width: 100%;
   height: 100%;
   /* backface-visibility: hidden; */
-}
-
-.currentSlide {
-  transform: rotateY(0deg);
-}
-
-.nextSlide {
-  transform: rotateY(180deg);
 }
 
 .loadingState {

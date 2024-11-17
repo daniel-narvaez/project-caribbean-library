@@ -7,19 +7,19 @@ main.heroSection {
   width: 100vw;
   height: 100vh;
   padding: 5rem 5.55vw;
-  gap: 2.22vw;
+  gap: 5vw;
   align-items: center;
   background-image: var(--bg-heroSection);
 }
 
 main > .heroContent {
-  height: 100%;
+  height: auto;
   width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 3.33vw;
+  gap: 2vw;
   flex-shrink: 0;
 }
 
@@ -30,16 +30,16 @@ main > .heroMedia {
 
 .heroContent .headline {
   font-family: var(--font-baskervville);
-  font-size: 5vw;
+  font-size: 4.5vw;
 }
 
 .heroContent .tagline {
-  font-size: 2.083vw;
+  font-size: 1.85vw;
   line-height: normal;
 }
 
 .ctaMenu {
   display: flex;
   align-items: center;
-  gap: 2.22vw;
+  gap: 1.85vw;
 }
