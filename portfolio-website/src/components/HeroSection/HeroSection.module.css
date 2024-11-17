@@ -13,8 +13,6 @@ main.heroSection {
 }
 
 main > .heroContent {
-  height: auto;
-  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,8 +22,9 @@ main > .heroContent {
 }
 
 main > .heroMedia {
-  flex: 1;
-  height: 70vh;
+  display: flex;
+  height: auto;
+  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.25));
 }
 
 .heroContent .headline {
@@ -43,3 +42,205 @@ main > .heroMedia {
   align-items: center;
   gap: 1.85vw;
 }
+
+/* 
+ * CTA Button Component
+ * Two variants: 'solid' (filled background) and 'island' (outlined)
+ * Uses viewport units for responsive scaling based on 1440px design
+ * --------------------------------------------------------
+ */
+
+ .ctaButton {
+  /* Core structure
+   * z-index creates stacking context for pseudo-elements
+   * align-self: stretch allows button to fill parent's width if needed
+   */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  z-index: 0;
+
+  /* Padding calculation:
+   * 1.11vw = 16px (1rem) at 1440px viewport
+   * 2.22vw = 32px (2rem) at 1440px viewport
+   */
+  padding: 1vw 2vw;
+  text-decoration: none;
+
+  /* Pseudo-element base styles
+   * Used for background/border effects
+   * Negative z-index places it behind content
+   */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;  /* Shorthand for top:0, right:0, bottom:0, left:0 */
+    transform-origin: center;
+    z-index: -1;
+    border-radius: 0.32vw;  /* 4.66px at 1440px */
+    transition: var(--menuControl-hover);  /* Duration defined in root variables */
+  }
+
+  /* Text styling
+   * Font size: 2.083vw = 30px at 1440px viewport
+   * Uses CSS variable for consistent font family
+   */
+  span {
+    font-family: var(--heading-text);
+    font-size: 1.85vw;
+    font-weight: 400;
+    text-align: center;
+    text-transform: capitalize;
+    transition: var(--menuControl-hover);
+  }
+
+  /* Solid Variant
+   * Used for primary actions
+   * Background color with light text
+   * -------------------------------- */
+  &.solid {
+    &::before {
+      background-color: var(--color-link);
+    }
+
+    span {
+      color: var(--color-bg1);
+    }
+
+    /* Hover state changes background and text colors */
+    &:hover {
+      &::before {
+        background-color: var(--color-link-hover);
+        filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.5));
+      }
+      
+      span {
+        color: var(--color-bg1-hover);
+      }
+    }
+
+    /* Active state (click)
+     * Scales down to 92% for click feedback
+     * Uses faster transition timing
+     */
+    &:active {
+      &::before {
+        background-color: var(--color-link-active);
+        transform: scale(92%);
+        transition: var(--menuControl-active);
+        filter: none;
+      }
+
+      span {
+        color: var(--color-bg1-active);
+        transform: scale(92%);
+        transition: var(--menuControl-active);
+      }
+    }
+  }
+
+  /* Island (Outlined) Variant
+   * Used for secondary actions
+   * Border with transparent background
+   * -------------------------------- */
+  &.island {
+    &::before {
+      border: 0.32vw solid var(--color-link);  /* 4.66px at 1440px */
+    }
+
+    span {
+      color: var(--color-link);
+    }
+
+    /* Hover state changes border and text colors */
+    &:hover {
+      &::before {
+        border-color: var(--color-link-hover);
+        filter: drop-shadow(0 0.12rem 0.5rem rgba(0, 0, 0, 0.25));
+      }
+
+      span {
+        color: var(--color-link-hover);
+        filter: drop-shadow(0 0.12rem 0.5rem rgba(0, 0, 0, 0.25));
+      }
+    }
+
+    /* Active state (click)
+     * Matches solid variant's scale animation
+     */
+    &:active {
+      &::before {
+        border-color: var(--color-link-active);
+        transform: scale(92%);
+        transition: var(--menuControl-active);
+        filter: none;
+      }
+
+      span {
+        color: var(--color-link-active);
+        transform: scale(92%);
+        transition: var(--menuControl-active);
+        filter: none;
+      }
+    }
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  main.heroSection {
+    flex-direction: column-reverse;
+    padding: 4.375rem 5.55vw;
+    gap: 5vh;
+  }
+
+  main > .heroContent {
+    align-items: center;
+    gap: 2vh;
+  }
+
+  .heroContent .headline {
+    text-align: center;
+    font-size: 4.25vh;
+  }
+
+  .heroContent .tagline {
+    text-align: center;
+    font-size: 1.8vh;
+  }
+
+  .ctaMenu {
+    gap: 1.8vh;
+  }
+
+  .ctaButton {
+
+    &::before {
+      border-width: 0.32vh;
+      border-radius: 0.32vh; 
+    }
+
+    span {
+      font-size: 1.8vh;
+    }
+  }
+
+  main > .heroMedia {
+    filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.25));
+  }
+  
+}
+
+/*
+ * CSS Variables Used (defined elsewhere):
+ * --heading-text: Font family for button text
+ * --color-link: Primary button color
+ * --color-link-hover: Button hover state color
+ * --color-link-active: Button active state color
+ * --color-bg1: Text color for solid variant
+ * --color-bg1-hover: Text hover color for solid variant
+ * --color-bg1-active: Text active color for solid variant
+ * --menuControl-hover: Transition timing for hover states
+ * --menuControl-active: Transition timing for active states
+ */

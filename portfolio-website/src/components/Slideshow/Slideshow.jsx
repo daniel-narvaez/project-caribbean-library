@@ -1,8 +1,6 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
-
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './Slideshow.module.css';
-
 import { usePreloader } from '../../mediaPreloader';
 
 export const Slideshow = ({ slides = [] }) => {
@@ -14,59 +12,97 @@ export const Slideshow = ({ slides = [] }) => {
     stopOnError: false
   });
 
-  const [rotationDegrees, setRotationDegrees] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
+  const frameRef = useRef(); // For requestAnimationFrame
+  const [tiltTransform, setTiltTransform] = useState({
+    scale: 100,
+    xRot: 0,
+    yRot: 0
+  });
 
-  const TRANSITION_DURATION = 2000; // Duration of the transition effect
-  const INTERVAL_DURATION = 8000; // Duration that each slide is presented.
-
-  const FIRST_HALF = 'cubic-bezier(0.4, 0.02, 0.95, 0.3)';
-  const SECOND_HALF = 'cubic-bezier(0.05, 0.7, 0.3, 0.98)';
+  const INTERVAL_DURATION = 8000;
 
   useEffect(() => {
-    const interval = setInterval(startTransition, INTERVAL_DURATION);
+    const interval = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % slides.length);
+    }, INTERVAL_DURATION);
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  const startTransition = () => {
-    if (!containerRef.current) 
-      return;
+  // Debounced transform update
+  const updateTransform = useCallback((newTransform) => {
+    if (frameRef.current) {
+      cancelAnimationFrame(frameRef.current);
+    }
 
-    containerRef.current.style.setProperty('--flip-duration', `${TRANSITION_DURATION/2}ms`);
-    containerRef.current.style.setProperty('--flip-timing', FIRST_HALF)
+    frameRef.current = requestAnimationFrame(() => {
+      setTiltTransform(newTransform);
+    });
+  }, []);
 
-    setRotationDegrees(prev => prev - 90);
+  // Memoized mouse move handler
+  const handleMouseMove = useCallback((e) => {
+    if (!containerRef.current) return;
 
-    setTimeout(() => {
-      setCurrentIndex(prev => (prev + 1) % slides.length);
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
-      if (containerRef.current) {
-        containerRef.current.style.setProperty('--flip-timing', SECOND_HALF);
-        setRotationDegrees(prev => prev - 90);
+    // Get relative mouse position
+    const xVal = e.clientX - rect.left;
+    const yVal = e.clientY - rect.top;
+
+    // Calculate rotation values
+    const yRotation = 10 * ((xVal - width / 2) / width);
+    const xRotation = -10 * ((yVal - height / 2) / height);
+
+    updateTransform({
+      scale: 104.2,
+      xRot: xRotation,
+      yRot: yRotation
+    });
+  }, [updateTransform]);
+
+  // Memoized mouse leave handler
+  const handleMouseLeave = useCallback(() => {
+    updateTransform({
+      scale: 100,
+      xRot: 0,
+      yRot: 0,
+    });
+  }, [updateTransform]);
+
+  // Cleanup requestAnimationFrame on unmount
+  useEffect(() => {
+    return () => {
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
       }
-    }, TRANSITION_DURATION/2 - 16);
-  }
+    };
+  }, []);
 
-  const renderMedia = (slide) => {
-    return ((slide.type === 'video') ?
-      <video
-        autoPlay
-        muted
-        playsInline
-        loop
-        className={styles.mediaContent}
-      >
-        <source src={slide.url} type='video/mp4' />
-      </video> :
-      <img 
-        src={slide.url}
-        alt={slide.alt || 'Slideshow Image'}
-        className={styles.mediaContent}
-      />
-
-    )
-  }
+  const renderMedia = useCallback((slide) => {
+    return (
+      slide.type === 'video' ? (
+        <video
+          autoPlay
+          muted
+          playsInline
+          loop
+          className={styles.mediaContent}
+        >
+          <source src={slide.url} type='video/mp4' />
+        </video>
+      ) : (
+        <img
+          src={slide.url}
+          alt={slide.alt || 'Slideshow Image'}
+          className={styles.mediaContent}
+        />
+      )
+    );
+  }, []);
 
   if (isLoading) {
     return (
@@ -77,25 +113,26 @@ export const Slideshow = ({ slides = [] }) => {
   }
 
   if (hasErrors) {
-    return (
-      <div>
-        Some media failed to load.
-      </div>
-    );
+    return <div>Some media failed to load.</div>;
   }
 
   return (
     <section className={styles.slidesContainer}>
-      <div 
+      <div
         ref={containerRef}
-        className={`${styles.mediaContainer} ${styles.flipping}`} 
-        style={{transform: `rotateY(${rotationDegrees}deg)`}}
+        className={styles.mediaContainer}
+        style={{
+          transform: `
+            scale(${tiltTransform.scale}%)
+            rotateX(${tiltTransform.xRot}deg)
+            rotateY(${tiltTransform.yRot}deg)
+          `
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
-        {/* Current slide side */}
-        <div className={`${styles.slideWrapper}`}>
           {renderMedia(slides[currentIndex])}
-        </div>
       </div>
     </section>
-  )
-}
+  );
+};

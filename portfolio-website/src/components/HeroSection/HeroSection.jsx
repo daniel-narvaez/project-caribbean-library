@@ -1,13 +1,25 @@
 import React from "react";
 
 import { Slideshow } from "../Slideshow/Slideshow";
-import { CTAButton } from "../Buttons/Buttons";
 
 import styles from './HeroSection.module.css';
 
 import { testSlides } from "../../data/HeroMedia";
 
+
 export const HeroSection = () => {
+
+  const CTAButton = ({title = 'Call-to-Action', url = '', style = 'solid'}) => {
+    return (
+      <a
+        href={url}
+        className={`${styles.ctaButton} ${styles[style]}`}
+      >
+        <span>{title}</span>
+      </a>
+    );
+  }
+  
   return (
     <main className={styles.heroSection}>
       <div className={styles.heroContent}> 

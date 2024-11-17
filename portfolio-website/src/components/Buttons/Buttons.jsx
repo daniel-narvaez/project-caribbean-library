@@ -12,14 +12,3 @@ export const AnchorButton = ({title = 'Title', url = '', style = 'solid' }) => {
     </a>
   );
 }
-
-export const CTAButton = ({title = 'Call-to-Action', url = '', style = 'solid'}) => {
-  return (
-    <a
-      href={url}
-      className={`${styles.ctaButton} ${styles[style]}`}
-    >
-      <span>{title}</span>
-    </a>
-  );
-}
