@@ -27,7 +27,7 @@ import { Burgershelf } from '../Burgershelf/Burgershelf';
 import { Chevron } from '../Chevron/Chevron';
 
 // Data and Utilities
-import { mainMenuData } from '../../dropdownItems';
+import { mainMenuData } from '../../data/dropdownItems';
 
 // Styles
 import styles from './DropdownMobile.module.css';
