@@ -25,7 +25,7 @@ import {
 import { Chevron } from '../Chevron/Chevron';
 
 // Data and Utilities
-import { mainMenuData } from '../../data/DropdownItems';
+import { mainMenuData } from '../../DropdownItems';
 import { zeroToAutoHeight } from '../../utils';
 
 // Styles
