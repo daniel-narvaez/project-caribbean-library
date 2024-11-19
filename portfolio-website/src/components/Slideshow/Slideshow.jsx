@@ -1,6 +1,7 @@
-import React from 'react';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useContext } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './Slideshow.module.css';
+import { TiltContext } from '../HeroSection/HeroSection';
 import { usePreloader } from '../../mediaPreloader';
 
 export const Slideshow = ({ slides = [] }) => {
@@ -13,13 +14,7 @@ export const Slideshow = ({ slides = [] }) => {
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef(null);
-  const frameRef = useRef(); // For requestAnimationFrame
-  const [tiltTransform, setTiltTransform] = useState({
-    scale: 100,
-    xRot: 0,
-    yRot: 0
-  });
+  const { tilt, setTilt } = useContext(TiltContext);
 
   const INTERVAL_DURATION = 8000;
 
@@ -29,58 +24,6 @@ export const Slideshow = ({ slides = [] }) => {
     }, INTERVAL_DURATION);
     return () => clearInterval(interval);
   }, [slides.length]);
-
-  // Debounced transform update
-  const updateTransform = useCallback((newTransform) => {
-    if (frameRef.current) {
-      cancelAnimationFrame(frameRef.current);
-    }
-
-    frameRef.current = requestAnimationFrame(() => {
-      setTiltTransform(newTransform);
-    });
-  }, []);
-
-  // Memoized mouse move handler
-  const handleMouseMove = useCallback((e) => {
-    if (!containerRef.current) return;
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    // Get relative mouse position
-    const xVal = e.clientX - rect.left;
-    const yVal = e.clientY - rect.top;
-
-    // Calculate rotation values
-    const yRotation = 10 * ((xVal - width / 2) / width);
-    const xRotation = -10 * ((yVal - height / 2) / height);
-
-    updateTransform({
-      scale: 104.2,
-      xRot: xRotation,
-      yRot: yRotation
-    });
-  }, [updateTransform]);
-
-  // Memoized mouse leave handler
-  const handleMouseLeave = useCallback(() => {
-    updateTransform({
-      scale: 100,
-      xRot: 0,
-      yRot: 0,
-    });
-  }, [updateTransform]);
-
-  // Cleanup requestAnimationFrame on unmount
-  useEffect(() => {
-    return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    };
-  }, []);
 
   const renderMedia = useCallback((slide) => {
     return (
@@ -119,17 +62,14 @@ export const Slideshow = ({ slides = [] }) => {
   return (
     <section className={styles.slidesContainer}>
       <div
-        ref={containerRef}
         className={styles.mediaContainer}
         style={{
           transform: `
-            scale(${tiltTransform.scale}%)
-            rotateX(${tiltTransform.xRot}deg)
-            rotateY(${tiltTransform.yRot}deg)
+            scale(${tilt.scale}%)
+            rotateX(${tilt.xRot}deg)
+            rotateY(${tilt.yRot}deg)
           `
         }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
       >
           {renderMedia(slides[currentIndex])}
       </div>

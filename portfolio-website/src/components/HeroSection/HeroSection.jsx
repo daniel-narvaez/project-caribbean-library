@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
+
+import { useState, createContext, useCallback, useEffect, memo } from "react";
 
 import { Slideshow } from "../Slideshow/Slideshow";
 
@@ -6,22 +8,89 @@ import styles from './HeroSection.module.css';
 
 import { testSlides } from "../../data/HeroMedia";
 
+export const CTAButton = memo(({title = 'Call-to-Action', url = '', style = 'solid'}) => {
+  return (
+    <a
+      href={url}
+      className={`${styles.ctaButton} ${styles[style]}`}
+    >
+      <span>{title}</span>
+    </a>
+  );
+})
+
+export const TiltContext = createContext()
 
 export const HeroSection = () => {
+  const containerRef = useRef(null);
+  const frameRef = useRef(null);
+  const [tilt, setTilt] = useState({
+    scale: 100,
+    xRot: 0,
+    yRot: 0,
+  });
 
-  const CTAButton = ({title = 'Call-to-Action', url = '', style = 'solid'}) => {
-    return (
-      <a
-        href={url}
-        className={`${styles.ctaButton} ${styles[style]}`}
-      >
-        <span>{title}</span>
-      </a>
-    );
-  }
+  // Debounced transform update
+  const updateTilt = useCallback((newTransform) => {
+    if (frameRef.current) {
+      cancelAnimationFrame(frameRef.current);
+    }
+
+    frameRef.current = requestAnimationFrame(() => {
+      setTilt(newTransform);
+    });
+  }, []);
+
+  // Memoized mouse move handler
+  const handleMouseMove = useCallback((e) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    // Get relative mouse position
+    const xVal = e.clientX - rect.left;
+    const yVal = e.clientY - rect.top;
+
+    // Calculate rotation values
+    const yRotation = 15 * ((xVal - width / 2) / width);
+    const xRotation = -15 * ((yVal - height / 2) / height);
+
+    updateTilt({
+      scale: 104.2,
+      xRot: xRotation,
+      yRot: yRotation
+    });
+  }, [updateTilt]);
+
+  // Memoized mouse leave handler
+  const handleMouseLeave = useCallback(() => {
+    updateTilt({
+      scale: 100,
+      xRot: 0,
+      yRot: 0,
+    });
+  }, [updateTilt]);
+
+  // Cleanup requestAnimationFrame on unmount
+  useEffect(() => {
+    return () => {
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, [frameRef]);
+
+
   
   return (
-    <main className={styles.heroSection}>
+    <main 
+      className={styles.heroSection}
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className={styles.heroContent}> 
         <h1 className={styles.headline}>
           Crafting adventures <br/> 
@@ -38,9 +107,11 @@ export const HeroSection = () => {
           <CTAButton title="Connect with me" style="island"/>
         </div>
       </div>
-      <div className={styles.heroMedia}>
-        <Slideshow slides={testSlides}/>
-      </div>
+      <TiltContext.Provider value={{ tilt, setTilt }}>
+        <div className={styles.heroMedia}>
+          <Slideshow slides={testSlides}/>
+        </div>
+      </TiltContext.Provider>
     </main>
   )
 }
