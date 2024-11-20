@@ -32,14 +32,16 @@ import React, {
   useRef,
   useState,
   createContext,
+  useContext,
   useCallback,
   useEffect,
   memo
  } from "react";
  import { Navbar } from "../Navbar/Navbar";
  import { Slideshow } from "../Slideshow/Slideshow";
- import { heroSlides } from "../../data/HeroMedia";
+ import { ScreenSizeContext } from "../../contexts/ScreenSize";
  import styles from './HeroSection.module.css';
+ import { heroSlides } from "../../data/HeroMedia";
  
  /**
  * Configuration for 3D tilt effect
@@ -76,7 +78,7 @@ import React, {
   url = '',
   style = 'solid'
  }) => (
-  <a
+<a
     href={url}
     className={`${styles.ctaButton} ${styles[style]}`}
   >
@@ -95,6 +97,7 @@ import React, {
   const containerRef = useRef(null);
   const frameRef = useRef(null);
   const [tilt, setTilt] = useState(DEFAULT_TILT_STATE);
+  const { size } = useContext(ScreenSizeContext)
  
   /**
    * Updates tilt state with animation frame optimization
@@ -153,8 +156,8 @@ import React, {
     <main
       className={styles.heroSection}
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={size === 'desktop' ? handleMouseMove : null}
+      onMouseLeave={size === 'desktop' ? handleMouseLeave : null}
     >
       <Navbar />
       
