@@ -1,39 +1,121 @@
-.mediaWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  will-change: clip-path;
-}
+/**
+* Slideshow.module.css
+* ===================
+* 
+* Overview:
+* Styles for the Slideshow component, handling 3D transforms, transitions,
+* and animation states. Optimized for performance with GPU acceleration
+* and efficient DOM updates.
+* 
+* Structure:
+* - Hierarchical container system for 3D space
+* - Hardware-accelerated animations
+* - Responsive sizing with relative units
+* - Performance optimizations for smooth transitions
+* 
+* Performance Features:
+* - GPU acceleration via transform properties
+* - Optimized paint and composite operations
+* - Reduced layout thrashing
+* - Memory efficient transitions
+* 
+* Browser Considerations:
+* - Uses modern CSS properties with wide support
+* - GPU acceleration fallbacks included
+* - Handles various aspect ratios
+*/
 
-.mediaWrapper.transitioning {
-  transition: clip-path 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* 
+* Primary Container
+* ----------------
+* Establishes 3D space and perspective for child elements
+*/
 .slidesContainer {
   position: relative;
   width: 100%;
   height: 100%;
-  perspective: 100vw;
-}
-
-.mediaContainer {
+  perspective: 100vw; /* Creates depth for 3D transforms */
+ }
+ 
+ /* 
+ * Media Container
+ * --------------
+ * Handles 3D transformations and maintains GPU acceleration
+ * - preserve-3d enables 3D space for nested elements
+ * - will-change optimizes for transform animations
+ * - backface-visibility prevents visual artifacts
+ */
+ .mediaContainer {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: transform 200ms ease-out;
   overflow: hidden;
-}
-
-.mediaContainer:hover {
+  transform-style: preserve-3d;
+  transition: transform 200ms ease-out;
+  will-change: transform;
+  backface-visibility: hidden;
+ }
+ 
+ .mediaContainer:hover {
   cursor: pointer;
-}
-
-.mediaContent {
+ }
+ 
+ /* 
+ * Media Wrapper
+ * ------------
+ * Handles clip-path animations and ensures smooth transitions
+ * - GPU acceleration via transform and backface visibility
+ * - Maintains composite-only animations for performance
+ */
+ .mediaWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: clip-path; /* Optimizes for clip-path animations */
+  transform: translateZ(0); /* Forces GPU acceleration */
+  backface-visibility: hidden;
+ }
+ 
+ /* 
+ * Transition State
+ * ---------------
+ * Applies smooth easing to clip-path animations
+ */
+ .mediaWrapper.transitioning {
+  transition: clip-path 1s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+ 
+ /* 
+ * Media Content
+ * ------------
+ * Styles for actual media elements (images/videos)
+ * - object-fit maintains aspect ratio
+ * - GPU acceleration for smooth scaling
+ */
+ .mediaContent {
+  position: relative;
   width: 100%;
   object-fit: cover;
-  position: relative;
   border-radius: 0.5rem;
-}
+  transform: translateZ(0); /* Forces GPU acceleration */
+ }
+ 
+ /* 
+ * State Containers
+ * ---------------
+ * Handles loading and error states with consistent styling
+ * - Maintains layout during state changes
+ * - Semi-transparent background for readability
+ */
+ .loadingState,
+ .errorState {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+ }
