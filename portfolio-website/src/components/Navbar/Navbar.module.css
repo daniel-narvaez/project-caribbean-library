@@ -8,5 +8,7 @@
   align-items: flex-start;
 
   position: fixed;
-  z-index: 2;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }

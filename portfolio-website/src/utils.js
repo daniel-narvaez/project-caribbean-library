@@ -1,3 +1,5 @@
+import { put } from '@vercel/blob';
+
 export const getImageUrl = (path) => new URL(`/assets/${path}`, import.meta.url).href;
 
 export function zeroToAutoHeight(element, shouldExpand, options = {}) {
@@ -33,3 +35,16 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
         if (onComplete) onComplete({ height: targetHeight });
     });
 }
+
+export async function uploadVideoToBlob(file) {
+  try {
+    const blob = await put(file.name, file, {
+      access: 'public',
+    });
+    return blob.url;
+  } catch (error) {
+    console.error('Error uploading to blob', error);
+    return null;
+  }
+}
+

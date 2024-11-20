@@ -12,7 +12,6 @@ function App() {
     <ScreenSizeProvider>
       <TypographyProvider>
         <div className={styles.App}>
-          <Navbar />
           <HeroSection />
         </div>
       </TypographyProvider>

@@ -2,11 +2,13 @@ import React, { useRef } from "react";
 
 import { useState, createContext, useCallback, useEffect, memo } from "react";
 
+import { Navbar } from "../Navbar/Navbar";
+
 import { Slideshow } from "../Slideshow/Slideshow";
 
 import styles from './HeroSection.module.css';
 
-import { testSlides } from "../../data/HeroMedia";
+import { testSlides, heroSlides } from "../../data/HeroMedia";
 
 export const CTAButton = memo(({title = 'Call-to-Action', url = '', style = 'solid'}) => {
   return (
@@ -91,9 +93,10 @@ export const HeroSection = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      <Navbar/>
       <div className={styles.heroContent}> 
         <h1 className={styles.headline}>
-          Crafting adventures <br/> 
+          Elevating experiences <br/> 
           through meticulous <br/>
           game design.
         </h1>
@@ -109,7 +112,7 @@ export const HeroSection = () => {
       </div>
       <TiltContext.Provider value={{ tilt, setTilt }}>
         <div className={styles.heroMedia}>
-          <Slideshow slides={testSlides}/>
+          <Slideshow slides={heroSlides}/>
         </div>
       </TiltContext.Provider>
     </main>

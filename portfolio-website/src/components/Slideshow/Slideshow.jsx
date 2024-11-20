@@ -8,25 +8,40 @@ export const Slideshow = ({ slides = [] }) => {
   const {
     isLoading,
     progress,
-    hasErrors
+    hasErrors,
+    errors
   } = usePreloader(slides, {
     stopOnError: false
   });
   
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(slides.length - 1);
   const [isAnimating, setIsAnimating] = useState(false);
   const { tilt, setTilt } = useContext(TiltContext);
   const containerRef = useRef(null);
   const activeSlideRef = useRef(null);
   const nextSlideRef = useRef(null);
-  const INTERVAL_DURATION = 8000;
+  const INTERVAL_DURATION = 7000;
+
+  useEffect(() => {
+    if (errors.length > 0) {
+      console.log('Loading errors:', errors);
+    }
+  }, [errors]);
 
   const triggerTransition = useCallback(() => {
-    if (isAnimating || !containerRef.current || ! activeSlideRef.current || !nextSlideRef.current) 
+    if (isAnimating || !containerRef.current || ! activeSlideRef.current || !nextSlideRef.current) {
+      console.log('Transition blocked:', { 
+        isAnimating, 
+        hasContainer: !!containerRef.current,
+        hasActiveSlide: !!activeSlideRef.current,
+        hasNextSlide: !!nextSlideRef.current 
+      });
       return;
+    }
     
-    setIsAnimating(true);
     const nextIndex = (currentIndex + 1) % slides.length;
+    console.log('Transitioning to index:', nextIndex);
+    setIsAnimating(true);
     setCurrentIndex(nextIndex);
     
     // Get container dimensions for center calculation
@@ -37,7 +52,7 @@ export const Slideshow = ({ slides = [] }) => {
     // Create and start animation
     const startRadius = 0;
     const endRadius = Math.hypot(width/2, height/2) / Math.min(width, height) * 100;
-    const duration = 3500;
+    const duration = 3000;
     
     const animation = [
       { 
@@ -81,6 +96,7 @@ export const Slideshow = ({ slides = [] }) => {
   const renderMedia = useCallback((slide) => {
     return slide.type === 'video' ? (
       <video
+        key={slide.url}
         autoPlay
         muted
         playsInline
