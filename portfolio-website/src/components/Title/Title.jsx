@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
-import Logo from '../../../assets/images/Logo.svg?react';
+import Logo from '../../../assets/images/dn-logo-w20.svg?react';
 import styles from './Title.module.css'
 
 const fullName = 'Daniel Narvaez';

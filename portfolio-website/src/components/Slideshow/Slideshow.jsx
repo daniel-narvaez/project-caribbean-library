@@ -193,7 +193,11 @@ export const Slideshow = ({ slides = [] }) => {
   }
 
   if (hasErrors) {
-    return <div className={styles.errorState}>Some media failed to load.</div>;
+    return (
+      <div className={styles.errorState}>
+        <p>Some media failed to load.</p>
+      </div>
+      );
   }
 
   const nextIndex = (currentIndex + 1) % slides.length;

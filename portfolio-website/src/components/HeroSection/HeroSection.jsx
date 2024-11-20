@@ -41,7 +41,7 @@ import React, {
  import { Slideshow } from "../Slideshow/Slideshow";
  import { ScreenSizeContext } from "../../contexts/ScreenSize";
  import styles from './HeroSection.module.css';
- import { heroSlides } from "../../data/HeroMedia";
+ import { testSlides, heroSlides } from "../../data/HeroMedia";
  
  /**
  * Configuration for 3D tilt effect
@@ -156,8 +156,8 @@ import React, {
     <main
       className={styles.heroSection}
       ref={containerRef}
-      onMouseMove={size === 'desktop' ? handleMouseMove : null}
-      onMouseLeave={size === 'desktop' ? handleMouseLeave : null}
+      onMouseMove={size === 'Desktop' ? handleMouseMove : null}
+      onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
     >
       <Navbar />
       
@@ -188,7 +188,7 @@ import React, {
  
       <TiltContext.Provider value={{ tilt, setTilt }}>
         <div className={styles.heroMedia}>
-          <Slideshow slides={heroSlides} />
+          <Slideshow slides={testSlides} />
         </div>
       </TiltContext.Provider>
     </main>
