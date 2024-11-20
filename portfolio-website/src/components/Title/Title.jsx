@@ -19,7 +19,7 @@ export const Title = () => {
         <Logo 
           className={`
             ${styles.logo}
-            ${styles['logo' + size]}
+            ${styles[size]}
           `}
         />
         {size === 'Desktop' && (
