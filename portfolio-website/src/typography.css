@@ -24,7 +24,7 @@
 */
 :root {
   --heading-display: var(--font-baskervvilleSC);  /* Used for H1 - special display font */
-  --heading-text: var(--font-baskervville);       /* Used for H2, H3 */
+  --heading-text: var(--font-libreBaskerville);       /* Used for H2, H3 */
   --body-text: var(--font-notoSans);              /* Used for inline and body text */
 }
 
@@ -44,7 +44,7 @@ h1, h2, h3 {
 * Font sizes are set via CSS variables from Typography.jsx context
 */
 h1 {
-  font-family: var(--heading-display);
+  font-family: var(--heading-text);
   text-transform: capitalize;
   font-size: var(--h1-size);
   /* Desktop: 1.728rem/27.65px (1.2^3) */
@@ -99,4 +99,9 @@ p {
 b {
   font-family: inherit;
   font-weight: 700;
+}
+
+i {
+  font-family: inherit;
+  font-style: italic;
 }

@@ -23,7 +23,7 @@ export const Title = () => {
           `}
         />
         {size === 'Desktop' && (
-          <h1 
+          <h1
             className={`${styles.fullName}`}>
             {fullName}
           </h1>

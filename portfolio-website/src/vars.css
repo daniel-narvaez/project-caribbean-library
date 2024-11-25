@@ -13,14 +13,15 @@
 
     /* Fonts */
     --font-baskervvilleSC: "Baskervville SC";
-    --font-baskervville: "Baskervville";
-    --font-notoSans: "Noto Sans Variable";
+    --font-libreBaskerville: 'Libre Baskerville';
+    --font-notoSans: "Noto Sans Variable", sans-serif;
 
     /* Numbers */
     --number-cornerRadius: 0.15rem;
 
     /* Effects */
     --effect-poolShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.25) inset;
+    --fx-cardShadow: 0rem 0rem 1rem 0.5rem rgba(0, 0, 0, 0.25);
     
     /* Animations */
     --trans-hover: all 150ms ease;

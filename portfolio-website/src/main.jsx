@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 import "@fontsource/baskervville-sc"
-import "@fontsource/baskervville"
+import '@fontsource/libre-baskerville';
 import "@fontsource-variable/noto-sans"
 
 createRoot(document.getElementById('root')).render(

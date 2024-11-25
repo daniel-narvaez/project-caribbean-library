@@ -174,8 +174,8 @@ const MainDropdown = ({ items = [] }) => {
  * Export wrapper with performance monitoring
  */
 export const DesktopDropdown = () => {
-  console.time('Desktop Dropdown Render');
+  // console.time('Desktop Dropdown Render');
   const result = <MainDropdown items={mainMenuData}/>;
-  console.timeEnd('Desktop Dropdown Render');
+  // console.timeEnd('Desktop Dropdown Render');
   return result;
 };

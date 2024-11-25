@@ -209,8 +209,8 @@ const MainDropdown = ({ items = [] }) => {
  * Export wrapper with performance monitoring
  */
 export const MobileDropdown = () => {
-  console.time('Mobile Dropdown Menu Render');
+  // console.time('Mobile Dropdown Menu Render');
   const result = <MainDropdown items={mainMenuData}/>;
-  console.timeEnd('Mobile Dropdown Menu Render');
+  // console.timeEnd('Mobile Dropdown Menu Render');
   return result;
 };

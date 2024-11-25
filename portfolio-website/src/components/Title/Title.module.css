@@ -27,5 +27,6 @@
 }
 
 .fullName {
+  font-family: var(--font-baskervvilleSC);
   text-align: center;
 }
