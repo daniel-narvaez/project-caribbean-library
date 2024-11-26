@@ -27,6 +27,7 @@
     --effect-poolShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.25) inset;
     --fx-cardShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.25);
     --fx-blockShadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.50);
+    --fx-textShadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
     /* Animations */
     --trans-hover: all 150ms ease;

@@ -2,7 +2,7 @@ import { put } from '@vercel/blob';
 
 export const getImageUrl = (path) => new URL(`/assets/${path}`, import.meta.url).href;
 
-export function zeroToAutoHeight(element, shouldExpand, options = {}) {
+export function zeroToAutoHeight(element, shouldExpand, options = {}, initialHeight = 0) {
     const {
         // transition = '',
         onStart,
@@ -10,7 +10,7 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
     } = options;
 
     // Store the current height of the element
-    const currentHeight = element.offsetHeight;
+    const currentHeight = initialHeight;
 
     
     // Get the target height
@@ -20,7 +20,7 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}) {
         targetHeight = element.offsetHeight + 'px';
         element.style.height = currentHeight + 'px';
     } else {
-        targetHeight = '0px';
+        targetHeight = initialHeight + 'px';
     }
 
     // Optional callback before transition starts
