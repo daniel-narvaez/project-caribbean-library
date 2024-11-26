@@ -36,7 +36,7 @@ h1, h2, h3 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 /* 
@@ -49,7 +49,7 @@ h1 {
   font-size: var(--h1-size);
   /* Desktop: 1.728rem/27.65px (1.2^3) */
   /* Mobile: 1.602rem/25.63px (1.125^4) */
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 h2 {
@@ -57,7 +57,7 @@ h2 {
   font-size: var(--h2-size);
   /* Desktop: 1.44rem/23.04px (1.2^2) */
   /* Mobile: 1.424rem/22.78px (1.125^3) */
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 h3 {
@@ -65,7 +65,7 @@ h3 {
   font-size: var(--h3-size);
   /* Desktop: 1.2rem/19.2px (1.2^1) */
   /* Mobile: 1.266rem/20.25px (1.125^2) */
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 /* 
@@ -80,7 +80,7 @@ span, label {
   font-size: var(--inline-size);
   /* Desktop: 1.2rem/19.2px (1.2^1) */
   /* Mobile: 1.125rem/18px (1.125^1) */
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 /* 
@@ -93,7 +93,7 @@ p {
   font-weight: 400;
   line-height: 1.5rem;  /* 24px */
   font-size: 1rem;      /* 16px - Base size */
-  color: var(--color-text);
+  color: var(--color-text1);
 }
 
 b {

@@ -1,9 +1,22 @@
 import React from "react";
 
-import { GameProjectCard } from "../GameProjectCard/GameProjectCard";
+import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
+
+import styles from './ProjectsSection.module.css';
 
 export const ProjectsSection = () => {
   return (
-    <GameProjectCard/>
+    <section className={styles.projectsSection}>
+      <div className={styles.featuredWorks}>
+        <h2 className={styles.heading}>
+          Featured Works
+        </h2>
+        <div className={styles.projectArticles}>
+          <GameProjectArticle/>
+          <GameProjectArticle/>
+          <GameProjectArticle/>
+        </div>
+      </div>
+    </section>
   );
 }

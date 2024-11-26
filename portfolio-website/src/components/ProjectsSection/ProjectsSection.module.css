@@ -1,0 +1,45 @@
+.projectsSection {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+
+  background: var(--color-bg2);
+}
+
+.featuredWorks {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  padding: 5rem 2rem;
+  transform: translateY(-2.5rem);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 20rem);
+    height: 100%;
+    border-radius: var(--number-cornerRadius);
+    background: var(--color-bg2-overlay);
+    box-shadow: var(--fx-blockShadow);
+  }
+}
+
+.heading {
+  z-index: 1;
+  color: var(--color-text2);
+  font-size: 2.5rem;
+}
+
+.projectArticles {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 2rem 5rem;
+  flex-wrap: wrap;
+}

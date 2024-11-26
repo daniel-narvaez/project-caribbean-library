@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
-import styles from './gameProjectCard.module.css';
+import styles from './gameProjectArticle.module.css';
 
 const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
   const { size } = useContext(ScreenSizeContext);
@@ -17,7 +17,7 @@ const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
   );
 }
 
-export const GameProjectCard = () => {
+export const GameProjectArticle = () => {
   const { size } = useContext(ScreenSizeContext);
 
   const spacings = {
@@ -50,22 +50,22 @@ export const GameProjectCard = () => {
     <div className={`${styles.gameProjectCard}`}>
       <img 
         className={styles.cardBackground} 
-        src="../../assets/images/games/ClockOut/projectCard/ClockOut-CardBackground.png" 
-        alt="Clock Out bg" 
+        src="../../assets/images/games/ClockOut/projectArticle/ClockOut-CardBackground.png" 
+        alt="game project card background" 
       />
       <img 
         className={styles.cardForeground} 
-        src="../../assets/images/games/ClockOut/projectCard/ClockOut-CardForeground.png" 
-        alt="Clock Out fg" 
+        src="../../assets/images/games/ClockOut/projectArticle/ClockOut-CardForeground.png" 
+        alt="game project card foreground" 
       />
       <div className={`${styles.cardContent}`}>
         <div className={styles.wrapper}>
-          <h1 className={styles.projectTitle}>
+          <h2 className={styles.projectTitle}>
             <b>Clock Out!!</b>
-          </h1>
-          <h2 className={styles.projectTagline}>
-            An unpaid intern decides to fight bosses—<i>literally</i>.
           </h2>
+          <p className={styles.projectTagline}>
+            An unpaid intern decides to fight bosses—<i>literally</i>.
+          </p>
           <div className={styles.projectMenu}>
             <GameProjectButton 
               title='Read More'
