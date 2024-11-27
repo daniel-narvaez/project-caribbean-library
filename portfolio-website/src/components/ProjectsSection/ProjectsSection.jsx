@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
 
 import styles from './ProjectsSection.module.css';
 
+import { clockOutProject } from "../../data/gameProjects";
+
+import { ScreenSizeContext } from "../../contexts/ScreenSize";
+
 export const ProjectsSection = () => {
+  const { size, layout } = useContext(ScreenSizeContext) 
   return (
     <section className={styles.projectsSection}>
-      <div className={styles.featuredWorks}>
-        <h2 className={styles.heading}>
+      <div className={`${styles.featuredWorks} ${styles[layout]}`}>
+        <h2 className={`${styles.heading} ${styles[size]}`}>
           Featured Works
         </h2>
-        <div className={styles.projectArticles}>
-          <GameProjectArticle/>
-          <GameProjectArticle/>
-          <GameProjectArticle/>
+        <div className={`${styles.projectArticles} ${styles[layout]}`}>
+          <GameProjectArticle projectData={clockOutProject.projectArticle}/>
+          <GameProjectArticle projectData={clockOutProject.projectArticle}/>
+          <GameProjectArticle projectData={clockOutProject.projectArticle}/>
         </div>
       </div>
     </section>

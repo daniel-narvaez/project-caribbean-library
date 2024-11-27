@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useCallback } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
@@ -19,8 +19,79 @@ const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
   );
 }
 
-export const GameProjectArticle = () => {
-  const { size } = useContext(ScreenSizeContext);
+const ArticleLayout = ({
+  layout,
+  projectData,
+  articleRef,
+  backgroundRef,
+  wrapperRef,
+  titleRef
+}) => {
+
+  // Get the right image set based on layout
+  const { src: backgroundSrc, alt: backgroundAlt } = layout.includes('Card') 
+  ? projectData.images.cardBg 
+  : projectData.images.bannerBg;
+
+  const { src: foregroundSrc, alt: foregroundAlt } = layout.includes('Card')
+  ? projectData.images.cardFg
+  : projectData.images.bannerFg;
+
+  return (
+    <div
+      ref={articleRef}
+      className={`
+        ${styles.gameProjectArticle} 
+        ${styles[layout]}
+      `}
+    >
+      <img 
+        ref={backgroundRef}
+        className={styles.articleBackground}
+        src={backgroundSrc} 
+        alt={backgroundAlt}
+      />
+      <img 
+        className={styles.articleForeground} 
+        src={foregroundSrc}
+        alt={foregroundAlt}
+      />
+      <div className={styles.articleContent}>
+        <div 
+          ref={wrapperRef} 
+          className={styles.contentWrapper}
+        >
+          <div className={styles.projectInfo}>
+            <h2 
+              ref={titleRef} 
+              className={styles.projectTitle}
+            >
+              <b>{projectData.heading}</b>
+            </h2>
+            <p className={styles.projectTagline}>
+              {projectData.tagline}
+            </p>
+          </div>
+          <div className={styles.projectMenu}>
+            <GameProjectButton 
+              title='Read More'
+              url={projectData.readMoreBtn}
+              style='solid'
+            />
+            <GameProjectButton 
+              title='Play'
+              url={projectData.playBtn}
+              style='island'
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const GameProjectArticle = ({ projectData }) => {
+  const { size, layout } = useContext(ScreenSizeContext);
   const articleRef = useRef(null);
   const backgroundRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -41,16 +112,16 @@ export const GameProjectArticle = () => {
     }
   }
   
-    useEffect(() => {
-      const root = document.documentElement;
-      const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
-  
-      // Set CSS custom properties
-      root.style.setProperty('--card-width', spacings[device].width);
-      root.style.setProperty('--card-height', spacings[device].height);
-      root.style.setProperty('--padding-size', spacings[device].padding);
-      root.style.setProperty('--gap-size', spacings[device].padding);
-    }, [size]);
+  useEffect(() => {
+    const root = document.documentElement;
+    const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
+
+    // Set CSS custom properties
+    root.style.setProperty('--card-width', spacings[device].width);
+    root.style.setProperty('--card-height', spacings[device].height);
+    root.style.setProperty('--padding-size', spacings[device].padding);
+    root.style.setProperty('--gap-size', spacings[device].gap);
+  }, [size]);
 
   useEffect(() => {
     // This code runs immediately on mount
@@ -59,7 +130,13 @@ export const GameProjectArticle = () => {
     const title = titleRef.current;
     
     if (!article || !wrapper || !title) return;
-    
+
+    // For mobile/tablet, set to full height immediately and don't add hover events
+    if (size === 'Mobile') {
+      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+      return;
+    }
+
     // Call your function immediately
     zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
   
@@ -79,16 +156,16 @@ export const GameProjectArticle = () => {
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [size, layout]);
 
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
 
-    if (!article || !background )
+    if (!article || !background || size === 'Mobile')
       return;
 
-    const handleMouseMove = (e) => {
+    const handleMouseParallax = (e) => {
       const rect = article.getBoundingClientRect();
 
       // Calculate relative position (-1 to 1)
@@ -103,64 +180,76 @@ export const GameProjectArticle = () => {
       background.style.transform = `translate(${translateX}%, ${translateY}%)`;
     }
 
-    const handleMouseLeave = () => {
+    const resetMouseParallax = () => {
       // Reset position when mouse leaves
       background.style.transform = 'translate(0%, 0%)';
     }
 
-    article.addEventListener('mousemove', handleMouseMove);
-    article.addEventListener('mouseleave', handleMouseLeave);
+    if (size === 'Desktop') {
+      article.addEventListener('mousemove', handleMouseParallax);
+      article.addEventListener('mouseleave', resetMouseParallax);
+    }
 
     return () => {
-      article.removeEventListener('mousemove', handleMouseMove);
-      article.removeEventListener('mouseleave', handleMouseLeave);
+      if (size === 'Desktop') {
+        article.removeEventListener('mousemove', handleMouseParallax);
+        article.removeEventListener('mouseleave', resetMouseParallax);
+      }
     };
-  }, []);
+  }, [size]);
+
+  useEffect(() => {
+    const background = backgroundRef.current;
+
+    if(!background || size === 'Desktop')
+      return;
+
+    const handleOrientationParallax = (e) => {
+      // gamma is left/right tilt (-90 to 90)
+      // beta is front/back tilt (-180 to 180)
+      const x = (e.gamma || 0) / 90; // Normalize to -1 to 1
+      const y = ((e.beta || 0) - 45) / 90; // Normalize to -1 to 1, adjust midpoint
+
+      const translateX = -x * 4.5;
+      const translateY = -y * 4.5;
+
+      // Apply the transform with a smooth transition
+      background.style.transform = `translate(${translateX}%, ${translateY}%)`;
+    }
+
+    // Check if device is supported and request permission if needed
+    const initOrientationParallax = async () => {
+      if (!window.DeviceOrientationEvent) return;
+
+      // Request permission for iOS devices
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        try {
+          const permission = await DeviceOrientationEvent.requestPermission();
+          if (permission !== 'granted') return;
+        } catch (error) {
+          console.error('Permission for device orientation was denied');
+          return;
+        }
+      }
+
+      window.addEventListener('deviceorientation', handleOrientationParallax);
+    }
+
+    initOrientationParallax();
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientationParallax);
+    };
+  }, [size]);
 
   return (
-    <div 
-      ref={articleRef}
-      className={`${styles.gameProjectArticle} ${styles.card}`}
-    >
-      <img 
-        ref={backgroundRef}
-        className={styles.articleBackground} 
-        src="/../../assets/images/games/ClockOut/projectArticle/ClockOut-CardBackground.png" 
-        alt="game project card background" 
-      />
-      <img 
-        className={styles.articleForeground} 
-        src="/../../assets/images/games/ClockOut/projectArticle/ClockOut-CardForeground.png" 
-        alt="game project card foreground" 
-      />
-      <div className={`${styles.articleContent}`}>
-        <div 
-          ref={wrapperRef}
-          className={styles.contentWrapper}
-        >
-          <div className={styles.projectInfo}>
-            <h2 
-              ref={titleRef}
-              className={styles.projectTitle}
-            >
-              <b>Clock Out!!</b>
-            </h2>
-            <p className={styles.projectTagline}>
-              An unpaid intern decides to fight bosses—<i>literally</i>.
-            </p>
-          </div>
-          <div className={styles.projectMenu}>
-            <GameProjectButton 
-              title='Read More'
-              style='solid'
-            />
-            <GameProjectButton 
-              title='Play'
-              style='island'
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <ArticleLayout
+      layout={layout}
+      projectData={projectData}
+      articleRef={articleRef}
+      backgroundRef={backgroundRef}
+      wrapperRef={wrapperRef}
+      titleRef={titleRef}
+    />
   );
 }
