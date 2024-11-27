@@ -40,38 +40,46 @@ export const GameProjectArticle = () => {
       gap: '0.375rem'       // 6px
     }
   }
-
-  // Hover handlers for submenu interactions
-  const handleMouseEnter = useCallback(() => {
-    const wrapper = wrapperRef.current;
-    const title = titleRef.current;
-
-    if (!wrapper || !title) 
-      return;
-
-    zeroToAutoHeight(wrapperRef.current, true, {}, title.offsetHeight);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    const wrapper = wrapperRef.current;
-    const title = titleRef.current;
-
-    if (!wrapper || !title) 
-      return;
-
-    zeroToAutoHeight(wrapperRef.current, false, {}, title.offsetHeight);
-  }, []);
+  
+    useEffect(() => {
+      const root = document.documentElement;
+      const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
+  
+      // Set CSS custom properties
+      root.style.setProperty('--card-width', spacings[device].width);
+      root.style.setProperty('--card-height', spacings[device].height);
+      root.style.setProperty('--padding-size', spacings[device].padding);
+      root.style.setProperty('--gap-size', spacings[device].padding);
+    }, [size]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
-
-    // Set CSS custom properties
-    root.style.setProperty('--card-width', spacings[device].width);
-    root.style.setProperty('--card-height', spacings[device].height);
-    root.style.setProperty('--padding-size', spacings[device].padding);
-    root.style.setProperty('--gap-size', spacings[device].padding);
-  }, [size]);
+    // This code runs immediately on mount
+    const article = articleRef.current;
+    const wrapper = wrapperRef.current;
+    const title = titleRef.current;
+    
+    if (!article || !wrapper || !title) return;
+    
+    // Call your function immediately
+    zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
+  
+    // The event listeners are still set up for future hover interactions
+    const handleMouseEnter = () => {
+      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+    };
+  
+    const handleMouseLeave = () => {
+      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
+    };
+  
+    article.addEventListener('mouseenter', handleMouseEnter);
+    article.addEventListener('mouseleave', handleMouseLeave);
+  
+    return () => {
+      article.removeEventListener('mouseenter', handleMouseEnter);
+      article.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   useEffect(() => {
     const article = articleRef.current;
@@ -109,25 +117,20 @@ export const GameProjectArticle = () => {
     };
   }, []);
 
-  // reset wrapper size;
-  handleMouseLeave();
-
   return (
     <div 
       ref={articleRef}
       className={`${styles.gameProjectArticle} ${styles.card}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <img 
         ref={backgroundRef}
         className={styles.articleBackground} 
-        src="../../assets/images/games/ClockOut/projectArticle/ClockOut-CardBackground.png" 
+        src="/../../assets/images/games/ClockOut/projectArticle/ClockOut-CardBackground.png" 
         alt="game project card background" 
       />
       <img 
         className={styles.articleForeground} 
-        src="../../assets/images/games/ClockOut/projectArticle/ClockOut-CardForeground.png" 
+        src="/../../assets/images/games/ClockOut/projectArticle/ClockOut-CardForeground.png" 
         alt="game project card foreground" 
       />
       <div className={`${styles.articleContent}`}>
