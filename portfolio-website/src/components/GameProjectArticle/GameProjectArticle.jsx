@@ -203,6 +203,11 @@ export const GameProjectArticle = ({ projectData }) => {
     const background = backgroundRef.current;
     
     if (!article || !background || size === 'Desktop') return;
+
+    const handleTouchDefault = (e) => {
+      // Prevent scrolling while touching the article
+      e.preventDefault();
+    };
   
     const handleTouchParallax = (e) => {
       const touch = e.touches[0];
@@ -221,10 +226,12 @@ export const GameProjectArticle = ({ projectData }) => {
       background.style.transform = 'translate(0%, 0%)';
     };
   
-    article.addEventListener('touchmove', handleTouchParallax);
+    article.addEventListener('touchstart', handleTouchDefault, { passive: false });
+    article.addEventListener('touchmove', handleTouchParallax, { passive: false });
     article.addEventListener('touchend', resetTouchParallax);
   
     return () => {
+      article.removeEventListener('touchstart', handleTouchDefault);
       article.removeEventListener('touchmove', handleTouchParallax);
       article.removeEventListener('touchend', resetTouchParallax);
     };
