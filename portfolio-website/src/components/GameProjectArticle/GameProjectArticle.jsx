@@ -206,19 +206,23 @@ export const GameProjectArticle = ({ projectData }) => {
 
     const handleTouchDefault = (e) => {
       // Prevent scrolling while touching the article
-      e.preventDefault();
+      if (e.target === article || e.target === background)
+        e.preventDefault();
     };
   
     const handleTouchParallax = (e) => {
-      const touch = e.touches[0];
-      const rect = article.getBoundingClientRect();
-      const x = (touch.clientX - rect.left) / rect.width * 2 - 1;
-      const y = (touch.clientY - rect.top) / rect.height * 2 - 1;
-      
-      const translateX = -x * 4.5;
-      const translateY = -y * 4.5;
-      
-      background.style.transform = `translate(${translateX}%, ${translateY}%)`;
+      if (e.target === article || e.target === background) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const rect = article.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width * 2 - 1;
+        const y = (touch.clientY - rect.top) / rect.height * 2 - 1;
+        
+        const translateX = -x * 4.5;
+        const translateY = -y * 4.5;
+        
+        background.style.transform = `translate(${translateX}%, ${translateY}%)`;
+      }
     };
   
     // Reset on touch end
