@@ -10,7 +10,7 @@ export const ScreenSizeProvider = ({children}) => {
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      const isMobile = width < 900;
+      const isMobile = width < 768;
       
       // First determine device size
       if (isMobile) {
@@ -23,7 +23,7 @@ export const ScreenSizeProvider = ({children}) => {
         }
       } else {
         // Tablet and Desktop: Triple article view
-        if (width > 1200) {
+        if (width >= 1440) {
           setSize('Desktop');
           setLayout('desktopCard');  // Large screens: desktop cards
         } else {

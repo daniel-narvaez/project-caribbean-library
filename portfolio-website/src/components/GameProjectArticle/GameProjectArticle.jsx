@@ -199,46 +199,34 @@ export const GameProjectArticle = ({ projectData }) => {
   }, [size]);
 
   useEffect(() => {
+    const article = articleRef.current;
     const background = backgroundRef.current;
-
-    if(!background || size === 'Desktop')
-      return;
-
-    const handleOrientationParallax = (e) => {
-      // gamma is left/right tilt (-90 to 90)
-      // beta is front/back tilt (-180 to 180)
-      const x = (e.gamma || 0) / 90; // Normalize to -1 to 1
-      const y = ((e.beta || 0) - 45) / 90; // Normalize to -1 to 1, adjust midpoint
-
+    
+    if (!article || !background || size === 'Desktop') return;
+  
+    const handleTouchParallax = (e) => {
+      const touch = e.touches[0];
+      const rect = article.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width * 2 - 1;
+      const y = (touch.clientY - rect.top) / rect.height * 2 - 1;
+      
       const translateX = -x * 4.5;
       const translateY = -y * 4.5;
-
-      // Apply the transform with a smooth transition
+      
       background.style.transform = `translate(${translateX}%, ${translateY}%)`;
-    }
-
-    // Check if device is supported and request permission if needed
-    const initOrientationParallax = async () => {
-      if (!window.DeviceOrientationEvent) return;
-
-      // Request permission for iOS devices
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        try {
-          const permission = await DeviceOrientationEvent.requestPermission();
-          if (permission !== 'granted') return;
-        } catch (error) {
-          console.error('Permission for device orientation was denied');
-          return;
-        }
-      }
-
-      window.addEventListener('deviceorientation', handleOrientationParallax);
-    }
-
-    initOrientationParallax();
-
+    };
+  
+    // Reset on touch end
+    const resetTouchParallax = () => {
+      background.style.transform = 'translate(0%, 0%)';
+    };
+  
+    article.addEventListener('touchmove', handleTouchParallax);
+    article.addEventListener('touchend', resetTouchParallax);
+  
     return () => {
-      window.removeEventListener('deviceorientation', handleOrientationParallax);
+      article.removeEventListener('touchmove', handleTouchParallax);
+      article.removeEventListener('touchend', resetTouchParallax);
     };
   }, [size]);
 
