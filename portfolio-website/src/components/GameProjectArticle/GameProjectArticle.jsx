@@ -206,12 +206,14 @@ export const GameProjectArticle = ({ projectData }) => {
 
     const handleTouchDefault = (e) => {
       // Prevent scrolling while touching the article
-      if (e.target === article || e.target === background)
+      if (!e.target.closest(`.${styles.projectButton}`))
         e.preventDefault();
+
+      console.log(e.target.closest(`.${styles.projectButton}`));
     };
   
     const handleTouchParallax = (e) => {
-      if (e.target === article || e.target === background) {
+      if (!e.target.closest(styles.projectButton)) {
         e.preventDefault();
         const touch = e.touches[0];
         const rect = article.getBoundingClientRect();
