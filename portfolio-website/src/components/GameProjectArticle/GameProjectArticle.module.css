@@ -14,10 +14,6 @@
   );
 }
 
-.gameProjectArticle {
-
-}
-
 .gameProjectArticle.card {
   display: flex;
   width: var(--card-width);
