@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useCallback } from 'react';
 
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
-import styles from './gameProjectArticle.module.css';
+import styles from './GameProjectArticle.module.css';
 
 import { zeroToAutoHeight } from '../../utils';
 
