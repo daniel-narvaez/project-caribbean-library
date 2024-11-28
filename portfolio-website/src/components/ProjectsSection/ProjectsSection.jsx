@@ -4,7 +4,7 @@ import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
 
 import styles from './ProjectsSection.module.css';
 
-import { clockOutProject, chihuahuaChampProject } from "../../data/gameProjects";
+import { clockOutProject, chihuahuaChampProject, theHexPerplexProject } from "../../data/gameProjects";
 
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
@@ -19,7 +19,7 @@ export const ProjectsSection = () => {
         <div className={`${styles.projectArticles} ${styles[layout]}`}>
           <GameProjectArticle projectData={clockOutProject.projectArticle}/>
           <GameProjectArticle projectData={chihuahuaChampProject.projectArticle}/>
-          <GameProjectArticle projectData={clockOutProject.projectArticle}/>
+          <GameProjectArticle projectData={theHexPerplexProject.projectArticle}/>
         </div>
       </div>
     </section>
