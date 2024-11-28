@@ -175,26 +175,37 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     
     if (!article || !wrapper || !title) return;
 
+    var titleHeight;
+    
     const resizeObserver = new ResizeObserver(entries => {
-      const titleHeight = entries[0].contentRect.height;
-      
+      titleHeight = entries[0].contentRect.height;
       if (size === 'Mobile' || layout.includes('Banner')) {
         zeroToAutoHeight(wrapper, true, {}, titleHeight);
-        return;
+      } else {
+        zeroToAutoHeight(wrapper, false, {}, titleHeight);
       }
-
-      zeroToAutoHeight(wrapper, false, {}, titleHeight);
     });
 
     resizeObserver.observe(title);
-  
+
+    // If it's mobile or banner, just setup the resize observer
+    if (size === 'Mobile' || layout.includes('Banner')) {
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+
+    // Desktop card: setup mouse events
+    zeroToAutoHeight(wrapper, false, {}, titleHeight);
+
     const handleMouseEnter = () => {
-      zeroToAutoHeight(wrapper, true, {}, title.offSetHeight);
+      zeroToAutoHeight(wrapper, true, {}, titleHeight);
     };
   
     const handleMouseLeave = () => {
-      zeroToAutoHeight(wrapper, false, {}, title.offSetHeight);
+      zeroToAutoHeight(wrapper, false, {}, titleHeight);
     };
+  
   
     article.addEventListener('mouseenter', handleMouseEnter, { passive: true });
     article.addEventListener('mouseleave', handleMouseLeave, { passive: true });
