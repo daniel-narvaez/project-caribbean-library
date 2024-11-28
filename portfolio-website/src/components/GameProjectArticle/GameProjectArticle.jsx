@@ -200,7 +200,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     article.addEventListener('mouseleave', handleMouseLeave, { passive: true });
   
     return () => {
-      clearTimeout(timeoutId);
+      resizeObserver.disconnect();
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
