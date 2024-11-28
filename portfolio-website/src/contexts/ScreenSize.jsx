@@ -22,45 +22,54 @@ export const ScreenSizeProvider = ({children}) => {
   const [layout, setLayout] = useState('desktopCard');
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const isMobile = width < 768;
-      
-      // First determine device size
-      if (isMobile) {
-        setSize('Mobile');
-        // Mobile: Single article view
-        if (height > width) {
-          setLayout('mobileCard'); // Portrait: cards in column
-        } else {
-          setLayout('mobileBanner');      // Landscape: banners
-        }
-      } else {
-        // Tablet and Desktop: Triple article view
-        if (width >= 1440) {
-          setSize('Desktop');
-          setLayout('desktopCard');  // Large screens: desktop cards
-        } else {
-          setSize('Mobile');
-          if (height > width) {
-            setLayout('mobileBanner');      // Tablet portrait: banners
-          } else {
-            setLayout('mobileCard'); // Tablet landscape: mobile cards
-          }
-        }
+    const getDeviceConfig = (width, height) => {
+      if (width >= 1440) {
+        return {
+          size: 'Desktop',
+          layout: 'desktopCard',
+          spacing: spacings.Desktop
+        };
       }
+      
+      return {
+        size: 'Mobile',
+        layout: height > width ? 'mobileCard' : 'mobileBanner',
+        spacing: spacings.Mobile
+      };
     };
 
-    const root = document.documentElement;
-    root.style.setProperty('--card-width', spacings[size].width);
-    root.style.setProperty('--card-height', spacings[size].height);
-    root.style.setProperty('--padding-size', spacings[size].padding);
-    root.style.setProperty('--gap-size', spacings[size].gap);
+    const updateLayout = () => {
+      const { innerWidth: width, innerHeight: height } = window;
+      const config = getDeviceConfig(width, height);
+      
+      const root = document.documentElement;
+      root.style.setProperty('--card-width', config.spacing.width);
+      root.style.setProperty('--card-height', config.spacing.height);
+      root.style.setProperty('--padding-size', config.spacing.padding);
+      root.style.setProperty('--gap-size', config.spacing.gap);
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
-    return () => window.removeEventListener('resize', handleResize);
+      setSize(config.size);
+      setLayout(config.layout);
+    };
+
+    // Debounced version
+    let timeoutId;
+    const debouncedUpdateLayout = () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+      timeoutId = window.setTimeout(updateLayout, 150);
+    };
+
+    window.addEventListener('resize', debouncedUpdateLayout);
+    updateLayout(); // Initial check without debounce
+    
+    return () => {
+      window.removeEventListener('resize', debouncedUpdateLayout);
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   return (
