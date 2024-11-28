@@ -177,25 +177,23 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
  
     // Allow a frame for styles to be computed
     const timeoutId = setTimeout(() => {
-      const titleHeight = title.offsetHeight;
-
       if (size === 'Mobile' || layout.includes('Banner')) {
-        zeroToAutoHeight(wrapper, true, {}, titleHeight);
+        zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
         return;
       }
 
-      zeroToAutoHeight(wrapper, false, {}, titleHeight);
+      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
     }, 0);
  
     // Desktop: Initialize collapsed state
-    zeroToAutoHeight(wrapper, false, {}, titleHeight);
+    zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
   
     const handleMouseEnter = () => {
-      zeroToAutoHeight(wrapper, true, {}, titleHeight);
+      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
     };
   
     const handleMouseLeave = () => {
-      zeroToAutoHeight(wrapper, false, {}, titleHeight);
+      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
     };
   
     article.addEventListener('mouseenter', handleMouseEnter, { passive: true });
