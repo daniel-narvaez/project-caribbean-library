@@ -54,12 +54,13 @@ const PARALLAX_CONFIG = {
 * @param {RefObject} backgroundRef - Reference to background image
 * @param {string} size - Current device size from ScreenSizeContext
 */
-const useDesktopParallax = (articleRef, backgroundRef, size) => {
+const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
  
-    if (!article || !background || size === 'Mobile') return;
+    if (!article || !background || size === 'Mobile') 
+      return () => background.style.transform = 'translate(0%, 0%)';
  
     let frameId;
     const handleMouseParallax = (e) => {
@@ -114,12 +115,13 @@ const useDesktopParallax = (articleRef, backgroundRef, size) => {
  * @param {RefObject} backgroundRef - Reference to background image
  * @param {string} size - Current device size from ScreenSizeContext
  */
- const useMobileParallax = (articleRef, backgroundRef, size) => {
+ const useMobileParallax = (articleRef, backgroundRef, size, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
     
-    if (!article || !background || size === 'Desktop') return;
+    if (!article || !background || size === 'Desktop') 
+      return () => background.style.transform = 'translate(0%, 0%)';
   
     let frameId;
     const handleScrollParallax = () => {
@@ -351,8 +353,8 @@ export const GameProjectArticle = ({ projectData }) => {
  
   // Apply interactive effects based on device context
   useContentExpansion(articleRef, wrapperRef, titleRef, size, layout);
-  useDesktopParallax(articleRef, backgroundRef, size);
-  useMobileParallax(articleRef, backgroundRef, size);
+  useDesktopParallax(articleRef, backgroundRef, size, layout);
+  useMobileParallax(articleRef, backgroundRef, size, layout);
  
   return (
     <ArticleLayout
