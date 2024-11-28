@@ -23,7 +23,7 @@ export const ScreenSizeProvider = ({children}) => {
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
-      if(width < 768)
+      if(width < 768 || height < 768)
         return {
           size: 'Mobile',
           layout: height > width ? 'mobileCard' : 'mobileBanner',
@@ -31,9 +31,9 @@ export const ScreenSizeProvider = ({children}) => {
         };
       else
         return {
-          size: 'Desktop',
-          layout: width > 1440 ? 'desktopCard' : height > width ? 'mobileBanner' : 'mobileCard',
-          spacing: width > 1440 ? spacings.Desktop : spacings.Mobile
+          size: width >= 1440 ? 'Desktop' : 'Mobile',
+          layout: width >= 1440 ? 'desktopCard' : height > width ? 'mobileBanner' : 'mobileCard',
+          spacing: width >= 1440 ? spacings.Desktop : spacings.Mobile
         };
     };
 
