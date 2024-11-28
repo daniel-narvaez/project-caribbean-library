@@ -175,14 +175,17 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     
     if (!article || !wrapper || !title) return;
  
-    // Cache the scroll height to avoid reflow
-    const titleHeight = title.offsetHeight;
- 
-    // Mobile: Keep content expanded
-    if (size === 'Mobile') {
-      zeroToAutoHeight(wrapper, true, {}, titleHeight);
-      return;
-    }
+    // Allow a frame for styles to be computed
+    const timeoutId = setTimeout(() => {
+      const titleHeight = title.offsetHeight;
+
+      if (size === 'Mobile' || layout.includes('Banner')) {
+        zeroToAutoHeight(wrapper, true, {}, titleHeight);
+        return;
+      }
+
+      zeroToAutoHeight(wrapper, false, {}, titleHeight);
+    }, 0);
  
     // Desktop: Initialize collapsed state
     zeroToAutoHeight(wrapper, false, {}, titleHeight);
@@ -199,6 +202,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     article.addEventListener('mouseleave', handleMouseLeave, { passive: true });
   
     return () => {
+      clearTimeout(timeoutId);
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
