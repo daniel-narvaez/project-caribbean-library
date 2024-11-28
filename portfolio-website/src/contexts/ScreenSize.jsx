@@ -29,12 +29,21 @@ export const ScreenSizeProvider = ({children}) => {
           layout: height > width ? 'mobileCard' : 'mobileBanner',
           spacing: spacings.Mobile
         };
-      else
-        return {
-          size: width >= 1440 ? 'Desktop' : 'Mobile',
-          layout: width >= 1440 ? 'desktopCard' : height > width ? 'mobileBanner' : 'mobileCard',
-          spacing: width >= 1440 ? spacings.Desktop : spacings.Mobile
-        };
+      else {
+        if(width >= 1440) {
+          return {
+            size: 'Desktop',
+            layout: 'desktopCard',
+            spacing: spacings.Desktop
+          };
+        } else {
+          return {
+            size: 'Mobile',
+            layout: height > width ? 'mobileBanner' : 'mobileCard',
+            spacing: spacings.Mobile
+          };
+        }
+      }
     };
 
     const updateLayout = () => {
@@ -57,7 +66,7 @@ export const ScreenSizeProvider = ({children}) => {
       if (timeoutId) {
         window.clearTimeout(timeoutId);
       }
-      timeoutId = window.setTimeout(updateLayout, 150);
+      timeoutId = window.setTimeout(updateLayout, 100);
     };
 
     window.addEventListener('resize', debouncedUpdateLayout);
@@ -69,7 +78,7 @@ export const ScreenSizeProvider = ({children}) => {
         window.clearTimeout(timeoutId);
       }
     };
-  }, []);
+  }, [size, layout, spacings]);
 
   return (
     <ScreenSizeContext.Provider value={{ size, layout }}>
