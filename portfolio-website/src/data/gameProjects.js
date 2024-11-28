@@ -145,7 +145,7 @@ export const theHexPerplexProject = createGameProject({
   projectArticle: {
     images: {
       cardFg: {
-        src: ' ',
+        src: '',
         alt: ' '
       },
       cardBg: {
@@ -153,7 +153,7 @@ export const theHexPerplexProject = createGameProject({
         alt: 'An image of the player character in The Hex Perplex looking toward a castle shrouded in purple thunder.'
       },
       bannerFg: {
-        src: ' ',
+        src: '',
         alt: ' '
       },
       bannerBg: {
