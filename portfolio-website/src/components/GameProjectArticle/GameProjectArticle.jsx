@@ -203,45 +203,32 @@ export const GameProjectArticle = ({ projectData }) => {
     const background = backgroundRef.current;
     
     if (!article || !background || size === 'Desktop') return;
-
-    const handleTouchDefault = (e) => {
-      // Prevent scrolling while touching the article
-      if (!e.target.closest(`.${styles.projectButton}`))
-        e.preventDefault();
-
-      console.log(e.target.closest(`.${styles.projectButton}`));
-    };
   
-    const handleTouchParallax = (e) => {
-      if (!e.target.closest(styles.projectButton)) {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const rect = article.getBoundingClientRect();
-        const x = (touch.clientX - rect.left) / rect.width * 2 - 1;
-        const y = (touch.clientY - rect.top) / rect.height * 2 - 1;
+    const handleScrollParallax = () => {
+      const rect = article.getBoundingClientRect();
+      
+      // Check if article is in viewport
+      const isInView = (
+        rect.top < window.innerHeight &&
+        rect.bottom > 0
+      );
+      
+      if (isInView) {
+        const viewportHeight = window.innerHeight;
+        const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
+        const translateY = (progress - 0.5) * -9;
         
-        const translateX = -x * 4.5;
-        const translateY = -y * 4.5;
-        
-        background.style.transform = `translate(${translateX}%, ${translateY}%)`;
+        background.style.transform = `translate(0%, ${translateY}%)`;
       }
     };
   
-    // Reset on touch end
-    const resetTouchParallax = () => {
-      background.style.transform = 'translate(0%, 0%)';
-    };
-  
-    article.addEventListener('touchstart', handleTouchDefault, { passive: false });
-    article.addEventListener('touchmove', handleTouchParallax, { passive: false });
-    article.addEventListener('touchend', resetTouchParallax);
+    window.addEventListener('scroll', handleScrollParallax);
+    handleScrollParallax(); // Initial position check
   
     return () => {
-      article.removeEventListener('touchstart', handleTouchDefault);
-      article.removeEventListener('touchmove', handleTouchParallax);
-      article.removeEventListener('touchend', resetTouchParallax);
+      window.removeEventListener('scroll', handleScrollParallax);
     };
-  }, [size]);
+  }, [size]); // Added size dependency
 
   return (
     <ArticleLayout
