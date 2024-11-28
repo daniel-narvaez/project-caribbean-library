@@ -174,23 +174,26 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     const title = titleRef.current;
     
     if (!article || !wrapper || !title) return;
- 
-    // Allow a frame for styles to be computed
-    const timeoutId = setTimeout(() => {
+
+    const resizeObserver = new ResizeObserver(entries => {
+      const titleHeight = entries[0].contentRect.height;
+      
       if (size === 'Mobile' || layout.includes('Banner')) {
-        zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+        zeroToAutoHeight(wrapper, true, {}, titleHeight);
         return;
       }
 
-      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
-    }, 0);
+      zeroToAutoHeight(wrapper, false, {}, titleHeight);
+    });
+
+    resizeObserver.observe(title);
   
     const handleMouseEnter = () => {
-      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+      zeroToAutoHeight(wrapper, true, {}, title.offSetHeight);
     };
   
     const handleMouseLeave = () => {
-      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
+      zeroToAutoHeight(wrapper, false, {}, title.offSetHeight);
     };
   
     article.addEventListener('mouseenter', handleMouseEnter, { passive: true });
