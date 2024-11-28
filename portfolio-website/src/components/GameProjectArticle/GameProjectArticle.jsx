@@ -102,7 +102,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size]);
+  }, [size, layout]);
 };
  
  /**
@@ -153,7 +153,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size]);
+  }, [size, layout]);
 };
 
 /**
@@ -179,11 +179,10 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     
     const resizeObserver = new ResizeObserver(entries => {
       titleHeight = entries[0].contentRect.height;
-      if (size === 'Mobile' || layout.includes('Banner')) {
+      if (size === 'Mobile' || layout.includes('Banner'))
         zeroToAutoHeight(wrapper, true, {}, titleHeight);
-      } else {
+      else
         zeroToAutoHeight(wrapper, false, {}, titleHeight);
-      }
     });
 
     resizeObserver.observe(title);
