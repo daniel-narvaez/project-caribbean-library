@@ -133,20 +133,20 @@ export const GameProjectArticle = ({ projectData }) => {
 
     // For mobile/tablet, set to full height immediately and don't add hover events
     if (size === 'Mobile') {
-      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+      zeroToAutoHeight(wrapper, true, {}, title.scrollHeight);
       return;
     }
 
     // Call your function immediately
-    zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
+    zeroToAutoHeight(wrapper, false, {}, title.scrollHeight);
   
     // The event listeners are still set up for future hover interactions
     const handleMouseEnter = () => {
-      zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
+      zeroToAutoHeight(wrapper, true, {}, title.scrollHeight);
     };
   
     const handleMouseLeave = () => {
-      zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
+      zeroToAutoHeight(wrapper, false, {}, title.scrollHeight);
     };
   
     article.addEventListener('mouseenter', handleMouseEnter);
