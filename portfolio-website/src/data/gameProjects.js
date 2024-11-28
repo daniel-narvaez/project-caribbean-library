@@ -111,6 +111,33 @@ export const clockOutProject = createGameProject({
   }
 });
 
-export const projectArticlesData = [clockOutProject.projectArticle];
+export const chihuahuaChampProject = createGameProject({
+  title: 'Chihuahua Champ',
+  portfolioUrl: '',
+  gameUrl: '',
+  projectArticle: {
+    images: {
+      cardFg: {
+        src: '/../../images/games/ChihuahuaChamp/projectArticle/ChihuahuaChamp-CardFg.png',
+        alt: `An image of the player character in Chihuahua Champ, who is depicted glowing with a yellow aura and has fire in his eyes. In a determined pose, he's crushing a dog treat in his hand.`
+      },
+      cardBg: {
+        src: '/../../images/games/ChihuahuaChamp/projectArticle/ChihuahuaChamp-CardBg.png',
+        alt: `An image of Pookie, the player character's girlfriend in Chihuahua Champ, sitting on their couch. She's looking over at the player character with a confused expression.`
+      },
+      bannerFg: {
+        src: '/../../images/games/ChihuahuaChamp/projectArticle/ChihuahuaChamp-BannerFg.png',
+        alt: `An image of the player character in Chihuahua Champ, who is depicted glowing with a yellow aura and has fire in his eyes. In a determined pose, he's crushing a dog treat in his hand.`
+      },
+      bannerBg: {
+        src: '/../../images/games/ChihuahuaChamp/projectArticle/ChihuahuaChamp-BannerBg.png',
+        alt: `An image of Pookie, the player character's girlfriend in Chihuahua Champ, sitting on their couch. She's looking over at the player character with a confused expression.`
+      },
+    },
+    tagline: 'A tiny-but-mighty chihuahua rises to become a powerlifting top dog.',
+  }
+});
 
-export const gameProjectsData = [clockOutProject]
+export const projectArticlesData = [clockOutProject.projectArticle, chihuahuaChampProject.projectArticle];
+
+export const gameProjectsData = [clockOutProject, chihuahuaChampProject]

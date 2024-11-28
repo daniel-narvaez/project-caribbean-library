@@ -202,6 +202,7 @@
   align-items: flex-start;
   gap: var(--gap-size);
   align-self: stretch;
+  flex: 3 0 0;
 }
 
 .projectTitle {
@@ -234,7 +235,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   gap: calc(var(--gap-size) * 2);
-  flex: 1 0 0;
+  flex: 2 0 0;
 }
 
 /**
