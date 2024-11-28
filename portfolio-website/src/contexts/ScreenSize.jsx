@@ -2,9 +2,24 @@ import { createContext, useState, useEffect } from "react";
 
 export const ScreenSizeContext = createContext();
 
+const spacings = {
+  Desktop: {
+    width: '25rem',       // 400px
+    height: '37.5rem',    // 600px
+    padding: '0.5rem',    // 8px
+    gap: '0.5rem'         // 8px
+  },
+  Mobile: {
+    width: '18.75rem',    // 300px
+    height: '28.125rem',  // 450px
+    padding: '0.375rem',  // 6px
+    gap: '0.375rem'       // 6px
+  }
+}
+
 export const ScreenSizeProvider = ({children}) => {
   const [size, setSize] = useState('Desktop');
-  const [layout, setLayout] = useState('desktop-card');
+  const [layout, setLayout] = useState('desktopCard');
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,6 +51,12 @@ export const ScreenSizeProvider = ({children}) => {
         }
       }
     };
+
+    const root = document.documentElement;
+    root.style.setProperty('--card-width', spacings[size].width);
+    root.style.setProperty('--card-height', spacings[size].height);
+    root.style.setProperty('--padding-size', spacings[size].padding);
+    root.style.setProperty('--gap-size', spacings[size].gap);
 
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial check

@@ -97,32 +97,6 @@ export const GameProjectArticle = ({ projectData }) => {
   const wrapperRef = useRef(null);
   const titleRef = useRef(null);
 
-  const spacings = {
-    Desktop: {
-      width: '25rem',       // 400px
-      height: '37.5rem',    // 600px
-      padding: '0.5rem',    // 8px
-      gap: '0.5rem'         // 8px
-    },
-    Mobile: {
-      width: '18.75rem',    // 300px
-      height: '28.125rem',  // 450px
-      padding: '0.375rem',  // 6px
-      gap: '0.375rem'       // 6px
-    }
-  }
-  
-  useEffect(() => {
-    const root = document.documentElement;
-    const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
-
-    // Set CSS custom properties
-    root.style.setProperty('--card-width', spacings[device].width);
-    root.style.setProperty('--card-height', spacings[device].height);
-    root.style.setProperty('--padding-size', spacings[device].padding);
-    root.style.setProperty('--gap-size', spacings[device].gap);
-  }, [size]);
-
   useEffect(() => {
     // This code runs immediately on mount
     const article = articleRef.current;
