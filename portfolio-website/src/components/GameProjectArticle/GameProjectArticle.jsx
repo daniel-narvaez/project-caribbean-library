@@ -184,9 +184,6 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
 
       zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
     }, 0);
- 
-    // Desktop: Initialize collapsed state
-    zeroToAutoHeight(wrapper, false, {}, title.offsetHeight);
   
     const handleMouseEnter = () => {
       zeroToAutoHeight(wrapper, true, {}, title.offsetHeight);
