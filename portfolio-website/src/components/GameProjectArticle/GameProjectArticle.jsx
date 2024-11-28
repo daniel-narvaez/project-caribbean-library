@@ -167,7 +167,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size) => {
 * @param {RefObject} titleRef - Reference to title element
 * @param {string} size - Current device size from ScreenSizeContext
 */
-const useContentExpansion = (articleRef, wrapperRef, titleRef, size) => {
+const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const wrapper = wrapperRef.current;
@@ -202,7 +202,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size) => {
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [size]);
+  }, [size, layout]);
  };
  
  /**
@@ -339,7 +339,7 @@ export const GameProjectArticle = ({ projectData }) => {
   const titleRef = useRef(null);
  
   // Apply interactive effects based on device context
-  useContentExpansion(articleRef, wrapperRef, titleRef, size);
+  useContentExpansion(articleRef, wrapperRef, titleRef, size, layout);
   useDesktopParallax(articleRef, backgroundRef, size);
   useMobileParallax(articleRef, backgroundRef, size);
  
