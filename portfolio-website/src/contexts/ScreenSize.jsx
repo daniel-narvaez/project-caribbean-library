@@ -47,7 +47,7 @@ export const ScreenSizeProvider = ({children}) => {
     };
 
     const updateLayout = () => {
-      const { innerWidth: width, innerHeight: height } = window;
+      const { outerWidth: width, outerHeight: height } = window;
       const config = getDeviceConfig(width, height);
       
       const root = document.documentElement;
