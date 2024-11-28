@@ -17,7 +17,7 @@ export function zeroToAutoHeight(element, shouldExpand, options = {}, initialHei
     let targetHeight;
     if (shouldExpand) {
         element.style.height = 'auto';
-        targetHeight = element.scrollHeight + 'px';
+        targetHeight = element.offsetHeight + 'px';
         element.style.height = currentHeight + 'px';
     } else {
         targetHeight = initialHeight + 'px';

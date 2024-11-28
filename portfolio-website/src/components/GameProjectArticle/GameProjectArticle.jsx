@@ -176,7 +176,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size) => {
     if (!article || !wrapper || !title) return;
  
     // Cache the scroll height to avoid reflow
-    const titleHeight = title.scrollHeight;
+    const titleHeight = title.offsetHeight;
  
     // Mobile: Keep content expanded
     if (size === 'Mobile') {
