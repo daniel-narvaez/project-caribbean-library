@@ -214,12 +214,11 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
  * @param {string} style - Button style variant ('solid' | 'island')
  */
  const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
-  const { size } = useContext(ScreenSizeContext);
   
   return (
     <a
       href={url}
-      className={`${styles.projectButton} ${styles[style]} ${styles[size]}`}
+      className={`${styles.projectButton} ${styles[style]}`}
     >
       <span>{title}</span>
     </a>

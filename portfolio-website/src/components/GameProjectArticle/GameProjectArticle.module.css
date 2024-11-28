@@ -204,6 +204,10 @@
   align-self: stretch;
 }
 
+.projectTitle {
+  line-height: normal;
+}
+
 .projectTitle, .projectTagline {
   text-shadow: var(--fx-textShadow);
 }
