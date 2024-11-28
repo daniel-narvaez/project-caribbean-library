@@ -23,19 +23,18 @@ export const ScreenSizeProvider = ({children}) => {
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
-      if (width >= 1440) {
+      if(width < 768)
+        return {
+          size: 'Mobile',
+          layout: height > width ? 'mobileCard' : 'mobileBanner',
+          spacing: spacings.Mobile
+        };
+      else
         return {
           size: 'Desktop',
-          layout: 'desktopCard',
-          spacing: spacings.Desktop
+          layout: width > 1440 ? 'desktopCard' : height > width ? 'mobileBanner' : 'mobileCard',
+          spacing: width > 1440 ? spacings.Desktop : spacings.Mobile
         };
-      }
-      
-      return {
-        size: 'Mobile',
-        layout: height > width ? 'mobileCard' : 'mobileBanner',
-        spacing: spacings.Mobile
-      };
     };
 
     const updateLayout = () => {

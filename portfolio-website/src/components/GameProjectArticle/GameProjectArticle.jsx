@@ -90,77 +90,38 @@ const ArticleLayout = ({
   );
 };
 
-export const GameProjectArticle = ({ projectData }) => {
-  const { size, layout } = useContext(ScreenSizeContext);
-  const articleRef = useRef(null);
-  const backgroundRef = useRef(null);
-  const wrapperRef = useRef(null);
-  const titleRef = useRef(null);
-
-  useEffect(() => {
-    // This code runs immediately on mount
-    const article = articleRef.current;
-    const wrapper = wrapperRef.current;
-    const title = titleRef.current;
-    
-    if (!article || !wrapper || !title) return;
-
-    // For mobile/tablet, set to full height immediately and don't add hover events
-    if (size === 'Mobile') {
-      zeroToAutoHeight(wrapper, true, {}, title.scrollHeight);
-      return;
-    }
-
-    // Call your function immediately
-    zeroToAutoHeight(wrapper, false, {}, title.scrollHeight);
-  
-    // The event listeners are still set up for future hover interactions
-    const handleMouseEnter = () => {
-      zeroToAutoHeight(wrapper, true, {}, title.scrollHeight);
-    };
-  
-    const handleMouseLeave = () => {
-      zeroToAutoHeight(wrapper, false, {}, title.scrollHeight);
-    };
-  
-    article.addEventListener('mouseenter', handleMouseEnter);
-    article.addEventListener('mouseleave', handleMouseLeave);
-  
-    return () => {
-      article.removeEventListener('mouseenter', handleMouseEnter);
-      article.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [size, layout]);
-
+const useDesktopParallax = (articleRef, backgroundRef, size) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
 
-    if (!article || !background || size === 'Mobile')
-      return;
+    if (!article || !background || size === 'Mobile') return;
 
+    let frameId;
     const handleMouseParallax = (e) => {
-      const rect = article.getBoundingClientRect();
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
 
-      // Calculate relative position (-1 to 1)
-      const x = (e.clientX - rect.left) / rect.width * 2 - 1;
-      const y = (e.clientY - rect.top) / rect.height * 2 - 1;
-
-      // Calculate the translation values (4.5% maximum movement)
-      const translateX = -x * 4.5;
-      const translateY = -y * 4.5;
-
-      // Apply the transform with a smooth transition
-      background.style.transform = `translate(${translateX}%, ${translateY}%)`;
-    }
+      frameId = requestAnimationFrame(() => {
+        const rect = article.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width * 2 - 1;
+        const y = (e.clientY - rect.top) / rect.height * 2 - 1;
+        const translateX = -x * 4.5;
+        const translateY = -y * 4.5;
+        background.style.transform = `translate(${translateX}%, ${translateY}%)`;
+      });
+    };
 
     const resetMouseParallax = () => {
-      // Reset position when mouse leaves
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
       background.style.transform = 'translate(0%, 0%)';
-    }
+    };
 
     if (size === 'Desktop') {
-      article.addEventListener('mousemove', handleMouseParallax);
+      article.addEventListener('mousemove', handleMouseParallax, { passive: true });
       article.addEventListener('mouseleave', resetMouseParallax);
     }
 
@@ -169,40 +130,98 @@ export const GameProjectArticle = ({ projectData }) => {
         article.removeEventListener('mousemove', handleMouseParallax);
         article.removeEventListener('mouseleave', resetMouseParallax);
       }
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
     };
   }, [size]);
+};
 
+const useMobileParallax = (articleRef, backgroundRef, size) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
     
     if (!article || !background || size === 'Desktop') return;
   
+    // Debounce scroll handler
+    let frameId;
     const handleScrollParallax = () => {
-      const rect = article.getBoundingClientRect();
-      
-      // Check if article is in viewport
-      const isInView = (
-        rect.top < window.innerHeight &&
-        rect.bottom > 0
-      );
-      
-      if (isInView) {
-        const viewportHeight = window.innerHeight;
-        const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
-        const translateY = (progress - 0.5) * -9;
-        
-        background.style.transform = `translate(0%, ${translateY}%)`;
+      if (frameId) {
+        cancelAnimationFrame(frameId);
       }
+
+      frameId = requestAnimationFrame(() => {
+        const rect = article.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInView) {
+          const viewportHeight = window.innerHeight;
+          const progress = 1 - (rect.bottom / (viewportHeight + rect.height));
+          const translateY = (progress - 0.5) * -9;
+          background.style.transform = `translate(0%, ${translateY}%)`;
+        }
+      });
     };
   
-    window.addEventListener('scroll', handleScrollParallax);
-    handleScrollParallax(); // Initial position check
+    window.addEventListener('scroll', handleScrollParallax, { passive: true });
+    handleScrollParallax();
   
     return () => {
       window.removeEventListener('scroll', handleScrollParallax);
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
     };
-  }, [size]); // Added size dependency
+  }, [size]);
+};
+
+const useContentExpansion = (articleRef, wrapperRef, titleRef, size) => {
+  useEffect(() => {
+    const article = articleRef.current;
+    const wrapper = wrapperRef.current;
+    const title = titleRef.current;
+    
+    if (!article || !wrapper || !title) return;
+
+    // Cache the scroll height to avoid reflow
+    const titleHeight = title.scrollHeight;
+
+    if (size === 'Mobile') {
+      zeroToAutoHeight(wrapper, true, {}, titleHeight);
+      return;
+    }
+
+    zeroToAutoHeight(wrapper, false, {}, titleHeight);
+  
+    const handleMouseEnter = () => {
+      zeroToAutoHeight(wrapper, true, {}, titleHeight);
+    };
+  
+    const handleMouseLeave = () => {
+      zeroToAutoHeight(wrapper, false, {}, titleHeight);
+    };
+  
+    article.addEventListener('mouseenter', handleMouseEnter, { passive: true });
+    article.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+  
+    return () => {
+      article.removeEventListener('mouseenter', handleMouseEnter);
+      article.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [size]);
+};
+
+export const GameProjectArticle = ({ projectData }) => {
+  const { size, layout } = useContext(ScreenSizeContext);
+  const articleRef = useRef(null);
+  const backgroundRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const titleRef = useRef(null);
+
+  useContentExpansion(articleRef, wrapperRef, titleRef, size);
+  useDesktopParallax(articleRef, backgroundRef, size);
+  useMobileParallax(articleRef, backgroundRef, size);
 
   return (
     <ArticleLayout
