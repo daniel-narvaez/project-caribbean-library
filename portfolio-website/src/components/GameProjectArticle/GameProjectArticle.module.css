@@ -116,10 +116,10 @@
 .articleForeground {
   position: absolute;
   z-index: 1;
-  width: 100.5%;
-  height: 100.5%;
-  top: -0.5%;
-  left: -0.5%;
+  width: 101%;
+  height: 101%;
+  top: -1%;
+  left: -1%;
 }
 
 /**
