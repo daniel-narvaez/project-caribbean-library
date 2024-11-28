@@ -23,7 +23,7 @@ export const ScreenSizeProvider = ({children}) => {
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
-      if(width < 768 || height < 768)
+      if(width < 768 || height < 480)
         return {
           size: 'Mobile',
           layout: height > width ? 'mobileCard' : 'mobileBanner',
@@ -47,7 +47,7 @@ export const ScreenSizeProvider = ({children}) => {
     };
 
     const updateLayout = () => {
-      const { outerWidth: width, outerHeight: height } = window;
+      const { innerWidth: width, innerHeight: height } = window;
       const config = getDeviceConfig(width, height);
       
       const root = document.documentElement;
