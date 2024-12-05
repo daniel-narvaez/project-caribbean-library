@@ -3,7 +3,7 @@
   justify-content: center;
   align-self: stretch;
 
-  background: var(--color-bg2);
+  /* background: var(--color-bg2); */
 }
 
 .featuredWorks {
@@ -11,13 +11,13 @@
   display: flex;
   width: fit-content;
   padding: 5rem 2rem;
-  transform: translateY(-2.5rem);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5rem;
-
-  &.desktopCard::before,
+  /* transform: translateY(-2.5rem); */
+  
+  /* &.desktopCard::before,
   &.mobileBanner::before {
     content: '';
     position: absolute;
@@ -36,7 +36,7 @@
     border-radius: var(--number-cornerRadius);
     background: var(--color-bg2-overlay);
     box-shadow: var(--fx-blockShadow);
-  }
+  } */
 }
 
 .heading {

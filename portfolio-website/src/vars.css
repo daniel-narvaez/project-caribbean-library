@@ -22,6 +22,8 @@
 
     /* Numbers */
     --number-cornerRadius: 0.15rem;
+    --num-dotSize: 0.15rem;
+    --num-cellSize: 1rem;
 
     /* Effects */
     --effect-poolShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.25) inset;

@@ -3,7 +3,7 @@ import styles from './App.module.css'
 import { ScreenSizeProvider } from './contexts/ScreenSize';
 import { TypographyProvider } from './contexts/Typography';
 
-import { Navbar } from './components/Navbar/Navbar';
+import { Background } from './components/Background/Background';
 import { HeroSection } from './components/HeroSection/HeroSection';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 
@@ -13,8 +13,10 @@ function App() {
     <ScreenSizeProvider>
       <TypographyProvider>
         <div className={styles.App}>
-          <HeroSection />
-          <ProjectsSection />
+          <Background>
+            <HeroSection />
+            <ProjectsSection />
+          </Background>
         </div>
       </TypographyProvider>
     </ScreenSizeProvider>
