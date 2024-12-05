@@ -45,11 +45,23 @@
 .heroSection {
   display: flex;
   width: 100%;
-  height: 100vh;
-  padding: 5rem 5.55vw; /* Consistent padding ratio */
-  gap: 5vw;
+  min-height: 100vh;
+  padding: 5rem 5.55vw;
+  justify-content: center;
+  /* background-image: var(--bg-heroSection); */
+}
+
+/**
+* Hero Container
+* -------------
+* Constrains width and maintains padding
+*/
+.heroContainer {
+  display: flex;
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  gap: 5%;
   align-items: center;
-  background-image: var(--bg-heroSection);
 }
 
 /**
@@ -62,8 +74,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 2vw;
-  flex-shrink: 0; /* Prevents unwanted shrinking */
+  gap: 1.5rem; /* 24px = 1280px * 1.875% */
+  width: calc(50% - 2.5%); /* Half the container minus half the gap */
 }
 
 /**
@@ -73,7 +85,7 @@
 */
 .heroMedia {
   display: flex;
-  width: 100%;
+  width: calc(50% - 2.5%); /* Half the container minus half the gap */
   filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
 }
 
@@ -84,11 +96,11 @@
 */
 .headline {
   font-family: var(--font-libreBaskerville);
-  font-size: 4.17vw;
+  font-size: var(--hero-headline-size);
 }
 
 .tagline {
-  font-size: 1.85vw;
+  font-size: var(--hero-tagline-size);
   line-height: normal;
 }
 
@@ -100,7 +112,7 @@
 .ctaMenu {
   display: flex;
   align-items: center;
-  gap: 1.85vw;
+  gap: 1.5rem;
 }
 
 .ctaButton {
@@ -110,7 +122,7 @@
   align-items: center;
   align-self: stretch;
   z-index: 0; /* Creates stacking context */
-  padding: 1vw 2vw;
+  padding: 0.75rem 1.5rem;
   text-decoration: none;
 }
 
@@ -125,13 +137,13 @@
   inset: 0;
   transform-origin: center;
   z-index: -1;
-  border-radius: 0.32vw;
+  border-radius: 0.25rem;
   transition: var(--menuControl-hover);
 }
 
 .ctaButton span {
   font-family: var(--heading-text);
-  font-size: 1.85vw;
+  font-size: var(--hero-cta-button-size);
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;
@@ -180,7 +192,7 @@
 * Secondary action style with border
 */
 .ctaButton.island::before {
-  border: 0.32vw solid var(--color-link);
+  border: var(--number-cornerRadius) solid var(--color-link);
 }
 
 .ctaButton.island span {
@@ -199,14 +211,14 @@
 }
 
 .ctaButton.island:active::before {
-  border-color: var(--color-link-hover);
+  border-color: var(--color-link-active);
   transform: scale(92%);
   transition: var(--menuControl-active);
   filter: none;
 }
 
 .ctaButton.island:active span{
-  color: var(--color-link-hover);
+  color: var(--color-link-active);
   transform: scale(92%);
   transition: var(--menuControl-active);
   filter: none;
@@ -220,43 +232,63 @@
 */
 @media (max-aspect-ratio: 1/1) {
   .heroSection {
-    flex-direction: column-reverse;
+    width: 100%;
+    min-height: 100vh;
     justify-content: center;
     padding: 4.375rem 5.55vw;
-    gap: 5vh;
+  }
+  
+  /**
+  * Hero Container
+  * -------------
+  * Constrains width and maintains padding
+  */
+  .heroContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    gap: 5%;
+    align-items: center;
   }
 
   /* Center alignment for portrait view */
   .heroContent {
     align-items: center;
-    gap: 2vh;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .heroMedia {
+    /* align-items: center;
+    justify-content: center; */
+    width: 100%;
   }
 
   /* Adjusted typography for portrait orientation */
   .headline {
     text-align: center;
-    font-size: 3.34vh;
   }
 
   .heroContent .tagline {
     text-align: center;
-    font-size: 1.8vh;
   }
 
   .ctaMenu {
-    gap: 1.8vh;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .ctaButton {
+    padding: 0.5rem 1rem;
 
     &::before {
-      border-width: 0.32vh;
-      border-radius: 0.32vh; 
+      border-width: var(--number-cornerRadius);
+      border-radius: var(--number-cornerRadius); 
     }
 
-    span {
-      font-size: 1.8vh;
-    }
   }
 
   main > .heroMedia {

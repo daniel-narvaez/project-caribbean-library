@@ -156,41 +156,43 @@ import React, {
     <main
       className={styles.heroSection}
       ref={containerRef}
-      onMouseMove={size === 'Desktop' ? handleMouseMove : null}
-      onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
+      // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
+      // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
     >
       <Navbar />
-      
-      <div className={styles.heroContent}>
-        <h1 className={styles.headline}>
-          Elevating experiences <br/>
-          through meticulous <br/>
-          game design.
-        </h1>
-        
-        <p className={styles.tagline}>
-          Hi I'm Daniel, a <b>game designer</b> based in <br/>
-          The Bronx, NY. I specialize in Economy <br/>
-          Systems Design and UI/UX Design.
-        </p>
-        
-        <div className={styles.ctaMenu}>
-          <CTAButton
-            title="Browse my work"
-            style="solid"
-          />
-          <CTAButton
-            title="Connect with me"
-            style="island"
-          />
+
+      <div className={styles.heroContainer}>   
+        <div className={styles.heroContent}>
+          <h1 className={styles.headline}>
+            Elevating experiences <br/>
+            through meticulous <br/>
+            game design.
+          </h1>
+          
+          <p className={styles.tagline}>
+            Hi I'm Daniel, a <b>game designer</b> based in <br/>
+            The Bronx, NY. I specialize in Economy <br/>
+            Systems Design and UI/UX Design.
+          </p>
+          
+          <div className={styles.ctaMenu}>
+            <CTAButton
+              title="Browse my work"
+              style="solid"
+            />
+            <CTAButton
+              title="Connect with me"
+              style="island"
+            />
+          </div>
         </div>
-      </div>
  
-      <TiltContext.Provider value={{ tilt, setTilt }}>
-        <div className={styles.heroMedia}>
-          <Slideshow slides={testSlides} />
-        </div>
-      </TiltContext.Provider>
+        <TiltContext.Provider value={{ tilt, setTilt }}>
+          <div className={styles.heroMedia}>
+            <Slideshow slides={testSlides} />
+          </div>
+        </TiltContext.Provider>
+      </div>
     </main>
   );
  };

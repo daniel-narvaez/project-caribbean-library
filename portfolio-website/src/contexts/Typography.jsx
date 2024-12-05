@@ -43,14 +43,22 @@ export const TypographyProvider = ({ children }) => {
       h1: '1.728rem',    // 27.65px (1.2^3)
       h2: '1.44rem',     // 23.04px (1.2^2)
       h3: '1.2rem',      // 19.2px  (1.2^1)
-      inline: '1.2rem'   // 19.2px  (1.2^1)
+      inline: '1.2rem',   // 19.2px  (1.2^1)
+
+      heroHeadline: '3rem',
+      heroTagline: '1.5rem',
+      heroCtaButton: '1.5rem'
     },
     Mobile: {
       // Major Second Scale (1.125)
       h1: '1.602rem',    // 25.63px (1.125^4)
       h2: '1.424rem',    // 22.78px (1.125^3)
       h3: '1.266rem',    // 20.25px (1.125^2)
-      inline: '1.125rem' // 18px    (1.125^1)
+      inline: '1.125rem', // 18px    (1.125^1)
+
+      heroHeadline: '1.8rem',
+      heroTagline: '1rem',
+      heroCtaButton: '0.75rem'
     }
   };
 
@@ -75,6 +83,10 @@ export const TypographyProvider = ({ children }) => {
     root.style.setProperty('--h2-size', fontSizes[device].h2);
     root.style.setProperty('--h3-size', fontSizes[device].h3);
     root.style.setProperty('--inline-size', fontSizes[device].inline);
+    
+    root.style.setProperty('--hero-headline-size', fontSizes[device].heroHeadline);
+    root.style.setProperty('--hero-tagline-size', fontSizes[device].heroTagline);
+    root.style.setProperty('--hero-cta-button-size', fontSizes[device].heroCtaButton);
   }, [size]); // Re-run when screen size changes
 
   return (
