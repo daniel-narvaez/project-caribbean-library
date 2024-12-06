@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import styles from './Background.module.css';
 
 export const Background = ({ children }) => {
