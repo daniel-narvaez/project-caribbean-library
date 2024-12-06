@@ -86,7 +86,9 @@
 .heroMedia {
   display: flex;
   width: calc(50% - 2.5%); /* Half the container minus half the gap */
-  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
+  aspect-ratio: 4/3;
+  border-radius: 0.5rem;
+  box-shadow: var(--fx-boxShadow1);
 }
 
 /**
@@ -157,6 +159,7 @@
 */
 .ctaButton.solid::before {
   background-color: var(--color-link);
+  box-shadow: var(--fx-boxShadow1);
 }
 
 .ctaButton.solid span {
@@ -166,7 +169,6 @@
 /* Hover and active states with depth effects */
 .ctaButton.solid:hover::before {
   background-color: var(--color-link-hover);
-  filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.5));
 }
 
 .ctaButton.solid:hover span {
@@ -193,6 +195,7 @@
 */
 .ctaButton.island::before {
   border: var(--number-cornerRadius) solid var(--color-link);
+  box-shadow: var(--fx-boxShadow1);
 }
 
 .ctaButton.island span {
@@ -202,12 +205,10 @@
 /* Hover and active states with depth effects */
 .ctaButton.island:hover::before {
   border-color: var(--color-link-hover);
-  filter: drop-shadow(0 0.12rem 0.5rem rgba(0, 0, 0, 0.25));
 }
 
 .ctaButton.island:hover span{
   color: var(--color-link-hover);
-  filter: drop-shadow(0 0.12rem 0.5rem rgba(0, 0, 0, 0.25));
 }
 
 .ctaButton.island:active::before {
