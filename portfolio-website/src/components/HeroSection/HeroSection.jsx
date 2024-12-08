@@ -75,7 +75,7 @@ import React, {
  */
  export const CTAButton = memo(({
   title = 'Call-to-Action',
-  url = '',
+  url = '#',
   style = 'solid'
  }) => (
 <a

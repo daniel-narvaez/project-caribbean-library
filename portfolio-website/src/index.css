@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   font-family: "Times New Roman", "Arial", "Helvetica Neue", "Sans-serif";
+  cursor: url('./assets/images/cursor-v3.svg') 6 6, auto;
 }
 
 html {

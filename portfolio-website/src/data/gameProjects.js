@@ -17,8 +17,8 @@ import React from "react";
 
 export const createGameProject = ({
   title,
-  portfolioUrl = '',
-  gameUrl = '',
+  portfolioUrl = '/',
+  gameUrl = '/',
   projectArticle = {
     images: {
       cardFg: {
@@ -68,8 +68,8 @@ export const createGameProject = ({
     },
     heading: projectArticle.heading || title || 'Untitled Project',
     tagline:  projectArticle.tagline || `A short tagline about ${title}.`,
-    readMoreBtn: projectArticle.portfolioUrl || '',
-    playBtn: projectArticle.gameUrl || ''
+    readMoreBtn: projectArticle.portfolioUrl || '/',
+    playBtn: projectArticle.gameUrl || '/'
   };
 
   return {
@@ -86,8 +86,8 @@ export const createGameProject = ({
 
 export const clockOutProject = createGameProject({
   title: 'Clock Out!!',
-  portfolioUrl: '',
-  gameUrl: '',
+  portfolioUrl: '/',
+  gameUrl: '/',
   projectArticle: {
     images: {
       cardFg: {
@@ -113,8 +113,8 @@ export const clockOutProject = createGameProject({
 
 export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
-  portfolioUrl: '',
-  gameUrl: '',
+  portfolioUrl: '/',
+  gameUrl: '/',
   projectArticle: {
     images: {
       cardFg: {
@@ -140,8 +140,8 @@ export const chihuahuaChampProject = createGameProject({
 
 export const theHexPerplexProject = createGameProject({
   title: 'The Hex Perplex',
-  portfolioUrl: '',
-  gameUrl: '',
+  portfolioUrl: '/',
+  gameUrl: '/',
   projectArticle: {
     images: {
       cardFg: {
