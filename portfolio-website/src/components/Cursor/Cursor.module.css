@@ -1,41 +1,122 @@
-/* Cursor effect styles */
+/**
+ * Cursor.module.css
+ * ================
+ * 
+ * Overview:
+ * Styles for the SplashEffect cursor enhancement component.
+ * Includes cursor dot indicator and splash animation effects.
+ * Optimized for performance with GPU acceleration and efficient
+ * transitions.
+ * 
+ * Key Features:
+ * - Hardware-accelerated animations
+ * - High-performance transforms
+ * - Proper z-indexing for overlay effects
+ * - Non-interactive elements (pointer-events: none)
+ */
+
+/**
+ * Configuration Variables
+ * ---------------------
+ * Centralized values for consistent styling
+ */
+ :root {
+  --dot-size: 1rem;
+  --dot-border-width: 0.125rem;
+  --animation-duration: 700ms;
+  --scale-pressed: 0.8;
+  --scale-splash: 5;
+  --z-index-cursor: 9999;
+}
+
+/**
+ * Cursor Dot
+ * ----------
+ * Follows mouse position over interactive elements
+ * Uses hardware acceleration for smooth movement
+ * 
+ * Technical Notes:
+ * - Fixed positioning for viewport-relative placement
+ * - GPU-accelerated transforms for performance
+ * - Pointer events disabled to prevent interference
+ * - High z-index to ensure visibility
+ */
 .cursorDot {
   position: fixed;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: var(--dot-size);
+  height: var(--dot-size);
   border-radius: 50%;
-  background-color: #b2ffff;
+  background-color: var(--color-pointer);
   pointer-events: none;
+  z-index: var(--z-index-cursor);
+  /* Performance optimizations */
+  will-change: transform;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-in-out;
-  z-index: 9999;
+  transition: transform 0.15s var(--anim-splash);
+  /* Enable hardware acceleration */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
+/**
+ * Pressed State
+ * ------------
+ * Scale animation for mouse down interaction
+ */
 .cursorDot.active {
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) scale(var(--scale-pressed));
 }
 
+/**
+ * Splash Effect
+ * ------------
+ * Expanding ring animation triggered on mouse down
+ * Fades out while scaling up
+ * 
+ * Technical Notes:
+ * - Matches cursor dot initial size
+ * - Uses same positioning strategy
+ * - Optimized for animation performance
+ */
 .splash {
   position: fixed;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: var(--dot-size);
+  height: var(--dot-size);
   border-radius: 50%;
-  border: 2px solid #b2ffff;
+  border: var(--dot-border-width) solid var(--color-pointer);
   pointer-events: none;
+  z-index: var(--z-index-cursor);
+  /* Performance optimizations */
+  will-change: transform, opacity, border-width;
   transform: translate(-50%, -50%);
-  animation: splash 700ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  z-index: 9999;
+  /* Enable hardware acceleration */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: splash var(--animation-duration) var(--anim-splash) forwards;
 }
 
+/**
+ * Splash Animation
+ * --------------
+ * Keyframes for splash effect expansion
+ * Handles scaling, opacity, and border refinement
+ * 
+ * Technical Notes:
+ * - Scale transform for smooth expansion
+ * - Opacity fade for natural dissipation
+ * - Border width reduction for refined look
+ * - Hardware-accelerated properties only
+ */
 @keyframes splash {
   0% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    border-width: 2px;
+    border-width: var(--dot-border-width);
   }
+  
   100% {
-    transform: translate(-50%, -50%) scale(5);
+    transform: translate(-50%, -50%) scale(var(--scale-splash));
     opacity: 0;
-    border-width: 1px;
+    border-width: 0rem;
   }
 }

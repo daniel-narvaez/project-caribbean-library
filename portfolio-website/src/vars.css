@@ -1,5 +1,6 @@
 :root {
     /* Colors */
+    --color-pointer: #b2ffffcc; /* Celeste */
     --color-text1: #00052b; /* Midnight */
     --color-link: #0047ab; /* Cobalt */
     --color-link-hover: #00a9ce; /* Sea & Sky */
@@ -7,6 +8,7 @@
     --color-bg1: #ece9e4; /* Sand */
     --color-bg1-hover: #f7f5f2; /* Dune Crest */
     --color-bg1-active: #dcd8d1; /* Desert Stone */
+
 
     --color-text2: #2b1b17; /* Ink */
     --color-bg2: #694d3c; /* Library Carpet */
@@ -40,4 +42,5 @@
     --closing-dropdown: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
     --menuControl-hover: all 350ms cubic-bezier(0.21, 0.65, 0.32, 0.89);
     --menuControl-active: all 100ms ease;
+    --anim-splash: cubic-bezier(0.4, 0, 0.2, 1);
 }
