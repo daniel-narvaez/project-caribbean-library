@@ -68,3 +68,67 @@
     gap: 1.5rem;
   }
 }
+
+.wavesButton{
+  position: relative;
+  display: flex;
+  width: 18.75rem; /* 18.75rem = 300px, which is the smallest project article width*/
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  text-decoration: none;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  box-shadow: var(--fx-boxShadow1);
+  transition: var(--menuControl-hover);
+}
+
+.wavesButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  z-index: -1;
+  background-color: var(--color-link-hover);
+}
+
+.wavesButton .wave {
+  opacity: 0.5;
+  position: absolute;
+  background-color: var(--color-link);
+  border-radius: 70% 60% 75% 55% / 55% 75% 60% 70%;
+  transition: scale var(--trans-tide);
+  animation: drift var(--anim-drift);
+}
+
+.wavesButton span {
+  font-family: var(--heading-text);
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--color-bg1-hover);
+  z-index: 1;
+}
+
+.wavesButton:active {
+  transition: var(--menuControl-active);
+  transform: scale(92%);
+}
+
+.wavesButton:active::before {
+  background-color: var(--color-link-active);
+}
+
+.wavesButton:active span {
+  color: var(--color-bg1-active);
+}
+
+@keyframes drift {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+

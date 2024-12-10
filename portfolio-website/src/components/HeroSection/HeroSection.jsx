@@ -78,7 +78,7 @@ import React, {
   url = '#',
   style = 'solid'
  }) => (
-<a
+  <a
     href={url}
     className={`${styles.ctaButton} ${styles[style]}`}
   >
