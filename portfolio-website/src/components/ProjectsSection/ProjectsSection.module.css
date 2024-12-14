@@ -41,7 +41,7 @@
 
 .heading {
   z-index: 1;
-  color: var(--color-text2);
+  /* color: var(--color-text1); */
   
   &.Desktop {font-size: 2.5rem; }
 

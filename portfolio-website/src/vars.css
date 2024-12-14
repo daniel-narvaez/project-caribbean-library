@@ -5,6 +5,9 @@
     --color-link: #0047ab; /* Cobalt */
     --color-link-hover: #00a9ce; /* Sea & Sky */
     --color-link-active: #007a99; /* Deep Reef */
+    --color-action: #9b111e; /* Ruby */
+    --color-action-hover: #d6111b; /* Brave Blood */
+    --color-action-active: #4b0000; /* Revolution */
     --color-bg1: #ece9e4; /* Sand */
     --color-bg1-hover: #f7f5f2; /* Dune Crest */
     --color-bg1-active: #dcd8d1; /* Desert Stone */

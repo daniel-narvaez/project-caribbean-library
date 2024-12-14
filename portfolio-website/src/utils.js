@@ -47,4 +47,3 @@ export async function uploadVideoToBlob(file) {
     return null;
   }
 }
-

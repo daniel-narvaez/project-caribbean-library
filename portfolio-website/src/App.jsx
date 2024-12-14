@@ -7,6 +7,7 @@ import { SplashEffect } from './components/Cursor/Cursor';
 import { Background } from './components/Background/Background';
 import { HeroSection } from './components/HeroSection/HeroSection';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
+import { AboutSection } from './components/AboutSection/AboutSection';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Background>
             <HeroSection />
             <ProjectsSection />
+            <AboutSection />
           </Background>
         </div>
         <SplashEffect />

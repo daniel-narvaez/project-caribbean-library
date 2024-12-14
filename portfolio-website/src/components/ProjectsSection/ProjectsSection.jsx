@@ -60,7 +60,10 @@ url = '/'
 export const ProjectsSection = () => {
   const { size, layout } = useContext(ScreenSizeContext);
   return (
-    <section className={styles.projectsSection}>
+    <section 
+      id='projects'
+      className={styles.projectsSection}
+      >
       <div className={`${styles.featuredWorks} ${styles[layout]}`}>
         <h2 className={`${styles.heading} ${styles[size]}`}>
           Featured Works

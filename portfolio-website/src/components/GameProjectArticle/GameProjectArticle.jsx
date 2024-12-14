@@ -32,6 +32,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './GameProjectArticle.module.css';
 import { zeroToAutoHeight } from '../../utils';
+import { IslandButton, SolidButton } from '../Button/Button';
 
 /**
  * Configuration for parallax effects
@@ -228,7 +229,6 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
  * @param {string} style - Button style variant ('solid' | 'island')
  */
  const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
-  
   return (
     <a
       href={url}
@@ -269,7 +269,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     : projectData.images.bannerFg;
  
   return (
-    <div
+    <article
       ref={articleRef}
       className={`
         ${styles.gameProjectArticle} 
@@ -304,20 +304,18 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
             </p>
           </div>
           <div className={styles.projectMenu}>
-            <GameProjectButton 
+            <SolidButton 
               title='Read More'
               url={projectData.readMoreBtn}
-              style='solid'
             />
-            <GameProjectButton 
+            <IslandButton
               title='Play'
               url={projectData.playBtn}
-              style='island'
             />
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

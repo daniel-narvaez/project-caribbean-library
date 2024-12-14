@@ -37,11 +37,12 @@ import React, {
   useEffect,
   memo
  } from "react";
- import { Navbar } from "../Navbar/Navbar";
- import { Slideshow } from "../Slideshow/Slideshow";
- import { ScreenSizeContext } from "../../contexts/ScreenSize";
- import styles from './HeroSection.module.css';
- import { testSlides, heroSlides } from "../../data/HeroMedia";
+import { Navbar } from "../Navbar/Navbar";
+import { Slideshow } from "../Slideshow/Slideshow";
+import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import styles from './HeroSection.module.css';
+import { testSlides, heroSlides } from "../../data/HeroMedia";
+import { useSmoothScroll } from "../../utils/useSmoothScroll";
  
  /**
  * Configuration for 3D tilt effect
@@ -72,19 +73,41 @@ import React, {
  * @param {string} title - Button text
  * @param {string} url - Button link destination
  * @param {string} style - Visual variant ('solid' | 'island')
+ * @param {function} onCustomClick - Custom click handler
  */
  export const CTAButton = memo(({
   title = 'Call-to-Action',
   url = '#',
-  style = 'solid'
- }) => (
-  <a
-    href={url}
-    className={`${styles.ctaButton} ${styles[style]}`}
-  >
-    <span>{title}</span>
-  </a>
- ));
+  style = 'solid',
+  onCustomClick // no default value needed, will be undefined if not provided
+}) => {
+  const smoothScrollTo = useSmoothScroll();
+
+  const handleClick = (e) => {
+    // Check if onCustomClick exists before calling it
+    if (onCustomClick) {
+      onCustomClick(e);
+      return;
+    }
+
+    // If it's a hash link, do smooth scroll
+    if (url.startsWith('#')) {
+      e.preventDefault();
+      const targetId = url.slice(1);
+      smoothScrollTo(targetId);
+    }
+  };
+
+  return (
+    <a
+      href={url}
+      className={`${styles.ctaButton} ${styles[style]}`}
+      onClick={handleClick}
+    >
+      <span>{title}</span>
+    </a>
+  );
+});
  
  CTAButton.displayName = 'CTAButton';
  
@@ -178,6 +201,7 @@ import React, {
           <div className={styles.ctaMenu}>
             <CTAButton
               title="Browse my work"
+              url="#projects"
               style="solid"
             />
             <CTAButton

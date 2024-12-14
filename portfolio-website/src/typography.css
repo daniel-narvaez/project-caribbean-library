@@ -96,6 +96,15 @@ p {
   color: var(--color-text1);
 }
 
+a {
+  font-family: var(--body-text);
+  color: var(--color-link);
+
+  &:hover { color: var(--color-link-hover) }
+
+  &:hover { color: var(--color-link-active) }
+}
+
 b {
   font-family: inherit;
   font-weight: 700;
