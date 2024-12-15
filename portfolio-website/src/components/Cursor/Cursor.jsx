@@ -31,6 +31,8 @@ import gsap from 'gsap';
 
 import styles from './Cursor.module.css';
 
+const MORPH_DURATION = 0.3;
+
 export const AnimatedCursor = () => {
   const svgRef = useRef(null);
   const headPathRef = useRef(null);
@@ -81,7 +83,7 @@ export const AnimatedCursor = () => {
       
       // Animate the fill path with updated path data
       timelineRef.current.to(headPathRef.current, {
-        duration: 0.3,
+        duration: MORPH_DURATION,
         attr: { 
           d: "M5.144,0.986C9.696,-1.293 15.292,0.446 17.644,5.144C19.931,9.712 17.972,15.398 13.486,17.644C8.859,19.961 3.25,18.007 0.986,13.486C-1.319,8.883 0.551,3.286 5.144,0.986Z"
         },
@@ -92,7 +94,7 @@ export const AnimatedCursor = () => {
       
       // Animate the stroke path with updated path data
       timelineRef.current.to(headStrokeRef.current, {
-        duration: 0.3,
+        duration: MORPH_DURATION,
         attr: { 
           d: "M5.144,0.986C9.696,-1.293 15.292,0.446 17.644,5.144C19.931,9.712 17.972,15.398 13.486,17.644C8.859,19.961 3.25,18.007 0.986,13.486C-1.319,8.883 0.551,3.286 5.144,0.986ZM6.04,2.774C2.432,4.581 0.964,8.976 2.774,12.59C4.552,16.141 8.957,17.675 12.59,15.856C16.113,14.092 17.652,9.627 15.856,6.04C14.009,2.351 9.614,0.984 6.04,2.774Z"
         },
@@ -100,7 +102,7 @@ export const AnimatedCursor = () => {
       }, 0);
       
       timelineRef.current.to(tailPathRef.current, {
-        duration: 0.3,
+        duration: MORPH_DURATION,
         attr: { 
           d: "M15.69,18.871L21.987,25.03L18.447,26.673L22.021,29.364L22.023,31.991L14.458,26.315L18.267,24.334L13.628,19.904L15.69,18.871Z"
         },
