@@ -13,6 +13,7 @@
     "@fontsource-variable/noto-sans": "^5.1.0",
     "@fontsource/baskervville-sc": "^5.1.0",
     "@fontsource/libre-baskerville": "^5.1.0",
+    "@gsap/react": "^2.1.1",
     "@vercel/blob": "^0.26.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
