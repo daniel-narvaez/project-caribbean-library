@@ -17,7 +17,10 @@ export const AboutSection = () => {
       
     const imgElement = mediaRef.current;
     const mediaItem = getAboutItem(id);
-    
+
+    // avoid transitioning to the same image
+    if (imgElement.src === mediaItem.src || imgElement.alt === mediaItem.alt)
+      return;
     
     // Step 1: Remove transition and flash white immediately
     imgElement.style.transition = 'none';

@@ -31,7 +31,7 @@ import gsap from 'gsap';
 
 import styles from './Cursor.module.css';
 
-const MORPH_DURATION = 0.3;
+const MORPH_DURATION = 0.2;
 
 export const AnimatedCursor = () => {
   const svgRef = useRef(null);
@@ -153,7 +153,7 @@ export const AnimatedCursor = () => {
         padding: 0,
         willChange: 'transform',
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.1s ease'
+        transition: `opacity ${MORPH_DURATION} ease`
       }}
     >
       <rect id="default" x="0" y="0" width="32" height="32" fill="none"/>
