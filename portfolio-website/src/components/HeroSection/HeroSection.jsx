@@ -41,7 +41,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { Slideshow } from "../Slideshow/Slideshow";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './HeroSection.module.css';
-import { testSlides, heroSlides } from "../../data/HeroMedia";
+import { testSlides, heroGifSlides } from "../../data/HeroMedia";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
  
  /**
@@ -213,7 +213,7 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
  
         <TiltContext.Provider value={{ tilt, setTilt }}>
           <div className={styles.heroMedia}>
-            <Slideshow slides={testSlides} />
+            <Slideshow slides={heroGifSlides} />
           </div>
         </TiltContext.Provider>
       </div>

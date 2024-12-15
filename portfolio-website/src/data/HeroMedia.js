@@ -16,7 +16,35 @@ export const testSlides = [
   }
 ]
 
-export const heroSlides = [
+export const heroGifSlides = [
+  {
+    type: 'gif',
+    url: '../../../images/hero/Alma_HeroSlide.gif',
+    alt: 'Alma & the Cave of Breaths slideshow footage'
+  },
+  {
+    type: 'gif',
+    url: '../../../images/hero/TheHexPerplex_HeroSlide.gif',
+    alt: 'The Hex Perplex slideshow footage'
+  },
+  {
+    type: 'gif',
+    url: '../../../images/hero/ClockOut_HeroSlide.gif',
+    alt: 'Clock Out!! slideshow footage'
+  },
+  {
+    type: 'gif',
+    url: '../../../images/hero/ProjectBoricuas_HeroSlide.gif',
+    alt: 'Project Boricuas slideshow footage'
+  },
+  {
+    type: 'gif',
+    url: '../../../images/hero/ChihuahuaChamp_HeroSlide.gif',
+    alt: 'Chihuahua Champ slideshow footage'
+  },
+]
+
+export const heroVideoSlides = [
   {
     type: 'video',
     url: 'https://tq0koclkz81vf3zv.public.blob.vercel-storage.com/Alma_HeroSlide-kKYpSpW81kmeqfqfmcoKZl6PnwsRsY.mp4',
