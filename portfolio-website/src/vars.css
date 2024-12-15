@@ -1,6 +1,7 @@
 :root {
     /* Colors */
-    --color-pointer: #b2ffffcc; /* Celeste */
+    --color-pointer-link: #b2ffffcc; /* Celeste */
+    --color-pointer-action: #dc143ccc; /* Crimson */
     --color-text1: #00052b; /* Midnight */
     --color-link: #0047ab; /* Cobalt */
     --color-link-hover: #00a9ce; /* Sea & Sky */

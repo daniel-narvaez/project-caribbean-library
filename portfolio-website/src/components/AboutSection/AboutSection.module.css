@@ -10,18 +10,29 @@
 
 .aboutMedia {
   display: flex;
-  aspect-ratio: 3/4;
+  flex-direction: column;
+  align-items: flex-start;
+  aspect-ratio: 3.4375/4.1875;
   width: calc(50% - (2.5%));
   min-width: 18.75rem; /* 300px */
   max-width: 37.5rem; /* 600px */
   max-height: 50rem; /* 800px */
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
+  overflow: hidden;
+  background: var(--color-bg1-hover);
 
+  
   /* Ensures smooth image swaps */
   backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.aboutMedia .polaroid {
+  aspect-ratio: 1/1;
+  padding: 5%;
+  width: 100%;
 }
 
 .aboutContent {

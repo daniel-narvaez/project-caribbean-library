@@ -59,12 +59,14 @@ export const AboutSection = () => {
         ${styles[size]}`
       }
       >
-      <img 
-        className={styles.aboutMedia}
-        ref={mediaRef}
-        src={getAboutItem().src}
-        alt={getAboutItem().alt}
-      />
+      <div className={styles.aboutMedia}>
+        <img 
+          className={styles.polaroid}
+          ref={mediaRef}
+          src={getAboutItem().src}
+          alt={getAboutItem().alt}
+        />
+      </div>
       <div className={styles.aboutContent}>
         <div className={styles.aboutInfo}>
           <h1 className={`${styles.heading} ${styles[size]}`}>
@@ -74,10 +76,10 @@ export const AboutSection = () => {
             <button type='button' onClick={() => setMedia('default')}>Currently</button> I volunteer as a Transitional Fellow for the <a target='_blank' href='https://www.egdcollective.org/transitional-program'>EGD Collective's Game Studio Program</a> where I lead the design team's balancing division.
           </p>
           <p>
-            I'm now seeking full-time opportunities to bring my design expertise to the video games industry.
+            I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I <button type='button' onClick={() => setMedia('participate')}>participate in game jams</button> to consistently improve my skills.
           </p>
           <p>
-            <button type='button' onClick={() => setMedia('graduated')}>I graduated from Parsons School of Design</button> in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
+            I <button type='button' onClick={() => setMedia('graduated')}>graduated from Parsons School of Design</button> in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
           </p>
           <p>
             During the Summer of 2021 I interned as a Game Designer at <a target='_blank' href='https://www.massdigi.org'>MassDigi</a>, where I prototyped & fine-tuned player progression systems for <a href=''><i>Clock Out!!</i></a>.

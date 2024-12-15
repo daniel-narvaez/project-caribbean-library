@@ -40,6 +40,7 @@ export const AnimatedCursor = () => {
   const tailPathRef = useRef(null);
   const timelineRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hoverColor, setHoverColor] = useState("#b2ffff");
   
   const [state, setState] = useState({
     isPointer: false,
@@ -52,14 +53,15 @@ export const AnimatedCursor = () => {
      
       let current = element;
       while (current && current !== document.documentElement) {
-        if (current.tagName === 'A' && current.hasAttribute('href')) {
+        if (current.tagName === 'A' && current.hasAttribute('href') || current.tagName === 'BUTTON') {
+          setHoverColor(current.tagName === 'A' || current.hasAttribute('href') ? "#b2ffff" : "#dc143c");
           return true;
         }
         current = current.parentElement;
       }
       return false;
     };
-  }, []);
+  }, [hoverColor]);
 
   useEffect(() => {
     const onMouseMove = (e) => {
@@ -87,7 +89,7 @@ export const AnimatedCursor = () => {
         attr: { 
           d: "M5.144,0.986C9.696,-1.293 15.292,0.446 17.644,5.144C19.931,9.712 17.972,15.398 13.486,17.644C8.859,19.961 3.25,18.007 0.986,13.486C-1.319,8.883 0.551,3.286 5.144,0.986Z"
         },
-        fill: "rgb(178,255,255)",
+        fill: hoverColor,
         fillOpacity: 0.8,
         ease: "power2.inOut"
       }, 0);
@@ -162,18 +164,18 @@ export const AnimatedCursor = () => {
           ref={headPathRef}
           id="head" 
           d="M6,6C6.5,6 20.738,16.452 22.739,18.453C22.74,18.454 17.116,21.269 14.34,22.659C11.564,24.049 6,26.83 6,26.83C6,20.83 6,12 6,6Z"
-          fill="rgb(236,233,228)"
+          fill="#ece9e4"
         />
         <path 
           ref={headStrokeRef}
           d="M6,6C6.5,6 20.738,16.452 22.739,18.453C22.74,18.454 17.116,21.269 14.34,22.659C11.564,24.049 6,26.83 6,26.83C6,20.83 6,12 6,6ZM8,9.98C8,13.934 8,19.923 8,23.594C9.781,22.704 11.994,21.597 13.445,20.871C14.901,20.141 17.14,19.021 18.94,18.119C15.988,15.923 11.175,12.342 8,9.98Z"
-          fill="rgb(0,5,43)"
+          fill="#00052b"
         />
         <path 
           ref={tailPathRef}
           id="tail" 
           d="M11.477,26.336L19.034,22.547L17.997,28.591L19.052,29.381L19.034,31.991L15.701,29.496L16.256,26.305L13.354,27.74L11.477,26.336Z"
-          fill="rgb(0,5,43)"
+          fill="#00052b"
         />
       </g>
     </svg>
