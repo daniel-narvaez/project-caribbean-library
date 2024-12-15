@@ -28,7 +28,7 @@ export const AboutSection = () => {
     
     
     // Step 3: Add transition and prepare for image swap
-    imgElement.style.transition = 'filter 1s cubic-bezier(0.7, 0, 0.3, 1)';
+    imgElement.style.transition = 'filter 1.5s cubic-bezier(0.7, 0, 0.3, 1)';
     
     // Step 4: Load new image after brief delay
     setTimeout(() => {
