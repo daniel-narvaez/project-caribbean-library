@@ -3,25 +3,30 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
   padding: 5rem 2rem;
+  gap: 5%;
   flex-wrap: wrap;
 }
 
 .aboutMedia {
   display: flex;
   aspect-ratio: 3/4;
-  width: calc(50% - (2.5rem));
+  width: calc(50% - (2.5%));
   min-width: 18.75rem; /* 300px */
   max-width: 37.5rem; /* 600px */
   max-height: 50rem; /* 800px */
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
+
+  /* Ensures smooth image swaps */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .aboutContent {
   display: flex;
-  width: calc(50% - (2.5rem));
+  width: calc(50% - (2.5%));
   min-width: 18.75rem; /* 300px */
   max-width: 37.5rem; /* 600px */
   max-height: 50rem; /* 800px */

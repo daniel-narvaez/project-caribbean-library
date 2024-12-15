@@ -10,7 +10,7 @@ export const createAboutItem = ({
 
 export const defaultImage = createAboutItem({
   id: 'default',
-  src: '/../../images/about/default.jpg',
+  src: '/../../images/about/currently.jpg',
   alt: "a portrait image of me smiling in a black polo shirt. Behind me is a wall of grass."
 });
 

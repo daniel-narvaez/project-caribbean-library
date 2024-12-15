@@ -99,10 +99,27 @@ p {
 a {
   font-family: var(--body-text);
   color: var(--color-link);
+  transition: var(--menuControl-hover);
 
   &:hover { color: var(--color-link-hover) }
 
-  &:hover { color: var(--color-link-active) }
+  &:active { 
+    color: var(--color-link-active);
+    transition: var(--menuControl-active);
+  }
+}
+
+button {
+  font-family: var(--body-text);
+  color: var(--color-action);
+  transition: var(--menuControl-hover);
+
+  &:hover { color: var(--color-action-hover) }
+
+  &:active { 
+    color: var(--color-action-active);
+    transition: var(--menuControl-active);
+  }
 }
 
 b {

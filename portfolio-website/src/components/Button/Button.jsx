@@ -28,13 +28,14 @@ export const CreateButton = memo(({
   };
 
   return (
-    <a
+    <button
+      type="button"
       href={url}
       className={`${styles.button} ${styles[style]}`}
       onClick={handleClick}
     >
       <span>{title}</span>
-    </a>
+    </button>
   );
 });
 
