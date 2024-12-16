@@ -1,60 +1,80 @@
 /**
- * SplashEffect.jsx
- * ===============
+ * AnimatedCursor.jsx
+ * =================
  * 
  * Overview:
- * A cursor enhancement component that adds interactive splash animations
- * to clickable link elements. Creates a visual ripple effect on mouse down
- * and tracks the cursor position over clickable elements. Built for high
- * performance with optimized event handling and cleanup.
+ * A custom cursor component that morphs between default and hover states.
+ * Features smooth GSAP animations for state transitions and cursor movement.
+ * Designed for interactive elements like links and buttons with distinct
+ * visual feedback.
  * 
  * Key Features:
- * - Cursor dot indicator for hoverable elements
- * - Mouse-down triggered splash animation
- * - Automatic cleanup of completed animations
- * - Efficient event delegation and handling
+ * - Smooth cursor movement tracking
+ * - Morphing animation between states using GSAP
+ * - Different hover states for links (#b2ffff) and buttons (#dc143c)
+ * - SVG-based cursor with fill and stroke animations
  * 
  * Technical Implementation:
- * - RequestAnimationFrame for smooth animations
- * - Passive event listeners for scroll performance
- * - Proper cleanup of event listeners and timeouts
- * - Optimized DOM traversal for link detection
+ * - GSAP timeline for complex shape morphing
+ * - Efficient DOM traversal for interactive element detection
+ * - RAF-based cursor position updates
+ * - Optimized event listener management
  * 
  * Dependencies:
+ * - GSAP for animations
  * - CSS modules for styling
  */
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import gsap from 'gsap';
-// import defaultCursor from '../../../public/images/cursor-default.svg?react';
-// import pointerCursor from '../../../public/images/cursor-pointer.svg?react';
-
 import styles from './Cursor.module.css';
 
-const MORPH_DURATION = 0.2;
+/**
+ * Animation timing configuration
+ */
+const CURSOR_CONFIG = {
+  MORPH_DURATION: 0.2,
+  COLORS: {
+    LINK: "#b2ffff",
+    BUTTON: "#dc143c",
+    DEFAULT_FILL: "#ece9e4",
+    DEFAULT_STROKE: "#00052b"
+  }
+};
 
 export const AnimatedCursor = () => {
+  // SVG element refs for GSAP animations
   const svgRef = useRef(null);
   const headPathRef = useRef(null);
   const headStrokeRef = useRef(null);
   const tailPathRef = useRef(null);
   const timelineRef = useRef(null);
+
+  // State management
   const [isVisible, setIsVisible] = useState(false);
-  const [hoverColor, setHoverColor] = useState("#b2ffff");
-  
+  const [hoverColor, setHoverColor] = useState(CURSOR_CONFIG.COLORS.LINK);
   const [state, setState] = useState({
     isPointer: false,
     isPressed: false
   });
 
+  /**
+   * Checks if an element or its ancestors are interactive (links/buttons)
+   * Updates hover color based on element type
+   * @param {HTMLElement} element - Element to check
+   * @returns {boolean} - Whether element is/contains interactive element
+   */
   const hasHrefInTree = useMemo(() => {
     return (element) => {
       if (!element) return false;
      
       let current = element;
       while (current && current !== document.documentElement) {
-        if (current.tagName === 'A' && current.hasAttribute('href') || current.tagName === 'BUTTON') {
-          setHoverColor(current.tagName === 'A' || current.hasAttribute('href') ? "#b2ffff" : "#dc143c");
+        if (current.tagName === 'A' && current.hasAttribute('href') || 
+            current.tagName === 'BUTTON') {
+          setHoverColor(current.tagName === 'A' || current.hasAttribute('href') 
+            ? CURSOR_CONFIG.COLORS.LINK 
+            : CURSOR_CONFIG.COLORS.BUTTON);
           return true;
         }
         current = current.parentElement;
@@ -63,6 +83,9 @@ export const AnimatedCursor = () => {
     };
   }, [hoverColor]);
 
+  /**
+   * Sets up GSAP animations and event listeners
+   */
   useEffect(() => {
     const onMouseMove = (e) => {
       if (svgRef.current) {
@@ -80,12 +103,13 @@ export const AnimatedCursor = () => {
     const onMouseLeave = () => setIsVisible(false);
     const onMouseEnter = () => setIsVisible(true);
 
+    // Initialize GSAP timeline for morphing animations
     const ctx = gsap.context(() => {
       timelineRef.current = gsap.timeline({ paused: true });
       
-      // Animate the fill path with updated path data
+      // Head fill animation
       timelineRef.current.to(headPathRef.current, {
-        duration: MORPH_DURATION,
+        duration: CURSOR_CONFIG.MORPH_DURATION,
         attr: { 
           d: "M5.144,0.986C9.696,-1.293 15.292,0.446 17.644,5.144C19.931,9.712 17.972,15.398 13.486,17.644C8.859,19.961 3.25,18.007 0.986,13.486C-1.319,8.883 0.551,3.286 5.144,0.986Z"
         },
@@ -94,29 +118,32 @@ export const AnimatedCursor = () => {
         ease: "power2.inOut"
       }, 0);
       
-      // Animate the stroke path with updated path data
+      // Head stroke animation
       timelineRef.current.to(headStrokeRef.current, {
-        duration: MORPH_DURATION,
+        duration: CURSOR_CONFIG.MORPH_DURATION,
         attr: { 
           d: "M5.144,0.986C9.696,-1.293 15.292,0.446 17.644,5.144C19.931,9.712 17.972,15.398 13.486,17.644C8.859,19.961 3.25,18.007 0.986,13.486C-1.319,8.883 0.551,3.286 5.144,0.986ZM6.04,2.774C2.432,4.581 0.964,8.976 2.774,12.59C4.552,16.141 8.957,17.675 12.59,15.856C16.113,14.092 17.652,9.627 15.856,6.04C14.009,2.351 9.614,0.984 6.04,2.774Z"
         },
         ease: "power2.inOut"
       }, 0);
       
+      // Tail animation
       timelineRef.current.to(tailPathRef.current, {
-        duration: MORPH_DURATION,
+        duration: CURSOR_CONFIG.MORPH_DURATION,
         attr: { 
           d: "M15.69,18.871L21.987,25.03L18.447,26.673L22.021,29.364L22.023,31.991L14.458,26.315L18.267,24.334L13.628,19.904L15.69,18.871Z"
         },
         ease: "power2.inOut"
       }, 0);
 
+      // Event listener setup
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('mousedown', onMouseDown);
       window.addEventListener('mouseup', onMouseUp);
       document.documentElement.addEventListener('mouseleave', onMouseLeave);
       document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
+      // Cleanup function
       return () => {
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('mousedown', onMouseDown);
@@ -129,6 +156,9 @@ export const AnimatedCursor = () => {
     return () => ctx.revert();
   }, [hasHrefInTree]);
 
+  /**
+   * Controls animation timeline based on pointer state
+   */
   useEffect(() => {
     if (state.isPointer) {
       timelineRef.current?.play();
@@ -155,7 +185,7 @@ export const AnimatedCursor = () => {
         padding: 0,
         willChange: 'transform',
         opacity: isVisible ? 1 : 0,
-        transition: `opacity ${MORPH_DURATION} ease`
+        transition: `opacity ${CURSOR_CONFIG.MORPH_DURATION}s ease`
       }}
     >
       <rect id="default" x="0" y="0" width="32" height="32" fill="none"/>
@@ -164,23 +194,49 @@ export const AnimatedCursor = () => {
           ref={headPathRef}
           id="head" 
           d="M6,6C6.5,6 20.738,16.452 22.739,18.453C22.74,18.454 17.116,21.269 14.34,22.659C11.564,24.049 6,26.83 6,26.83C6,20.83 6,12 6,6Z"
-          fill="#ece9e4"
+          fill={CURSOR_CONFIG.COLORS.DEFAULT_FILL}
         />
         <path 
           ref={headStrokeRef}
           d="M6,6C6.5,6 20.738,16.452 22.739,18.453C22.74,18.454 17.116,21.269 14.34,22.659C11.564,24.049 6,26.83 6,26.83C6,20.83 6,12 6,6ZM8,9.98C8,13.934 8,19.923 8,23.594C9.781,22.704 11.994,21.597 13.445,20.871C14.901,20.141 17.14,19.021 18.94,18.119C15.988,15.923 11.175,12.342 8,9.98Z"
-          fill="#00052b"
+          fill={CURSOR_CONFIG.COLORS.DEFAULT_STROKE}
         />
         <path 
           ref={tailPathRef}
           id="tail" 
           d="M11.477,26.336L19.034,22.547L17.997,28.591L19.052,29.381L19.034,31.991L15.701,29.496L16.256,26.305L13.354,27.74L11.477,26.336Z"
-          fill="#00052b"
+          fill={CURSOR_CONFIG.COLORS.DEFAULT_STROKE}
         />
       </g>
     </svg>
   );
 };
+
+/**
+ * SplashEffect.jsx
+ * ===============
+ * 
+ * Overview:
+ * A cursor enhancement component that adds interactive splash animations
+ * to clickable link elements. Creates a visual ripple effect on mouse down
+ * and tracks the cursor position over clickable elements. Built for high
+ * performance with optimized event handling and cleanup.
+ * 
+ * Key Features:
+ * - Cursor dot indicator for hoverable elements
+ * - Mouse-down triggered splash animation
+ * - Automatic cleanup of completed animations
+ * - Efficient event delegation and handling
+ * 
+ * Technical Implementation:
+ * - RequestAnimationFrame for smooth animations
+ * - Passive event listeners for scroll performance
+ * - Proper cleanup of event listeners and timeouts
+ * - Optimized DOM traversal for link detection
+ * 
+ * Dependencies:
+ * - CSS modules for styling
+ */
 
 /**
  * Animation timing configuration (in milliseconds)
