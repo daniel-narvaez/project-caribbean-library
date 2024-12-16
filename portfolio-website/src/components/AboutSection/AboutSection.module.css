@@ -24,10 +24,11 @@
 
 /* Main container */
 .aboutSection {
+  position: relative;
   display: inline-flex;
   width: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 5rem 2rem;
   gap: 5%;
   flex-wrap: wrap;
@@ -35,6 +36,8 @@
 
 /* Media container with polaroid effect */
 .aboutMedia {
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -86,22 +89,20 @@
 /* Call-to-action button container */
 .aboutContent .ctaMenu {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   align-self: stretch;
+  padding-top: 1.5rem;
 }
 
 /* Heading styles with responsive sizing */
 .aboutInfo .heading {
   z-index: 1;
-}
 
-.aboutInfo .heading.Desktop {
-  font-size: 2.5rem;
-}
-
-.aboutInfo .heading.Mobile {
-  font-size: 1.875rem;
+  &.Desktop { font-size: 2.5rem }
+  
+  &.Mobile { font-size: 1.875rem }
 }
 
 /* Responsive layout adjustments */
@@ -114,5 +115,9 @@
   .aboutMedia,
   .aboutContent {
     width: 100%;
+  }
+
+  .aboutContent .ctaMenu {
+    justify-content: flex-end;
   }
 }

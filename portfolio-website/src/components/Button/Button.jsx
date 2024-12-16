@@ -1,4 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
+
+import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
 
@@ -10,6 +12,7 @@ export const CreateButton = memo(({
   style = 'solid',
   onCustomClick // no default value needed, will be undefined if not provided
 }) => {
+  const { size } = useContext(ScreenSizeContext);
   const smoothScrollTo = useSmoothScroll();
 
   const handleClick = (e) => {
@@ -31,7 +34,7 @@ export const CreateButton = memo(({
     <button
       type="button"
       href={url}
-      className={`${styles.button} ${styles[style]}`}
+      className={`${styles.button} ${styles[style]} ${styles[size]}`}
       onClick={handleClick}
     >
       <span>{title}</span>

@@ -46,16 +46,19 @@ import { usePreloader } from '../../utils/mediaPreloader';
 import styles from './Slideshow.module.css';
 
 /**
- * Animation Configuration
- * Timing and visual parameters for the slideshow transitions
- * - INTERVAL: Time between slides (7s for content digestion)
+ * Animation configuration for the slideshow transitions
+ * 
+ * @constant {Object} ANIMATION_CONFIG
+ * - INTERVAL: Time between slide transitions (7s)
  * - DURATION: Length of transition (3s for smooth reveal)
+ * - PRELOAD_BUFFER: Time before transition to start preloading (3s)
  * - EASING: Custom bezier curve for natural motion
  * - BLUR: Enhances depth perception during transition
  */
 const ANIMATION_CONFIG = {
   INTERVAL: 7000,
   DURATION: 3000,
+  PRELOAD_BUFFER: 3000,
   EASING: 'cubic-bezier(0.15, 0.85, 0.15, 1.0)',
   INITIAL_BLUR: '0.5rem',
   FINAL_BLUR: '0rem'
@@ -63,7 +66,8 @@ const ANIMATION_CONFIG = {
 
 /**
  * Slideshow Component
- * A dynamic media slideshow with circular reveal transitions and 3D tilt effects
+ * A dynamic media slideshow with circular reveal transitions, 3D tilt effects,
+ * and advanced preloading capabilities
  * 
  * @param {Array} slides - Array of media objects with shape:
  *   {
@@ -90,9 +94,16 @@ export const Slideshow = ({ slides = [] }) => {
   const activeSlideRef = useRef(null);
   const nextSlideRef = useRef(null);
 
+  // Refs for managing preload state
+  const preloadingRef = useRef(false);
+  const preloadTimeoutRef = useRef(null);
+
   /**
    * Calculates animation dimensions based on container size
    * Ensures consistent circular reveal regardless of aspect ratio
+   * 
+   * @param {HTMLElement} container - The container element
+   * @returns {Object} Animation values for center point and end radius
    */
   const calculateAnimationValues = useCallback((container) => {
     const { width, height } = container.getBoundingClientRect();
@@ -103,10 +114,51 @@ export const Slideshow = ({ slides = [] }) => {
   }, []);
 
   /**
+   * Preloads a single media item (image or video) into browser cache
+   * 
+   * @param {Object} slide - Slide object containing type and url
+   * @returns {Promise} Resolves when media is loaded, rejects on error
+   */
+  const preloadMedia = useCallback((slide) => {
+    return new Promise((resolve, reject) => {
+      if (slide.type === 'video') {
+        const video = document.createElement('video');
+        video.src = slide.url;
+        video.onloadeddata = () => resolve();
+        video.onerror = () => reject();
+        video.load();
+      } else {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => reject();
+        img.src = slide.url;
+      }
+    });
+  }, []);
+
+  /**
+   * Initiates preloading of the next slide in sequence
+   * Includes guard against multiple simultaneous preload attempts
+   */
+  const preloadNextSlide = useCallback(() => {
+    if (preloadingRef.current) return;
+    
+    const nextIndex = (currentIndex + 1) % slides.length;
+    preloadingRef.current = true;
+
+    preloadMedia(slides[nextIndex])
+      .catch(error => console.warn('Failed to preload next slide:', error))
+      .finally(() => {
+        preloadingRef.current = false;
+      });
+  }, [currentIndex, slides, preloadMedia]);
+
+  /**
    * Manages the transition between slides
    * - Prevents multiple simultaneous transitions
    * - Handles circular reveal animation
    * - Maintains proper cleanup
+   * - Schedules preloading of next slide
    */
   const triggerTransition = useCallback(() => {
     if (isAnimating || !containerRef.current || !activeSlideRef.current || !nextSlideRef.current) return;
@@ -139,28 +191,51 @@ export const Slideshow = ({ slides = [] }) => {
       easing: ANIMATION_CONFIG.EASING
     });
 
-    // Cleanup after animation completes
+    // Cleanup after animation and schedule next preload
     anim.onfinish = () => {
       setIsAnimating(false);
       if (nextSlide) {
         nextSlide.style.filter = '';
         nextSlide.style.clipPath = '';
       }
+      
+      // Schedule preloading of the next slide
+      const futureIndex = (nextIndex + 1) % slides.length;
+      preloadTimeoutRef.current = setTimeout(() => {
+        preloadMedia(slides[futureIndex]);
+      }, ANIMATION_CONFIG.INTERVAL - ANIMATION_CONFIG.PRELOAD_BUFFER);
     };
-  }, [currentIndex, slides.length, isAnimating, calculateAnimationValues]);
+  }, [currentIndex, slides.length, isAnimating, calculateAnimationValues, preloadMedia]);
 
   /**
-   * Manages automatic slideshow progression
-   * Cleans up interval on unmount to prevent memory leaks
+   * Manages automatic slideshow progression and preloading
+   * Cleans up intervals and timeouts on unmount to prevent memory leaks
    */
   useEffect(() => {
+    // Start the interval for transitions
     const interval = setInterval(triggerTransition, ANIMATION_CONFIG.INTERVAL);
-    return () => clearInterval(interval);
-  }, [triggerTransition]);
+    
+    // Initial preload of the next slide
+    const initialPreloadTimeout = setTimeout(() => {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      preloadMedia(slides[nextIndex]);
+    }, ANIMATION_CONFIG.INTERVAL - ANIMATION_CONFIG.PRELOAD_BUFFER);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(initialPreloadTimeout);
+      if (preloadTimeoutRef.current) {
+        clearTimeout(preloadTimeoutRef.current);
+      }
+    };
+  }, [triggerTransition, currentIndex, slides, preloadMedia]);
 
   /**
    * Renders appropriate media element based on slide type
    * Handles both video and image content with proper attributes
+   * 
+   * @param {Object} slide - Slide object containing type and url
+   * @returns {ReactElement} Video or image element
    */
   const renderMedia = useCallback((slide) => (
     slide.type === 'video' ? (
@@ -197,7 +272,7 @@ export const Slideshow = ({ slides = [] }) => {
       <div className={styles.errorState}>
         <p>Some media failed to load.</p>
       </div>
-      );
+    );
   }
 
   const nextIndex = (currentIndex + 1) % slides.length;

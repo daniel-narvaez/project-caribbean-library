@@ -188,11 +188,11 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
 
       <div className={styles.heroContainer}>   
         <div className={styles.heroContent}>
-          <h1 className={styles.headline}>
+          <h2 className={styles.headline}>
             Elevating experiences <br/>
             through meticulous <br/>
             game design.
-          </h1>
+          </h2>
           
           <p className={styles.tagline}>
             Hi I'm Daniel, a <b>game designer</b> based in <br/>

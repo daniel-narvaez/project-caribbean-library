@@ -41,6 +41,35 @@ import { IslandButton, SolidButton } from '../Button/Button';
 export const AboutSection = () => {
   const { size } = useContext(ScreenSizeContext);
   const mediaRef = useRef(null);
+  const sectionRef = useRef(null);
+  const mediaContainerRef = useRef(null);  // New ref for the media container
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const mediaContainer = mediaContainerRef.current;
+    
+    if (!section || !mediaContainer) return;
+  
+    const handleScroll = () => {
+      const sectionRect = section.getBoundingClientRect();
+      const mediaRect = mediaContainer.getBoundingClientRect();
+      
+      const viewportHeight = window.innerHeight;
+      const sectionCenter = sectionRect.top + (sectionRect.height / 2);
+      const viewportCenter = viewportHeight / 2;
+      
+      const scrollProgress = (viewportCenter - sectionCenter) / (sectionRect.height / 2);
+      const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+      
+      const maxOffset = sectionRect.height - mediaRect.height;
+      mediaContainer.style.transform = `translateY(${maxOffset * clampedProgress}px)`;
+    };
+  
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();  // Initial position
+  
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   /**
    * Preload all images on mount to ensure smooth transitions
@@ -115,13 +144,13 @@ export const AboutSection = () => {
 
       <div className={styles.aboutContent}>
         <div className={styles.aboutInfo}>
-          <h1 className={`${styles.heading} ${styles[size]}`}>
+          <h2 className={`${styles.heading} ${styles[size]}`}>
             About Myself
-          </h1>
+          </h2>
           
           <p>
             <button type='button' onClick={() => setMedia('default')}>Currently</button>
-            {' '}I volunteer as a Transitional Fellow for the{' '}
+            , I volunteer as a Transitional Fellow for the{' '}
             <a target='_blank' href='https://www.egdcollective.org/transitional-program'>
               EGD Collective's Game Studio Program
             </a> where I lead the design team's balancing division.
@@ -151,17 +180,17 @@ export const AboutSection = () => {
           </p>
           
           <p>
-            In my spare time I enjoy reading new books, lifting weights, and dancing Salsa at socials.
+            In my spare time I enjoy reading books, lifting weights, and dancing Salsa at socials.
           </p>
         </div>
 
-        <div className={styles.ctaMenu}>
+        <div className={`${styles.ctaMenu}`}>
           <SolidButton
             title="Read my résumé"
             url="/"
           />
           <IslandButton
-            title="Get in touch"
+            title="Reach out"
             url="/"
           />
         </div>

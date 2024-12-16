@@ -1,25 +1,23 @@
 :root {
     /* Colors */
-    --color-pointer-link: #b2ffffcc; /* Celeste */
-    --color-pointer-action: #dc143ccc; /* Crimson */
     --color-text1: #00052b; /* Midnight */
+    
     --color-link: #0047ab; /* Cobalt */
     --color-link-hover: #00a9ce; /* Sea & Sky */
     --color-link-active: #007a99; /* Deep Reef */
+
     --color-action: #9b111e; /* Ruby */
     --color-action-hover: #d6111b; /* Brave Blood */
     --color-action-active: #4b0000; /* Revolution */
+
+    --color-pointer-link: #b2ffff; /* Celeste */
+    --color-pointer-action: #fa98ad; /* Flor de Maga */
+
     --color-bg1: #ece9e4; /* Sand */
     --color-bg1-hover: #f7f5f2; /* Dune Crest */
     --color-bg1-active: #dcd8d1; /* Desert Stone */
-
-
-    --color-text2: #2b1b17; /* Ink */
-    --color-bg2: #694d3c; /* Library Carpet */
-    --color-bg2-overlay: #f5e6d3; /* Parchment */
-
+    
     --matcha: #98c187;
-    --celeste: #b2ffff;
 
     /* Fonts */
     --font-baskervvilleSC: "Baskervville SC";
