@@ -1,3 +1,28 @@
+/**
+ * AboutSection.module.css
+ * ======================
+ * 
+ * Styles for the About section component featuring a responsive layout
+ * with a polaroid-style image container and content area.
+ * 
+ * Layout Structure:
+ * - Flex-based responsive grid
+ * - Two main columns: media and content
+ * - Automatic single column switch on narrow viewports
+ * 
+ * Key Features:
+ * - Maintains aspect ratios for consistent layout
+ * - Hardware-accelerated image transitions
+ * - Responsive text sizing
+ * - Fluid spacing system
+ * 
+ * CSS Custom Properties Used:
+ * --number-cornerRadius: Border radius for containers
+ * --fx-boxShadow1: Primary shadow effect
+ * --color-bg1-hover: Background color for media container
+ */
+
+/* Main container */
 .aboutSection {
   display: inline-flex;
   width: 100%;
@@ -8,45 +33,48 @@
   flex-wrap: wrap;
 }
 
+/* Media container with polaroid effect */
 .aboutMedia {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  aspect-ratio: 3.4375/4.1875;
-  width: calc(50% - (2.5%));
-  min-width: 18.75rem; /* 300px */
-  max-width: 37.5rem; /* 600px */
-  max-height: 50rem; /* 800px */
+  aspect-ratio: 3.4375/4.1875;  /* 55/67 for cleaner numbers */
+  width: calc(50% - 2.5%);
+  min-width: 18.75rem;  /* 300px */
+  max-width: 37.5rem;  /* 600px */
+  max-height: 50rem;   /* 800px */
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
   overflow: hidden;
   background: var(--color-bg1-hover);
-
   
-  /* Ensures smooth image swaps */
+  /* Performance optimizations for image transitions */
   backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
+/* Polaroid image styling */
 .aboutMedia .polaroid {
   aspect-ratio: 1/1;
   padding: 5%;
   width: 100%;
 }
 
+/* Content container */
 .aboutContent {
   display: flex;
-  width: calc(50% - (2.5%));
-  min-width: 18.75rem; /* 300px */
-  max-width: 37.5rem; /* 600px */
-  max-height: 50rem; /* 800px */
+  width: calc(50% - 2.5%);
+  min-width: 18.75rem;  /* 300px */
+  max-width: 37.5rem;  /* 600px */
+  max-height: 50rem;   /* 800px */
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
 }
 
+/* Text content area */
 .aboutContent .aboutInfo {
   display: flex;
   flex-direction: column;
@@ -55,6 +83,7 @@
   align-self: stretch;
 }
 
+/* Call-to-action button container */
 .aboutContent .ctaMenu {
   display: flex;
   align-items: center;
@@ -62,14 +91,20 @@
   align-self: stretch;
 }
 
+/* Heading styles with responsive sizing */
 .aboutInfo .heading {
   z-index: 1;
-  
-  &.Desktop { font-size: 2.5rem; }
-
-  &.Mobile { font-size: 1.875rem; }
 }
 
+.aboutInfo .heading.Desktop {
+  font-size: 2.5rem;
+}
+
+.aboutInfo .heading.Mobile {
+  font-size: 1.875rem;
+}
+
+/* Responsive layout adjustments */
 @media (max-aspect-ratio: 1/1) {
   .aboutSection,
   .aboutContent {

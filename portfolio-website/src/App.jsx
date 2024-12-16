@@ -14,6 +14,7 @@ function App() {
     
     <ScreenSizeProvider>
       <TypographyProvider>
+        <SplashEffect />
         <AnimatedCursor />
         <div className={styles.App}>
           <Background>
@@ -22,7 +23,6 @@ function App() {
             <AboutSection />
           </Background>
         </div>
-        <SplashEffect />
       </TypographyProvider>
     </ScreenSizeProvider>
   )

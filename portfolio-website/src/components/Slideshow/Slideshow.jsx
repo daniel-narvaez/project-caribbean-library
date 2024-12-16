@@ -42,7 +42,7 @@
 
 import React, { useState, useEffect, useCallback, useRef, useContext } from 'react';
 import { TiltContext } from '../HeroSection/HeroSection';
-import { usePreloader } from '../../mediaPreloader';
+import { usePreloader } from '../../utils/mediaPreloader';
 import styles from './Slideshow.module.css';
 
 /**

@@ -255,17 +255,6 @@ export const SplashEffect = () => {
   }, []);
 
   /**
-   * Updates pointer state when entering new elements
-   * @param {MouseEvent} e - Mouse over event
-   */
-  const handleMouseOver = useCallback((e) => {
-    setState(prev => ({
-      ...prev,
-      isPointer: hasHrefInTree(e.target)
-    }));
-  }, [hasHrefInTree]);
-
-  /**
    * Handles mouse down interaction
    * Creates new splash animation if clicking a link
    * @param {MouseEvent} e - Mouse down event
@@ -302,18 +291,16 @@ export const SplashEffect = () => {
 
     // Add event listeners
     window.addEventListener('mousemove', handleMouseMove, options);
-    document.addEventListener('mouseover', handleMouseOver, captureOptions);
     window.addEventListener('mousedown', handleMouseDown, captureOptions);
     window.addEventListener('mouseup', handleMouseUp, options);
 
     // Cleanup event listeners
     return () => {
       window.removeEventListener('mousemove', handleMouseMove, options);
-      document.removeEventListener('mouseover', handleMouseOver, captureOptions);
       window.removeEventListener('mousedown', handleMouseDown, captureOptions);
       window.removeEventListener('mouseup', handleMouseUp, options);
     };
-  }, [handleMouseMove, handleMouseOver, handleMouseDown, handleMouseUp]);
+  }, [handleMouseMove, handleMouseDown, handleMouseUp]);
 
   /**
    * Splash animation cleanup
@@ -330,28 +317,10 @@ export const SplashEffect = () => {
   }, [splashes]);
 
   // =========================================
-  // Style Calculations
-  // =========================================
-  /**
-   * Memoized cursor positioning styles
-   * Prevents unnecessary style object recreation
-   */
-  const dotStyle = useMemo(() => ({
-    left: position.x,
-    top: position.y
-  }), [position.x, position.y]);
-
-  // =========================================
   // Render
   // =========================================
   return (
     <>
-      {/* {state.isPointer && (
-        <div
-          className={`${styles.cursorDot} ${state.isPressed ? styles.active : ''}`}
-          style={dotStyle}
-        />
-      )} */}
       {splashes.map(splash => (
         <div
           key={splash.id}

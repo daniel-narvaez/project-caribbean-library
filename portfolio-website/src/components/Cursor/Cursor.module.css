@@ -83,12 +83,12 @@
   width: var(--dot-size);
   height: var(--dot-size);
   border-radius: 50%;
-  border: var(--dot-border-width) solid var(--color-pointer);
+  border: var(--dot-border-width) solid var(--color-pointer-link);
   pointer-events: none;
   z-index: var(--z-index-cursor);
   /* Performance optimizations */
   will-change: transform, opacity, border-width;
-  transform: translate(-50%, -50%);
+  transform: translate(-20.9%, -20.9%);
   /* Enable hardware acceleration */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -109,13 +109,13 @@
  */
 @keyframes splash {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-20.9%, -20.9%) scale(1);
     opacity: 1;
     border-width: var(--dot-border-width);
   }
   
   100% {
-    transform: translate(-50%, -50%) scale(var(--scale-splash));
+    transform: translate(-20.9%, -20.9%) scale(var(--scale-splash));
     opacity: 0;
     border-width: 0rem;
   }

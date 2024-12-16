@@ -40,7 +40,9 @@ import React, {
 import { Navbar } from "../Navbar/Navbar";
 import { Slideshow } from "../Slideshow/Slideshow";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
+
 import styles from './HeroSection.module.css';
+
 import { testSlides, heroGifSlides } from "../../data/HeroMedia";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
  
