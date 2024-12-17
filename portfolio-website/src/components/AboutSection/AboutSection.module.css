@@ -112,6 +112,10 @@
     gap: 2rem;
   }
 
+  .aboutMedia {
+    position: static;
+  }
+
   .aboutMedia,
   .aboutContent {
     width: 100%;

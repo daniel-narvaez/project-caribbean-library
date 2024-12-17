@@ -9,32 +9,26 @@
   align-items: center;
   flex-shrink: 0;
   position: relative;
-  .icon span { background-color: var(--color-link); }
+  transition: var(--trans-hover);
+  .icon span { background-color: var(--color-text1); }
 
   &:hover {
-    transition: var(--trans-hover);
-    cursor: pointer;
-
-    .icon span { background-color: var(--color-link-hover); }
+    .icon span { background-color: var(--color-action-hover); }
   }
   
   &:active {
     transition: var(--trans-active);
-    cursor: pointer;
-
-    .icon span { background-color: var(--color-link-active); }
+    .icon span { background-color: var(--color-action-active); }
   }
-  
-  
   
   &.open {
     width: 2.75rem;
     height: 2.25rem;
     padding: 0.5rem;
+    transition: var(--trans-hover);
     .icon span { background-color: var(--color-bg1); }
 
     &:hover {
-      transition: var(--trans-hover);
       .icon span { background-color: var(--color-bg1-hover); }
     }
     

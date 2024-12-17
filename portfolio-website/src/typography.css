@@ -109,8 +109,9 @@ a {
   }
 }
 
-button {
+span {
   font-family: var(--body-text);
+  font-size: inherit;
   color: var(--color-action);
   transition: var(--menuControl-hover);
 

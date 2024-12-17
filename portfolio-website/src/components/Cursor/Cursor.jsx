@@ -74,30 +74,38 @@ export const AnimatedCursor = () => {
     isPressed: false
   });
 
-  /**
-   * Checks if an element or its ancestors are interactive (links/buttons)
-   * Updates hover color based on element type
-   * @param {HTMLElement} element - Element to check
-   * @returns {boolean} - Whether element is/contains interactive element
-   */
-  const hasHrefInTree = useMemo(() => {
-    return (element) => {
-      if (!element) return false;
-     
-      let current = element;
-      while (current && current !== document.documentElement) {
-        if (current.tagName === 'A' && current.hasAttribute('href') || 
-            current.tagName === 'BUTTON') {
-          setHoverColor(current.tagName === 'A' || current.hasAttribute('href') 
-            ? cursorConfig.current.COLORS.LINK 
-            : cursorConfig.current.COLORS.BUTTON);
-          return true;
-        }
-        current = current.parentElement;
+/**
+ * Checks if an element or its ancestors are interactive (has href or onClick)
+ * Updates hover color based on interaction type
+ * @param {HTMLElement} element - Element to check
+ * @returns {boolean} - Whether element is/contains interactive element
+ */
+const hasInteractionInTree = useMemo(() => {
+  return (element) => {
+    if (!element) return false;
+    let current = element;
+    
+    while (current && current !== document.documentElement) {
+      // Check for href attribute or onClick event listener
+      const hasHref = current.hasAttribute('href');
+      const hasOnClick = current.hasAttribute('onclick') || 
+                        // Check for React's event handlers
+                        Object.keys(current).some(key => 
+                          key.startsWith('__reactProps$') && 
+                          current[key].onClick);
+
+      if (hasHref || hasOnClick) {
+        setHoverColor(hasHref 
+          ? cursorConfig.current.COLORS.LINK 
+          : cursorConfig.current.COLORS.BUTTON);
+        return true;
       }
-      return false;
-    };
-  }, [hoverColor]);
+      
+      current = current.parentElement;
+    }
+    return false;
+  };
+}, [hoverColor]);
 
   /**
    * Sets up GSAP animations and event listeners
@@ -112,7 +120,7 @@ export const AnimatedCursor = () => {
 
         const element = document.elementFromPoint(e.clientX, e.clientY);
         if (element) {
-          const isLink = hasHrefInTree(element);
+          const isLink = hasInteractionInTree(element);
           setState(prev => ({ ...prev, isPointer: isLink }));
         }
       }
@@ -190,7 +198,7 @@ export const AnimatedCursor = () => {
     }, svgRef);
 
     return () => ctx.revert();
-  }, [hasHrefInTree]);
+  }, [hasInteractionInTree]);
 
   /**
    * Controls animation timeline based on pointer state
@@ -320,7 +328,7 @@ export const SplashEffect = () => {
    * @param {HTMLElement} element - Starting element to check
    * @returns {boolean} - Whether element is part of a clickable link
    */
-  const hasHrefInTree = useMemo(() => {
+  const hasInteractionInTree = useMemo(() => {
     return (element) => {
       if (!element) return false;
       
@@ -352,7 +360,7 @@ export const SplashEffect = () => {
    * @param {MouseEvent} e - Mouse down event
    */
   const handleMouseDown = useCallback((e) => {
-    if (!hasHrefInTree(e.target)) return;
+    if (!hasInteractionInTree(e.target)) return;
     
     setState(prev => ({ ...prev, isPressed: true }));
     
@@ -361,7 +369,7 @@ export const SplashEffect = () => {
       x: e.clientX,
       y: e.clientY
     }]);
-  }, [hasHrefInTree]);
+  }, [hasInteractionInTree]);
 
   /**
    * Resets pressed state on mouse up

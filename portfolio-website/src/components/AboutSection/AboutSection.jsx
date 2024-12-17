@@ -149,7 +149,7 @@ export const AboutSection = () => {
           </h2>
           
           <p>
-            <button type='button' onClick={() => setMedia('default')}>Currently</button>
+            <span type='button' onClick={() => setMedia('default')}>Currently</span>
             , I volunteer as a Transitional Fellow for the{' '}
             <a target='_blank' href='https://www.egdcollective.org/transitional-program'>
               EGD Collective's Game Studio Program
@@ -158,17 +158,17 @@ export const AboutSection = () => {
           
           <p>
             I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}
-            <button type='button' onClick={() => setMedia('participate')}>
+            <span type='button' onClick={() => setMedia('participate')}>
               participate in game jams
-            </button>
+            </span>
             {' '}to consistently improve my skills.
           </p>
           
           <p>
             I{' '}
-            <button type='button' onClick={() => setMedia('graduated')}>
+            <span type='button' onClick={() => setMedia('graduated')}>
               graduated from Parsons School of Design
-            </button>
+            </span>
             {' '}in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
           </p>
           
