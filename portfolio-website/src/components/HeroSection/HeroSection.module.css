@@ -99,6 +99,7 @@
 .headline {
   font-family: var(--font-libreBaskerville);
   font-size: var(--hero-headline-size);
+  text-transform: capitalize;
 }
 
 .tagline {
