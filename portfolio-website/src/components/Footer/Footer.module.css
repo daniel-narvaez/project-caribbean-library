@@ -1,0 +1,76 @@
+.footerContainer {
+  background: var(--color-link);
+  position: relative;  /* Add this for absolute positioning context */
+  padding-top: 4rem;  /* Match the wave height */
+  margin-top: 4rem;
+}
+
+.waves {
+  position: absolute;
+  top: -4rem;  /* Negative of the wave height */
+  left: 0;
+  width: 100%;
+  overflow: hidden;  /* Prevent any potential overflow */
+}
+
+.wavesSvg {
+  width: 100%;
+  height: 4rem;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+
+.footerContent {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.footerSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 4rem;
+}
+
+.footerBottom span {
+  text-align: center;
+  color: var(--color-bg1);
+}

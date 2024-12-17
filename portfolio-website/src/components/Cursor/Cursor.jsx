@@ -83,19 +83,21 @@ export const AnimatedCursor = () => {
 const hasInteractionInTree = useMemo(() => {
   return (element) => {
     if (!element) return false;
-    let current = element;
     
+    let current = element;
     while (current && current !== document.documentElement) {
-      // Check for href attribute or onClick event listener
-      const hasHref = current.hasAttribute('href');
-      const hasOnClick = current.hasAttribute('onclick') || 
-                        // Check for React's event handlers
-                        Object.keys(current).some(key => 
-                          key.startsWith('__reactProps$') && 
-                          current[key].onClick);
+      // Check if it's a link with href
+      const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON') && current.hasAttribute('href');
+      
+      // Check for onClick event listener
+      const hasOnClick = current.hasAttribute('onclick') ||
+        // Check for React's event handlers
+        Object.keys(current).some(key =>
+          key.startsWith('__reactProps$') &&
+          current[key].onClick);
 
-      if (hasHref || hasOnClick) {
-        setHoverColor(hasHref 
+      if (isLink || hasOnClick) {
+        setHoverColor(isLink 
           ? cursorConfig.current.COLORS.LINK 
           : cursorConfig.current.COLORS.BUTTON);
         return true;
