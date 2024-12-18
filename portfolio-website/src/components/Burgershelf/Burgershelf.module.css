@@ -10,15 +10,15 @@
   flex-shrink: 0;
   position: relative;
   transition: var(--trans-hover);
-  .icon span { background-color: var(--color-text1); }
+  .icon span { background-color: var(--color-link); }
 
   &:hover {
-    .icon span { background-color: var(--color-action-hover); }
+    .icon span { background-color: var(--color-link-hover); }
   }
   
   &:active {
     transition: var(--trans-active);
-    .icon span { background-color: var(--color-action-active); }
+    .icon span { background-color: var(--color-link-active); }
   }
   
   &.open {
