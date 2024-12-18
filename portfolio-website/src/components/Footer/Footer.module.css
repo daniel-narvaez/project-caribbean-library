@@ -1,7 +1,7 @@
 .footerContainer {
   background: var(--color-link);
   position: relative;  /* Add this for absolute positioning context */
-  padding-top: 4rem;  /* Match the wave height */
+  padding-top: calc(4rem - 2px);  /* Match the wave height */
   margin-top: 4rem;
 }
 
