@@ -6,6 +6,7 @@
   );
   position: relative;  /* Add this for absolute positioning context */
   padding-top: 4rem;  /* Match the wave height */
+  padding-bottom: 0.5rem;
   margin-top: 4rem;
 }
 
