@@ -9,9 +9,18 @@
 
   padding-top: 4rem;  /* Match the wave height */
   /* toggle safe area padding for devices that require it */
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-  padding-bottom: env(safe-area-inset-bottom);
+  
+  &.Desktop {
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+  }
+  
+  &.Mobile {
+    padding-right: var(--safe-padding-right);
+    padding-bottom: var(--safe-padding-bottom);
+    padding-left: var(--safe-padding-left);
+  }
 }
 
 .waves {
