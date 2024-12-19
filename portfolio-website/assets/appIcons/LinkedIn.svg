@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="32px" height="32px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="LinkedIn" x="0" y="0" width="32" height="32" style="fill:none;"/>
+    <clipPath id="_clip1">
+        <rect x="0" y="0" width="32" height="32"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <path id="container" d="M29.6,0C31,0 32,1.033 32,2.307L32,29.693C32,30.967 31,32 29.6,32L2.4,32C1,32 0,30.967 0,29.693L0,2.307C0,1.033 1,0 2.4,0L29.6,0ZM27.2,27.2L27.2,18.88C27.2,14.76 26.3,11.6 21.5,11.6C19.2,11.6 17.7,12.88 17.1,14.08L17.03,14.08L17.03,12L12.48,12L12.48,27.2L17.2,27.2L17.2,19.68C17.2,17.68 17.6,15.76 20,15.76C22.4,15.76 22.4,18.08 22.4,19.84L22.4,27.2L27.2,27.2ZM9.49,12L4.74,12L4.74,27.2L9.49,27.2L9.49,12ZM7.11,4.4C5.59,4.4 4.36,5.64 4.36,7.16C4.36,8.68 5.59,9.92 7.11,9.92C8.63,9.92 9.86,8.68 9.86,7.16C9.86,5.64 8.63,4.4 7.11,4.4Z" fill="#0047AB"/>
+        <path id="icon" d="M9.49,12L9.49,27.2L4.74,27.2L4.74,12L9.49,12ZM27.2,27.2L22.4,27.2L22.4,19.84C22.4,18.08 22.4,15.76 20,15.76C17.6,15.76 17.2,17.68 17.2,19.68L17.2,27.2L12.48,27.2L12.48,12L17.03,12L17.03,14.08L17.1,14.08C17.7,12.88 19.2,11.6 21.5,11.6C26.3,11.6 27.2,14.76 27.2,18.88L27.2,27.2ZM7.11,4.4C8.63,4.4 9.86,5.64 9.86,7.16C9.86,8.68 8.63,9.92 7.11,9.92C5.59,9.92 4.36,8.68 4.36,7.16C4.36,5.64 5.59,4.4 7.11,4.4Z" fill="none"/>
+    </g>
+</svg>

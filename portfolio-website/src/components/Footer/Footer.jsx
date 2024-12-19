@@ -8,7 +8,7 @@ const INITIAL_WAVE_CONFIG = {
   COLOR: '#0047ab'
 };
 
-const Footer = ({ children }) => {
+export const Footer = ({ children }) => {
   const waveConfig = useRef(INITIAL_WAVE_CONFIG);
 
   useEffect(() => {
@@ -79,5 +79,3 @@ const Footer = ({ children }) => {
     </footer>
   );
 };
-
-export default Footer;

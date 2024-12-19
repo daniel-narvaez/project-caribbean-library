@@ -8,7 +8,8 @@ import { Background } from './components/Background/Background';
 import { HeroSection } from './components/HeroSection/HeroSection';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 import { AboutSection } from './components/AboutSection/AboutSection';
-import Footer from './components/Footer/Footer';
+import { Footer } from './components/Footer/Footer';
+import { ContactItem } from './components/ContactItem/ContactItem';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
             <ProjectsSection />
             <AboutSection />
             <Footer>
-
+              <ContactItem iconName='linkedin' />
+              <ContactItem iconName='bluesky' />
             </Footer>
           </Background>
         </div>
