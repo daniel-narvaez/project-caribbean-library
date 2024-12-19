@@ -1,6 +1,8 @@
 // Footer.jsx
 import React from 'react';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useContext } from 'react';
+import { ContactItem } from '../ContactItem/ContactItem';
+import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
 
 const INITIAL_WAVE_CONFIG = {
@@ -10,6 +12,7 @@ const INITIAL_WAVE_CONFIG = {
 
 export const Footer = ({ children }) => {
   const waveConfig = useRef(INITIAL_WAVE_CONFIG);
+  const { size } = useContext(ScreenSizeContext);
 
   useEffect(() => {
     const root = getComputedStyle(document.documentElement);
@@ -20,7 +23,7 @@ export const Footer = ({ children }) => {
   }, []);
 
   return (
-    <footer className={styles.footerContainer}>
+    <footer className={`${styles.footerContainer} ${styles[size]}`}>
       <div className={styles.waves}>
         <svg
           viewBox="0 24 150 28"
@@ -66,16 +69,38 @@ export const Footer = ({ children }) => {
           </g>
         </svg>
       </div>
-      <div className={styles.footerBackground}>
-        <div className={styles.footerContent}>
-          {children}
-        </div>
-        <div className={styles.footerBottom}>
-          <span>
-            &copy; Daniel Narvaez. All content and trademarks property of their respective owners.
-          </span>
-        </div>
+      <div className={`${styles.footerContent} ${styles[size]}`}>
+        {children}
+      </div>
+      <div className={`${styles.footerBottom} ${styles[size]}`}>
+        <p>
+          &copy; Daniel Narvaez. All rights reserved. <br/>
+          v0.0.1
+        </p>
       </div>
     </footer>
   );
 };
+
+export const FooterNav = () => {
+  const { size } = useContext(ScreenSizeContext);
+
+  return (
+    <>
+      <div className={`${styles.footerCta} ${styles[size]}`}>
+        <span>
+          Find me around the web
+        </span>
+      </div>
+      <div className={`${styles.footerNav} ${styles[size]}`}>
+        <ContactItem iconName='Itch' />
+        <ContactItem iconName='GitHub' />
+        <ContactItem iconName='LinkedIn' />
+        <ContactItem iconName='Bluesky' />
+        <ContactItem iconName='TheXPlace' />
+        <ContactItem iconName='YoungArts Post' />
+        <ContactItem iconName='Discord' />
+      </div>
+    </>
+  )
+}

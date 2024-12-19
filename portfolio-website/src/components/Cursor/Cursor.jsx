@@ -38,7 +38,7 @@ const INITIAL_CURSOR_CONFIG = {
   MORPH_DURATION: 0.2,
   COLORS: {
     LINK: "#b2ffff", // Default fallback value
-    BUTTON: "#fa98ad",
+    BUTTON: "#dc9ba3",
     DEFAULT_FILL: "#ece9e4",
     DEFAULT_STROKE: "#00052b"
   }
@@ -113,40 +113,36 @@ export const AnimatedCursor = () => {
     };
   }, []); // Empty dependency array since we only need to run this once on mount
 
-    /**
-   * Checks if an element or its ancestors are interactive (has href or onClick)
+  /**
+   * Checks if an element or its ancestors are interactive (has href or action class)
    * Updates hover color based on interaction type
    * @param {HTMLElement} element - Element to check
    * @returns {boolean} - Whether element is/contains interactive element
    */
-    const hasInteractionInTree = useMemo(() => {
-      return (element) => {
-        if (!element) return false;
+  const hasInteractionInTree = useMemo(() => {
+    return (element) => {
+      if (!element) return false;
+      
+      let current = element;
+      while (current && current !== document.documentElement) {
+        // Check if it's a link by tag name
+        const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
         
-        let current = element;
-        while (current && current !== document.documentElement) {
-          // Check if it's a link by tag name
-          const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
-          
-          // Check for onClick event listener
-          const hasOnClick = current.hasAttribute('onclick') ||
-            // Check for React's event handlers
-            Object.keys(current).some(key =>
-              key.startsWith('__reactProps$') &&
-              current[key].onClick);
-  
-          if (isLink || hasOnClick) {
-            setHoverColor(isLink 
-              ? cursorConfig.current.COLORS.LINK 
-              : cursorConfig.current.COLORS.BUTTON);
-            return true;
-          }
-          
-          current = current.parentElement;
+        // Check for action class
+        const isAction = current.classList.contains('action');
+
+        if (isLink || isAction) {
+          setHoverColor(isLink
+            ? cursorConfig.current.COLORS.LINK
+            : cursorConfig.current.COLORS.BUTTON);
+          return true;
         }
-        return false;
-      };
-    }, []);
+        
+        current = current.parentElement;
+      }
+      return false;
+    };
+  }, []);
 
   // Enhanced pointer event handlers for stylus detection and cursor movement
   const handlePointerMove = useCallback((e) => {
@@ -325,7 +321,7 @@ export const AnimatedCursor = () => {
 
     return () => ctx.revert();
   }, [hasInteractionInTree, handlePointerMove, handlePointerDown, handlePointerUp, 
-      handlePointerEnter, handlePointerLeave, handlePointerOut]);
+      handlePointerEnter, handlePointerLeave, handlePointerOut, hoverColor]);
 
   /**
    * Controls animation timeline based on pointer state
