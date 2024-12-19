@@ -3,23 +3,23 @@
 .navbar {
   display: flex;
   width: 100%;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: flex-start;
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top);  /* Handle notch */
   left: 0;
   z-index: 10;
-  
+
   &.Desktop {
     height: 5rem;
-    padding: 1rem;
-  }
-  
-  &.Mobile {
-    height: 4rem;
-    padding: 0.8rem;
+    padding: 1rem;  /* Desktop keeps normal padding since it won't have safe areas */
   }
 
+  &.Mobile {
+    height: 4rem;
+    padding: 0.8rem env(safe-area-inset-right) 0.8rem env(safe-area-inset-left);
+    /* Keep vertical padding as is, but respect safe areas on sides */
+  }
 }
 
 .background {

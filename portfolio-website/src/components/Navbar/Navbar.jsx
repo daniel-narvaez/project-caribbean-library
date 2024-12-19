@@ -36,10 +36,10 @@ export const Navbar = () => {
       ${styles[size]}
     `}
   >
-    <div 
+    {/* <div 
       className={styles.background}
       // ref={backgroundRef}
-    />
+    /> */}
     <Title />
     {size === 'Mobile' ? 
       <MobileDropdown /> : 
