@@ -55,6 +55,8 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-font-smoothing: subpixel-antialiased;
+
+  transition: var(--trans-hover)
 }
 
 /* Polaroid image styling */
