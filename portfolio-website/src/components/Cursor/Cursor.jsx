@@ -6,19 +6,22 @@
  * A custom cursor component that morphs between default and hover states.
  * Features smooth GSAP animations for state transitions and cursor movement.
  * Designed for interactive elements like links and buttons with distinct
- * visual feedback.
+ * visual feedback. Includes intelligent touch/stylus detection for proper
+ * cursor display across different input methods.
  * 
  * Key Features:
  * - Smooth cursor movement tracking
  * - Morphing animation between states using GSAP
  * - Different hover states for links (#b2ffff) and buttons (#dc143c)
  * - SVG-based cursor with fill and stroke animations
+ * - Smart touch/stylus detection for mobile and tablet devices
  * 
  * Technical Implementation:
  * - GSAP timeline for complex shape morphing
  * - Efficient DOM traversal for interactive element detection
  * - RAF-based cursor position updates
  * - Optimized event listener management
+ * - Pointer events API for stylus detection
  * 
  * Dependencies:
  * - GSAP for animations
@@ -50,6 +53,96 @@ export const AnimatedCursor = () => {
   const timelineRef = useRef(null);
   const cursorConfig = useRef(INITIAL_CURSOR_CONFIG);
 
+  // State for input device detection
+  const [inputDevice, setInputDevice] = useState({
+    hasTouch: false,
+    hasFinePointer: true,
+    isStylus: false,
+    stylusInRange: false
+  });
+
+  // Effect to detect device capabilities and monitor changes
+  useEffect(() => {
+    const detectInputCapabilities = () => {
+      const touch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      
+      setInputDevice(prev => ({
+        ...prev,
+        hasTouch: touch,
+        hasFinePointer: finePointer
+      }));
+    };
+
+    // Initial detection
+    detectInputCapabilities();
+
+    // Set up media query listeners
+    const touchQuery = window.matchMedia('(hover: none) and (pointer: coarse)');
+    const pointerQuery = window.matchMedia('(pointer: fine)');
+
+    touchQuery.addListener(detectInputCapabilities);
+    pointerQuery.addListener(detectInputCapabilities);
+
+    return () => {
+      touchQuery.removeListener(detectInputCapabilities);
+      pointerQuery.removeListener(detectInputCapabilities);
+    };
+  }, []);
+
+  // Enhanced pointer event handlers for stylus detection
+  const handlePointerMove = useCallback((e) => {
+    const isStylus = e.pointerType === 'pen';
+    setInputDevice(prev => ({
+      ...prev,
+      isStylus,
+      stylusInRange: isStylus
+    }));
+  }, []);
+
+  const handlePointerEnter = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        isStylus: true,
+        stylusInRange: true
+      }));
+    }
+  }, []);
+
+  const handlePointerLeave = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        stylusInRange: false
+      }));
+    }
+  }, []);
+
+  const handlePointerOut = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        stylusInRange: false
+      }));
+    }
+  }, []);
+
+  // Set up pointer event listeners
+  useEffect(() => {
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerenter', handlePointerEnter);
+    window.addEventListener('pointerleave', handlePointerLeave);
+    window.addEventListener('pointerout', handlePointerOut);
+    
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerenter', handlePointerEnter);
+      window.removeEventListener('pointerleave', handlePointerLeave);
+      window.removeEventListener('pointerout', handlePointerOut);
+    };
+  }, [handlePointerMove, handlePointerEnter, handlePointerLeave, handlePointerOut]);
+
   // Effect to update the config with computed CSS values
   useEffect(() => {
     const root = getComputedStyle(document.documentElement);
@@ -74,40 +167,40 @@ export const AnimatedCursor = () => {
     isPressed: false
   });
 
-/**
- * Checks if an element or its ancestors are interactive (has href or onClick)
- * Updates hover color based on interaction type
- * @param {HTMLElement} element - Element to check
- * @returns {boolean} - Whether element is/contains interactive element
- */
-const hasInteractionInTree = useMemo(() => {
-  return (element) => {
-    if (!element) return false;
-    
-    let current = element;
-    while (current && current !== document.documentElement) {
-      // Check if it's a link with href
-      const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON') && current.hasAttribute('href');
+  /**
+   * Checks if an element or its ancestors are interactive (has href or onClick)
+   * Updates hover color based on interaction type
+   * @param {HTMLElement} element - Element to check
+   * @returns {boolean} - Whether element is/contains interactive element
+   */
+  const hasInteractionInTree = useMemo(() => {
+    return (element) => {
+      if (!element) return false;
       
-      // Check for onClick event listener
-      const hasOnClick = current.hasAttribute('onclick') ||
-        // Check for React's event handlers
-        Object.keys(current).some(key =>
-          key.startsWith('__reactProps$') &&
-          current[key].onClick);
+      let current = element;
+      while (current && current !== document.documentElement) {
+        // Check if it's a link by tag name
+        const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
+        
+        // Check for onClick event listener
+        const hasOnClick = current.hasAttribute('onclick') ||
+          // Check for React's event handlers
+          Object.keys(current).some(key =>
+            key.startsWith('__reactProps$') &&
+            current[key].onClick);
 
-      if (isLink || hasOnClick) {
-        setHoverColor(isLink 
-          ? cursorConfig.current.COLORS.LINK 
-          : cursorConfig.current.COLORS.BUTTON);
-        return true;
+        if (isLink || hasOnClick) {
+          setHoverColor(isLink 
+            ? cursorConfig.current.COLORS.LINK 
+            : cursorConfig.current.COLORS.BUTTON);
+          return true;
+        }
+        
+        current = current.parentElement;
       }
-      
-      current = current.parentElement;
-    }
-    return false;
-  };
-}, [hoverColor]);
+      return false;
+    };
+  }, [hoverColor]);
 
   /**
    * Sets up GSAP animations and event listeners
@@ -128,11 +221,10 @@ const hasInteractionInTree = useMemo(() => {
       }
     };
 
-  // If the document has focus but we haven't moved the mouse yet,
-  // we can hide the cursor until first movement
-  if (document.hasFocus() && !hasInitialPosition)
-    setIsVisible(false);
-  
+    // If the document has focus but we haven't moved the mouse yet,
+    // we can hide the cursor until first movement
+    if (document.hasFocus() && !hasInitialPosition)
+      setIsVisible(false);
 
     // Show the cursor once we get our first mouse position
     const onFirstMove = (e) => {
@@ -213,7 +305,19 @@ const hasInteractionInTree = useMemo(() => {
     }
   }, [state.isPointer]);
 
-  return (
+  // Determine if cursor should be shown based on device and input type
+  const shouldShowCursor = useMemo(() => {
+    // Show cursor if it's a non-touch device
+    if (!inputDevice.hasTouch) return true;
+    
+    // Show cursor only if stylus is in range
+    if (inputDevice.isStylus && inputDevice.stylusInRange) return true;
+    
+    // Hide cursor on touch devices without stylus
+    return false;
+  }, [inputDevice]);
+
+  return shouldShowCursor ? (
     <svg 
       ref={svgRef}
       width="32" 
@@ -255,7 +359,7 @@ const hasInteractionInTree = useMemo(() => {
         />
       </g>
     </svg>
-  );
+  ) : null;
 };
 
 /**
