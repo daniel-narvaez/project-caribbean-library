@@ -32,17 +32,6 @@
   padding: 5rem 2rem;
   gap: 5%;
   flex-wrap: wrap;
-
-  &.Desktop {
-    padding: 5rem 2rem;
-  }
-  
-  &.Mobile {
-    padding-top: 2rem;
-    padding-right: var(--safe-padding-right);
-    padding-bottom: 2rem;
-    padding-left: var(--safe-padding-left);
-  }
 }
 
 /* Media container with polaroid effect */

@@ -15,7 +15,6 @@ function App() {
   return (
     
     <ScreenSizeProvider>
-      <SafeAreaProvider>
         <TypographyProvider>
           <SplashEffect />
           <AnimatedCursor />
@@ -30,7 +29,6 @@ function App() {
             </Background>
           </div>
         </TypographyProvider>
-      </SafeAreaProvider>
     </ScreenSizeProvider>
   )
 }
