@@ -208,18 +208,64 @@ export const AnimatedCursor = () => {
   useEffect(() => {
     let hasInitialPosition = false;
 
-    const onMouseMove = (e) => {
-      if (svgRef.current) {
-        svgRef.current.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
-        hasInitialPosition = true;
+  /**
+   * Unified handler for mouse/pointer movement
+   * @param {Event} e - Mouse or Pointer event
+   * @param {string} eventType - Type of event ('mouse' or 'pointer')
+   */
+  const handleMovement = (e, eventType) => {
+    if (!svgRef.current) return;
+    
+    // Get coordinates based on event type
+    const x = eventType === 'pointer' ? e.x : e.clientX;
+    const y = eventType === 'pointer' ? e.y : e.clientY;
+    
+    // Update cursor position
+    svgRef.current.style.transform = `translate(${x - 6}px, ${y - 6}px)`;
+    hasInitialPosition = true;
 
-        const element = document.elementFromPoint(e.clientX, e.clientY);
-        if (element) {
-          const isLink = hasInteractionInTree(element);
-          setState(prev => ({ ...prev, isPointer: isLink }));
-        }
+    // Use pointer-specific hit testing for stylus
+    const element = eventType === 'pointer' && e.pointerType === 'pen'
+      ? document.elementFromPoint(x, y - 2) // Small offset for better stylus precision
+      : document.elementFromPoint(x, y);
+
+    if (element) {
+      const isLink = hasInteractionInTree(element);
+      setState(prev => ({ ...prev, isPointer: isLink }));
+    }
+  };
+
+  // Separate handlers for mouse and pointer events
+  const onMouseMove = (e) => handleMovement(e, 'mouse');
+    const onPointerMove = (e) => {
+      if (e.pointerType === 'pen') {
+        handleMovement(e, 'pointer');
       }
     };
+    
+    const onPointerDown = (e) => {
+      if (e.pointerType === 'pen') {
+        setState(prev => ({ ...prev, isPressed: true }));
+      }
+    };
+    
+    const onPointerUp = (e) => {
+      if (e.pointerType === 'pen') {
+        setState(prev => ({ ...prev, isPressed: false }));
+      }
+    };
+    
+    const onPointerLeave = (e) => {
+      if (e.pointerType === 'pen') {
+        setIsVisible(false);
+      }
+    };
+    
+    const onPointerEnter = (e) => {
+      if (e.pointerType === 'pen') {
+        setIsVisible(true);
+      }
+    };    
 
     // If the document has focus but we haven't moved the mouse yet,
     // we can hide the cursor until first movement
@@ -272,13 +318,25 @@ export const AnimatedCursor = () => {
         ease: "power2.inOut"
       }, 0);
 
-      // Event listener setup
+      /**
+       * Event listener setup
+       * Handles both mouse and pointer events to support stylus input
+       * Note: We keep mouse events for better backwards compatibility
+       * and add pointer events for precise stylus handling
+       */
       window.addEventListener('mousemove', onFirstMove);
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('mousedown', onMouseDown);
       window.addEventListener('mouseup', onMouseUp);
       document.documentElement.addEventListener('mouseleave', onMouseLeave);
       document.documentElement.addEventListener('mouseenter', onMouseEnter);
+
+      // Add pointer-specific event listeners
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerdown', onPointerDown);
+      window.addEventListener('pointerup', onPointerUp);
+      document.documentElement.addEventListener('pointerleave', onPointerLeave);
+      document.documentElement.addEventListener('pointerenter', onPointerEnter);
 
       // Cleanup function
       return () => {
@@ -288,7 +346,15 @@ export const AnimatedCursor = () => {
         window.removeEventListener('mouseup', onMouseUp);
         document.documentElement.removeEventListener('mouseleave', onMouseLeave);
         document.documentElement.removeEventListener('mouseenter', onMouseEnter);
+        
+        // Clean up pointer event listeners
+        window.removeEventListener('pointermove', onPointerMove);
+        window.removeEventListener('pointerdown', onPointerDown);
+        window.removeEventListener('pointerup', onPointerUp);
+        document.documentElement.removeEventListener('pointerleave', onPointerLeave);
+        document.documentElement.removeEventListener('pointerenter', onPointerEnter);
       };
+
     }, svgRef);
 
     return () => ctx.revert();
