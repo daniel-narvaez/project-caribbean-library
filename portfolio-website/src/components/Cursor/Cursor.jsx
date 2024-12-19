@@ -52,6 +52,13 @@ export const AnimatedCursor = () => {
   const tailPathRef = useRef(null);
   const timelineRef = useRef(null);
   const cursorConfig = useRef(INITIAL_CURSOR_CONFIG);
+  // State management
+  const [isVisible, setIsVisible] = useState(document.hasFocus());
+  const [hoverColor, setHoverColor] = useState(cursorConfig.current.COLORS.LINK);
+  const [state, setState] = useState({
+    isPointer: false,
+    isPressed: false
+  });
 
   // State for input device detection
   const [inputDevice, setInputDevice] = useState({
@@ -90,59 +97,6 @@ export const AnimatedCursor = () => {
     };
   }, []);
 
-  // Enhanced pointer event handlers for stylus detection
-  const handlePointerMove = useCallback((e) => {
-    const isStylus = e.pointerType === 'pen';
-    setInputDevice(prev => ({
-      ...prev,
-      isStylus,
-      stylusInRange: isStylus
-    }));
-  }, []);
-
-  const handlePointerEnter = useCallback((e) => {
-    if (e.pointerType === 'pen') {
-      setInputDevice(prev => ({
-        ...prev,
-        isStylus: true,
-        stylusInRange: true
-      }));
-    }
-  }, []);
-
-  const handlePointerLeave = useCallback((e) => {
-    if (e.pointerType === 'pen') {
-      setInputDevice(prev => ({
-        ...prev,
-        stylusInRange: false
-      }));
-    }
-  }, []);
-
-  const handlePointerOut = useCallback((e) => {
-    if (e.pointerType === 'pen') {
-      setInputDevice(prev => ({
-        ...prev,
-        stylusInRange: false
-      }));
-    }
-  }, []);
-
-  // Set up pointer event listeners
-  useEffect(() => {
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerenter', handlePointerEnter);
-    window.addEventListener('pointerleave', handlePointerLeave);
-    window.addEventListener('pointerout', handlePointerOut);
-    
-    return () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerenter', handlePointerEnter);
-      window.removeEventListener('pointerleave', handlePointerLeave);
-      window.removeEventListener('pointerout', handlePointerOut);
-    };
-  }, [handlePointerMove, handlePointerEnter, handlePointerLeave, handlePointerOut]);
-
   // Effect to update the config with computed CSS values
   useEffect(() => {
     const root = getComputedStyle(document.documentElement);
@@ -159,48 +113,106 @@ export const AnimatedCursor = () => {
     };
   }, []); // Empty dependency array since we only need to run this once on mount
 
-  // State management
-  const [isVisible, setIsVisible] = useState(document.hasFocus());
-  const [hoverColor, setHoverColor] = useState(cursorConfig.current.COLORS.LINK);
-  const [state, setState] = useState({
-    isPointer: false,
-    isPressed: false
-  });
-
-  /**
+    /**
    * Checks if an element or its ancestors are interactive (has href or onClick)
    * Updates hover color based on interaction type
    * @param {HTMLElement} element - Element to check
    * @returns {boolean} - Whether element is/contains interactive element
    */
-  const hasInteractionInTree = useMemo(() => {
-    return (element) => {
-      if (!element) return false;
-      
-      let current = element;
-      while (current && current !== document.documentElement) {
-        // Check if it's a link by tag name
-        const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
+    const hasInteractionInTree = useMemo(() => {
+      return (element) => {
+        if (!element) return false;
         
-        // Check for onClick event listener
-        const hasOnClick = current.hasAttribute('onclick') ||
-          // Check for React's event handlers
-          Object.keys(current).some(key =>
-            key.startsWith('__reactProps$') &&
-            current[key].onClick);
-
-        if (isLink || hasOnClick) {
-          setHoverColor(isLink 
-            ? cursorConfig.current.COLORS.LINK 
-            : cursorConfig.current.COLORS.BUTTON);
-          return true;
+        let current = element;
+        while (current && current !== document.documentElement) {
+          // Check if it's a link by tag name
+          const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
+          
+          // Check for onClick event listener
+          const hasOnClick = current.hasAttribute('onclick') ||
+            // Check for React's event handlers
+            Object.keys(current).some(key =>
+              key.startsWith('__reactProps$') &&
+              current[key].onClick);
+  
+          if (isLink || hasOnClick) {
+            setHoverColor(isLink 
+              ? cursorConfig.current.COLORS.LINK 
+              : cursorConfig.current.COLORS.BUTTON);
+            return true;
+          }
+          
+          current = current.parentElement;
         }
-        
-        current = current.parentElement;
+        return false;
+      };
+    }, []);
+
+  // Enhanced pointer event handlers for stylus detection and cursor movement
+  const handlePointerMove = useCallback((e) => {
+    // Device detection
+    const isStylus = e.pointerType === 'pen';
+    setInputDevice(prev => ({
+      ...prev,
+      isStylus,
+      stylusInRange: isStylus
+    }));
+
+    // Cursor movement (only for stylus)
+    if (isStylus && svgRef.current) {
+      const { x, y } = e;
+      svgRef.current.style.transform = `translate(${x - 6}px, ${y - 6}px)`;
+      
+      // Use pointer-specific hit testing for stylus
+      const element = document.elementFromPoint(x, y - 2); // Small offset for better stylus precision
+      if (element) {
+        const isLink = hasInteractionInTree(element);
+        setState(prev => ({ ...prev, isPointer: isLink }));
       }
-      return false;
-    };
-  }, [hoverColor]);
+    }
+  }, [hasInteractionInTree]);
+
+  const handlePointerEnter = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        isStylus: true,
+        stylusInRange: true
+      }));
+      setIsVisible(true);
+    }
+  }, []);
+
+  const handlePointerLeave = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        stylusInRange: false
+      }));
+      setIsVisible(false);
+    }
+  }, []);
+
+  const handlePointerDown = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setState(prev => ({ ...prev, isPressed: true }));
+    }
+  }, []);
+
+  const handlePointerUp = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setState(prev => ({ ...prev, isPressed: false }));
+    }
+  }, []);
+
+  const handlePointerOut = useCallback((e) => {
+    if (e.pointerType === 'pen') {
+      setInputDevice(prev => ({
+        ...prev,
+        stylusInRange: false
+      }));
+    }
+  }, []);
 
   /**
    * Sets up GSAP animations and event listeners
@@ -208,69 +220,28 @@ export const AnimatedCursor = () => {
   useEffect(() => {
     let hasInitialPosition = false;
 
-  /**
-   * Unified handler for mouse/pointer movement
-   * @param {Event} e - Mouse or Pointer event
-   * @param {string} eventType - Type of event ('mouse' or 'pointer')
-   */
-  const handleMovement = (e, eventType) => {
-    if (!svgRef.current) return;
-    
-    // Get coordinates based on event type
-    const x = eventType === 'pointer' ? e.x : e.clientX;
-    const y = eventType === 'pointer' ? e.y : e.clientY;
-    
-    // Update cursor position
-    svgRef.current.style.transform = `translate(${x - 6}px, ${y - 6}px)`;
-    hasInitialPosition = true;
+    /**
+     * Handler for mouse movement
+     * @param {MouseEvent} e - Mouse event
+     */
+    const onMouseMove = (e) => {
+      if (svgRef.current) {
+        svgRef.current.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
+        hasInitialPosition = true;
 
-    // Use pointer-specific hit testing for stylus
-    const element = eventType === 'pointer' && e.pointerType === 'pen'
-      ? document.elementFromPoint(x, y - 2) // Small offset for better stylus precision
-      : document.elementFromPoint(x, y);
-
-    if (element) {
-      const isLink = hasInteractionInTree(element);
-      setState(prev => ({ ...prev, isPointer: isLink }));
-    }
-  };
-
-  // Separate handlers for mouse and pointer events
-  const onMouseMove = (e) => handleMovement(e, 'mouse');
-    const onPointerMove = (e) => {
-      if (e.pointerType === 'pen') {
-        handleMovement(e, 'pointer');
+        const element = document.elementFromPoint(e.clientX, e.clientY);
+        if (element) {
+          const isLink = hasInteractionInTree(element);
+          setState(prev => ({ ...prev, isPointer: isLink }));
+        }
       }
     };
-    
-    const onPointerDown = (e) => {
-      if (e.pointerType === 'pen') {
-        setState(prev => ({ ...prev, isPressed: true }));
-      }
-    };
-    
-    const onPointerUp = (e) => {
-      if (e.pointerType === 'pen') {
-        setState(prev => ({ ...prev, isPressed: false }));
-      }
-    };
-    
-    const onPointerLeave = (e) => {
-      if (e.pointerType === 'pen') {
-        setIsVisible(false);
-      }
-    };
-    
-    const onPointerEnter = (e) => {
-      if (e.pointerType === 'pen') {
-        setIsVisible(true);
-      }
-    };    
 
     // If the document has focus but we haven't moved the mouse yet,
     // we can hide the cursor until first movement
-    if (document.hasFocus() && !hasInitialPosition)
+    if (document.hasFocus() && !hasInitialPosition) {
       setIsVisible(false);
+    }
 
     // Show the cursor once we get our first mouse position
     const onFirstMove = (e) => {
@@ -318,12 +289,7 @@ export const AnimatedCursor = () => {
         ease: "power2.inOut"
       }, 0);
 
-      /**
-       * Event listener setup
-       * Handles both mouse and pointer events to support stylus input
-       * Note: We keep mouse events for better backwards compatibility
-       * and add pointer events for precise stylus handling
-       */
+      // Event listener setup
       window.addEventListener('mousemove', onFirstMove);
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('mousedown', onMouseDown);
@@ -332,13 +298,13 @@ export const AnimatedCursor = () => {
       document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
       // Add pointer-specific event listeners
-      window.addEventListener('pointermove', onPointerMove);
-      window.addEventListener('pointerdown', onPointerDown);
-      window.addEventListener('pointerup', onPointerUp);
-      document.documentElement.addEventListener('pointerleave', onPointerLeave);
-      document.documentElement.addEventListener('pointerenter', onPointerEnter);
+      window.addEventListener('pointermove', handlePointerMove);
+      window.addEventListener('pointerdown', handlePointerDown);
+      window.addEventListener('pointerup', handlePointerUp);
+      window.addEventListener('pointerenter', handlePointerEnter);
+      window.addEventListener('pointerleave', handlePointerLeave);
+      window.addEventListener('pointerout', handlePointerOut);
 
-      // Cleanup function
       return () => {
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('mousemove', onFirstMove);
@@ -348,17 +314,18 @@ export const AnimatedCursor = () => {
         document.documentElement.removeEventListener('mouseenter', onMouseEnter);
         
         // Clean up pointer event listeners
-        window.removeEventListener('pointermove', onPointerMove);
-        window.removeEventListener('pointerdown', onPointerDown);
-        window.removeEventListener('pointerup', onPointerUp);
-        document.documentElement.removeEventListener('pointerleave', onPointerLeave);
-        document.documentElement.removeEventListener('pointerenter', onPointerEnter);
+        window.removeEventListener('pointermove', handlePointerMove);
+        window.removeEventListener('pointerdown', handlePointerDown);
+        window.removeEventListener('pointerup', handlePointerUp);
+        window.removeEventListener('pointerenter', handlePointerEnter);
+        window.removeEventListener('pointerleave', handlePointerLeave);
+        window.removeEventListener('pointerout', handlePointerOut);
       };
-
     }, svgRef);
 
     return () => ctx.revert();
-  }, [hasInteractionInTree]);
+  }, [hasInteractionInTree, handlePointerMove, handlePointerDown, handlePointerUp, 
+      handlePointerEnter, handlePointerLeave, handlePointerOut]);
 
   /**
    * Controls animation timeline based on pointer state
@@ -427,6 +394,9 @@ export const AnimatedCursor = () => {
     </svg>
   ) : null;
 };
+
+
+
 
 /**
  * SplashEffect.jsx
