@@ -187,12 +187,12 @@ export const AboutSection = () => {
         <div className={`${styles.ctaMenu}`}>
           <CreateButton
             title="Read my résumé"
-            url="/"
+            url='/'
             style='solid'
           />
           <CreateButton
             title="Reach out"
-            url="/"
+            url='/'
             style='island'
           />
         </div>

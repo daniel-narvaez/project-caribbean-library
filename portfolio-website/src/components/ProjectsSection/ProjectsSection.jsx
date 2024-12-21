@@ -7,7 +7,7 @@ import styles from './ProjectsSection.module.css';
 import { clockOutProject, chihuahuaChampProject, theHexPerplexProject } from "../../data/gameProjects";
 
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
-import { WavesButton } from "../Button/Button";
+import { CreateButton } from "../Button/Button";
 
 export const ProjectsSection = () => {
   const { size, layout } = useContext(ScreenSizeContext);
@@ -25,7 +25,7 @@ export const ProjectsSection = () => {
           <GameProjectArticle projectData={chihuahuaChampProject.projectArticle}/>
           <GameProjectArticle projectData={theHexPerplexProject.projectArticle}/>
         </div>
-        <WavesButton title='Explore my full portfolio' url='/'/>
+        <CreateButton title='Explore my full portfolio' url='/'/>
       </div>
     </section>
   );
