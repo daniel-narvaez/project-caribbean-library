@@ -1,4 +1,4 @@
-import React, { useContext, memo, useState, useRef, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
 
