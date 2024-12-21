@@ -128,7 +128,7 @@ export const CreateButton = memo(({
 
   const buttonProps = {
     type: "button",
-    className: `${styles.button} ${styles[style]} ${styles[size]} ${className}`,
+    className: `${styles.button} ${styles[style]} ${styles[size]} ${styles[className]}`,
     onClick: handleClick,
     disabled: isDisabled,
     ...(isActionButton ? {} : { href: finalUrl })

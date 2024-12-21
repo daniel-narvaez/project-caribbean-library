@@ -16,11 +16,6 @@
     flex-direction: column;
 }
 
-.contactItem:disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
 /* Link styles
    ========== */
 .contactItem a {

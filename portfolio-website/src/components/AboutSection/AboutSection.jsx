@@ -32,7 +32,7 @@ import React, { useContext, useRef, useCallback, useEffect } from 'react';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
-import { IslandButton, SolidButton } from '../Button/Button';
+import { CreateButton } from '../Button/Button';
 
 /**
  * Main About Section Component
@@ -185,13 +185,15 @@ export const AboutSection = () => {
         </div>
 
         <div className={`${styles.ctaMenu}`}>
-          <SolidButton
+          <CreateButton
             title="Read my résumé"
             url="/"
+            style='solid'
           />
-          <IslandButton
+          <CreateButton
             title="Reach out"
             url="/"
+            style='island'
           />
         </div>
       </div>
