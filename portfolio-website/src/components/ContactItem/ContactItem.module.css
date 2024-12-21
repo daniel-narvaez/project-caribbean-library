@@ -1,59 +1,82 @@
+/**
+ * ContactItem.module.css
+ * ====================
+ * 
+ * Styles for the ContactItem component featuring:
+ * - Responsive layouts for Desktop and Mobile
+ * - Interactive hover and active states
+ * - Smooth transitions for all interactions
+ * - Dynamic label visibility
+ */
+
+/* Base styles
+   ========== */
 .contactItem {
-  align-items: center;
-  flex-direction: column;
-  
-  a {
-    transform: Scale(100%);
+    align-items: center;
+    flex-direction: column;
+}
+
+.contactItem:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Link styles
+   ========== */
+.contactItem a {
+    transform: scale(100%);
     transition: var(--menuControl-hover);
-  }
-  
-  span {
+}
+
+/* Label styles
+   =========== */
+.contactItem span {
     color: var(--color-bg1);
     text-align: center;
     transition: var(--menuControl-hover);
-  }
-  
-  &.Desktop {
+}
+
+/* Desktop layout
+   ============= */
+.contactItem.Desktop {
     display: flex;
     justify-content: flex-start;
     max-width: 2rem;
     gap: 0.5rem;
-    
-    span {
-      opacity: 0;
-      max-width: 6rem;
-    }
-  }
-  
-  &.Mobile {
+}
+
+.contactItem.Desktop span {
+    opacity: 0;
+    max-width: 6rem;
+}
+
+/* Mobile layout
+   ============ */
+.contactItem.Mobile {
     display: inline-flex;
     justify-content: center;
     max-width: 1.5rem;
-    
-    span {
-      display: none;
-      max-width: 4.5rem;
-    }
-  }
+}
 
-  &:hover {
-    span {
-      opacity: 1;
-      color: var(--color-link-hover);
-    }
-  }
+.contactItem.Mobile span {
+    display: none;
+    max-width: 4.5rem;
+}
 
-  &:active {
-    
-    a {
-      transform: Scale(92%);
-      transition: var(--menuControl-active);
-    }
+/* Interactive states
+   ================= */
+.contactItem:hover span {
+    opacity: 1;
+    color: var(--color-link-hover);
+}
 
-    span {
-      opacity: 1;
-      color: var(--color-link-active);
-      transition: var(--menuControl-active);
-    }
-  }
+.contactItem:active a {
+    transform: scale(92%);
+    transition: var(--menuControl-active);
+}
+
+.contactItem:active span {
+    opacity: 1;
+    color: var(--color-link-active);
+    transition: var(--menuControl-active);
 }

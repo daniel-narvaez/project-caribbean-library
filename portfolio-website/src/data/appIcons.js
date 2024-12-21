@@ -1,11 +1,49 @@
+/**
+ * appIcons.js
+ * ===========
+ * 
+ * Overview:
+ * A module for managing application icons with their associated paths and URLs.
+ * Provides a consistent interface for icon handling across the application.
+ * 
+ * Key Features:
+ * - Icon object creation with validation
+ * - Path management for container and icon SVGs
+ * - URL handling for profile links
+ * - Searchable icon collection
+ * 
+ * Technical Implementation:
+ * - Object-oriented design with immutable instances
+ * - Efficient icon search functionality
+ * - Type-safe path and URL management
+ */
+
+/**
+ * Represents an application icon with associated metadata and SVG paths
+ */
 class AppIconObject {
+  /**
+   * Creates an AppIconObject instance
+   * @param {string} appName - Display name of the application
+   * @param {string} profileUrl - URL to the user's profile (can be empty)
+   * @param {string} containerPath - SVG path for the icon container
+   * @param {string} iconPath - SVG path for the icon itself
+   */
   constructor(appName, profileUrl, containerPath, iconPath) {
+      if (!appName || !containerPath || !iconPath) {
+          throw new Error('AppName, containerPath, and iconPath are required');
+      }
+
       this.appName = appName;
-      this.profileUrl = profileUrl;
+      this.profileUrl = profileUrl || ''; // Allow empty URLs
       this.containerPath = containerPath;
       this.iconPath = iconPath;
   }
 
+  /**
+   * Returns both container and icon SVG paths
+   * @returns {{container: string, icon: string}} Object containing both paths
+   */
   getPaths() {
       return {
           container: this.containerPath,
@@ -13,16 +51,38 @@ class AppIconObject {
       };
   }
 
+  /**
+   * Creates a new instance with updated paths
+   * @param {string} containerPath - New container SVG path
+   * @param {string} iconPath - New icon SVG path
+   * @returns {AppIconObject} New instance with updated paths
+   */
   withPaths(containerPath, iconPath) {
       return new AppIconObject(
           this.appName,
+          this.profileUrl,
           containerPath || this.containerPath,
           iconPath || this.iconPath
       );
   }
 }
 
-// Icon instances
+/* Icon Instances
+ =============
+ Below this point, multiple AppIconObject instances are declared for various
+ social media and platform icons. Each instance contains:
+ - The platform name
+ - Profile URL (if applicable)
+ - SVG paths for both container and icon
+ 
+ For maintenance purposes, instances are grouped by platform type:
+ - Professional networks (LinkedIn, GitHub)
+ - Social platforms (Discord, X/Twitter)
+ - Gaming platforms (Itch.io)
+ - Portfolio sites (TheXPlace, YoungArts)
+ - Communication platforms (ProtonMail)
+*/
+
 const linkedInIcon = new AppIconObject(
   "LinkedIn",
 
@@ -96,7 +156,7 @@ const gitHubIcon = new AppIconObject(
 const protonMailIcon = new AppIconObject(
   "Proton Mail",
 
-  "",
+  "/",
 
   "M2.33,0C1.043,0 0,1.043 0,2.33L0,29.67C0,30.957 1.043,32 2.33,32L29.67,32C30.957,32 32,30.957 32,29.67L32,2.33C32,1.043 30.957,0 29.67,0L2.33,0ZM6.2,12.123L6.2,8.423L13.9,15.023C14.078,15.17 14.18,15.24 14.4,15.323L12.9,16.523C12.5,16.823 12,16.823 11.6,16.523L6.3,12.123ZM6.2,15.023L6.2,23.023C6.2,23.623 6.7,24.123 7.3,24.223L20.4,24.223L20.4,13.223L14.3,18.323C13.1,19.323 11.3,19.323 10.1,18.323L6.2,15.023ZM24.7,24.123L22.5,24.123L22.5,11.223L25.8,8.423L25.8,23.023C25.8,23.623 25.3,24.123 24.7,24.123ZM6.7,6.123C5.6,5.123 4,5.923 4,7.323L4,23.023C4,24.823 5.5,26.323 7.3,26.323L24.7,26.323C26.5,26.323 28,24.823 28,23.023L28,7.323C28,5.923 26.4,5.123 25.3,6.123L16.7,13.423C16.3,13.723 15.7,13.723 15.3,13.423L6.7,6.123Z",
 
@@ -106,7 +166,7 @@ const protonMailIcon = new AppIconObject(
 const twitterIcon = new AppIconObject(
   "Twitter",
   
-  "",
+  "/",
 
   "M0,2.33c0,-1.287 1.043,-2.33 2.33,-2.33l27.34,-0c1.287,-0 2.33,1.043 2.33,2.33l0,27.34c0,1.287 -1.043,2.33 -2.33,2.33l-27.34,0c-1.287,0 -2.33,-1.043 -2.33,-2.33l-0,-27.34Zm25.362,11.062c-0,6.102 -4.646,13.142 -13.142,13.142c-2.605,0 -5.038,-0.766 -7.059,-2.088c0.364,0.048 0.728,0.067 1.101,0.067c2.165,-0 4.157,-0.738 5.738,-1.973c-2.021,-0.039 -3.726,-1.37 -4.311,-3.209c0.288,0.057 0.575,0.086 0.872,0.086c0.421,0 0.833,-0.057 1.216,-0.163c-2.116,-0.431 -3.706,-2.289 -3.706,-4.53l-0,-0.058c0.622,0.345 1.331,0.556 2.088,0.575c-1.246,-0.824 -2.06,-2.241 -2.06,-3.841c0,-0.843 0.23,-1.638 0.623,-2.318c2.28,2.797 5.68,4.636 9.521,4.828c-0.086,-0.336 -0.125,-0.69 -0.125,-1.054c0,-2.548 2.069,-4.617 4.617,-4.617c1.332,-0 2.529,0.556 3.372,1.456c1.054,-0.211 2.04,-0.594 2.931,-1.121c-0.345,1.083 -1.073,1.983 -2.031,2.558c0.939,-0.115 1.83,-0.364 2.654,-0.728c-0.623,0.929 -1.409,1.743 -2.309,2.394c0.01,0.192 0.01,0.393 0.01,0.594Z",
 
@@ -116,15 +176,24 @@ const twitterIcon = new AppIconObject(
 const xIcon = new AppIconObject(
   "X",
 
-  "",
+  "/",
 
   "M32,2.4l-0,27.2c-0,1.325 -1.075,2.4 -2.4,2.4l-27.2,-0c-1.325,-0 -2.4,-1.075 -2.4,-2.4l0,-27.2c0,-1.325 1.075,-2.4 2.4,-2.4l27.2,0c1.325,0 2.4,1.075 2.4,2.4Zm-18.76,15.099l-9.045,10.501l2.471,0l7.668,-8.903l6.094,8.903l7.572,0l-9.433,-13.781l8.769,-10.219l-2.47,0l-7.396,8.617l-5.898,-8.617l-7.572,0l9.24,13.499Zm-2.719,-11.499l13.69,20l-2.732,0l-13.69,-20l2.732,0Z",
 
   "M13.24,17.499l-9.24,-13.499l7.572,0l5.898,8.617l7.396,-8.617l2.47,0l-8.769,10.219l9.433,13.781l-7.572,0l-6.094,-8.903l-7.668,8.903l-2.471,0l9.045,-10.501Zm-2.719,-11.499l-2.732,-0l13.69,20l2.732,0l-13.69,-20Z"
 );
 
-// Searchable export object with all icons
+/**
+ * Icon collection and utility exports
+ * =================================
+ */
+
+/**
+ * Collection of all application icons with utility methods
+ * @type {Object.<string, AppIconObject|Function>}
+ */
 export const appIcons = {
+  // Icon instances are referenced here...
   linkedin: linkedInIcon,
   bluesky: blueskyIcon,
   thexplace: theXPlaceIcon,
@@ -136,14 +205,22 @@ export const appIcons = {
   twitter: twitterIcon,
   x: xIcon,
 
-  // Function to search icons by name
+  /**
+   * Searches for an icon by name (case-insensitive partial match)
+   * @param {string} name - Name to search for
+   * @returns {AppIconObject|undefined} Matching icon or undefined if not found
+   */
   findByName: (name) => {
       const normalizedSearch = name.toLowerCase();
       return Object.values(appIcons)
           .filter(icon => icon instanceof AppIconObject)
-          .find(icon => icon.appName.toLowerCase().includes(normalizedSearch));
+          .find(icon => icon.appName.toLowerCase() === normalizedSearch);
   },
-  // Get all icon names
+
+  /**
+   * Returns array of all available icon names
+   * @returns {string[]} Array of icon names
+   */
   getAllNames: () => {
       return Object.values(appIcons)
           .filter(icon => icon instanceof AppIconObject)

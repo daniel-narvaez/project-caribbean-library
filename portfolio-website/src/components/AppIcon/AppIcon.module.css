@@ -1,4 +1,12 @@
-.appIcon {
-  aspect-ratio: 1;
-  width: 100%;
+/**
+ * AppIcon.module.css
+ * ================
+ * 
+ * Styles for the AppIcon component
+ * Ensures proper scaling and proportions for SVG icons
+ */
+
+ .appIcon {
+  aspect-ratio: 1;  /* Maintain square proportions */
+  width: 100%;      /* Fill container width */
 }

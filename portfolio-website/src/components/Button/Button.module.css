@@ -1,23 +1,20 @@
 /**
  * Button Base Styles
  * -----------------
- * Common button foundation using pseudo-elements for effects:
- * - ::before handles backgrounds/borders
- * - Nested span handles text styling
- * Both elements animated for smooth state transitions
+ * Common foundation for all button variants
  */
  .button {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: stretch;
+
   z-index: 0;
   padding: var(--padding-size) calc(var(--padding-size) * 2);
   text-decoration: none;
-  
 }
 
+/* Common pseudo-element styling */
 .button::before {
   content: '';
   position: absolute;
@@ -28,6 +25,7 @@
   transition: var(--menuControl-hover);
 }
 
+/* Common text styling */
 .button span {
   font-family: var(--heading-text);
   font-weight: 400;
@@ -36,24 +34,26 @@
   transition: var(--menuControl-hover);
 }
 
+/* Disabled state */
+.button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 /**
- * Button Variants
- * --------------
- * Two distinct button styles with consistent interaction:
- * 1. Solid: Filled background with light text
- *    - Adds prominent shadow on hover
- *    - Scales down slightly when active
- * 
- * 2. Island: Border-only with matching text color
- *    - Lighter shadow effect on hover
- *    - Maintains consistent active state with solid
- * 
- * Both use the same scale animation for active state
- * to maintain consistent interaction feel.
+ * Common Active State
+ * ------------------
+ * Shared transform and transition properties
  */
+.button:active::before,
+.button:active span {
+  transform: scale(92%);
+  transition: var(--menuControl-active);
+}
 
 /**
  * Solid Button Variant
+ * -------------------
  */
 .button.solid::before {
   background-color: var(--color-link);
@@ -74,18 +74,28 @@
 
 .button.solid:active::before {
   background-color: var(--color-link-active);
-  transform: scale(92%);
-  transition: var(--menuControl-active);
 }
 
 .button.solid:active span {
   color: var(--color-bg1-active);
-  transform: scale(92%);
-  transition: var(--menuControl-active);
+}
+
+/* Solid Action Variant */
+.button.solid.action::before {
+  background-color: var(--color-action);
+}
+
+.button.solid.action:hover::before {
+  background-color: var(--color-action-hover);
+}
+
+.button.solid.action:active::before {
+  background-color: var(--color-action-active);
 }
 
 /**
  * Island Button Variant
+ * -------------------
  */
 .button.island::before {
   border: var(--number-cornerRadius) solid var(--color-link);
@@ -105,13 +115,111 @@
 }
 
 .button.island:active::before {
-  border-color: var(--color-link-hover);
-  transform: scale(92%);
-  transition: var(--menuControl-active);
+  border-color: var(--color-link-active);
 }
 
 .button.island:active span {
-  color: var(--color-link-hover);
-  transform: scale(92%);
-  transition: var(--menuControl-active);
+  color: var(--color-link-active);
 }
+
+/* Island Action Variant */
+.button.island.action::before {
+  border-color: var(--color-action);
+}
+
+.button.island.action span {
+  color: var(--color-action);
+}
+
+.button.island.action:hover::before {
+  border-color: var(--color-action-hover);
+}
+
+.button.island.action:hover span {
+  color: var(--color-action-hover);
+}
+
+.button.island.action:active::before {
+  border-color: var(--color-action-active);
+}
+
+.button.island.action:active span {
+  color: var(--color-action-active);
+}
+
+/**
+ * Waves Button Variant
+ * ------------------
+ */
+.button.waves {
+  width: 18.75rem;
+  overflow: hidden;
+  box-shadow: var(--fx-boxShadow1);
+}
+
+.button.waves::before {
+  background-color: var(--color-link-hover);
+}
+
+.button.waves span {
+  color: var(--color-bg1-hover);
+  z-index: 1;
+}
+
+.button.waves .wave {
+  opacity: 0.5;
+  position: absolute;
+  background-color: var(--color-link);
+  border-radius: 70% 60% 75% 55% / 55% 75% 60% 70%;
+  transition: scale var(--trans-tide);
+  animation: drift var(--anim-drift);
+}
+
+.button.waves:active::before {
+  background-color: var(--color-link-active);
+}
+
+.button.waves:active span {
+  color: var(--color-bg1-active);
+}
+
+.button.waves:disabled .wave {
+  opacity: 0;
+}
+
+/* Waves Action Variant */
+.button.waves.action::before {
+  background-color: var(--color-action-hover);
+}
+
+.button.waves.action .wave {
+  background-color: var(--color-action);
+}
+
+.button.waves.action:active::before {
+  background-color: var(--color-action-active);
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/**
+ * Hero Button Variant
+ * -----------------
+ */
+.button.hero {
+  padding: 0.75rem 1.5rem;
+}
+
+.button.hero::before {
+  border-radius: 0.25rem;
+}
+
+.button.hero span {
+  font-size: var(--hero-cta-button-size);
+}
+
+/* Hero Action Variants automatically inherit 
+   color schemes from their respective base variants */

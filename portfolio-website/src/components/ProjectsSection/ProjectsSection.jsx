@@ -7,55 +7,7 @@ import styles from './ProjectsSection.module.css';
 import { clockOutProject, chihuahuaChampProject, theHexPerplexProject } from "../../data/gameProjects";
 
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
-
-
-/**
- * Waves-Style Button Component
- * Memoized to prevent unnecessary re-renders
- * 
- * @param {string} title - Button text
- * @param {string} url - Button link destination
- */
-export const WavesButton = memo(({
-title = 'Waves Button',
-url = '/'
-}) => {
-  const buttonRef = useRef(null);
-  const [waveSize, setWaveSize] = useState(0);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    if(buttonRef.current) {
-      const button = buttonRef.current;
-      const width = button.offsetWidth;
-      const height = button.offsetHeight;
-      const diagonal = Math.sqrt(width * width + height)
-      //multiply by 2 for safe coverage
-      setWaveSize(diagonal * 2.25);
-    }
-  }, []);
-
-  return (
-    <a
-      href={url}
-      className={`${styles.wavesButton}`}
-      ref={buttonRef}
-      onMouseEnter={() => setScale(0.75)}
-      onMouseLeave={() => setScale(1)}
-    >
-      <div 
-        className={styles.wave} 
-        style={{
-          width: `${waveSize}px`,
-          height: `${waveSize}px`,
-          marginTop: `-${waveSize}px`,
-          scale: `${scale}`
-        }}
-      />
-      <span>{title}</span>
-    </a>
-  )
-});
+import { WavesButton } from "../Button/Button";
 
 export const ProjectsSection = () => {
   const { size, layout } = useContext(ScreenSizeContext);
@@ -73,7 +25,7 @@ export const ProjectsSection = () => {
           <GameProjectArticle projectData={chihuahuaChampProject.projectArticle}/>
           <GameProjectArticle projectData={theHexPerplexProject.projectArticle}/>
         </div>
-        <WavesButton title="Explore my full portfolio" url="/"/>
+        <WavesButton title='Explore my full portfolio' url='/'/>
       </div>
     </section>
   );

@@ -1,25 +1,71 @@
-// Footer.jsx
-import React from 'react';
-import { useRef, useEffect, useContext } from 'react';
+/**
+ * Footer.jsx
+ * =========
+ * 
+ * Overview:
+ * A responsive footer component featuring an animated wave effect and social media links.
+ * Includes a wave SVG animation and a grid of contact items for social platforms.
+ * 
+ * Key Features:
+ * - Animated wave effect with parallax scrolling
+ * - Responsive design using ScreenSizeContext
+ * - Dynamic color handling using CSS custom properties
+ * - Social media grid with icon support
+ * 
+ * Technical Implementation:
+ * - SVG waves with variable opacity for depth effect
+ * - CSS custom property integration for theming
+ * - Modular component structure with FooterNav
+ */
+
+import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactItem } from '../ContactItem/ContactItem';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
 
-const INITIAL_WAVE_CONFIG = {
-  // COLOR: '#00a9ce'
-  COLOR: '#0047ab'
+// Configuration for wave animation and contact items
+const WAVE_CONFIG = {
+  COLOR: '#0047ab',  // Default color if CSS variable isn't available
+  WAVE_PATTERNS: [
+    { y: 0, opacity: 0.7 },
+    { y: 3, opacity: 0.5 },
+    { y: 5, opacity: 0.3 },
+    { y: 7, opacity: 1.0 }
+  ]
 };
 
+const CONTACT_PLATFORMS = [
+  'Itch',
+  'GitHub',
+  'LinkedIn',
+  'Bluesky',
+  'TheXPlace',
+  'YoungArts Post',
+  'Discord',
+];
+
+/**
+ * Main Footer component
+ * Renders the wave animation and contains footer content
+ * 
+ * @param {Object} props
+ * @param {ReactNode} props.children - Content to be rendered in the footer
+ */
 export const Footer = ({ children }) => {
-  const waveConfig = useRef(INITIAL_WAVE_CONFIG);
+  const waveConfig = useRef(WAVE_CONFIG);
   const { size } = useContext(ScreenSizeContext);
 
+  // Update wave color from CSS custom property if available
   useEffect(() => {
     const root = getComputedStyle(document.documentElement);
-    waveConfig.current = {
-      ...INITIAL_WAVE_CONFIG,
-      COLOR: root.getPropertyValue('--color-link').trim()
-    };
+    const linkColor = root.getPropertyValue('--color-link').trim();
+    
+    if (linkColor) {
+      waveConfig.current = {
+        ...WAVE_CONFIG,
+        COLOR: linkColor
+      };
+    }
   }, []);
 
   return (
@@ -38,40 +84,24 @@ export const Footer = ({ children }) => {
             />
           </defs>
           <g className={styles.parallax}>
-            <use 
-              href="#gentle-wave" 
-              x="48" 
-              y="0" 
-              fill={waveConfig.current.COLOR} 
-              opacity="0.7" 
-            />
-            <use 
-              href="#gentle-wave" 
-              x="48" 
-              y="3" 
-              fill={waveConfig.current.COLOR} 
-              opacity="0.5" 
-            />
-            <use 
-              href="#gentle-wave" 
-              x="48" 
-              y="5" 
-              fill={waveConfig.current.COLOR} 
-              opacity="0.3" 
-            />
-            <use 
-              href="#gentle-wave" 
-              x="48" 
-              y="7" 
-              fill={waveConfig.current.COLOR} 
-              opacity="1" 
-            />
+            {WAVE_CONFIG.WAVE_PATTERNS.map(({ y, opacity }, index) => (
+              <use
+                key={`wave-${index}`}
+                href="#gentle-wave"
+                x="48"
+                y={y}
+                fill={waveConfig.current.COLOR}
+                opacity={opacity}
+              />
+            ))}
           </g>
         </svg>
       </div>
+
       <div className={`${styles.footerContent} ${styles[size]}`}>
         {children}
       </div>
+
       <div className={`${styles.footerBottom} ${styles[size]}`}>
         <p>
           &copy; Daniel Narvaez. All rights reserved. <br/>
@@ -82,25 +112,26 @@ export const Footer = ({ children }) => {
   );
 };
 
-export const FooterNav = () => {
+/**
+ * FooterNav component
+ * Displays social media links and contact information
+ * Memoized to prevent unnecessary re-renders
+ */
+export const FooterNav = memo(() => {
   const { size } = useContext(ScreenSizeContext);
 
   return (
     <>
       <div className={`${styles.footerCta} ${styles[size]}`}>
-        <span>
-          Find me around the web
-        </span>
+        <span>Find me around the web</span>
       </div>
       <div className={`${styles.footerNav} ${styles[size]}`}>
-        <ContactItem iconName='Itch' />
-        <ContactItem iconName='GitHub' />
-        <ContactItem iconName='LinkedIn' />
-        <ContactItem iconName='Bluesky' />
-        <ContactItem iconName='TheXPlace' />
-        <ContactItem iconName='YoungArts Post' />
-        <ContactItem iconName='Discord' />
+        {CONTACT_PLATFORMS.map(platform => (
+          <ContactItem key={platform} iconName={platform} />
+        ))}
       </div>
     </>
-  )
-}
+  );
+});
+
+FooterNav.displayName = 'FooterNav';

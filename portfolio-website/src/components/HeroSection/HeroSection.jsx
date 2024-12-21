@@ -41,11 +41,11 @@ import { Navbar } from "../Navbar/Navbar";
 import { Slideshow } from "../Slideshow/Slideshow";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
-import styles from './HeroSection.module.css';
-
 import { testSlides, heroGifSlides } from "../../data/HeroMedia";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
- 
+import { CreateButton } from "../Button/Button";
+
+import styles from './HeroSection.module.css';
  /**
  * Configuration for 3D tilt effect
  * - MAX_ROTATION: Maximum angle of rotation (degrees)
@@ -67,51 +67,6 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
  
  // Context for sharing tilt state with child components
  export const TiltContext = createContext();
- 
- /**
- * Call-to-Action Button Component
- * Memoized to prevent unnecessary re-renders
- * 
- * @param {string} title - Button text
- * @param {string} url - Button link destination
- * @param {string} style - Visual variant ('solid' | 'island')
- * @param {function} onCustomClick - Custom click handler
- */
- export const CTAButton = memo(({
-  title = 'Call-to-Action',
-  url = '#',
-  style = 'solid',
-  onCustomClick // no default value needed, will be undefined if not provided
-}) => {
-  const smoothScrollTo = useSmoothScroll();
-
-  const handleClick = (e) => {
-    // Check if onCustomClick exists before calling it
-    if (onCustomClick) {
-      onCustomClick(e);
-      return;
-    }
-
-    // If it's a hash link, do smooth scroll
-    if (url.startsWith('#')) {
-      e.preventDefault();
-      const targetId = url.slice(1);
-      smoothScrollTo(targetId);
-    }
-  };
-
-  return (
-    <a
-      href={url}
-      className={`${styles.ctaButton} ${styles[style]}`}
-      onClick={handleClick}
-    >
-      <span>{title}</span>
-    </a>
-  );
-});
- 
- CTAButton.displayName = 'CTAButton';
  
  /**
  * Main Hero Section Component
@@ -201,12 +156,14 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
           </p>
           
           <div className={styles.ctaMenu}>
-            <CTAButton
+            <CreateButton
+              className='hero'
               title="Browse my work"
               url="#projects"
               style="solid"
             />
-            <CTAButton
+            <CreateButton
+              className='hero'
               title="Connect with me"
               style="island"
             />
