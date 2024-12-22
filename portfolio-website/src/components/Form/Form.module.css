@@ -140,7 +140,7 @@
 .inputField input:focus ~ label,
 .inputField input:not(:placeholder-shown) ~ label,
 .selectField select:focus ~ label,
-.selectField select:not([value=""]):valid ~ label,
+.selectField select:valid:not([value=""]) ~ label,
 .textBox textarea:focus ~ label,
 .textBox textarea:not(:placeholder-shown) ~ label  {
   top: 0;

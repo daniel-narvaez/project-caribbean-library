@@ -156,12 +156,12 @@ export const SelectField = ({
   });
 
   return (
-    <div className={styles.selectField}>
+    <div className={`${styles.selectField} ${styles[size]}`}>
       <select className='action'
         {...finalSelectConfig}
         onBlur={(e) => validateInput(e.target.value)}
       >
-        <option value=""> </option>
+        <option value="" hidden> </option>
         {uniqueOptions.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}

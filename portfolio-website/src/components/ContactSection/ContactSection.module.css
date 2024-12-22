@@ -54,14 +54,9 @@
 
 }
 
-.formContent .taglineContainer {
+.taglineContainer {
   display: flex;
   max-width: 30rem;
-  /* justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  align-self: stretch;
-   */
 }
 
 .taglineContainer span {
@@ -89,13 +84,20 @@
   border-radius: var(--number-cornerRadius);
   justify-content: center;
 
-  padding: 5rem;
-}
+  gap: 0.5rem;
+  padding: 2rem;
 
-.contactMedia svg {
-  width: 16rem;
-  aspect-ratio: 1;
-  path {
-    fill: var(--color-text1) !important;
+  &.Mobile { 
+    svg {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+
+  &.Desktop { 
+    svg {
+      width: 16rem;
+      height: 16rem;
+    }
   }
 }

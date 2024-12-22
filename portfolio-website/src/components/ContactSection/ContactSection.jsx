@@ -42,7 +42,7 @@ export const ContactSection = () => {
                 id: 'fullName',
                 name: 'name',
                 type: 'fullName',
-                required: false
+                required: true
               }}
             />
             <InputField 
@@ -51,7 +51,7 @@ export const ContactSection = () => {
                 id: 'emailAddress',
                 name: 'email',
                 type: 'email',
-                required: false
+                required: true
               }}
             />
             <SelectField
@@ -59,12 +59,14 @@ export const ContactSection = () => {
               selectConfig={{
                 id: 'messageSubject',
                 name: 'subject',
-                required: false
+                required: true
               }}
               options={[
-                { value: 'Option 1', label: 'Option 1' },
-                { value: 'Option 2', label: 'Option 2' },
-                { value: 'Option 3', label: 'Option 3' },
+                { value: 'collaborate', label: "Let's Collaborate" },
+                { value: 'report', label: 'Report a Bug' },
+                { value: 'feedback', label: 'Share Feedback' },
+                { value: 'hiring', label: "Discuss Opportunities"},
+                { value: 'other', label: 'Something Else' },
               ]}
             />
             <TextBox 
@@ -72,7 +74,7 @@ export const ContactSection = () => {
               textareaConfig={{
                 id: 'messageBody',
                 name: 'message',
-                required: false
+                required: true
               }}
             />
             <div className={styles.ctaMenu}>
@@ -83,8 +85,14 @@ export const ContactSection = () => {
             </div>
           </Form>
         </div>
-        <div className={`${styles.cardContent} ${styles.contactMedia}`}>
+        <div className={`${styles.cardContent} ${styles.contactMedia} ${styles[size]}`}>
           <MessageInABottle id='message-in-a-bottle' />
+          <div className={styles.taglineContainer}>
+            <span className={styles[size]}>
+              Message in a bottle sent! <br/>
+              I'll respond within 48 hours.
+            </span>
+          </div>
         </div>
       </article>
     </section>
