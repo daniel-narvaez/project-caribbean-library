@@ -2,6 +2,16 @@ import { put } from '@vercel/blob';
 
 export const getImageUrl = (path) => new URL(`/assets/${path}`, import.meta.url).href;
 
+export const getArticle = (word) => {
+  // Convert to lowercase to simplify checking
+  const firstLetter = word.charAt(0).toLowerCase();
+  
+  // Check if first letter is a vowel
+  const isVowel = ['a', 'e', 'i', 'o', 'u'].includes(firstLetter);
+  
+  return isVowel ? 'an' : 'a';
+}
+
 export function zeroToAutoHeight(element, shouldExpand, options = {}, initialHeight = 0) {
     const {
         // transition = '',

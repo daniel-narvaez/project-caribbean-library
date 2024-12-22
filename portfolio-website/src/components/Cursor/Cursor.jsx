@@ -126,7 +126,7 @@ export const AnimatedCursor = () => {
       let current = element;
       while (current && current !== document.documentElement) {
         // Check if it's a link by tag name
-        const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON');
+        const isLink = (current.tagName === 'A' || current.tagName === 'BUTTON') && !current.classList.contains('action');
         
         // Check for action class
         const isAction = current.classList.contains('action');

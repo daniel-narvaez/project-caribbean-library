@@ -1,4 +1,4 @@
-import React, { memo, useContext } from "react";
+import React, { memo } from "react";
 import styles from './Button.module.css';
 import { useButtonLogic } from "./buttonLogic";
 
