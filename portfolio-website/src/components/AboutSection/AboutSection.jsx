@@ -192,7 +192,7 @@ export const AboutSection = () => {
           />
           <CreateButton
             title="Reach out"
-            url='/'
+            url='#contact'
             style='island'
           />
         </div>

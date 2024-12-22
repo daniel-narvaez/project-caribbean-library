@@ -165,6 +165,7 @@ import styles from './HeroSection.module.css';
             <CreateButton
               className='hero'
               title="Connect with me"
+              url="#contact"
               style="island"
             />
           </div>

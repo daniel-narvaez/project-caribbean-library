@@ -11,6 +11,7 @@ import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 import { AboutSection } from './components/AboutSection/AboutSection';
 import { ContactSection } from './components/ContactSection/ContactSection';
 import { Footer, FooterNav } from './components/Footer/Footer';
+import { ScrollAnchor } from './components/ScrollAnchor/ScrollAnchor';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <div className={styles.App}>
             <Background>
               <HeroSection />
+              <ScrollAnchor />
               <ProjectsSection />
               <AboutSection />
               <ContactSection />

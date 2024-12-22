@@ -45,16 +45,15 @@
   /* Parallax wave animations
      ====================== */
   .parallax > use {
-    animation: move-forever 25s ease-in-out infinite;
+    animation: move-forever 25s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
   
-  /* Custom timing for each wave layer */
   .parallax > use:nth-child(1) {
-    animation: move-forever 7s cubic-bezier(0.25, 0.1, 0.25, 1) -2s infinite;
+    animation: move-forever 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) -2s infinite;
   }
   
   .parallax > use:nth-child(2) {
-    animation: move-forever 10s cubic-bezier(0.42, 0, 0.58, 1) -3s infinite;
+    animation: move-forever 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) -3s infinite;
   }
   
   .parallax > use:nth-child(3) {
@@ -62,12 +61,11 @@
   }
   
   .parallax > use:nth-child(4) {
-    animation: move-forever 20s cubic-bezier(0.47, 0, 0.745, 0.715) -5s infinite;
+    animation: move-forever 20s cubic-bezier(0.45, 0.05, 0.55, 0.95) -5s infinite;
   }
   
   @keyframes move-forever {
     0% { transform: translateX(-90px); }
-    50% { transform: translateX(0); }
     100% { transform: translateX(85px); }
   }
   
