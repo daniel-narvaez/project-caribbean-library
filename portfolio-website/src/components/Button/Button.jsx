@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import styles from './Button.module.css';
-import { useButtonLogic } from "./buttonLogic";
+import { useButtonLogic } from "./ButtonLogic";
 
 /**
  * Base Button Component
