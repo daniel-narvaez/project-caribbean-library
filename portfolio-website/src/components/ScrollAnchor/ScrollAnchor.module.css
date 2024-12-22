@@ -1,0 +1,18 @@
+.scrollAnchor {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  z-index: 50;
+  cursor: pointer;
+}
+
+.svg {
+  pointer-events: auto;
+}

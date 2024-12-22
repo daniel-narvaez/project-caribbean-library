@@ -278,7 +278,7 @@ export const Slideshow = ({ slides = [] }) => {
   const nextIndex = (currentIndex + 1) % slides.length;
 
   return (
-    <section className={styles.slidesContainer}>
+    <div className={styles.slidesContainer}>
       <div
         ref={containerRef}
         className={styles.mediaContainer}
@@ -303,6 +303,6 @@ export const Slideshow = ({ slides = [] }) => {
           {renderMedia(slides[nextIndex])}
         </div>
       </div>
-    </section>
+    </div>
   );
 };

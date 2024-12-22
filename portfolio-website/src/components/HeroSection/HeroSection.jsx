@@ -133,50 +133,52 @@ import styles from './HeroSection.module.css';
   }, []);
  
   return (
-    <main
-      className={styles.heroSection}
-      ref={containerRef}
-      // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
-      // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
-    >
-      <Navbar />
+    <main>
+      <section
+        className={styles.heroSection}
+        ref={containerRef}
+        // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
+        // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
+      >
+        <Navbar />
 
-      <div className={styles.heroContainer}>   
-        <div className={styles.heroContent}>
-          <h2 className={styles.headline}>
-            Elevating experiences <br/>
-            through meticulous <br/>
-            game design.
-          </h2>
-          
-          <p className={styles.tagline}>
-            Hi I'm Daniel, a <b>game designer</b> based in <br/>
-            The Bronx, NY. I specialize in Economy <br/>
-            Systems Design and UI/UX Design.
-          </p>
-          
-          <div className={styles.ctaMenu}>
-            <CreateButton
-              className='hero'
-              title="Browse my work"
-              url="#projects"
-              style="solid"
-            />
-            <CreateButton
-              className='hero'
-              title="Connect with me"
-              url="#contact"
-              style="island"
-            />
+        <div className={styles.heroContainer}>   
+          <div className={styles.heroContent}>
+            <h2 className={styles.headline}>
+              Elevating experiences <br/>
+              through meticulous <br/>
+              game design.
+            </h2>
+            
+            <p className={styles.tagline}>
+              Hi I'm Daniel, a <b>game designer</b> based in <br/>
+              The Bronx, NY. I specialize in Economy <br/>
+              Systems Design and UI/UX Design.
+            </p>
+            
+            <div className={styles.ctaMenu}>
+              <CreateButton
+                className='hero'
+                title="Browse my work"
+                url="#projects"
+                style="solid"
+              />
+              <CreateButton
+                className='hero'
+                title="Connect with me"
+                url="#contact"
+                style="island"
+              />
+            </div>
           </div>
+  
+          <TiltContext.Provider value={{ tilt, setTilt }}>
+            <div className={styles.heroMedia}>
+              <Slideshow slides={heroGifSlides} />
+            </div>
+          </TiltContext.Provider>
         </div>
- 
-        <TiltContext.Provider value={{ tilt, setTilt }}>
-          <div className={styles.heroMedia}>
-            <Slideshow slides={heroGifSlides} />
-          </div>
-        </TiltContext.Provider>
-      </div>
+      </section>
     </main>
   );
  };

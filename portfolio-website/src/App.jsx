@@ -22,8 +22,8 @@ function App() {
           <AnimatedCursor />
           <div className={styles.App}>
             <Background>
-              <HeroSection />
               <ScrollAnchor />
+              <HeroSection />
               <ProjectsSection />
               <AboutSection />
               <ContactSection />
