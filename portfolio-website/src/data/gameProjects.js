@@ -68,8 +68,8 @@ export const createGameProject = ({
     },
     heading: projectArticle.heading || title || 'Untitled Project',
     tagline:  projectArticle.tagline || `A short tagline about ${title}.`,
-    readMoreBtn: projectArticle.portfolioUrl || '/',
-    playBtn: projectArticle.gameUrl || '/'
+    readMoreBtn: portfolioUrl || '/',
+    playBtn: gameUrl || '/'
   };
 
   return {
@@ -87,7 +87,7 @@ export const createGameProject = ({
 export const clockOutProject = createGameProject({
   title: 'Clock Out!!',
   portfolioUrl: '/',
-  gameUrl: '/',
+  gameUrl: 'https://daniel-narvaez.itch.io/clock-out',
   projectArticle: {
     images: {
       cardFg: {
@@ -114,7 +114,7 @@ export const clockOutProject = createGameProject({
 export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
   portfolioUrl: '/',
-  gameUrl: '/',
+  gameUrl: 'https://daniel-narvaez.itch.io/chihuahua-champ',
   projectArticle: {
     images: {
       cardFg: {
@@ -141,7 +141,7 @@ export const chihuahuaChampProject = createGameProject({
 export const theHexPerplexProject = createGameProject({
   title: 'The Hex Perplex',
   portfolioUrl: '/',
-  gameUrl: '/',
+  gameUrl: 'https://daniel-narvaez.itch.io/the-hex-perplex',
   projectArticle: {
     images: {
       cardFg: {

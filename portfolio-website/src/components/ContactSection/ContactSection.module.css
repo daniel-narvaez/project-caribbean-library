@@ -1,0 +1,57 @@
+.contactSection {
+  display: flex;
+  padding: 5rem 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  align-self: stretch;
+}
+
+.contactSection .heading {
+  z-index: 1;
+  
+  &.Desktop {font-size: 2.5rem; }
+
+  &.Mobile { font-size: 1.875rem; }
+}
+
+.contactSection .contactArticle {
+  display: flex;
+  width: 100%;
+  max-width: 45rem;
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  align-self: center;
+
+  border-radius: var(--number-cornerRadius);
+  background: var(--color-bg1-hover);
+  box-shadow: var(--fx-boxShadow1);
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  align-self: stretch;
+}
+
+.formContent .taglineContainer {
+  display: flex;
+  max-width: 30rem;
+  /* justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+   */
+}
+
+.taglineContainer span {
+  text-align: center;
+  font-family: var(--font-libreBaskerville);
+  font-size: 1.1875rem;
+}

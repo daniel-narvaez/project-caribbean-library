@@ -148,69 +148,6 @@
 }
 
 /**
- * Waves Button Variant
- * ------------------
- */
-.button.waves {
-  width: 18.75rem;
-  overflow: hidden;
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.button.waves:disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.button.waves::before {
-  background-color: var(--color-link-hover);
-}
-
-.button.waves span {
-  color: var(--color-bg1-hover);
-  z-index: 1;
-}
-
-.button.waves .wave {
-  opacity: 0.5;
-  position: absolute;
-  background-color: var(--color-link);
-  border-radius: 70% 60% 75% 55% / 55% 75% 60% 70%;
-  transition: scale var(--trans-tide);
-  animation: drift var(--anim-drift);
-}
-
-.button.waves:active::before {
-  background-color: var(--color-link-active);
-}
-
-.button.waves:active span {
-  color: var(--color-bg1-active);
-}
-
-.button.waves:disabled .wave {
-  opacity: 0;
-}
-
-/* Waves Action Variant */
-.button.waves.action::before {
-  background-color: var(--color-action-hover);
-}
-
-.button.waves.action .wave {
-  background-color: var(--color-action);
-}
-
-.button.waves.action:active::before {
-  background-color: var(--color-action-active);
-}
-
-@keyframes drift {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/**
  * Hero Button Variant
  * -----------------
  */

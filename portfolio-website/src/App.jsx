@@ -9,6 +9,7 @@ import { Background } from './components/Background/Background';
 import { HeroSection } from './components/HeroSection/HeroSection';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 import { AboutSection } from './components/AboutSection/AboutSection';
+import { ContactSection } from './components/ContactSection/ContactSection';
 import { Footer, FooterNav } from './components/Footer/Footer';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <HeroSection />
               <ProjectsSection />
               <AboutSection />
+              <ContactSection />
               <Footer>
                 <FooterNav/>
               </Footer>

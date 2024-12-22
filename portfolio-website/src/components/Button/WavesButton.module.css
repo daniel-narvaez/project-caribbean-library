@@ -1,0 +1,108 @@
+/**
+ * WavesButton Base
+ * ---------------
+ * Base styles required from the main button styles
+ */
+ .button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  padding: var(--padding-size) calc(var(--padding-size) * 2);
+  text-decoration: none;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  z-index: -1;
+  border-radius: var(--number-cornerRadius);
+  transition: var(--menuControl-hover);
+}
+
+.button span {
+  font-family: var(--heading-text);
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  transition: var(--menuControl-hover);
+}
+
+/* Handle both button:disabled and anchor[aria-disabled="true"] states */
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/**
+ * Waves Button Specific Styles
+ * --------------------------
+ */
+.waves {
+  width: 18.75rem; /* 18.75rem = 300px, which is the smallest project article width*/
+  overflow: hidden;
+  box-shadow: var(--fx-boxShadow1);
+}
+
+.waves::before {
+  background-color: var(--color-link-hover);
+}
+
+.waves span {
+  color: var(--color-bg1-hover);
+  z-index: 1;
+}
+
+/* Wave animation element */
+.wave {
+  opacity: 0.5;
+  position: absolute;
+  background-color: var(--color-link);
+  border-radius: 70% 60% 75% 55% / 55% 75% 60% 70%;
+  transition: scale var(--trans-tide);
+  animation: drift var(--anim-drift);
+}
+
+.waves:active {
+  transform: scale(92%);
+  transition: var(--menuControl-active);
+}
+
+.waves:active::before {
+  background-color: var(--color-link-active);
+}
+
+.waves:active span {
+  color: var(--color-bg1-active);
+}
+
+.waves:disabled .wave,
+.waves[aria-disabled="true"] .wave {
+  opacity: 0;
+  animation: none;
+}
+
+/* Action variant styles */
+.waves.action::before {
+  background-color: var(--color-action-hover);
+}
+
+.waves.action .wave {
+  background-color: var(--color-action);
+}
+
+.waves.action:active::before {
+  background-color: var(--color-action-active);
+}
+
+/**
+ * Animation
+ */
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

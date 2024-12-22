@@ -32,7 +32,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './GameProjectArticle.module.css';
 import { zeroToAutoHeight } from '../../utils';
-import { IslandButton, SolidButton } from '../Button/Button';
+import { CreateButton, IslandButton, SolidButton } from '../Button/Button';
 
 /**
  * Configuration for parallax effects
@@ -221,25 +221,6 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
  };
  
  /**
- * Game Project Button Component
- * Interactive button with hover effects and variant styles.
- * 
- * @param {string} title - Button text content
- * @param {string} url - Button destination URL
- * @param {string} style - Button style variant ('solid' | 'island')
- */
- const GameProjectButton = ({title = 'Title', url = '', style = 'solid'}) => {
-  return (
-    <a
-      href={url}
-      className={`${styles.projectButton} ${styles[style]}`}
-    >
-      <span>{title}</span>
-    </a>
-  );
- }
- 
- /**
  * Article Layout Component
  * Handles structural layout and responsive image selection.
  * Supports card and banner layouts with appropriate image assets.
@@ -267,7 +248,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
   const { src: foregroundSrc, alt: foregroundAlt } = layout.includes('Card')
     ? projectData.images.cardFg
     : projectData.images.bannerFg;
- 
+
   return (
     <article
       ref={articleRef}
@@ -304,13 +285,16 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
             </p>
           </div>
           <div className={styles.projectMenu}>
-            <SolidButton 
+            <CreateButton 
               title='Read More'
               url={projectData.readMoreBtn}
+              style='solid'
             />
-            <IslandButton
+            <CreateButton
               title='Play'
               url={projectData.playBtn}
+              style='island'
+              newTab={true}
             />
           </div>
         </div>

@@ -1,0 +1,43 @@
+/* styles.module.css */
+.form {
+  position: relative;
+  align-self: flex-start;
+}
+
+.form :global(label) {
+  position: absolute;
+  font-family: var(--font-libreBaskerville);
+  font-size: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s ease; /* Added transition for smooth movement */
+}
+
+.form :global(input) {
+  display: flex;
+  height: 2rem;
+  min-width: 10rem;
+  background: none;
+  border: none;
+  border-bottom: calc(var(--number-cornerRadius)/2) solid var(--color-bg1-active);
+}
+
+.form :global(input::placeholder) {
+  opacity: 0;
+}
+
+.form :global(input:focus) {
+  outline: none;
+  border: none;
+  border-bottom: 1.2px dotted var(--color-action-active);
+}
+
+/* Changed these selectors */
+.form :global(input:focus) ~ :global(label),
+.form :global(input:not(:placeholder-shown)) ~ :global(label) {
+  top: 0;
+  transform: translateY(-50%);
+  color: red;
+}
+
+
