@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
+import MessageInABottle from '../../../assets/images/message-in-a-bottle.svg?react';
 import { Form, InputField, SelectField, TextBox, SubmitButton } from "../Form/Form";
 
 import styles from './ContactSection.module.css';
@@ -8,9 +9,10 @@ import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 export const ContactSection = () => {
   const { size } = useContext(ScreenSizeContext);
-
+  const [submitted, setSubmitted] = useState(false);
+  
   const handleSubmit = (e) => {
-    // Your form submission logic here
+    setSubmitted(true);
     console.log('Parent received submit');
   };
 
@@ -22,8 +24,12 @@ export const ContactSection = () => {
       <h2 className={`${styles.heading} ${styles[size]}`}>
         Contact
       </h2>
-      <article className={styles.contactArticle}>
-        <div className={styles.formContent}>
+
+      <article className={`
+        ${styles.contactArticle} 
+        ${submitted ? styles.flipped : ''}
+      `}>
+        <div className={`${styles.cardContent} ${styles.formContent}`}>
           <div className={styles.taglineContainer}>
             <span className={styles[size]}>
               Want to reach out? Cast a message to my inbox, and let's begin our conversation. 
@@ -36,7 +42,7 @@ export const ContactSection = () => {
                 id: 'fullName',
                 name: 'name',
                 type: 'fullName',
-                required: true
+                required: false
               }}
             />
             <InputField 
@@ -45,7 +51,7 @@ export const ContactSection = () => {
                 id: 'emailAddress',
                 name: 'email',
                 type: 'email',
-                required: true
+                required: false
               }}
             />
             <SelectField
@@ -53,7 +59,7 @@ export const ContactSection = () => {
               selectConfig={{
                 id: 'messageSubject',
                 name: 'subject',
-                required: true
+                required: false
               }}
               options={[
                 { value: 'Option 1', label: 'Option 1' },
@@ -66,7 +72,7 @@ export const ContactSection = () => {
               textareaConfig={{
                 id: 'messageBody',
                 name: 'message',
-                required: true
+                required: false
               }}
             />
             <div className={styles.ctaMenu}>
@@ -77,8 +83,8 @@ export const ContactSection = () => {
             </div>
           </Form>
         </div>
-        <div className={styles.contactMedia}>
-
+        <div className={`${styles.cardContent} ${styles.contactMedia}`}>
+          <MessageInABottle id='message-in-a-bottle' />
         </div>
       </article>
     </section>

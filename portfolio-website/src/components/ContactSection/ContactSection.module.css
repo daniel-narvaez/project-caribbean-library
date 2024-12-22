@@ -6,11 +6,12 @@
   align-items: center;
   gap: 5rem;
   align-self: stretch;
+  perspective: 1000px;
 }
 
 .contactSection .heading {
   z-index: 1;
-
+  
   &.Mobile { font-size: 1.875rem; }
   
   &.Desktop {font-size: 2.5rem; }
@@ -26,18 +27,31 @@
   align-items: center;
   gap: 2rem;
   align-self: center;
-
+  
   border-radius: var(--number-cornerRadius);
   background: var(--color-bg1-hover);
   box-shadow: var(--fx-boxShadow1);
+
+  transform-style: preserve-3d;
+  position: relative;
+  transition: transform 0.8s;
 }
 
-.formContent {
+.contactSection .contactArticle.flipped {
+  transform: rotateY(180deg);
+}
+
+.cardContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   align-self: stretch;
+  backface-visibility: hidden;
+}
+
+.formContent {
+
 }
 
 .formContent .taglineContainer {
@@ -50,11 +64,6 @@
    */
 }
 
-.formContent .ctaMenu {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .taglineContainer span {
   text-align: center;
   font-family: var(--font-libreBaskerville);
@@ -62,4 +71,31 @@
   &.Mobile {font-size: 1.125rem; }
 
   &.Desktop { font-size: 1.1875rem; }
+}
+
+.formContent .ctaMenu {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contactMedia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+  background: var(--color-bg1-hover);
+  border-radius: var(--number-cornerRadius);
+  justify-content: center;
+
+  padding: 5rem;
+}
+
+.contactMedia svg {
+  width: 16rem;
+  aspect-ratio: 1;
+  path {
+    fill: var(--color-text1) !important;
+  }
 }

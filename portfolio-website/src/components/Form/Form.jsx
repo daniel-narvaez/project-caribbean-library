@@ -7,6 +7,7 @@ import { getArticle } from '../../utils';
 
 
 export const Form = ({ children, onSubmit }) => {
+
   const handleSubmit = (e) => {
     e.preventDefault();  // Prevent default form submission
     console.log('Form submitted');
