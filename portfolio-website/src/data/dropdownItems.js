@@ -115,6 +115,10 @@ const gamesItem = createDropdownItem({
         })
       ]
     }),
+    reateDropdownItem({
+      title: 'All Games',
+      url: '/',
+    })
   ]
 });
 
