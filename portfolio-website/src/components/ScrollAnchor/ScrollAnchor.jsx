@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
 import styles from './ScrollAnchor.module.css';
 import { useChapters } from '../../contexts/Chapters';
 import { useSmoothScroll } from '../../utils/useSmoothScroll';
+import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
 const INITIAL_ARROW_CONFIG = {
   COLORS: {
@@ -28,6 +29,7 @@ const INITIAL_ARROW_CONFIG = {
 };
 
 export const ScrollAnchor = () => {
+  const { size } = useContext(ScreenSizeContext);
   const { getNextChapter } = useChapters();
   const smoothScrollTo = useSmoothScroll();
   const [isUp, setIsUp] = useState(false);
@@ -195,10 +197,10 @@ export const ScrollAnchor = () => {
       onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
       onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
       onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
-      className={styles.scrollAnchor}
+      className={`${styles.scrollAnchor} ${styles[size]}`}
       aria-label={isUp ? "Scroll up" : "Scroll down"}
     >
-      <svg 
+      <svg
         width="100%"
         height="100%"
         viewBox="0 0 300 300" 

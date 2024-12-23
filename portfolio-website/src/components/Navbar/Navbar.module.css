@@ -21,7 +21,7 @@
       0.8rem 
       max(env(safe-area-inset-right), 0.8rem) 
       0.8rem 
-      max(env(safe-area-inset-right), 0.8rem);
+      max(env(safe-area-inset-left), 0.8rem);
     /* Keep vertical padding as is, but respect safe areas on sides */
   }
 }
