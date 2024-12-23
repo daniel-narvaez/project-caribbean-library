@@ -167,4 +167,4 @@ export const theHexPerplexProject = createGameProject({
 
 export const projectArticlesData = [clockOutProject.projectArticle, chihuahuaChampProject.projectArticle, theHexPerplexProject.projectArticle];
 
-export const gameProjectsData = [clockOutProject, chihuahuaChampProject, theHexPerplexProject]
+export const gameProjectsData = {clockOutProject, chihuahuaChampProject, theHexPerplexProject}

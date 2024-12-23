@@ -74,6 +74,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     return item.url ? (
       <a
         href={item.url}
+        onClick={hasSubmenu ? handleClick : undefined}
         {...getLinkAttributes(item.url)}
         className={`${styles.menuLink} ${isActive ? styles.menuLinkActive : ''}`}
       >

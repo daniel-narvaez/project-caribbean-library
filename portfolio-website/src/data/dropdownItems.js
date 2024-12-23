@@ -1,7 +1,9 @@
 /**********************************
 * DROPDOWN MENU DATA STRUCTURE
 **********************************/
-import { clockOutProject, gameProjectsData, theHexPerplexProject } from "./gameProjects";
+import { gameProjectsData } from "./gameProjects";
+import { appIcons, socialMediaData } from "./appIcons";
+
 /**
 * Factory function to create consistent dropdown menu items
 * Ensures all items follow the same data structure
@@ -16,7 +18,7 @@ import { clockOutProject, gameProjectsData, theHexPerplexProject } from "./gameP
 */
 export const createDropdownItem = ({
   title,
-  url = '',
+  url = '/',
   icon = null,
   action = () => {},
   submenu = []
@@ -58,52 +60,58 @@ const gamesItem = createDropdownItem({
   url: '/',
   submenu: [
     createDropdownItem({
-      title: 'Chihuahua Champ',
-      url: '/',
-    }),
-    createDropdownItem({
-      title: 'Star Sweepers',
-      url: '/',
-    }),
-    createDropdownItem({
-      title: 'Project: Boricuas',
-      url: '/',
+      title: gameProjectsData.chihuahuaChampProject.title,
       submenu: [
         createDropdownItem({
-          title: 'Part 1',
-          url: '/',
+          title: 'Read More',
+          url: gameProjectsData.chihuahuaChampProject.portfolioUrl,
         }),
         createDropdownItem({
-          title: 'Part 2',
-          url: '/',
+          title: 'Play',
+          url: gameProjectsData.chihuahuaChampProject.gameUrl,
+        })
+      ]
+    }),
+    // createDropdownItem({
+    //   title: 'Star Sweepers',
+    //   url: '/',
+    // }),
+    // createDropdownItem({
+    //   title: 'Project: Boricuas',
+    //   submenu: [
+    //     createDropdownItem({
+    //       title: 'Part 1',
+    //       url: '/',
+    //     }),
+    //     createDropdownItem({
+    //       title: 'Part 2',
+    //       url: '/',
+    //     })
+    //   ]
+    // }),
+    createDropdownItem({
+      title: gameProjectsData.clockOutProject.title,
+      submenu: [
+        createDropdownItem({
+          title: 'Read More',
+          url: gameProjectsData.clockOutProject.portfolioUrl,
+        }),
+        createDropdownItem({
+          title: 'Play',
+          url: gameProjectsData.clockOutProject.gameUrl,
         })
       ]
     }),
     createDropdownItem({
-      title: clockOutProject.title,
-      url: ' ',
+      title: gameProjectsData.theHexPerplexProject.title,
       submenu: [
         createDropdownItem({
           title: 'Read More',
-          url: clockOutProject.portfolioUrl,
+          url: gameProjectsData.theHexPerplexProject.portfolioUrl,
         }),
         createDropdownItem({
           title: 'Play',
-          url: clockOutProject.gameUrl,
-        })
-      ]
-    }),
-    createDropdownItem({
-      title: theHexPerplexProject.title,
-      url: ' ',
-      submenu: [
-        createDropdownItem({
-          title: 'Read More',
-          url: theHexPerplexProject.portfolioUrl,
-        }),
-        createDropdownItem({
-          title: 'Play',
-          url: theHexPerplexProject.gameUrl,
+          url: gameProjectsData.theHexPerplexProject.gameUrl,
         })
       ]
     }),
@@ -119,9 +127,56 @@ const aboutItem = createDropdownItem({
 /* Contact */
 const contactItem = createDropdownItem({
   title: 'Contact',
-  url: '/',
+  submenu: [
+    createDropdownItem({
+      title: 'Email',
+    }),
+    createDropdownItem({
+      title: 'Social Media',
+      submenu: [
+        createDropdownItem({
+          title: socialMediaData.linkedInIcon.appName,
+          url: socialMediaData.linkedInIcon.profileUrl,
+        }),
+        createDropdownItem({
+          title: socialMediaData.blueskyIcon.appName,
+          url: socialMediaData.blueskyIcon.profileUrl
+        }),
+        createDropdownItem({
+          title: socialMediaData.theXPlaceIcon.appName,
+          url: socialMediaData.theXPlaceIcon.profileUrl
+        }),
+        createDropdownItem({
+          title: socialMediaData.youngArtsPostIcon.appName,
+          url: socialMediaData.youngArtsPostIcon.profileUrl
+        }),
+        createDropdownItem({
+          title: socialMediaData.gitHubIcon.appName,
+          url: socialMediaData.gitHubIcon.profileUrl
+        }),
+        createDropdownItem({
+          title: socialMediaData.itchIcon.appName,
+          url: socialMediaData.itchIcon.profileUrl
+        }),
+      ]
+    })
+  ]
 });
 
+const resumeItem = createDropdownItem({
+  title: 'Résumé',
+  submenu: [
+    createDropdownItem({
+      title: 'Read',
+      url: '/'
+    }),
+    createDropdownItem({
+      title: 'Download',
+      url: '/'
+    })
+  ]
+})
+
 /* Array of menu items */
-export const mainMenuData = [gamesItem, aboutItem, contactItem];
+export const mainMenuData = [gamesItem, resumeItem, contactItem, aboutItem];
 

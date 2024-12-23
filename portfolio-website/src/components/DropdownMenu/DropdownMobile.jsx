@@ -101,7 +101,7 @@ const DropdownItem = memo(({
         {item.url ? (
           <a
             href={item.url}
-            onClick={hasSubmenu && handleClick}
+            onClick={hasSubmenu ? handleClick : undefined}
             {...getLinkAttributes(item.url)}
             className={`${styles.menuLink} ${isInActivePath ? styles.menuLinkActive : ''}`}
           >
