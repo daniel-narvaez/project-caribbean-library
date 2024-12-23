@@ -202,12 +202,12 @@ export const ScrollAnchor = () => {
       }}
       onTouchEnd={(e) => {
         handleClick();
+        e.preventDefault();
         setState(prev => ({ 
           ...prev, 
           isPressed: false,
           isHovered: false // Reset hover state on touch end
         }));
-        e.preventDefault();
       }}
       className={`${styles.scrollAnchor} ${styles[size]}`}
       aria-label={isUp ? "Scroll up" : "Scroll down"}
