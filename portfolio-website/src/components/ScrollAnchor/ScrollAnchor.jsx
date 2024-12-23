@@ -193,17 +193,21 @@ export const ScrollAnchor = () => {
   return (
     <button 
       onClick={handleClick}
-      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: (size === 'Desktop') }))}
+      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
       onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
       onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
       onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
-      onTouchStart={() => setState(prev => ({ ...prev, isPressed: true }))}
+      onTouchStart={() => {
+        setState(prev => ({ ...prev, isPressed: true }))
+      }}
       onTouchEnd={(e) => {
+        handleClick();
         setState(prev => ({ 
           ...prev, 
           isPressed: false,
           isHovered: false // Reset hover state on touch end
         }));
+        e.preventDefault();
       }}
       className={`${styles.scrollAnchor} ${styles[size]}`}
       aria-label={isUp ? "Scroll up" : "Scroll down"}
