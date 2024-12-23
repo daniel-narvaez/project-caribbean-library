@@ -59,59 +59,71 @@
 }
 
 /* Input Field Styles
-   ================= */
+  ================= */
 .inputField input {
-    display: flex;
-    min-width: 12.5rem;
-    width: fit-content;
-    height: 2rem;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-    font-family: var(--font-notoSans) !important;
-    font-size: 1rem !important;
-    line-height: 2rem !important;
-    color: var(--color-text1) !important;
-    text-decoration: none !important;
-    transition: var(--menuControl-hover);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: flex;
+  min-width: 12.5rem;
+  width: fit-content;
+  height: 2rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  font-family: var(--font-notoSans) !important;
+  font-size: 1rem !important;
+  line-height: 2rem !important;
+  color: var(--color-text1) !important;
+  text-decoration: none !important;
+  transition: var(--menuControl-hover);
 }
 
 /* Select Field Styles
-   ================= */
+  ================= */
 .selectField select {
-    display: flex;
-    min-width: 12.5rem;
-    height: 2rem;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-    font-family: var(--font-notoSans) !important;
-    font-size: 1rem !important;
-    line-height: 2rem !important;
-    color: var(--color-text1) !important;
-    text-decoration: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: flex;
+  min-width: 12.5rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  font-family: var(--font-notoSans) !important;
+  font-size: 1rem !important;
+  line-height: 2rem !important;
+  color: var(--color-text1) !important;
+  text-decoration: none !important;
 }
 
 /* TextBox Styles
    ============= */
 .textBox textarea {
-    display: flex;
-    width: 100%;
-    min-height: 8rem;
-    height: 12rem;
-    max-height: 30rem;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-    resize: vertical;
-    font-family: var(--font-notoSans) !important;
-    font-size: 1rem !important;
-    line-height: 2rem !important;
-    color: var(--color-text1) !important;
-    text-decoration: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: flex;
+  width: 100%;
+  min-height: 8rem;
+  height: 12rem;
+  max-height: 30rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  resize: vertical;
+  font-family: var(--font-notoSans) !important;
+  font-size: 1rem !important;
+  line-height: 2rem !important;
+  color: var(--color-text1) !important;
+  text-decoration: none !important;
 }
 
 /* Character Counter
@@ -143,6 +155,17 @@
 .inputField input::placeholder,
 .textBox textarea::placeholder {
     opacity: 0;
+}
+
+.inputField input[type="text"],
+.inputField input[type="email"],
+.inputField input[type="number"],
+.textBox textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 1rem;
 }
 
 /* Floating Label Animations
@@ -313,4 +336,22 @@
   color: var(--color-action-active);
 }
 
+/* Remove inner shadow on iOS inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
+/* Remove auto-zoom on iOS */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  font-size: 1rem;  /* prevents auto-zoom */
+}
