@@ -6,6 +6,7 @@
   margin: 0;
   display: block;
   z-index: 50;
+  pointer-events: auto;
   
   &.Desktop {
     width: 3rem;
@@ -20,11 +21,11 @@
     bottom: max(env(safe-area-inset-bottom), 0.8rem);
     right: max(env(safe-area-inset-right), 0.8rem);
   }
+
 }
 
 .svg {
   transform: scale(100%);
-  pointer-events: auto;
   transition: var(--menuControl-active);
 }
 
