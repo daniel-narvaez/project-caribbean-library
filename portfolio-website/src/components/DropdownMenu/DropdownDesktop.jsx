@@ -27,6 +27,7 @@ import { Chevron } from '../Chevron/Chevron';
 // Data and Utilities
 import { mainMenuData } from '../../data/dropdownItems';
 import { zeroToAutoHeight } from '../../utils';
+import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownDesktop.module.css';
@@ -73,7 +74,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
     return item.url ? (
       <a
         href={item.url}
-        onClick={handleClick}
+        {...getLinkAttributes(item.url)}
         className={`${styles.menuLink} ${isActive ? styles.menuLinkActive : ''}`}
       >
         {(hasSubmenu && level !== 0) && <Chevron direction={isActive ? 'right' : 'left'} />}

@@ -1,7 +1,7 @@
 /**********************************
 * DROPDOWN MENU DATA STRUCTURE
 **********************************/
-
+import { clockOutProject, gameProjectsData, theHexPerplexProject } from "./gameProjects";
 /**
 * Factory function to create consistent dropdown menu items
 * Ensures all items follow the same data structure
@@ -80,9 +80,33 @@ const gamesItem = createDropdownItem({
       ]
     }),
     createDropdownItem({
-      title: 'Clock Out!!',
-      url: '/',
-    })
+      title: clockOutProject.title,
+      url: ' ',
+      submenu: [
+        createDropdownItem({
+          title: 'Read More',
+          url: clockOutProject.portfolioUrl,
+        }),
+        createDropdownItem({
+          title: 'Play',
+          url: clockOutProject.gameUrl,
+        })
+      ]
+    }),
+    createDropdownItem({
+      title: theHexPerplexProject.title,
+      url: ' ',
+      submenu: [
+        createDropdownItem({
+          title: 'Read More',
+          url: theHexPerplexProject.portfolioUrl,
+        }),
+        createDropdownItem({
+          title: 'Play',
+          url: theHexPerplexProject.gameUrl,
+        })
+      ]
+    }),
   ]
 });
 

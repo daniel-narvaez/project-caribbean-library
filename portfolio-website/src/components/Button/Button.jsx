@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import styles from './Button.module.css';
 import { useButtonLogic } from "./ButtonLogic";
+import { getLinkAttributes } from "../../utils/externalUrls";
 
 /**
  * Base Button Component
@@ -15,15 +16,14 @@ import { useButtonLogic } from "./ButtonLogic";
  * - Require url prop
  * - Ignore onCustomClick
  * - Disabled when url is ' ' or '/'
- * - Optional newTab prop to open links in new tab
+ * - Automatically handles external links in new tabs
  */
 export const CreateButton = memo(({
   title = 'Button',
   url = '/',
   style = 'solid',
   className = '',
-  onCustomClick,
-  newTab = false
+  onCustomClick
 }) => {
   const {
     size,
@@ -50,11 +50,6 @@ export const CreateButton = memo(({
   }
 
   // Link button (using <a>)
-  const newTabProps = newTab ? {
-    target: "_blank",
-    rel: "noopener noreferrer"
-  } : {};
-
   return (
     <a
       href={isDisabled ? "#" : finalUrl}
@@ -63,7 +58,7 @@ export const CreateButton = memo(({
       aria-disabled={isDisabled}
       role="button"
       tabIndex={isDisabled ? -1 : 0}
-      {...newTabProps}
+      {...getLinkAttributes(finalUrl)}
     >
       <span>{title}</span>
     </a>

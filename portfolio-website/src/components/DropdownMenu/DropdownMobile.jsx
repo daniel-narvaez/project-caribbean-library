@@ -100,7 +100,7 @@ const DropdownItem = memo(({
         {item.url ? (
           <a
             href={item.url}
-            onClick={handleClick}
+            // onClick={handleClick}
             className={`${styles.menuLink} ${isInActivePath ? styles.menuLinkActive : ''}`}
           >
             {buttonContent}

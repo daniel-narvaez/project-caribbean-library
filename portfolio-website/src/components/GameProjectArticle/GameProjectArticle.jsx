@@ -294,7 +294,6 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
               title='Play'
               url={projectData.playBtn}
               style='island'
-              newTab={true}
             />
           </div>
         </div>
