@@ -193,7 +193,7 @@ export const ScrollAnchor = () => {
   return (
     <button 
       onClick={handleClick}
-      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
+      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: (size === 'Desktop') }))}
       onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
       onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
       onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
