@@ -193,18 +193,12 @@ export const ScrollAnchor = () => {
   return (
     <button 
       onClick={handleClick}
-      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
-      onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
-      onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
-      onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
-      onTouchStart={() => setState(prev => ({ ...prev, isPressed: true, isHovered: true }))}
-      onTouchEnd={() => {
-        setState(prev => ({ 
-          ...prev, 
-          isPressed: false,
-          isHovered: false 
-        }));
-      }}
+      onPointerEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
+      onPointerLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
+      onPointerDown={() => setState(prev => ({ ...prev, isPressed: true }))}
+      onPointerUp={() => setState(prev => ({ ...prev, isPressed: false }))}
+      onPointerCancel={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
+      style={{ touchAction: 'manipulation' }}
       className={`${styles.scrollAnchor} ${styles[size]}`}
       aria-label={isUp ? "Scroll up" : "Scroll down"}
     >
