@@ -28,6 +28,7 @@ import { Chevron } from '../Chevron/Chevron';
 
 // Data and Utilities
 import { mainMenuData } from '../../data/dropdownItems';
+import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownMobile.module.css';
@@ -100,7 +101,7 @@ const DropdownItem = memo(({
         {item.url ? (
           <a
             href={item.url}
-            // onClick={handleClick}
+            {...getLinkAttributes(item.url)}
             className={`${styles.menuLink} ${isInActivePath ? styles.menuLinkActive : ''}`}
           >
             {buttonContent}
