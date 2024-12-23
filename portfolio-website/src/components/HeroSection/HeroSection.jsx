@@ -46,6 +46,7 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
 import { CreateButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
+import { Chapter } from "../Chapter/Chapter";
  /**
  * Configuration for 3D tilt effect
  * - MAX_ROTATION: Maximum angle of rotation (degrees)
@@ -133,10 +134,9 @@ import styles from './HeroSection.module.css';
   }, []);
  
   return (
-    <main>
-      <section
+    <main ref={containerRef}>
+      <Chapter
         className={styles.heroSection}
-        ref={containerRef}
         // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
         // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
       >
@@ -178,7 +178,7 @@ import styles from './HeroSection.module.css';
             </div>
           </TiltContext.Provider>
         </div>
-      </section>
+      </Chapter>
     </main>
   );
  };

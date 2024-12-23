@@ -33,6 +33,7 @@ import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
 import { CreateButton } from '../Button/Button';
+import { Chapter } from '../Chapter/Chapter';
 
 /**
  * Main About Section Component
@@ -129,7 +130,7 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <section
+    <Chapter
       id='about'
       className={`${styles.aboutSection} ${styles[size]}`}
     >
@@ -197,6 +198,6 @@ export const AboutSection = () => {
           />
         </div>
       </div>
-    </section>
+    </Chapter>
   );
 };

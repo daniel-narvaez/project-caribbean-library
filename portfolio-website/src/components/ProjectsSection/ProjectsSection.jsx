@@ -8,11 +8,12 @@ import { clockOutProject, chihuahuaChampProject, theHexPerplexProject } from "..
 
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import { WavesButton } from "../Button/WavesButton";
+import { Chapter } from "../Chapter/Chapter";
 
 export const ProjectsSection = () => {
   const { size, layout } = useContext(ScreenSizeContext);
   return (
-    <section 
+    <Chapter
       id='projects'
       className={styles.projectsSection}
       >
@@ -27,6 +28,6 @@ export const ProjectsSection = () => {
         </div>
         <WavesButton title='Explore my full portfolio' url='/'/>
       </div>
-    </section>
+    </Chapter>
   );
 }

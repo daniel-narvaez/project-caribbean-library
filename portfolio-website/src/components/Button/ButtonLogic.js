@@ -38,7 +38,12 @@ export const useButtonLogic = (url, className, onCustomClick) => {
     if (finalUrl.startsWith('#')) {
       e.preventDefault();
       const targetId = finalUrl.slice(1);
-      smoothScrollTo(targetId);
+      smoothScrollTo(targetId, {
+        duration: 1500,
+        easing: t => t < 0.5
+          ? 2 * t * t // ease in
+          : -1 + (4 - 2 * t) * t // ease out
+      });
     }
   };
 

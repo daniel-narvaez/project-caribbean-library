@@ -30,6 +30,7 @@ import {
 } from "../Form/Form";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './ContactSection.module.css';
+import { Chapter } from "../Chapter/Chapter";
 
 /**
  * Contact form subject options
@@ -56,7 +57,7 @@ export const ContactSection = () => {
   }, []);
 
   return (
-    <section
+    <Chapter
         id='contact'
         className={styles.contactSection}
     >
@@ -141,6 +142,6 @@ export const ContactSection = () => {
           </div>
         </div>
       </article>
-    </section>
+    </Chapter>
   );
 };

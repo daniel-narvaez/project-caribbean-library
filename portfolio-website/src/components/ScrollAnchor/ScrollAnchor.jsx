@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import styles from './ScrollAnchor.module.css';
+import { useChapters } from '../../contexts/Chapters';
+import { useSmoothScroll } from '../../utils/useSmoothScroll';
 
 const INITIAL_ARROW_CONFIG = {
   COLORS: {
@@ -18,14 +20,16 @@ const INITIAL_ARROW_CONFIG = {
       duration: 0.35
     },
     SCROLL: {
-      duration: 1000, // Duration for programmatic scroll timeout
-      behavior: 'smooth', // ScrollIntoView behavior
-      ease: "ease-in-out" // CSS scroll-behavior timing function
+      duration: 1500,
+      behavior: 'smooth',
+      ease: "ease-in-out"
     }
   }
 };
 
 export const ScrollAnchor = () => {
+  const { getNextChapter } = useChapters();
+  const smoothScrollTo = useSmoothScroll();
   const [isUp, setIsUp] = useState(false);
   const [isProgrammaticScroll, setIsProgrammaticScroll] = useState(false);
   const topPathRef = useRef(null);
@@ -90,74 +94,92 @@ export const ScrollAnchor = () => {
 
     gsap.to([topPathRef.current, bottomPathRef.current], {
       fill: color,
-      duration: 0.2
+      duration: arrowConfig.current.ANIMATION.COLOR.duration
     });
   }, [state.isHovered, state.isPressed]);
 
   useEffect(() => {
-    const checkScrollPosition = () => {
-      // If it's a programmatic scroll, don't check position
+    const handleManualScroll = () => {
+      // If we're in a programmatic scroll, don't do anything at all
       if (isProgrammaticScroll) return;
-
+  
       const currentScroll = window.scrollY;
-
-      // Check if we're at the top
-      if (currentScroll === 0 && isUp) {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const isAtBottom = (windowHeight + currentScroll) >= (documentHeight - 10);
+  
+      if (isAtBottom && !isUp) {
+        tlRef.current.play();
+        setIsUp(true);
+      }
+      else if (currentScroll === 0 && isUp) {
         tlRef.current.reverse();
         setIsUp(false);
-      } 
-      // If we're not at the top and manually scrolling, morph it up
+      }
       else if (currentScroll > 0 && !isUp) {
         tlRef.current.play();
         setIsUp(true);
       }
     };
+  
+    const handleUserInteraction = (e) => {
+      // Only handle user interactions if we're not in a programmatic scroll
+      if (!isProgrammaticScroll && !e.target.closest('.scrollAnchor')) {
+        setIsProgrammaticScroll(false);
+      }
+    };
 
-    window.addEventListener('scroll', checkScrollPosition);
-    return () => window.removeEventListener('scroll', checkScrollPosition);
+    window.addEventListener('wheel', handleUserInteraction, { passive: true });
+    window.addEventListener('touchstart', handleUserInteraction, { passive: true });
+    window.addEventListener('keydown', handleUserInteraction);
+    window.addEventListener('scroll', handleManualScroll);
+
+    return () => {
+      window.removeEventListener('wheel', handleUserInteraction);
+      window.removeEventListener('touchstart', handleUserInteraction);
+      window.removeEventListener('keydown', handleUserInteraction);
+      window.removeEventListener('scroll', handleManualScroll);
+    };
   }, [isUp, isProgrammaticScroll]);
 
   const handleClick = () => {
     if (!isUp) {
       const currentScroll = window.scrollY;
-      const sections = document.querySelectorAll('section');
-      let nextSection;
+      const nextChapter = getNextChapter(currentScroll);
       
-      sections.forEach(section => {
-        if (!nextSection && section.offsetTop > currentScroll) {
-          nextSection = section;
-        }
-      });
-      
-      if (nextSection) {
-        // Set programmatic scroll flag
+      if (nextChapter) {
         setIsProgrammaticScroll(true);
         
-        nextSection.scrollIntoView({ 
-          behavior: arrowConfig.current.ANIMATION.SCROLL.behavior 
+        const tempRef = { current: nextChapter };
+        
+        smoothScrollTo(tempRef, {
+          duration: arrowConfig.current.ANIMATION.SCROLL.duration,
+          easing: t => t < 0.5
+            ? 2 * t * t // ease in
+            : -1 + (4 - 2 * t) * t // ease out
         });
         
-        // Clear any existing timeout
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
         }
         
-        // Reset the flag after scroll animation (1000ms = 1 second)
         timeoutRef.current = setTimeout(() => {
           setIsProgrammaticScroll(false);
-        }, arrowConfig.current.ANIMATION.SCROLL.duration);
+        }, arrowConfig.current.ANIMATION.SCROLL.duration + 500);
       }
     } else {
-      window.scrollTo({ 
-        top: 0, 
-        behavior: arrowConfig.current.ANIMATION.SCROLL.behavior 
+      const topRef = { current: document.documentElement };
+      smoothScrollTo(topRef, {
+        duration: arrowConfig.current.ANIMATION.SCROLL.duration,
+        easing: t => t < 0.5
+          ? 2 * t * t // ease in
+          : -1 + (4 - 2 * t) * t // ease out
       });
       tlRef.current.reverse();
       setIsUp(false);
     }
   };
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -174,12 +196,12 @@ export const ScrollAnchor = () => {
       onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
       onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
       className={styles.scrollAnchor}
-      aria-label={isUp ? "Scroll down" : "Scroll up"}
+      aria-label={isUp ? "Scroll up" : "Scroll down"}
     >
       <svg 
         width="100%"
         height="100%"
-        viewBox="50 0 250 300" 
+        viewBox="0 0 300 300" 
         version="1.1" 
         xmlns="http://www.w3.org/2000/svg" 
         className={styles.svg}

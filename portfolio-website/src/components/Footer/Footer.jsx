@@ -22,6 +22,7 @@ import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactItem } from '../ContactItem/ContactItem';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
+import { Chapter } from '../Chapter/Chapter';
 
 // Configuration for wave animation and contact items
 const WAVE_CONFIG = {
@@ -69,45 +70,47 @@ export const Footer = ({ children }) => {
   }, []);
 
   return (
-    <footer className={`${styles.footerContainer} ${styles[size]}`}>
-      <div className={styles.waves}>
-        <svg
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shapeRendering="auto"
-          className={styles.wavesSvg}
-        >
-          <defs>
-            <path
-              id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-            />
-          </defs>
-          <g className={styles.parallax}>
-            {WAVE_CONFIG.WAVE_PATTERNS.map(({ y, opacity }, index) => (
-              <use
-                key={`wave-${index}`}
-                href="#gentle-wave"
-                x="48"
-                y={y}
-                fill={waveConfig.current.COLOR}
-                opacity={opacity}
+    <footer>
+      <Chapter className={`${styles.footerContainer} ${styles[size]}`}>
+        <div className={styles.waves}>
+          <svg
+            viewBox="0 24 150 28"
+            preserveAspectRatio="none"
+            shapeRendering="auto"
+            className={styles.wavesSvg}
+          >
+            <defs>
+              <path
+                id="gentle-wave"
+                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
               />
-            ))}
-          </g>
-        </svg>
-      </div>
+            </defs>
+            <g className={styles.parallax}>
+              {WAVE_CONFIG.WAVE_PATTERNS.map(({ y, opacity }, index) => (
+                <use
+                  key={`wave-${index}`}
+                  href="#gentle-wave"
+                  x="48"
+                  y={y}
+                  fill={waveConfig.current.COLOR}
+                  opacity={opacity}
+                />
+              ))}
+            </g>
+          </svg>
+        </div>
 
-      <div className={`${styles.footerContent} ${styles[size]}`}>
-        {children}
-      </div>
+        <div className={`${styles.footerContent} ${styles[size]}`}>
+          {children}
+        </div>
 
-      <div className={`${styles.footerBottom} ${styles[size]}`}>
-        <p>
-          &copy; Daniel Narvaez. All rights reserved. <br/>
-          v0.0.1
-        </p>
-      </div>
+        <div className={`${styles.footerBottom} ${styles[size]}`}>
+          <p>
+            &copy; Daniel Narvaez. All rights reserved. <br/>
+            v0.0.1
+          </p>
+        </div>
+      </Chapter>
     </footer>
   );
 };

@@ -2,7 +2,7 @@ import styles from './App.module.css'
 
 import { ScreenSizeProvider } from './contexts/ScreenSize';
 import { TypographyProvider } from './contexts/Typography';
-import { SafeAreaProvider } from './contexts/SafeArea';
+import { ChaptersProvider } from './contexts/Chapters';
 
 import { AnimatedCursor, SplashEffect } from './components/Cursor/Cursor';
 import { Background } from './components/Background/Background';
@@ -20,18 +20,20 @@ function App() {
         <TypographyProvider>
           <SplashEffect />
           <AnimatedCursor />
-          <div className={styles.App}>
-            <Background>
-              <ScrollAnchor />
-              <HeroSection />
-              <ProjectsSection />
-              <AboutSection />
-              <ContactSection />
-              <Footer>
-                <FooterNav/>
-              </Footer>
-            </Background>
-          </div>
+          <ChaptersProvider>
+            <div className={styles.App}>
+              <Background>
+                <ScrollAnchor />
+                <HeroSection />
+                <ProjectsSection />
+                <AboutSection />
+                <ContactSection />
+                <Footer>
+                  <FooterNav/>
+                </Footer>
+              </Background>
+            </div>
+          </ChaptersProvider>
         </TypographyProvider>
     </ScreenSizeProvider>
   )

@@ -1,18 +1,23 @@
 .scrollAnchor {
   position: fixed;
-  bottom: 0.5rem;
-  right: 0.5rem;
+  bottom: max(env(safe-area-inset-bottom), 1rem);
+  right: max(env(safe-area-inset-right), 1rem);
   background: transparent;
   border: none;
   padding: 0;
   margin: 0;
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
   display: block;
   z-index: 50;
-  cursor: pointer;
 }
 
 .svg {
+  transform: scale(100%);
   pointer-events: auto;
+  transition: var(--menuControl-active);
+}
+
+.svg:active {
+  transform: scale(92%);
 }
