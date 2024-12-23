@@ -27,8 +27,6 @@
 .svg {
   transform: scale(100%);
   transition: var(--menuControl-active);
-}
 
-.svg:active {
-  transform: scale(92%);
+  &:active { transform: scale(92%); }
 }

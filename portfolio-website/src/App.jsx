@@ -2,7 +2,7 @@ import styles from './App.module.css'
 
 import { ScreenSizeProvider } from './contexts/ScreenSize';
 import { TypographyProvider } from './contexts/Typography';
-import { ChaptersProvider } from './contexts/Chapters';
+import { ChaptersProvider } from './contexts/ChaptersContext';
 
 import { AnimatedCursor, SplashEffect } from './components/Cursor/Cursor';
 import { Background } from './components/Background/Background';
