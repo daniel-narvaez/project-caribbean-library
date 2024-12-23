@@ -335,23 +335,3 @@
 .submitButton.island:active span {
   color: var(--color-action-active);
 }
-
-/* Remove inner shadow on iOS inputs */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* Remove auto-zoom on iOS */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-select,
-textarea {
-  font-size: 1rem;  /* prevents auto-zoom */
-}
