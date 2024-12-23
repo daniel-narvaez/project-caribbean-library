@@ -190,13 +190,22 @@ export const ScrollAnchor = () => {
 
   return (
     <button 
-      onClick={handleClick}
-      onMouseEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
-      onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
-      onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
-      onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
-      className={styles.scrollAnchor}
-      aria-label={isUp ? "Scroll up" : "Scroll down"}
+    onClick={handleClick}
+    onMouseEnter={() => setState(prev => ({ ...prev, isHovered: true }))}
+    onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
+    onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
+    onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
+    onTouchStart={() => setState(prev => ({ ...prev, isPressed: true }))}
+    onTouchEnd={(e) => {
+      e.preventDefault(); // Prevent ghost clicks
+      setState(prev => ({ 
+        ...prev, 
+        isPressed: false,
+        isHovered: false // Reset hover state on touch end
+      }));
+    }}
+    className={styles.scrollAnchor}
+    aria-label={isUp ? "Scroll up" : "Scroll down"}
     >
       <svg 
         width="100%"
