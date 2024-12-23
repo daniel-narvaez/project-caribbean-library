@@ -197,16 +197,12 @@ export const ScrollAnchor = () => {
       onMouseLeave={() => setState(prev => ({ ...prev, isHovered: false, isPressed: false }))}
       onMouseDown={() => setState(prev => ({ ...prev, isPressed: true }))}
       onMouseUp={() => setState(prev => ({ ...prev, isPressed: false }))}
-      onTouchStart={() => {
-        setState(prev => ({ ...prev, isPressed: true }))
-      }}
-      onTouchEnd={(e) => {
-        handleClick();
-        e.preventDefault();
+      onTouchStart={() => setState(prev => ({ ...prev, isPressed: true, isHovered: true }))}
+      onTouchEnd={() => {
         setState(prev => ({ 
           ...prev, 
           isPressed: false,
-          isHovered: false // Reset hover state on touch end
+          isHovered: false 
         }));
       }}
       className={`${styles.scrollAnchor} ${styles[size]}`}
