@@ -85,7 +85,7 @@ export const ContactSection = () => {
                 name: 'name',
                 type: 'fullName',
                 required: true,
-                disabled: true
+                // disabled: true
               }}
             />
 
@@ -96,7 +96,7 @@ export const ContactSection = () => {
                 name: 'email',
                 type: 'email',
                 required: true,
-                disabled: true
+                // disabled: true
               }}
             />
 
@@ -106,7 +106,7 @@ export const ContactSection = () => {
                 id: 'messageSubject',
                 name: 'subject',
                 required: true,
-                disabled: true
+                // disabled: true
               }}
               options={SUBJECT_OPTIONS}
             />
@@ -117,7 +117,7 @@ export const ContactSection = () => {
                 id: 'messageBody',
                 name: 'message',
                 required: true,
-                disabled: true
+                // disabled: true
               }}
             />
 
@@ -125,7 +125,7 @@ export const ContactSection = () => {
               <SubmitButton
                 title='Send'
                 className='action'
-                disabled={true}
+                // disabled={true}
               />
             </div>
           </Form>
