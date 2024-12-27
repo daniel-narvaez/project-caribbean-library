@@ -36,11 +36,11 @@ import { Chapter } from "../Chapter/Chapter";
  * Contact form subject options
  */
 const SUBJECT_OPTIONS = [
-  { value: 'collaborate', label: "Let's Collaborate" },
-  { value: 'report', label: 'Report a Bug' },
-  { value: 'feedback', label: 'Share Feedback' },
-  { value: 'hiring', label: "Discuss Opportunities" },
-  { value: 'other', label: 'Something Else' }
+  { value: 'collaborate', label: "Let's collaborate" },
+  { value: 'report', label: 'Report a bug' },
+  { value: 'feedback', label: 'Share feedback' },
+  { value: 'hiring', label: "Discuss opportunities" },
+  { value: 'other', label: 'Something else' }
 ];
 
 /**
