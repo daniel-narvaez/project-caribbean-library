@@ -86,7 +86,7 @@ export const createGameProject = ({
 
 export const clockOutProject = createGameProject({
   title: 'Clock Out!!',
-  portfolioUrl: '/',
+  portfolioUrl: '/https://daniel-narvaez.itch.io/clock-out',
   gameUrl: 'https://daniel-narvaez.itch.io/clock-out',
   projectArticle: {
     images: {
