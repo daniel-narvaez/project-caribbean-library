@@ -40,9 +40,9 @@ export const TypographyProvider = ({ children }) => {
   const fontSizes = {
     Desktop: {
       // Minor Third Scale (1.2)
-      h1: '1.728rem',     // 27.65px (1.2^3)
-      h2: '1.44rem',      // 23.04px (1.2^2)
-      h3: '1.2rem',       // 19.2px  (1.2^1)
+      h1: '2.074rem',     // 33.18 px (1.2^4)
+      h2: '1.728rem',      // 27.65px (1.2^3)
+      h3: '1.44rem',       // 23.04px (1.2^2)
       inline: '1.2rem',   // 19.2px  (1.2^1)
 
       heroHeadline: '3rem',
