@@ -1,4 +1,5 @@
-import React from "react";
+import { projectContent } from "../utils/contentBuilder";
+
 /**********************************
 * GAME PROJECT DATA STRUCTURE
 **********************************/
@@ -17,6 +18,7 @@ import React from "react";
 
 export const createGameProject = ({
   title,
+  path = '/',
   portfolioUrl = '/',
   gameUrl = '/',
   projectArticle = {
@@ -42,6 +44,9 @@ export const createGameProject = ({
     tagline: `A short tagline about the project.`,
     readMoreBtn: '',
     playBtn: ''
+  },
+  projectPage = {
+    content: []
   }
 }) => {
   
@@ -74,9 +79,11 @@ export const createGameProject = ({
 
   return {
   title,
+  path,
   portfolioUrl,
   gameUrl,
-  projectArticle: finalProjectArticle
+  projectArticle: finalProjectArticle,
+  projectPage,
   };
 };
 
