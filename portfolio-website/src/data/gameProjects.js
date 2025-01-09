@@ -93,6 +93,7 @@ export const createGameProject = ({
 
 export const clockOutProject = createGameProject({
   title: 'Clock Out!!',
+  path: 'clock-out',
   portfolioUrl: '/https://daniel-narvaez.itch.io/clock-out',
   gameUrl: 'https://daniel-narvaez.itch.io/clock-out',
   projectArticle: {
@@ -120,6 +121,7 @@ export const clockOutProject = createGameProject({
 
 export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
+  path: 'chihuahua-champ',
   portfolioUrl: '/',
   gameUrl: 'https://daniel-narvaez.itch.io/chihuahua-champ',
   projectArticle: {
@@ -147,6 +149,7 @@ export const chihuahuaChampProject = createGameProject({
 
 export const theHexPerplexProject = createGameProject({
   title: 'The Hex Perplex',
+  path: 'the-hex-perplex',
   portfolioUrl: '/',
   gameUrl: 'https://daniel-narvaez.itch.io/the-hex-perplex',
   projectArticle: {
@@ -174,4 +177,17 @@ export const theHexPerplexProject = createGameProject({
 
 export const projectArticlesData = [clockOutProject.projectArticle, chihuahuaChampProject.projectArticle, theHexPerplexProject.projectArticle];
 
-export const gameProjectsData = {clockOutProject, chihuahuaChampProject, theHexPerplexProject}
+export const gameProjectsData = {
+  clockOut: clockOutProject,
+  chihuahuaChamp: chihuahuaChampProject,
+  theHexPerplex: theHexPerplexProject,
+
+  getByPath: function() {
+    return Object.values(this).reduce((acc, project) => {
+      if (project.path) {  // Only include objects with paths (excludes the getByPath method)
+        acc[project.path] = project;
+      }
+      return acc;
+    }, {});
+  }
+};

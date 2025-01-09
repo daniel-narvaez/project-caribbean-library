@@ -60,15 +60,15 @@ const gamesItem = createDropdownItem({
   url: '/',
   submenu: [
     createDropdownItem({
-      title: gameProjectsData.chihuahuaChampProject.title,
+      title: gameProjectsData.chihuahuaChamp.title,
       submenu: [
         createDropdownItem({
           title: 'Read More',
-          url: gameProjectsData.chihuahuaChampProject.portfolioUrl,
+          url: gameProjectsData.chihuahuaChamp.portfolioUrl,
         }),
         createDropdownItem({
           title: 'Play',
-          url: gameProjectsData.chihuahuaChampProject.gameUrl,
+          url: gameProjectsData.chihuahuaChamp.gameUrl,
         })
       ]
     }),
@@ -90,28 +90,28 @@ const gamesItem = createDropdownItem({
     //   ]
     // }),
     createDropdownItem({
-      title: gameProjectsData.clockOutProject.title,
+      title: gameProjectsData.clockOut.title,
       submenu: [
         createDropdownItem({
           title: 'Read More',
-          url: gameProjectsData.clockOutProject.portfolioUrl,
+          url: gameProjectsData.clockOut.portfolioUrl,
         }),
         createDropdownItem({
           title: 'Play',
-          url: gameProjectsData.clockOutProject.gameUrl,
+          url: gameProjectsData.clockOut.gameUrl,
         })
       ]
     }),
     createDropdownItem({
-      title: gameProjectsData.theHexPerplexProject.title,
+      title: gameProjectsData.theHexPerplex.title,
       submenu: [
         createDropdownItem({
           title: 'Read More',
-          url: gameProjectsData.theHexPerplexProject.portfolioUrl,
+          url: gameProjectsData.theHexPerplex.portfolioUrl,
         }),
         createDropdownItem({
           title: 'Play',
-          url: gameProjectsData.theHexPerplexProject.gameUrl,
+          url: gameProjectsData.theHexPerplex.gameUrl,
         })
       ]
     }),
