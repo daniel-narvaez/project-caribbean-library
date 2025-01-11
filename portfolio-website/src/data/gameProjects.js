@@ -162,7 +162,13 @@ export const clockOutProject = createGameProject({
               'Conceptualized UI layouts to ensure controls, information, and colors communicated to players the functions of each.'
             ])
           ],
-          right: [],
+          right: [
+            projectContent.video({
+              src: 'https://player.vimeo.com/video/771629392?h=c1e68303ca&badge=0&autopause=0&player_id=0&app_id=58479&dnt=1',
+              title: 'Clock Out!! Trailer',
+              loading: 'lazy'
+            })
+          ],
         }
       }
     ]

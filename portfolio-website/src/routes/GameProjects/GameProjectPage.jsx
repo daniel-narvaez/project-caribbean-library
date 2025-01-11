@@ -8,7 +8,7 @@ import styles from './GameProjectPage.module.css';
 import Chapter from '../../components/Chapter/Chapter';
 
 export function GameProjectPage({ game }) {
-  const renderContent = (element, key, props) => {
+  const renderContent = (element, key, ...props) => {
     switch (element.type) {
       case 'titleFrame':
         return (
@@ -109,6 +109,21 @@ export function GameProjectPage({ game }) {
             />
           </figure>
         );
+
+      case 'video':
+        return (
+          <iframe
+            {...element.content}
+            {...props}
+            key={key}
+            className={styles.video}
+            src={element.content.src}
+            title={element.content.title}
+            allowFullScreen
+          >
+            
+          </iframe>
+        );
     }
   }
 
@@ -124,7 +139,7 @@ export function GameProjectPage({ game }) {
         <div className={styles.walkthrough}>
           {game.projectPage.walkthrough.map((chapter, cIndex) => (
             <Chapter key={cIndex} className={styles.chapter}>
-              {renderContent(chapter.heading)}
+              {renderContent(chapter.heading, `heading-${cIndex}`)}
               <div className={styles.content}>
                 <div className={styles.left}>
                   {chapter.content.left.map((element, eIndex) => (
