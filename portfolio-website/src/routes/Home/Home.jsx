@@ -12,6 +12,7 @@ function Home() {
   return (
     <div className={styles.Home}>
       <Background>
+        <h1 className='sr-only'>Daniel Narvaez</h1>
         <ScrollAnchor />
         <HeroSection />
         <ProjectsSection />

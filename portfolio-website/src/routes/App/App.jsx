@@ -8,6 +8,8 @@ import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
 import Home from '../Home/Home';
 
 import styles from './App.module.css'
+
+import { gameProjectsData } from '../../data/gameProjects';
 import { GameProjectPage } from '../GameProjects/GameProjectPage';
 
 function App() {
@@ -21,17 +23,18 @@ function App() {
                 <SplashEffect />
                 <AnimatedCursor />
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/home" element={<Home />} />
-                  {/* {
-                    Object.entries().map(([path, props]) => (
+                  <Route key='root' path="/" element={<Home />} />
+                  <Route key='home' path="/home" element={<Home />} />
+                  
+                  {Object.values(gameProjectsData).map((gameProject) => {
+                    return (
                       <Route
-                        key={path}
-                        path={`./GameProjects/${path}`}
-                        element={<GameProjectPage {...props} />}
+                        key={gameProject.path}
+                        path={gameProject.urls.portfolio}
+                        element={<GameProjectPage game={gameProject} />}
                       />
-                    ))
-                  } */}
+                    );
+                  })}
                 </Routes>
               </BrowserRouter>
             </div>

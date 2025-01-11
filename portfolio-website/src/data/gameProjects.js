@@ -18,9 +18,10 @@ import { projectContent } from "../utils/contentBuilder";
 
 export const createGameProject = ({
   title,
-  path = '/',
-  portfolioUrl = '/',
-  gameUrl = '/',
+  urls = {
+    game: '/',
+    portfolio: '',
+  },
   projectArticle = {
     images: {
       cardFg: {
@@ -46,9 +47,26 @@ export const createGameProject = ({
     playBtn: ''
   },
   projectPage = {
-    content: []
+    main: '',
+    walkthrough: []
   }
 }) => {
+
+  // Create URL-friendly path from title:
+  // 1. Convert to lowercase
+  // 2. Replace any non-alphanumeric characters with hyphens
+  // 3. Remove any duplicate hyphens
+  // 4. Remove leading/trailing hyphens
+  const path = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+    const finalUrls = {
+      ...urls,
+      portfolio: `/game-projects/${path}`
+    };
   
   const finalProjectArticle = {
     ...projectArticle,
@@ -73,15 +91,14 @@ export const createGameProject = ({
     },
     heading: projectArticle.heading || title || 'Untitled Project',
     tagline:  projectArticle.tagline || `A short tagline about ${title}.`,
-    readMoreBtn: portfolioUrl || '/',
-    playBtn: gameUrl || '/'
+    readMoreBtn: finalUrls.portfolio || '/',
+    playBtn: finalUrls.game || '/'
   };
 
   return {
   title,
   path,
-  portfolioUrl,
-  gameUrl,
+  urls: finalUrls,
   projectArticle: finalProjectArticle,
   projectPage,
   };
@@ -93,9 +110,11 @@ export const createGameProject = ({
 
 export const clockOutProject = createGameProject({
   title: 'Clock Out!!',
-  path: 'clock-out',
-  portfolioUrl: '/https://daniel-narvaez.itch.io/clock-out',
-  gameUrl: 'https://daniel-narvaez.itch.io/clock-out',
+  urls: {
+    game: 'https://daniel-narvaez.itch.io/clock-out',
+    appStore: 'https://apps.apple.com/us/app/clock-out/id1570676915',
+    googlePlay: 'https://play.google.com/store/apps/details?id=com.MassDiGI.Creme'
+  },
   projectArticle: {
     images: {
       cardFg: {
@@ -116,14 +135,45 @@ export const clockOutProject = createGameProject({
       },
     },
     tagline: 'An unpaid intern decides to fight bosses—literally.',
+  },
+  projectPage: {
+    main: (
+      projectContent.titleFrame(
+        { src: '/../../images/games/ClockOut/projectPage/ClockOut-Logo.png', alt: 'Clock Out!! logo.'},
+        { src: '/../../images/games/ClockOut/projectPage/ClockOut-MoneyShot.gif', alt: 'A snippet of the Clock Out!! trailer video, where JoJo and Herbert Bamboo are in the elevator together.'}
+      )
+    ),
+    walkthrough: [
+      {
+        heading: projectContent.heading('Project Overview'),
+        content: {
+          left: [
+            projectContent.details([
+              { key: 'Platforms', value: 'iOS, iPadOS, Android' },
+              { key: 'Duration', value: '3 months' },
+              { key: 'Team Size', value: '7'},
+              { key: 'Builds', value: ({ urls }) => `[App Store](${urls.appStore}), [Google Play](${urls.googlePlay})`}
+            ]),
+            projectContent.subheading('Contributions'),
+            projectContent.bulletList([
+              'Engineered an asymmetrical progression model to drive increased difficulty through exponential scaling within project scope.',
+              'Designed a weighted-random upgrades system that gave 17 characters distinguishable fighting styles despite sharing the same combat actions.',
+              'Developed a combat-driven economy to replace automatic stat progression and restore difficulty scaling.',
+              'Conceptualized UI layouts to ensure controls, information, and colors communicated to players the functions of each.'
+            ])
+          ],
+          right: [],
+        }
+      }
+    ]
   }
 });
 
 export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
-  path: 'chihuahua-champ',
-  portfolioUrl: '/',
-  gameUrl: 'https://daniel-narvaez.itch.io/chihuahua-champ',
+  urls: {
+    game: 'https://daniel-narvaez.itch.io/chihuahua-champ'
+  },
   projectArticle: {
     images: {
       cardFg: {
@@ -149,9 +199,9 @@ export const chihuahuaChampProject = createGameProject({
 
 export const theHexPerplexProject = createGameProject({
   title: 'The Hex Perplex',
-  path: 'the-hex-perplex',
-  portfolioUrl: '/',
-  gameUrl: 'https://daniel-narvaez.itch.io/the-hex-perplex',
+  urls: {
+    game: 'https://daniel-narvaez.itch.io/the-hex-perplex'
+  },
   projectArticle: {
     images: {
       cardFg: {
@@ -180,14 +230,9 @@ export const projectArticlesData = [clockOutProject.projectArticle, chihuahuaCha
 export const gameProjectsData = {
   clockOut: clockOutProject,
   chihuahuaChamp: chihuahuaChampProject,
-  theHexPerplex: theHexPerplexProject,
+  theHexPerplex: theHexPerplexProject
+};
 
-  getByPath: function() {
-    return Object.values(this).reduce((acc, project) => {
-      if (project.path) {  // Only include objects with paths (excludes the getByPath method)
-        acc[project.path] = project;
-      }
-      return acc;
-    }, {});
-  }
+export const getGameProjectByPath = function(path) {
+  return Object.values(gameProjectsData).find(project => project.path === path);
 };

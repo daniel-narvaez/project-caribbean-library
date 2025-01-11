@@ -29,5 +29,6 @@
 
 .fullName {
   font-family: var(--font-baskervvilleSC);
+  font-size: var(--h1-size);
   text-align: center;
 }

@@ -1,10 +1,21 @@
-const createSection = (type, content) => ({ type, content });
+const createElement = (type, content) => ({ type, content });
 
 export const projectContent = {
-  heading: (content) => createSection('heading', content),
-  subheading: (content) => createSection('subheading', content),
-  paragraph: (content) => createSection('paragraph', content),
-  figure: (src, alt, caption) => createSection('figure', { src, alt, caption }),
-  gallery: (images) => createSection('gallery', { images }),
-  bulletList: (items) => createSection('bulletList', items),  
+  titleFrame: (logo, moneyShot) => createElement('titleFrame', {
+    logo: {
+      src: logo.src || '',
+      alt: logo.alt || '',
+    },
+    moneyShot: {
+      src: moneyShot.src || '',
+      alt: moneyShot.alt || ''
+    }
+  }),
+  details: (items) => createElement('details', items),
+  heading: (content) => createElement('heading', content),
+  subheading: (content) => createElement('subheading', content),
+  paragraph: (content) => createElement('paragraph', content),
+  figure: (src, alt, caption) => createElement('figure', { src, alt, caption }),
+  gallery: (images) => createElement('gallery', { images }),
+  bulletList: (items) => createElement('bulletList', items),
 }

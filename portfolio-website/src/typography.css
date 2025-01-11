@@ -28,6 +28,10 @@
   --body-text: var(--font-notoSans);              /* Used for inline and body text */
 }
 
+.sr-only {
+  display: none;
+}
+
 /* 
 * Shared Heading Styles
 * Applied to all heading levels for consistency

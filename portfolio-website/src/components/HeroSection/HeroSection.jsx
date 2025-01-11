@@ -136,6 +136,7 @@ import { Chapter } from "../Chapter/Chapter";
   return (
     <main ref={containerRef}>
       <Chapter
+        id='hero'
         className={styles.heroSection}
         // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
         // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}

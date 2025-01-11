@@ -23,10 +23,10 @@ export const Title = () => {
           `}
         />
         {size === 'Desktop' && (
-          <h1
+          <span
             className={`${styles.fullName}`}>
             {fullName}
-          </h1>
+          </span>
         )}
       </a>
   );

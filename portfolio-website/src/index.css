@@ -1,4 +1,5 @@
 @import "./vars.css";
+@import "./typography.css";
 
 * {
   box-sizing: border-box;

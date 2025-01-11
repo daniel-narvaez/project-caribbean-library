@@ -1,0 +1,139 @@
+.titleFrame {
+  position: sticky;
+  width: 100%;
+  height: 66.66vh;
+  overflow: hidden;
+}
+
+.moneyShotContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 66.66vh;
+  z-index: -10;
+}
+
+.moneyShot {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -10;
+}
+
+.contentOverlay {
+  display: flex;
+  padding: 5rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--fx-depthShadow1);
+}
+
+.logo {
+  width: 100%;
+  max-width: 30rem;
+  max-height: 30rem;
+}
+
+.projectDetails {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-self: stretch;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: calc(100% + 2rem);
+    height: calc(100% + 1rem);
+    top: -0.5rem;
+    left: -1rem;
+    background: var(--color-bg1-active);
+    z-index: -1;
+  }
+}
+
+.projectDetails tbody {
+  width: 100%;
+  height: 100%;
+
+  tr {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.projectDetails .detail {
+  font-size: 1rem;
+  font-family: var(--body-text);
+  line-height: 1.5rem;
+}
+
+.bulletList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  li {
+    font-size: 1rem;
+    font-family: var(--body-text);
+    line-height: 1.5rem;
+  }
+}
+
+.walkthrough {
+  display: flex;
+  padding: 5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  align-self: stretch;
+}
+
+.chapter {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  align-self: center;
+}
+
+.heading {
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: flex-start;
+  align-self: stretch;
+
+
+  color: var(--color-heading1);
+  text-transform: capitalize;
+}
+
+.subheading {
+  color: var(--color-heading1);
+  text-transform: capitalize;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  align-self: stretch;
+
+  .left { width: 40% }
+}
+
+
+.left, .right {
+  display: flex;
+  padding: 0.5rem 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}

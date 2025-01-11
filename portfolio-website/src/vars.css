@@ -1,6 +1,9 @@
+/* @import "./reset.css"; */
+
 :root {
     /* Colors */
     --color-text1: #00052b; /* Midnight */
+    --color-heading1: #4a2512; /* Mahogany */
     
     --color-link: #0047ab; /* Cobalt */
     --color-link-hover: #00a9ce; /* Sea & Sky */
@@ -37,6 +40,7 @@
     --fx-blockShadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.50);
     --fx-textShadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     --fx-boxShadow1: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --fx-depthShadow1: 0px 0px 48px 16px rgba(0, 0, 0, 0.5) inset;
     
     /* Animations */
     --trans-hover: all 150ms ease;
