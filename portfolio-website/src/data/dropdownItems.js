@@ -94,11 +94,11 @@ const gamesItem = createDropdownItem({
       submenu: [
         createDropdownItem({
           title: 'Read More',
-          url: gameProjectsData.clockOut.portfolioUrl,
+          url: gameProjectsData.clockOut.urls.portfolio,
         }),
         createDropdownItem({
           title: 'Play',
-          url: gameProjectsData.clockOut.gameUrl,
+          url: gameProjectsData.clockOut.urls.game,
         })
       ]
     }),

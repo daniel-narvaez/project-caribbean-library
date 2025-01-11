@@ -9,9 +9,9 @@
   cursor: var(--cursor-style, none);
 }
 
-iframe {
+/* iframe {
   pointer-events: none;
-}
+} */
 
 html {
   overscroll-behavior-y: none;

@@ -82,6 +82,44 @@
     font-size: 1rem;
     font-family: var(--body-text);
     line-height: 1.5rem;
+    list-style-position: inside;
+
+    &::marker {
+      font-weight: 700;
+    }
+  }
+}
+
+.figureSet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  
+  figcaption {
+    color: var(--color-text2);
+    text-align: center;
+    font-family: var(--body-text);
+    font-size: 0.75rem;
+    font-style: normal;
+    line-height: 1.125rem;
+  }
+  
+  img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: var(--number-cornerRadius);
+    box-shadow: var(--fx-boxShadow1);
   }
 }
 
@@ -92,6 +130,11 @@
   border: none;
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
+}
+
+.wrapper {
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .walkthrough {
@@ -148,4 +191,7 @@
 .right {
   display: flex;
   width: 60%;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
+

@@ -6,6 +6,7 @@ import { Background } from '../../components/Background/Background';
 import { formatText } from '../../utils/formatText';
 import styles from './GameProjectPage.module.css';
 import Chapter from '../../components/Chapter/Chapter';
+import { Footer, FooterNav } from '../../components/Footer/Footer';
 
 export function GameProjectPage({ game }) {
   const renderContent = (element, key, ...props) => {
@@ -88,41 +89,61 @@ export function GameProjectPage({ game }) {
         );
         
       case 'paragraph':
-        return <p>{formatText(element.content)}</p>;
+        return <p key={key}>{formatText(typeof element.content === 'function' ? element.content({ urls: game.urls }) : element.content )}</p>;
         
-      case 'bulletList':
+      case 'list':
         return (
-          <ul className={styles.bulletList} key={key}>
-            {element.content.map((item, index) => (
+          element.content.type === 'bullet' ?
+          <ul 
+            className={styles.bulletList} 
+            key={key}
+          >
+            {element.content.items.map((item, index) => (
               <li key={index}>{formatText(item)}</li>
             ))}
-          </ul>
+          </ul> : 
+          <ol
+            className={styles.bulletList} 
+            key={key}
+          >
+            {element.content.items.map((item, index) => (
+              <li key={index}>{formatText(item)}</li>
+            ))}
+          </ol>
         );
       
-      case 'figure':
+      case 'figureSet':
         return (
-          <figure>
-            <figcaption>{element.content.caption}</figcaption>
-            <img 
-              src={element.content.src}
-              alt={element.content.alt} 
-            />
-          </figure>
+          <div 
+            className={styles.figureSet}
+            key={key}
+          >
+            {element.content.map((item, index) => (
+              <figure 
+                className={styles.figure}
+                key={index}
+              >
+                <figcaption><b>Figure {item.figId}:</b> <i>{item.caption}</i></figcaption>
+                <img 
+                  src={item.src}
+                  alt={item.alt} 
+                />
+              </figure>
+            ))}
+          </div>
         );
 
       case 'video':
         return (
           <iframe
             {...element.content}
-            {...props}
             key={key}
             className={styles.video}
             src={element.content.src}
             title={element.content.title}
+            allow="fullscreen"
             allowFullScreen
-          >
-            
-          </iframe>
+          />
         );
     }
   }
@@ -155,6 +176,9 @@ export function GameProjectPage({ game }) {
             </Chapter>
           ))}
         </div>
+        <Footer>
+          <FooterNav />
+        </Footer>
       </Background>
     </div>
   )
