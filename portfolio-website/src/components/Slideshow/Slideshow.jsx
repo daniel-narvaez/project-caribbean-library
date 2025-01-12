@@ -78,6 +78,7 @@ const ANIMATION_CONFIG = {
  *   }
  */
 export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
+  console.log('Slides order:', slides.map(slide => slide.alt));
   // Preload media and track loading states
   const {
     isLoading,
@@ -240,6 +241,14 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
     };
   }, [triggerTransition, currentIndex, slides, preloadMedia, playbackMode]);
 
+  useEffect(() => {
+    console.log({
+      currentIndex,
+      displayedSlideURL: slides[currentIndex]?.url,
+      nextSlideURL: slides[(currentIndex + 1) % slides.length]?.url
+    });
+  }, [currentIndex, slides]);
+
   const handleSlideClick = useCallback(() => {
     if (playbackMode !== 'manual' || isAnimating) return;
     triggerTransition();
@@ -307,7 +316,7 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
 
   return (
     <div 
-      className={styles.slidesContainer}
+      className={`${styles.slidesContainer} ${playbackMode === 'manual' ? 'action' : ''}`}
       onClick={handleSlideClick}
     >
       <div
@@ -325,7 +334,7 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
         >
           {renderMedia(slides[currentIndex])}
         </div>
-        
+
         {/* Next slide - prepared for transition */}
         <div 
           ref={nextSlideRef}
@@ -333,6 +342,8 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
         >
           {renderMedia(slides[nextIndex])}
         </div>
+
+        
       </div>
 
       {/* Control panel */}
@@ -341,13 +352,13 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
           {slides.map((_, index) => (
             <button
               key={index}
-              className={`${styles.slideIndicator} ${index === currentIndex ? styles.active : ''} action`}
+              className={`${styles.slideIndicator} ${index === (currentIndex + 1) % slides.length ? styles.active : ''} action`}
               onClick={(e) => {
                 e.stopPropagation(); // Prevent container click from firing
-                handleSlideSelect(index);
+                handleSlideSelect(((index - 1) + slides.length) % slides.length);
               }}
               disabled={isAnimating}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={`Go to slide ${index}`}
             />
           ))}
         </div>

@@ -32,9 +32,12 @@
 */
 .slidesContainer {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  perspective: 100vw; /* Creates depth for 3D transforms */
+  align-items: center;
+  gap: 1.5rem;
  }
  
  /* 
@@ -48,7 +51,7 @@
  .mediaContainer {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
   /* overflow: hidden; */
   transform-style: preserve-3d;
   transition: transform 200ms ease-out;
@@ -70,7 +73,7 @@
  .mediaWrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
   /* overflow: hidden; */
   will-change: clip-path; /* Optimizes for clip-path animations */
   transform: translateZ(0); /* Forces GPU acceleration */
@@ -123,17 +126,16 @@
 
  .controlPanel {
   /* position: absolute; */
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: var(--control-panel-height);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
-  /* background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px); */
+  padding: 0.5rem 1rem;
+  width: max-content;
+  border-radius: var(--number-cornerRadius);
+  background: var(--color-bg1-hover);
+  box-shadow: var(--fx-boxShadow1);
+  z-index: 50;
 }
 
 .slideIndicator {
