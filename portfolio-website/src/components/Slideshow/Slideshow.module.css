@@ -38,7 +38,7 @@
   height: 100%;
   align-items: center;
   gap: 1.5rem;
- }
+}
  
  /* 
  * Media Container
@@ -52,12 +52,13 @@
   position: relative;
   width: 100%;
   height: max-content;
-  /* overflow: hidden; */
   transform-style: preserve-3d;
   transition: transform 200ms ease-out;
   will-change: transform;
-  backface-visibility: hidden;
- }
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: var(--fx-boxShadow1);
+}
  
  .mediaContainer:hover {
   cursor: pointer;
@@ -71,14 +72,10 @@
  * - Maintains composite-only animations for performance
  */
  .mediaWrapper {
+  display: flex;
   position: relative;
-  width: 100%;
-  height: max-content;
-  /* overflow: hidden; */
+  align-items: center;
   will-change: clip-path; /* Optimizes for clip-path animations */
-  transform: translateZ(0); /* Forces GPU acceleration */
-  backface-visibility: hidden;
-  
  }
  
  /* 
@@ -100,10 +97,6 @@
  .mediaContent {
   position: relative;
   width: 100%;
-  object-fit: contain;
-  border-radius: 0.5rem;
-  transform: translateZ(0); /* Forces GPU acceleration */
-  box-shadow: var(--fx-boxShadow1);
  }
  
  /* 
