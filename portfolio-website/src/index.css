@@ -26,3 +26,8 @@ button, input[type="submit"], input[type="reset"] {
 	font: inherit;
 	outline: inherit;
 }
+
+.external-context {
+  padding: 1rem;
+  margin: -1rem;
+}

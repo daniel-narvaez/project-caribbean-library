@@ -61,7 +61,8 @@ const ANIMATION_CONFIG = {
   PRELOAD_BUFFER: 3000,
   EASING: 'cubic-bezier(0.15, 0.85, 0.15, 1.0)',
   INITIAL_BLUR: '0.5rem',
-  FINAL_BLUR: '0rem'
+  FINAL_BLUR: '0rem',
+  CONTROL_PANEL_HEIGHT: '3rem'
 };
 
 /**
@@ -76,7 +77,7 @@ const ANIMATION_CONFIG = {
  *     alt?: string
  *   }
  */
-export const Slideshow = ({ slides = [] }) => {
+export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
   // Preload media and track loading states
   const {
     isLoading,
@@ -87,6 +88,7 @@ export const Slideshow = ({ slides = [] }) => {
   // Initialize with last slide for smooth first transition
   const [currentIndex, setCurrentIndex] = useState(slides.length - 1);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [gifKey, setGifKey] = useState(0);
   const { tilt } = useContext(TiltContext);
 
   // Refs for DOM manipulation during animations
@@ -160,11 +162,14 @@ export const Slideshow = ({ slides = [] }) => {
    * - Maintains proper cleanup
    * - Schedules preloading of next slide
    */
-  const triggerTransition = useCallback(() => {
+  const triggerTransition = useCallback((targetIndex = null) => {
     if (isAnimating || !containerRef.current || !activeSlideRef.current || !nextSlideRef.current) return;
 
+    // Increment key to reset any GIFs
+    setGifKey(prev => prev + 1);
+
     setIsAnimating(true);
-    const nextIndex = (currentIndex + 1) % slides.length;
+    const nextIndex = targetIndex !== null ? targetIndex : (currentIndex + 1) % slides.length;
     setCurrentIndex(nextIndex);
 
     const { center, endRadius } = calculateAnimationValues(containerRef.current);
@@ -212,23 +217,38 @@ export const Slideshow = ({ slides = [] }) => {
    * Cleans up intervals and timeouts on unmount to prevent memory leaks
    */
   useEffect(() => {
-    // Start the interval for transitions
-    const interval = setInterval(triggerTransition, ANIMATION_CONFIG.INTERVAL);
+    let interval;
+    if (playbackMode === 'automatic') {
+      // Only set up interval for automatic mode
+      interval = setInterval(triggerTransition, ANIMATION_CONFIG.INTERVAL);
+    }
     
-    // Initial preload of the next slide
+    // Still preload next slide regardless of mode
     const initialPreloadTimeout = setTimeout(() => {
       const nextIndex = (currentIndex + 1) % slides.length;
       preloadMedia(slides[nextIndex]);
     }, ANIMATION_CONFIG.INTERVAL - ANIMATION_CONFIG.PRELOAD_BUFFER);
-
+  
     return () => {
-      clearInterval(interval);
+      if (interval) {
+        clearInterval(interval);
+      }
       clearTimeout(initialPreloadTimeout);
       if (preloadTimeoutRef.current) {
         clearTimeout(preloadTimeoutRef.current);
       }
     };
-  }, [triggerTransition, currentIndex, slides, preloadMedia]);
+  }, [triggerTransition, currentIndex, slides, preloadMedia, playbackMode]);
+
+  const handleSlideClick = useCallback(() => {
+    if (playbackMode !== 'manual' || isAnimating) return;
+    triggerTransition();
+  }, [playbackMode, isAnimating, triggerTransition]);
+
+  const handleSlideSelect = useCallback((index) => {
+    if (isAnimating) return;
+    triggerTransition(index);
+  }, [isAnimating, triggerTransition]);
 
   /**
    * Renders appropriate media element based on slide type
@@ -237,26 +257,34 @@ export const Slideshow = ({ slides = [] }) => {
    * @param {Object} slide - Slide object containing type and url
    * @returns {ReactElement} Video or image element
    */
-  const renderMedia = useCallback((slide) => (
-    slide.type === 'video' ? (
-      <video
-        key={slide.url} // Key forces new element on source change
-        autoPlay
-        muted
-        playsInline // Required for mobile autoplay
-        loop
-        className={styles.mediaContent}
-      >
-        <source src={slide.url} type='video/mp4' />
-      </video>
-    ) : (
-      <img
-        src={slide.url}
-        alt={slide.alt || 'Slideshow Image'}
-        className={styles.mediaContent}
-      />
-    )
-  ), []);
+  // Modify renderMedia to use the key for GIFs:
+  const renderMedia = useCallback((slide) => {
+    if (slide.type === 'video') {
+      return (
+        <video
+          key={slide.url}
+          autoPlay
+          muted
+          playsInline
+          loop
+          className={styles.mediaContent}
+        >
+          <source src={slide.url} type='video/mp4' />
+        </video>
+      );
+    } else {
+      // For GIFs, use the gifKey state to force remount
+      const isGif = slide.url.toLowerCase().endsWith('.gif');
+      return (
+        <img
+          key={isGif ? `${slide.url}-${gifKey}` : slide.url}
+          src={slide.url}
+          alt={slide.alt || 'Slideshow Image'}
+          className={styles.mediaContent}
+        />
+      );
+    }
+  }, [gifKey]);
 
   // Loading and error states
   if (isLoading) {
@@ -278,7 +306,10 @@ export const Slideshow = ({ slides = [] }) => {
   const nextIndex = (currentIndex + 1) % slides.length;
 
   return (
-    <div className={styles.slidesContainer}>
+    <div 
+      className={styles.slidesContainer}
+      onClick={handleSlideClick}
+    >
       <div
         ref={containerRef}
         className={styles.mediaContainer}
@@ -303,6 +334,24 @@ export const Slideshow = ({ slides = [] }) => {
           {renderMedia(slides[nextIndex])}
         </div>
       </div>
+
+      {/* Control panel */}
+      {playbackMode === 'manual' && (
+        <div className={styles.controlPanel}>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.slideIndicator} ${index === currentIndex ? styles.active : ''} action`}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent container click from firing
+                handleSlideSelect(index);
+              }}
+              disabled={isAnimating}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

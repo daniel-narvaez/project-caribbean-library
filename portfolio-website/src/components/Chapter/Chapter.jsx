@@ -36,13 +36,13 @@ export const Chapter = ({ children, ...props }) => {
   // Register/unregister this section with the chapters system
   useEffect(() => {
     const currentRef = sectionRef.current;
-    
     if (currentRef) {
+      console.log(`Chapter mounting: ${currentRef.id}`);
       registerChapter(currentRef);
     }
-
     return () => {
       if (currentRef) {
+        console.log(`Chapter unmounting: ${currentRef.id}`);
         unregisterChapter(currentRef);
       }
     };

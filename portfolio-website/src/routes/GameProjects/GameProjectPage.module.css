@@ -126,15 +126,15 @@
 .video {
   width: 100%;
   aspect-ratio: 16/9;
-  object-fit: contain;
   border: none;
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
 }
 
-.wrapper {
+.iframeWrapper {
   width: 100%;
-  flex-wrap: wrap;
+  height: 100%;
+  object-fit: contain;
 }
 
 .walkthrough {

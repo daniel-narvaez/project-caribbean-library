@@ -203,10 +203,14 @@ export const ScrollAnchor = () => {
   const handleClick = useCallback(() => {
     if (!isUp) {
       const currentScroll = window.scrollY;
+      console.log('ScrollAnchor: Current scroll position:', currentScroll);
+      
       const nextChapter = getNextChapter(currentScroll);
+      console.log('ScrollAnchor: Next chapter:', nextChapter?.id);
       
       if (nextChapter) {
         setIsProgrammaticScroll(true);
+        console.log('ScrollAnchor: Starting scroll to:', nextChapter.id);
         
         const tempRef = { current: nextChapter };
         smoothScrollTo(tempRef, {
@@ -224,6 +228,7 @@ export const ScrollAnchor = () => {
         }, arrowConfig.current.ANIMATION.SCROLL.duration + 500);
       }
     } else {
+      console.log('ScrollAnchor: Scrolling to top');
       const topRef = { current: document.documentElement };
       smoothScrollTo(topRef, {
         duration: arrowConfig.current.ANIMATION.SCROLL.duration,

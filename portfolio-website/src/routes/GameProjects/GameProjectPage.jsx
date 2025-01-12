@@ -7,8 +7,11 @@ import { formatText } from '../../utils/formatText';
 import styles from './GameProjectPage.module.css';
 import Chapter from '../../components/Chapter/Chapter';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
+import ScrollAnchor from '../../components/ScrollAnchor/ScrollAnchor';
+import { useChapters } from '../../contexts/ChaptersContext';
 
 export function GameProjectPage({ game }) {
+
   const renderContent = (element, key, ...props) => {
     switch (element.type) {
       case 'titleFrame':
@@ -133,18 +136,22 @@ export function GameProjectPage({ game }) {
           </div>
         );
 
-      case 'video':
-        return (
-          <iframe
-            {...element.content}
-            key={key}
-            className={styles.video}
-            src={element.content.src}
-            title={element.content.title}
-            allow="fullscreen"
-            allowFullScreen
-          />
-        );
+        case 'video':
+          return (
+            <div 
+              key={key}
+              className={`${styles.iframeWrapper} external-context`}
+            >
+              <iframe
+                className={styles.video}
+                {...element.content}
+                src={element.content.src}
+                title={element.content.title}
+                allow="fullscreen"
+                allowFullScreen
+              />
+            </div>
+          );
     }
   }
 
@@ -152,29 +159,38 @@ export function GameProjectPage({ game }) {
     <div className={styles.GameProjectPage}>
       <Navbar />
       <main>
-        <Chapter>
+        <Chapter id='moneyShot'>
+          {console.log('Rendering moneyShot chapter')}
           {renderContent(game.projectPage.main)}
         </Chapter>
       </main>
       <Background>
+        <ScrollAnchor />
         <div className={styles.walkthrough}>
-          {game.projectPage.walkthrough.map((chapter, cIndex) => (
-            <Chapter key={cIndex} className={styles.chapter}>
-              {renderContent(chapter.heading, `heading-${cIndex}`)}
-              <div className={styles.content}>
-                <div className={styles.left}>
-                  {chapter.content.left.map((element, eIndex) => (
-                    renderContent(element, `left-${cIndex}-${eIndex}`)
-                  ))}
+          {game.projectPage.walkthrough.map((chapter, cIndex) => {
+            console.log(`Rendering chapter-${cIndex + 1}`);
+            return (
+              <Chapter 
+                key={cIndex} 
+                className={styles.chapter}
+                id={`chapter-${cIndex + 1}`}
+              >
+                {renderContent(chapter.heading, `heading-${cIndex}`)}
+                <div className={styles.content}>
+                  <div className={styles.left}>
+                    {chapter.content.left.map((element, eIndex) => (
+                      renderContent(element, `left-${cIndex}-${eIndex}`)
+                    ))}
+                  </div>
+                  <div className={styles.right}>
+                    {chapter.content.right.map((element, eIndex) => (
+                      renderContent(element, `right-${cIndex}-${eIndex}`)
+                    ))}
+                  </div>
                 </div>
-                <div className={styles.right}>
-                  {chapter.content.right.map((element, eIndex) => (
-                    renderContent(element, `right-${cIndex}-${eIndex}`)
-                  ))}
-                </div>
-              </div>
-            </Chapter>
-          ))}
+              </Chapter>
+            )
+          })}
         </div>
         <Footer>
           <FooterNav />

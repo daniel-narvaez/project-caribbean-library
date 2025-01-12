@@ -225,8 +225,11 @@ export const AnimatedCursor = () => {
         svgRef.current.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
         hasInitialPosition = true;
 
+        
         const element = document.elementFromPoint(e.clientX, e.clientY);
         if (element) {
+          setIsVisible(!element.classList.contains('external-context'));
+
           const isLink = hasInteractionInTree(element);
           setState(prev => ({ ...prev, isPointer: isLink }));
         }

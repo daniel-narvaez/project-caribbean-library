@@ -39,15 +39,19 @@ export const ChaptersProvider = ({ children }) => {
    */
   const registerChapter = useCallback((ref) => {
     if (!ref || chaptersRef.current.includes(ref)) return;
-
-    chaptersRef.current.push(ref);
     
-    // Sort chapters by their vertical position in the document
+    console.log('Registering chapter:', ref.id);
+    console.log('Current chapters before:', chaptersRef.current.map(ch => ch.id));
+    
+    chaptersRef.current.push(ref);
     chaptersRef.current.sort((a, b) => {
-      const aTop = a.getBoundingClientRect().top;
-      const bTop = b.getBoundingClientRect().top;
+      const aTop = a.getBoundingClientRect().top + window.scrollY;
+      const bTop = b.getBoundingClientRect().top + window.scrollY;
+      console.log(`Comparing positions - ${a.id}: ${aTop} vs ${b.id}: ${bTop}`);
       return aTop - bTop;
     });
+    
+    console.log('Current chapters after:', chaptersRef.current.map(ch => ch.id));
   }, []);
 
   /**
@@ -65,12 +69,25 @@ export const ChaptersProvider = ({ children }) => {
    * @returns {HTMLElement|undefined} Next chapter element or undefined if none found
    */
   const getNextChapter = useCallback((currentPosition) => {
-    if (!chaptersRef.current.length) return;
-
-    return chaptersRef.current.find(chapter => {
+    if (!chaptersRef.current.length) {
+      console.log('No chapters registered');
+      return;
+    }
+    
+    console.log('Current scroll position:', currentPosition);
+    console.log('Available chapters:', chaptersRef.current.map(ch => ({
+      id: ch.id,
+      position: ch.getBoundingClientRect().top + window.scrollY
+    })));
+    
+    const next = chaptersRef.current.find(chapter => {
       const chapterPosition = chapter.getBoundingClientRect().top + window.scrollY;
-      return chapterPosition > currentPosition;
+      console.log(`Chapter ${chapter.id} position:`, chapterPosition);
+      return chapterPosition > currentPosition + 10;
     });
+    
+    console.log('Next chapter found:', next?.id);
+    return next;
   }, []);
 
   const contextValue = {

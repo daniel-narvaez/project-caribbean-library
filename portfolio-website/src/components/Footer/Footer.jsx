@@ -71,7 +71,10 @@ export const Footer = ({ children }) => {
 
   return (
     <footer>
-      <Chapter className={`${styles.footerContainer} ${styles[size]}`}>
+      <Chapter 
+        id='footer'
+        className={`${styles.footerContainer} ${styles[size]}`}
+      >
         <div className={styles.waves}>
           <svg
             viewBox="0 24 150 28"
