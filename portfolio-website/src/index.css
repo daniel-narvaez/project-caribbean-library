@@ -28,6 +28,14 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .external-context {
-  padding: 1rem;
-  margin: -1rem;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    margin: -1rem;
+  }
 }

@@ -17,6 +17,6 @@ export const projectContent = {
   paragraph: (content) => createElement('paragraph', content),
   figureSet: (items) => createElement('figureSet', items),
   video: ({ src, title, ...props }) => createElement('video', { src, title, ...props }),
-  gallery: (images) => createElement('gallery', { images }),
+  gallery: ({ figId, caption, items}) => createElement('gallery', { figId, caption, items }),
   list: (content) => createElement('list', content),
 }

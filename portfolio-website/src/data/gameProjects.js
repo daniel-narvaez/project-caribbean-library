@@ -1,5 +1,6 @@
 import { head } from "@vercel/blob";
 import { projectContent } from "../utils/contentBuilder";
+import { createMediaItem } from "./HeroMedia";
 
 /**********************************
 * GAME PROJECT DATA STRUCTURE
@@ -228,7 +229,29 @@ export const clockOutProject = createGameProject({
             projectContent.paragraph("This created more diversity in the boss roster. Each body type played differently in combat, even though they all used the same four combat actions. The randomized stat upgrades added variety to repeated playthroughs since the same boss could have different strengths each time the player encountered them.")
           ],
           right: [
-
+            projectContent.gallery(
+              {
+                figId: "3",
+                caption: "Weighted upgrade chances based on boss type",
+                items: [
+                  createMediaItem({
+                    type: "gif",
+                    url: "/../../images/games/ClockOut/projectPage/agile-stat-upgrades.gif",
+                    alt: "A Machinations diagram showing the stat upgrade probabilities of agile-type bosses in Clock Out!!"
+                  }),
+                  createMediaItem({
+                    type: "gif",
+                    url: "/../../images/games/ClockOut/projectPage/burly-stat-upgrades.gif",
+                    alt: "A Machinations diagram showing the stat upgrade probabilities of burly-type bosses in Clock Out!!"
+                  }),
+                  createMediaItem({
+                    type: "gif",
+                    url: "/../../images/games/ClockOut/projectPage/strong-stat-upgrades.gif",
+                    alt: "A Machinations diagram showing the stat upgrade probabilities of strong-type bosses in Clock Out!!"
+                  }),
+                ]
+              }
+            )
           ]
         }
       },

@@ -90,7 +90,7 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
   const [currentIndex, setCurrentIndex] = useState(slides.length - 1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [gifKey, setGifKey] = useState(0);
-  const { tilt } = useContext(TiltContext);
+  // const { tilt } = useContext(TiltContext);
 
   // Refs for DOM manipulation during animations
   const containerRef = useRef(null);
@@ -322,9 +322,6 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
       <div
         ref={containerRef}
         className={styles.mediaContainer}
-        style={{
-          transform: `scale(${tilt.scale}%) rotateX(${tilt.xRot}deg) rotateY(${tilt.yRot}deg)`
-        }}
       >
         {/* Active slide - positioned absolutely for layering */}
         <div 

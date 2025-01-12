@@ -31,7 +31,7 @@ const PATHS = {
  * @param {string} params.alt - Descriptive alt text
  * @returns {MediaItem} Formatted media item
  */
-const createMediaItem = ({ type, url, alt }) => ({
+export const createMediaItem = ({ type, url, alt }) => ({
   type,
   url,
   alt
