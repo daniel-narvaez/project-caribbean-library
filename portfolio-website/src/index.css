@@ -27,23 +27,35 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 
-.external-context {
-  position: relative;
-  
-  &::before {
+/* External Context Container
+   ========================
+   Handles styling for embedded external content
+   such as iframes and objects.
+   Provides safe area insets for mobile devices. */
+   .external-context {
+    position: relative;
+}
+
+.external-context::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
+}
 
-    &.Desktop {
-      padding: 1.5rem;
-      margin: 1.5rem;
-    }
+.external-context.Desktop::before {
+    padding: 1.5rem;
+    margin: 1.5rem;
+}
 
-    &.Mobile {
-      padding: 0.8rem max(env(safe-area-inset-right), 0.8rem) 0.8rem max(env(safe-area-inset-left), 0.8rem);
-      margin: -0.8rem max(env(safe-area-inset-right), -0.8rem) -0.8rem max(env(safe-area-inset-left), -0.8rem);
-    }
-  }
+.external-context.Mobile::before {
+    /* Use safe area insets for mobile devices */
+    padding: 0.8rem 
+        max(env(safe-area-inset-right), 0.8rem) 
+        0.8rem 
+        max(env(safe-area-inset-left), 0.8rem);
+    margin: -0.8rem 
+        max(env(safe-area-inset-right), -0.8rem) 
+        -0.8rem 
+        max(env(safe-area-inset-left), -0.8rem);
 }

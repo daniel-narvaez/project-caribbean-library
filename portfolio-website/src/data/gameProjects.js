@@ -1,22 +1,28 @@
-import { head } from "@vercel/blob";
 import { projectContent } from "../utils/contentBuilder";
 import { createMediaItem } from "./HeroMedia";
 
 /**********************************
-* GAME PROJECT DATA STRUCTURE
-**********************************/
+ * GAME PROJECT DATA STRUCTURE
+ **********************************/
 
 /**
-* Factory function to create consistent game project items
-* Ensures all items follow the same data structure
-* 
-* @param {Object} params - Project configuration
-* @param {string} params.title - Display text for the project
-* @param {string} [params.portfolioUrl=''] - URL to the project's portfolio page
-* @param {string} [params.gameUrl=''] - URL to the project's game page, where it can be played
-* @param {Object} [params.projectArticle] - Configuration object for the project's UI article.
-* @returns {Object} complete data of a game project
-*/
+ * Factory function to create consistent game project items
+ * Ensures all items follow the same data structure
+ *
+ * @param {Object} params - Project configuration
+ * @param {string} params.title - Display text for the project
+ * @param {Object} [params.urls] - URLs related to the project
+ * @param {Object} [params.projectArticle] - Configuration for the project's UI article
+ * @param {Object} [params.projectArticle.images] - Project image assets
+ * @param {string} [params.projectArticle.heading] - Project heading text, defaults to title or 'Untitled Project'
+ * @param {string} [params.projectArticle.tagline] - Short description of the project
+ * @param {string} [params.projectArticle.readMoreBtn] - Text for the read more button
+ * @param {string} [params.projectArticle.playBtn] - Text for the play button
+ * @param {Object} [params.projectPage] - Configuration for the project's detailed page
+ * @param {string} [params.projectPage.main] - Main content for the project page
+ * @param {Array} [params.projectPage.walkthrough] - Array of walkthrough content
+ * @returns {Object} Complete project data structure with all configured properties
+ */
 
 export const createGameProject = ({
   title,
