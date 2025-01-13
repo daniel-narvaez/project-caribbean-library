@@ -35,7 +35,15 @@ button, input[type="submit"], input[type="reset"] {
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 1rem;
-    margin: -1rem;
+
+    &.Desktop {
+      padding: 1.5rem;
+      margin: 1.5rem;
+    }
+
+    &.Mobile {
+      padding: 0.8rem max(env(safe-area-inset-right), 0.8rem) 0.8rem max(env(safe-area-inset-left), 0.8rem);
+      margin: -0.8rem max(env(safe-area-inset-right), -0.8rem) -0.8rem max(env(safe-area-inset-left), -0.8rem);
+    }
   }
 }

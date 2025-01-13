@@ -316,12 +316,15 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
 
   return (
     <div 
-      className={`${styles.slidesContainer} ${playbackMode === 'manual' ? 'action' : ''}`}
-      onClick={handleSlideClick}
-    >
+      className={`${styles.slidesContainer} `}
+      >
       <div
         ref={containerRef}
-        className={styles.mediaContainer}
+        className={`
+          ${styles.mediaContainer}
+          ${playbackMode === 'manual' ? 'action' : ''}
+        `}
+        onClick={handleSlideClick}
       >
         {/* Active slide - positioned absolutely for layering */}
         <div 

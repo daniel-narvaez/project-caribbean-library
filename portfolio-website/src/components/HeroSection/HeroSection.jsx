@@ -175,7 +175,7 @@ import { Chapter } from "../Chapter/Chapter";
   
           <TiltContext.Provider value={{ tilt, setTilt }}>
             <div className={styles.heroMedia}>
-              <Slideshow slides={heroGifSlides} playbackMode = 'manual' />
+              <Slideshow slides={heroGifSlides} playbackMode = 'automatic' />
             </div>
           </TiltContext.Provider>
         </div>
