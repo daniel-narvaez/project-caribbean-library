@@ -283,7 +283,7 @@ export const clockOutProject = createGameProject({
                 src: "/../../images/games/ClockOut/projectPage/performance-report.gif",
                 alt: "a gif featuring the performance report screen at the end of a fight in Clock Out!!",
                 figId: "4",
-                caption: "The Performance Report. Players earn job experience on their based on landed punches and successful blocks.",
+                caption: "The Performance Report. Players earn job experience based on their landed punches and successful blocks.",
               },
               {
                 src: "/../../images/games/ClockOut/projectPage/update-resume.gif",

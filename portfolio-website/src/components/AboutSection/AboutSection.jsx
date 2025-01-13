@@ -34,6 +34,7 @@ import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
 import { CreateButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
+import { clockOutProject } from '../../data/gameProjects';
 
 /**
  * Main About Section Component
@@ -177,7 +178,7 @@ export const AboutSection = () => {
             During the Summer of 2021 I interned as a Game Designer at{' '}
             <a target='_blank' href='https://www.massdigi.org'>MassDigi</a>
             , where I prototyped & fine-tuned player progression systems for{' '}
-            <a href=''><i>Clock Out!!</i></a>.
+            <a href='game-projects/clock-out'><i>Clock Out!!</i></a>.
           </p>
           
           <p>
