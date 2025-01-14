@@ -136,7 +136,7 @@ const contactItem = createDropdownItem({
       title: 'Email',
     }),
     createDropdownItem({
-      title: 'Social Media',
+      title: 'Platforms',
       submenu: [
         createDropdownItem({
           title: socialMediaData.linkedInIcon.appName,

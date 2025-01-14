@@ -1,20 +1,25 @@
-@import "../../vars.css";
-
 .navbar {
   display: flex;
-  width: 100vw;
-  max-width: 100%;
-  justify-content: space-between;
-  align-items: flex-start;
   position: fixed;
+  width: 100%;
   top: env(safe-area-inset-top);  /* Handle notch */
   left: 0;
   right: 0;
   z-index: 100;
+  justify-content: space-between;
+  align-items: flex-start;
+  transform: translateY(0);
+  transition: transform 0.35s ease;
+
+
+  &.hidden {
+    transform: translateY(calc(-100% - env(safe-area-inset-top)));
+  }
 
   &.Desktop {
     height: 5rem;
     padding: 1rem;  /* Desktop keeps normal padding since it won't have safe areas */
+
   }
 
   &.Mobile {
@@ -26,18 +31,4 @@
       max(env(safe-area-inset-left), 0.8rem);
     /* Keep vertical padding as is, but respect safe areas on sides */
   }
-}
-
-.background {
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-  background: var(--color-bg1);
-  opacity: 0;
 }

@@ -1,49 +1,67 @@
-import React, { useContext, useRef, useEffect } from 'react'
-
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Title } from '../Title/Title';
 import { MobileDropdown } from '../DropdownMenu/DropdownMobile';
 import { DesktopDropdown } from '../DropdownMenu/DropdownDesktop';
-
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
-
-import styles from './Navbar.module.css'
+import styles from './Navbar.module.css';
 
 export const Navbar = () => {
   const { size } = useContext(ScreenSizeContext);
-  const backgroundRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const updateNavbarOpacity = () => {
-      if (!backgroundRef.current) 
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar at the top of the page
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
         return;
+      }
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
       
-      const scrollPosition = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const scrollPercentage = Math.min(scrollPosition / viewportHeight, 1);
-      
-      backgroundRef.current.style.opacity = scrollPercentage;
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', updateNavbarOpacity);
-    updateNavbarOpacity();
+    // Add scroll event listener with throttling
+    let timeoutId;
+    const throttledScroll = () => {
+      if (timeoutId) return;
+      
+      timeoutId = setTimeout(() => {
+        controlNavbar();
+        timeoutId = null;
+      }, 50); // Adjust this value to control sensitivity
+    };
 
-    return () => window.removeEventListener('scroll', updateNavbarOpacity);
+    window.addEventListener('scroll', throttledScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
-  return <nav 
-    className={`
-      ${styles.navbar}
-      ${styles[size]}
-    `}
-  >
-    {/* <div 
-      className={styles.background}
-      // ref={backgroundRef}
-    /> */}
-    <Title />
-    {size === 'Mobile' ? 
-      <MobileDropdown /> : 
-      <DesktopDropdown />
-    }
-  </nav>;
-}
+  return (
+    <nav
+      className={`
+        ${styles.navbar}
+        ${styles[size]}
+        ${isVisible ? styles.visible : styles.hidden}
+      `}
+    >
+      <Title />
+      {size === 'Mobile' ? <MobileDropdown /> : <DesktopDropdown />}
+    </nav>
+  );
+};
+
+export default Navbar;

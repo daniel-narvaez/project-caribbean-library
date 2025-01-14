@@ -182,7 +182,7 @@
 }
 
 .walkthrough.Mobile {
-    padding: 0.8rem max(env(safe-area-inset-right), 0.8rem) 0.8rem max(env(safe-area-inset-left), 0.8rem);
+    padding: 4rem max(env(safe-area-inset-right), 0.8rem) 4rem max(env(safe-area-inset-left), 0.8rem);
     gap: 4rem;
 }
 
