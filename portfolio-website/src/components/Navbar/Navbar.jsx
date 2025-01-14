@@ -13,37 +13,35 @@ export const Navbar = () => {
   useEffect(() => {
     const controlNavbar = () => {
       const currentScrollY = window.scrollY;
-      
-      // Show navbar at the top of the page
-      if (currentScrollY < 10) {
+      const scrollDifference = lastScrollY.current - currentScrollY;
+  
+      // Show navbar at the very top of the page
+      if (currentScrollY < 16) {
         setIsVisible(true);
         lastScrollY.current = currentScrollY;
         return;
       }
-
-      // Hide navbar when scrolling down, show when scrolling up
-      if (currentScrollY > lastScrollY.current) {
+  
+      // Only show navbar when scrolling up more than the threshold
+      if (currentScrollY > lastScrollY.current)
         setIsVisible(false);
-      } else {
+      else if (scrollDifference > 16) // Check if scrolled up more than the threshold
         setIsVisible(true);
-      }
       
       lastScrollY.current = currentScrollY;
     };
-
-    // Add scroll event listener with throttling
+  
+    // Rest of the code remains the same...
     let timeoutId;
     const throttledScroll = () => {
       if (timeoutId) return;
-      
       timeoutId = setTimeout(() => {
         controlNavbar();
         timeoutId = null;
-      }, 50); // Adjust this value to control sensitivity
+      }, 50);
     };
-
+  
     window.addEventListener('scroll', throttledScroll);
-    
     return () => {
       window.removeEventListener('scroll', throttledScroll);
       if (timeoutId) clearTimeout(timeoutId);
