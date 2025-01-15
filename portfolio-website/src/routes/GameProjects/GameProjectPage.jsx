@@ -33,66 +33,66 @@ const getClasses = (baseClass, size, additional = '') => {
  * Content renderers for different element types
  */
 const contentRenderers = {
-    titleFrame: (element, key, size, game) => (
-        <div className={getClasses('titleFrame', size)} key={key}>
-            <div className={getClasses('moneyShotContainer', size)}>
-                <img
-                    className={getClasses('moneyShot', size)}
-                    src={element.content.moneyShot.src}
-                    alt={element.content.moneyShot.alt}
-                />
-            </div>
-            <div className={getClasses('contentOverlay', size)}>
-                {element.content.logo.src ? (
-                    <>
-                        <img
-                            className={getClasses('logo', size)}
-                            src={element.content.logo.src}
-                            alt={element.content.logo.alt || `${game.title} logo`}
-                        />
-                        <h1 className="sr-only">{game.title}</h1>
-                    </>
-                ) : (
-                    <h1 className={styles.title}>{game.title}</h1>
-                )}
-            </div>
-        </div>
-    ),
+  titleFrame: (element, key, size, game) => (
+    <div className={getClasses('titleFrame', size)} key={key}>
+      <div className={getClasses('moneyShotContainer', size)}>
+        <img
+          className={getClasses('moneyShot', size)}
+          src={element.content.moneyShot.src}
+          alt={element.content.moneyShot.alt}
+        />
+      </div>
+      <div className={getClasses('contentOverlay', size)}>
+        {element.content.logo.src ? (
+          <>
+            <img
+              className={getClasses('logo', size)}
+              src={element.content.logo.src}
+              alt={element.content.logo.alt || `${game.title} logo`}
+            />
+            <h1 className="sr-only">{game.title}</h1>
+          </>
+        ) : (
+          <h1 className={styles.title}>{game.title}</h1>
+        )}
+      </div>
+    </div>
+  ),
 
-    details: (element, key, size, game) => (
-        <table className={getClasses('projectDetails', size)} key={key}>
-            <tbody>
-                {element.content.map((item, index) => (
-                    <tr key={index}>
-                        <td 
-                            className={getClasses('detail', size)} 
-                            style={{fontWeight: '700'}}
-                        >
-                            {formatText(item.key)}:
-                        </td>
-                        <td className={getClasses('detail', size)}>
-                            {formatText(
-                                typeof item.value === 'function' 
-                                    ? item.value({ urls: game.urls }) 
-                                    : item.value
-                            )}
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    ),
+  details: (element, key, size, game) => (
+    <table className={getClasses('projectDetails', size)} key={key}>
+      <tbody>
+        {element.content.map((item, index) => (
+          <tr key={index}>
+            <td 
+              className={getClasses('detail', size)} 
+              style={{fontWeight: '700'}}
+            >
+              {formatText(item.key)}:
+            </td>
+            <td className={getClasses('detail', size)}>
+              {formatText(
+                typeof item.value === 'function' 
+                  ? item.value({ urls: game.urls }) 
+                  : item.value
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ),
 
-    heading: (element, key, size) => (
-      <h2 className={getClasses('heading', size)} key={key}>
-          {element.content}
-      </h2>
+  heading: (element, key, size) => (
+    <h2 className={getClasses('heading', size)} key={key}>
+      {element.content}
+    </h2>
   ),
 
   subheading: (element, key, size) => (
-      <h3 className={getClasses('subheading', size)} key={key}>
-          {element.content}
-      </h3>
+    <h3 className={getClasses('subheading', size)} key={key}>
+      {element.content}
+    </h3>
   ),
 
   paragraph: (element, key, size, game) => (  // added size parameter to match others
@@ -144,19 +144,19 @@ const contentRenderers = {
   ),
 
   video: (element, key, size) => (
-      <div 
-          key={key}
-          className={getClasses('iframeWrapper', size, 'external-context')}
-      >
-          <iframe
-              className={getClasses('video', size)}
-              {...element.content}
-              src={element.content.src}
-              title={element.content.title}
-              allow="fullscreen"
-              allowFullScreen
-          />
-      </div>
+    <div 
+      key={key}
+      className={getClasses('iframeWrapper', size, `external-context ${size}`)}
+    >
+      <iframe
+        className={getClasses('video', size)}
+        {...element.content}
+        src={element.content.src}
+        title={element.content.title}
+        allow="fullscreen"
+        allowFullScreen
+      />
+    </div>
   ),
 };
 
