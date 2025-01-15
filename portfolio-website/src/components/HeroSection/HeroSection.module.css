@@ -141,7 +141,7 @@
     flex-direction: column-reverse;
     justify-content: center;
     width: 100%;
-    max-width: 80rem; /* 1280px */
+    max-width: 40rem; /* 640px */
     gap: 5%;
     align-items: center;
   }
@@ -156,7 +156,6 @@
 
   .heroMedia {
     width: 100%;
-    max-width: 40rem;
   }
 
   /* Adjusted typography for portrait orientation */
