@@ -139,7 +139,7 @@
   .heroContainer {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
     max-width: 80rem; /* 1280px */
     gap: 5%;
@@ -155,9 +155,8 @@
   }
 
   .heroMedia {
-    /* align-items: center;
-    justify-content: center; */
     width: 100%;
+    max-width: 40rem;
   }
 
   /* Adjusted typography for portrait orientation */
