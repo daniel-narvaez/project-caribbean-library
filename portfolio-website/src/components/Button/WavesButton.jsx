@@ -4,7 +4,7 @@
  */
 import React, { useRef, useState, useEffect } from "react";
 import styles from './WavesButton.module.css';
-import { useButtonLogic } from './ButtonLogic';  // We'll extract this to a separate file
+import { useLinkButtonLogic } from './ButtonLogic';  // We'll extract this to a separate file
 
 export const WavesButton = ({
   title = 'Waves Button',
@@ -25,7 +25,7 @@ export const WavesButton = ({
     isDisabled,
     finalUrl,
     handleClick
-  } = useButtonLogic(url, className, onCustomClick);
+  } = useLinkButtonLogic(url, className, onCustomClick);
 
   // Calculate wave size
   useEffect(() => {

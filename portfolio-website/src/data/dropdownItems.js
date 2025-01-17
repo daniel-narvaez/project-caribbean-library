@@ -172,7 +172,7 @@ const resumeItem = createDropdownItem({
   submenu: [
     createDropdownItem({
       title: 'Read',
-      url: '/'
+      url: '/resume'
     }),
     createDropdownItem({
       title: 'Download',

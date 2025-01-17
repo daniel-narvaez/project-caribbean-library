@@ -32,7 +32,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './GameProjectArticle.module.css';
 import { zeroToAutoHeight } from '../../utils';
-import { CreateButton, IslandButton, SolidButton } from '../Button/Button';
+import { LinkButton } from '../Button/Button';
 
 /**
  * Configuration for parallax effects
@@ -285,12 +285,12 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
             </p>
           </div>
           <div className={styles.projectMenu}>
-            <CreateButton 
+            <LinkButton 
               title='Read More'
               url={projectData.readMoreBtn}
               style='solid'
             />
-            <CreateButton
+            <LinkButton
               title='Play'
               url={projectData.playBtn}
               style='island'

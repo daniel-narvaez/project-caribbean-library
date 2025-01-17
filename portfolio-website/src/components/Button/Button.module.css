@@ -8,10 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 0;
   padding: var(--padding-size) calc(var(--padding-size) * 2);
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  font-family: var(--heading-text);
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  transition: var(--menuControl-hover);
 }
 
 /* Common pseudo-element styling */
@@ -25,17 +33,11 @@
   transition: var(--menuControl-hover);
 }
 
-/* Common text styling */
-.button span {
-  font-family: var(--heading-text);
-  font-weight: 400;
-  text-align: center;
-  text-transform: capitalize;
-  transition: var(--menuControl-hover);
-}
-
+/* Disabled states */
 .button:disabled,
-.button[aria-disabled="true"] {
+.button[aria-disabled="true"],
+button:disabled .button,
+a[aria-disabled="true"] .button {
   opacity: 0.4;
   pointer-events: none;
 }
@@ -43,10 +45,11 @@
 /**
  * Common Active State
  * ------------------
- * Shared transform and transition properties
  */
 .button:active::before,
-.button:active span {
+.button:active,
+button:active .button::before,
+button:active .button {
   transform: scale(92%);
   transition: var(--menuControl-active);
 }
@@ -60,36 +63,43 @@
   box-shadow: var(--fx-boxShadow1);
 }
 
-.button.solid span {
+.button.solid {
   color: var(--color-bg1);
 }
 
-.button.solid:hover::before {
+.button.solid:hover::before,
+button:hover .button.solid::before {
   background-color: var(--color-link-hover);
 }
 
-.button.solid:hover span {
+.button.solid:hover,
+button:hover .button.solid {
   color: var(--color-bg1-hover);
 }
 
-.button.solid:active::before {
+.button.solid:active::before,
+button:active .button.solid::before {
   background-color: var(--color-link-active);
 }
 
-.button.solid:active span {
+.button.solid:active,
+button:active .button.solid {
   color: var(--color-bg1-active);
 }
 
 /* Solid Action Variant */
-.button.solid.action::before {
+.button.solid.action::before,
+button .button.solid::before {
   background-color: var(--color-action);
 }
 
-.button.solid.action:hover::before {
+.button.solid.action:hover::before,
+button:hover .button.solid::before {
   background-color: var(--color-action-hover);
 }
 
-.button.solid.action:active::before {
+.button.solid.action:active::before,
+button:active .button.solid::before {
   background-color: var(--color-action-active);
 }
 
@@ -102,48 +112,58 @@
   box-shadow: var(--fx-boxShadow1);
 }
 
-.button.island span {
+.button.island {
   color: var(--color-link);
 }
 
-.button.island:hover::before {
+.button.island:hover::before,
+button:hover .button.island::before {
   border-color: var(--color-link-hover);
 }
 
-.button.island:hover span {
+.button.island:hover,
+button:hover .button.island {
   color: var(--color-link-hover);
 }
 
-.button.island:active::before {
+.button.island:active::before,
+button:active .button.island::before {
   border-color: var(--color-link-active);
 }
 
-.button.island:active span {
+.button.island:active,
+button:active .button.island {
   color: var(--color-link-active);
 }
 
 /* Island Action Variant */
-.button.island.action::before {
+.button.island.action::before,
+button .button.island::before {
   border-color: var(--color-action);
 }
 
-.button.island.action span {
+.button.island.action,
+button .button.island {
   color: var(--color-action);
 }
 
-.button.island.action:hover::before {
+.button.island.action:hover::before,
+button:hover .button.island::before {
   border-color: var(--color-action-hover);
 }
 
-.button.island.action:hover span {
+.button.island.action:hover,
+button:hover .button.island {
   color: var(--color-action-hover);
 }
 
-.button.island.action:active::before {
+.button.island.action:active::before,
+button:active .button.island::before {
   border-color: var(--color-action-active);
 }
 
-.button.island.action:active span {
+.button.island.action:active,
+button:active .button.island {
   color: var(--color-action-active);
 }
 
@@ -153,15 +173,9 @@
  */
 .button.hero {
   padding: 0.75rem 1.5rem;
+  font-size: var(--hero-cta-button-size);
 }
 
 .button.hero::before {
   border-radius: 0.25rem;
 }
-
-.button.hero span {
-  font-size: var(--hero-cta-button-size);
-}
-
-/* Hero Action Variants automatically inherit 
-   color schemes from their respective base variants */

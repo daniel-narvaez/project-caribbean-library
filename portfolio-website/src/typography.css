@@ -103,6 +103,7 @@ p {
 a {
   font-family: var(--body-text);
   color: var(--color-link);
+  text-decoration: none;
   transition: var(--menuControl-hover);
 
   &:hover { color: var(--color-link-hover) }

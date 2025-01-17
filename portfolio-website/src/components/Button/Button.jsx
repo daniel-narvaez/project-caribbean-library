@@ -1,70 +1,148 @@
-import React, { memo } from "react";
+// Buttons.js
+import React, { memo } from 'react';
 import styles from './Button.module.css';
-import { useButtonLogic } from "./ButtonLogic";
-import { getLinkAttributes } from "../../utils/externalUrls";
+import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
+import { getLinkAttributes } from '../../utils/externalUrls';
 
 /**
  * Base Button Component
- * Supports both action and link functionality based on className
- *
- * Action Buttons (className includes 'action'):
- * - Require onCustomClick handler
- * - Ignore url prop
- * - Disabled when onCustomClick is undefined
- *
- * Link Buttons (className excludes 'action'):
- * - Require url prop
- * - Ignore onCustomClick
- * - Disabled when url is ' ' or '/'
- * - Automatically handles external links in new tabs
+ * Provides shared styling and structure for both ActionButton and LinkButton
+ * 
+ * @param {Object} props
+ * @param {string} props.className - Additional CSS classes to apply
+ * @param {'solid' | 'island'} props.style - Button style variant
+ * @param {string} props.size - Size variant from ButtonLogic
+ * @param {boolean} props.disabled - Whether the button is disabled
+ * @param {string} props.title - Button text content
  */
-export const CreateButton = memo(({
+const ButtonBase = memo(({ className, style = 'solid', size, disabled, title }) => {
+  const buttonClassName = `${styles.button} ${styles[style]} ${styles[size]} ${className}`;
+  
+  return (
+    <span className={buttonClassName} aria-disabled={disabled}>
+      {title}
+    </span>
+  );
+});
+
+/**
+ * Action Button Component
+ * Handles click interactions and button behavior
+ * 
+ * @example
+ * // Basic usage
+ * <ActionButton title="Click Me" onCustomClick={() => {}} />
+ * 
+ * // With custom styling
+ * <ActionButton 
+ *   title="Custom Button" 
+ *   onCustomClick={handleClick}
+ *   style="island"
+ *   className="my-custom-class"
+ * />
+ * 
+ * Props:
+ * @param {Object} props
+ * @param {string} props.title - Button text content
+ * @param {'solid' | 'island'} props.style - Visual style variant
+ * @param {string} props.className - Additional CSS classes
+ * @param {Function} props.onCustomClick - Click handler (required)
+ * 
+ * Notes:
+ * - Button is disabled when onCustomClick is undefined
+ * - Automatically applies action-specific styling
+ */
+export const ActionButton = memo(({
   title = 'Button',
-  url = '/',
   style = 'solid',
   className = '',
   onCustomClick
 }) => {
-  const {
-    size,
-    isActionButton,
-    isDisabled,
-    finalUrl,
-    handleClick
-  } = useButtonLogic(url, className, onCustomClick);
+  const { size, isDisabled } = useActionButtonLogic(onCustomClick);
 
-  const buttonClassName = `${styles.button} ${styles[style]} ${styles[size]} ${styles[className]}`;
-
-  // Action button (using <button>)
-  if (isActionButton) {
-    return (
-      <button
-        type="button"
-        className={buttonClassName}
-        onClick={handleClick}
+  return (
+    <button
+      type="button"
+      onClick={onCustomClick}
+      disabled={isDisabled}
+    >
+      <ButtonBase 
+        className={className}
+        style={style}
+        size={size}
         disabled={isDisabled}
-      >
-        <span>{title}</span>
-      </button>
-    );
-  }
+        title={title}
+      />
+    </button>
+  );
+});
 
-  // Link button (using <a>)
+/**
+ * Link Button Component
+ * Handles URL navigation and link behavior
+ * 
+ * @example
+ * // Internal link
+ * <LinkButton title="Go to Home" url="/" />
+ * 
+ * // External link (automatically opens in new tab)
+ * <LinkButton title="Visit Site" url="https://example.com" />
+ * 
+ * Props:
+ * @param {Object} props
+ * @param {string} props.title - Button text content
+ * @param {string} props.url - Destination URL (required)
+ * @param {'solid' | 'island'} props.style - Visual style variant
+ * @param {string} props.className - Additional CSS classes
+ * 
+ * Notes:
+ * - Automatically handles external links in new tabs
+ * - Disabled when url is ' ' or '/'
+ * - Maintains accessibility with proper ARIA attributes
+ */
+export const LinkButton = memo(({
+  title = 'Button',
+  url = '/',
+  style = 'solid',
+  className = ''
+}) => {
+  const { size, isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
+
   return (
     <a
       href={isDisabled ? "#" : finalUrl}
-      className={buttonClassName}
       onClick={handleClick}
       aria-disabled={isDisabled}
       role="button"
       tabIndex={isDisabled ? -1 : 0}
       {...getLinkAttributes(finalUrl)}
     >
-      <span>{title}</span>
+      <ButtonBase 
+        className={className}
+        style={style}
+        size={size}
+        disabled={isDisabled}
+        title={title}
+      />
     </a>
   );
 });
 
-// Export button variants with specific styles
-export const SolidButton = (props) => <CreateButton {...props} style='solid' />;
-export const IslandButton = (props) => <CreateButton {...props} style='island' />;
+/**
+ * Pre-styled Button Variants
+ * Convenience components with predetermined styles
+ * 
+ * Action Button Variants:
+ * - SolidActionButton: Default solid style for actions
+ * - IslandActionButton: Island style for secondary actions
+ * 
+ * Link Button Variants:
+ * - SolidLinkButton: Default solid style for links
+ * - IslandLinkButton: Island style for secondary links
+ * 
+ * Usage remains the same as base components, style prop is pre-set
+ */
+export const SolidActionButton = (props) => <ActionButton {...props} style="solid" />;
+export const IslandActionButton = (props) => <ActionButton {...props} style="island" />;
+export const SolidLinkButton = (props) => <LinkButton {...props} style="solid" />;
+export const IslandLinkButton = (props) => <LinkButton {...props} style="island" />;

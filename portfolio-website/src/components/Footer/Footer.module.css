@@ -109,6 +109,8 @@
   }
   
   .footerBottom p {
+    font-size: 0.75rem;
+    line-height: 1rem;
     color: var(--color-bg1-active);
     text-align: center;
   }

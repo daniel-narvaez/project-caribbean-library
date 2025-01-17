@@ -43,7 +43,7 @@ import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 import { testSlides, heroGifSlides } from "../../data/HeroMedia";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
-import { CreateButton } from "../Button/Button";
+import { LinkButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
 import { Chapter } from "../Chapter/Chapter";
@@ -141,7 +141,6 @@ import { Chapter } from "../Chapter/Chapter";
         // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
         // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
       >
-        <Navbar />
 
         <div className={styles.heroContainer}>   
           <div className={styles.heroContent}>
@@ -158,14 +157,14 @@ import { Chapter } from "../Chapter/Chapter";
             </p>
             
             <div className={styles.ctaMenu}>
-              <CreateButton
-                className='hero'
+              <LinkButton
+                className={styles.heroButton}
                 title="Browse my work"
                 url="#projects"
                 style="solid"
               />
-              <CreateButton
-                className='hero'
+              <LinkButton
+                className={styles.heroButton}
                 title="Connect with me"
                 url="#contact"
                 style="island"

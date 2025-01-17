@@ -24,6 +24,8 @@ import Home from '../Home/Home';
 import styles from './App.module.css';
 import { gameProjectsData } from '../../data/gameProjects';
 import { GameProjectPage } from '../GameProjects/GameProjectPage';
+import Resume from '../Resume/Resume';
+import Navbar from '../../components/Navbar/Navbar';
 
 /**
  * Main App Component
@@ -58,6 +60,7 @@ function App() {
             <TypographyProvider>
                 <ChaptersProvider>
                     <div className={styles.App}>
+                        <Navbar />
                         <BrowserRouter>
                             <SplashEffect />
                             <AnimatedCursor />
@@ -65,6 +68,7 @@ function App() {
                                 {/* Static routes */}
                                 <Route key="root" path="/" element={<Home />} />
                                 <Route key="home" path="/home" element={<Home />} />
+                                <Route key="resume" path="/resume" element={<Resume />} />
                                 
                                 {/* Dynamic project routes */}
                                 {projectRoutes}

@@ -4,23 +4,40 @@ import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
 
 /**
- * Hook for shared button logic
- * @param {string} url - The URL for link buttons
- * @param {string} className - Class names including 'action' if it's an action button
- * @param {Function} onCustomClick - Click handler for action buttons
- * @returns {Object} Button state and handlers
+ * Hook for action button logic
+ * Handles disabled state and screen size responsiveness
+ * 
+ * @param {Function} onCustomClick - Click handler for the action button
+ * @returns {Object} Button state
+ * @property {string} size - Current screen size from context
+ * @property {boolean} isDisabled - Whether the button should be disabled
  */
-export const useButtonLogic = (url, className, onCustomClick) => {
+export const useActionButtonLogic = (onCustomClick) => {
+  const { size } = useContext(ScreenSizeContext);
+  
+  return {
+    size,
+    isDisabled: !onCustomClick
+  };
+};
+
+/**
+ * Hook for link button logic
+ * Handles URL processing, smooth scroll, and disabled states
+ * 
+ * @param {string} url - The destination URL
+ * @returns {Object} Link state and handlers
+ * @property {string} size - Current screen size from context
+ * @property {boolean} isDisabled - Whether the link should be disabled
+ * @property {string} finalUrl - Processed URL for the link
+ * @property {Function} handleClick - Click event handler
+ */
+export const useLinkButtonLogic = (url = '/') => {
   const { size } = useContext(ScreenSizeContext);
   const smoothScrollTo = useSmoothScroll();
-  
-  const isActionButton = className.includes('action');
-  const finalUrl = isActionButton ? '/' : url;
-  
-  // Calculate disabled state
-  const isDisabled = isActionButton
-    ? !onCustomClick // Action buttons disabled when no click handler
-    : (url === ' ' || url === '/'); // Link buttons disabled for empty/root URLs
+
+  // Link buttons disabled for empty/root URLs
+  const isDisabled = url === ' ' || url === '/';
 
   const handleClick = (e) => {
     if (isDisabled) {
@@ -28,16 +45,10 @@ export const useButtonLogic = (url, className, onCustomClick) => {
       return;
     }
 
-    if (isActionButton) {
-      if (onCustomClick) {
-        onCustomClick(e);
-      }
-      return;
-    }
-
-    if (finalUrl.startsWith('#')) {
+    // Handle smooth scroll for anchor links
+    if (url.startsWith('#')) {
       e.preventDefault();
-      const targetId = finalUrl.slice(1);
+      const targetId = url.slice(1);
       smoothScrollTo(targetId, {
         duration: 1500,
         easing: t => t < 0.5
@@ -49,9 +60,8 @@ export const useButtonLogic = (url, className, onCustomClick) => {
 
   return {
     size,
-    isActionButton,
     isDisabled,
-    finalUrl,
+    finalUrl: url,
     handleClick
   };
 };

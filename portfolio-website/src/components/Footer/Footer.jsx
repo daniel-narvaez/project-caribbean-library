@@ -109,8 +109,8 @@ export const Footer = ({ children }) => {
 
         <div className={`${styles.footerBottom} ${styles[size]}`}>
           <p>
-            &copy; Daniel Narvaez. All rights reserved. <br/>
-            v0.0.1
+            &copy; 2025 designed & developed by Daniel Narvaez. <br/>
+            All rights reserved. v1.0.0
           </p>
         </div>
       </Chapter>

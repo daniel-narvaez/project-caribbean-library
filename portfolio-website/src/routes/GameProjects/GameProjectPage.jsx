@@ -7,7 +7,6 @@
  */
 
 import { useContext, memo } from 'react';
-import { Navbar } from '../../components/Navbar/Navbar';
 import { Background } from '../../components/Background/Background';
 import { formatText } from '../../utils/formatText';
 import Chapter from '../../components/Chapter/Chapter';
@@ -24,9 +23,9 @@ import styles from './GameProjectPage.module.css';
  * @param {string} [additional] - Additional classes
  */
 const getClasses = (baseClass, size, additional = '') => {
-    const classes = [styles[baseClass], styles[size]];
-    if (additional) classes.push(additional);
-    return classes.filter(Boolean).join(' ');
+  const classes = [styles[baseClass], styles[size]];
+  if (additional) classes.push(additional);
+  return classes.filter(Boolean).join(' ');
 };
 
 /**
@@ -97,50 +96,50 @@ const contentRenderers = {
 
   paragraph: (element, key, size, game) => (  // added size parameter to match others
     <p key={key}>
-        {formatText(
-            typeof element.content === 'function' 
-                ? element.content({ urls: game.urls })  // Reverted back to original
-                : element.content
-        )}
+      {formatText(
+        typeof element.content === 'function' 
+          ? element.content({ urls: game.urls })  // Reverted back to original
+          : element.content
+      )}
     </p>
   ),
 
   list: (element, key, size) => (
-      element.content.type === 'bullet' ? (
-          <ul className={getClasses('list', size)} key={key}>
-              {element.content.items.map((item, index) => (
-                  <li key={index}>{formatText(item)}</li>
-              ))}
-          </ul>
-      ) : (
-          <ol className={getClasses('list', size)} key={key}>
-              {element.content.items.map((item, index) => (
-                  <li key={index}>{formatText(item)}</li>
-              ))}
-          </ol>
-      )
+    element.content.type === 'bullet' ? (
+      <ul className={getClasses('list', size)} key={key}>
+          {element.content.items.map((item, index) => (
+            <li key={index}>{formatText(item)}</li>
+          ))}
+      </ul>
+    ) : (
+      <ol className={getClasses('list', size)} key={key}>
+        {element.content.items.map((item, index) => (
+          <li key={index}>{formatText(item)}</li>
+        ))}
+      </ol>
+    )
   ),
 
   figureSet: (element, key, size) => (
-      <div className={getClasses('figureSet', size)} key={key}>
-          {element.content.map((item, index) => (
-              <figure className={getClasses('figure', size)} key={index}>
-                  <figcaption>
-                      <b>Figure {item.figId}:</b> <i>{item.caption}</i>
-                  </figcaption>
-                  <img src={item.src} alt={item.alt} />
-              </figure>
-          ))}
-      </div>
+    <div className={getClasses('figureSet', size)} key={key}>
+      {element.content.map((item, index) => (
+        <figure className={getClasses('figure', size)} key={index}>
+          <figcaption>
+            <b>Figure {item.figId}:</b> <i>{item.caption}</i>
+          </figcaption>
+          <img src={item.src} alt={item.alt} />
+        </figure>
+      ))}
+    </div>
   ),
 
   gallery: (element, key, size) => (
-      <figure className={getClasses('figure', size)} key={key}>
-          <figcaption>
-              <b>Figure {element.content.figId}:</b> <i>{element.content.caption}</i>
-          </figcaption>
-          <Slideshow slides={element.content.items} playbackMode="manual" />
-      </figure>
+    <figure className={getClasses('figure', size)} key={key}>
+      <figcaption>
+        <b>Figure {element.content.figId}:</b> <i>{element.content.caption}</i>
+      </figcaption>
+      <Slideshow slides={element.content.items} playbackMode="manual" />
+    </figure>
   ),
 
   video: (element, key, size) => (
@@ -185,57 +184,57 @@ export const GameProjectPage = memo(({ game }) => {
   const { size } = useContext(ScreenSizeContext);
 
   return (
-      <div className={getClasses('GameProjectPage', size)}>
-          <Navbar />
-          <main>
-              <Chapter id="moneyShot">
-                  {renderContent(game.projectPage.main, 'main', game, size)}
-              </Chapter>
-          </main>
-          <Background>
-              <ScrollAnchor />
-              <div className={getClasses('walkthrough', size)}>
-                  {game.projectPage.walkthrough.map((chapter, cIndex) => (
-                      <Chapter 
-                          key={cIndex}
-                          className={getClasses('chapter', size)}
-                          id={`chapter-${cIndex + 1}`}
-                      >
-                          {renderContent(
-                              chapter.heading,
-                              `heading-${cIndex}`,
-                              game,
-                              size
-                          )}
-                          <div className={getClasses('content', size)}>
-                              <div className={styles.left}>
-                                  {chapter.content.left.map((element, eIndex) => (
-                                      renderContent(
-                                          element,
-                                          `left-${cIndex}-${eIndex}`,
-                                          game,
-                                          size
-                                      )
-                                  ))}
-                              </div>
-                              <div className={styles.right}>
-                                  {chapter.content.right.map((element, eIndex) => (
-                                      renderContent(
-                                          element,
-                                          `right-${cIndex}-${eIndex}`,
-                                          game,
-                                          size
-                                      )
-                                  ))}
-                              </div>
-                          </div>
-                      </Chapter>
+    <div className={getClasses('GameProjectPage', size)}>
+      <main>
+        <h1 className='sr-only'>{game.title} Daniel Narvaez</h1>
+        <Chapter id="moneyShot">
+            {renderContent(game.projectPage.main, 'main', game, size)}
+        </Chapter>
+      </main>
+      <Background>
+        <ScrollAnchor />
+        <div className={getClasses('walkthrough', size)}>
+          {game.projectPage.walkthrough.map((chapter, cIndex) => (
+            <Chapter 
+                key={cIndex}
+                className={getClasses('chapter', size)}
+                id={`chapter-${cIndex + 1}`}
+            >
+              {renderContent(
+                chapter.heading,
+                `heading-${cIndex}`,
+                game,
+                size
+              )}
+              <div className={getClasses('content', size)}>
+                <div className={styles.left}>
+                  {chapter.content.left.map((element, eIndex) => (
+                    renderContent(
+                      element,
+                      `left-${cIndex}-${eIndex}`,
+                      game,
+                      size
+                    )
                   ))}
+                </div>
+                <div className={styles.right}>
+                  {chapter.content.right.map((element, eIndex) => (
+                    renderContent(
+                      element,
+                      `right-${cIndex}-${eIndex}`,
+                      game,
+                      size
+                    )
+                  ))}
+                </div>
               </div>
-              <Footer>
-                  <FooterNav />
-              </Footer>
-          </Background>
-      </div>
+            </Chapter>
+          ))}
+        </div>
+        <Footer>
+          <FooterNav />
+        </Footer>
+      </Background>
+    </div>
   );
 });

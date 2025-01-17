@@ -37,7 +37,7 @@ function Home() {
         <div className={styles.Home}>
             <Background>
                 {/* Screen reader accessible title */}
-                <h1 className="sr-only">Daniel Narvaez</h1>
+                <h1 className="sr-only">Home Daniel Narvaez</h1>
                 
                 {/* Scroll navigation utility */}
                 <ScrollAnchor />

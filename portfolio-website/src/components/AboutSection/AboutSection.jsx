@@ -32,7 +32,7 @@ import React, { useContext, useRef, useCallback, useEffect } from 'react';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
-import { CreateButton } from '../Button/Button';
+import { LinkButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
 import { clockOutProject } from '../../data/gameProjects';
 
@@ -187,12 +187,12 @@ export const AboutSection = () => {
         </div>
 
         <div className={`${styles.ctaMenu}`}>
-          <CreateButton
+          <LinkButton
             title="Read my résumé"
-            url='/'
+            url='/resume'
             style='solid'
           />
-          <CreateButton
+          <LinkButton
             title="Reach out"
             url='#contact'
             style='island'
