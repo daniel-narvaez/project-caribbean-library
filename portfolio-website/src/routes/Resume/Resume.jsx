@@ -13,36 +13,35 @@ import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 function Resume() {
+  const [resumeData, setResumeData] = useState({
+    url: '',
+    uploadedAt: null,
+    filename: ''
+  });
   const [uploadDate, setUploadDate] = useState(null);
   const { size } = useContext(ScreenSizeContext);
   
-  const fetchResumeMetadata = async () => {
-    try {
-      // Replace with your Vercel Blob URL
-      const response = await fetch('https://tq0koclkz81vf3zv.public.blob.vercel-storage.com/DanielNarvaez_Resume-tyQaSXEAziDcmgp0FGGBWvGsZJzgnq.docx', {
-        method: 'HEAD' // We only need headers, not the full file
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch resume metadata');
-      
-      const lastModified = response.headers.get('last-modified');
-      const date = new Date(lastModified);
-      
-      // Format the date (you can adjust the format as needed)
-      const formattedDate = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      
-      setUploadDate(formattedDate);
-    } catch (error) {
-      console.error('Error fetching resume date:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchResumeMetadata();
+    const fetchResumeData = async () => {
+      try {
+        const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url');
+        const data = await response.json();
+        setResumeData(data);
+        
+        // Format the date here if needed
+        const date = new Date(data.uploadedAt);
+        const formattedDate = date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        setUploadDate(formattedDate);
+      } catch (error) {
+        console.error('Error fetching resume data:', error);
+      }
+    };
+
+    fetchResumeData();
   }, []);
 
   return (
