@@ -139,7 +139,7 @@ const ResumeContent = () => {
     const loadResume = async () => {
         try {
             // First get the URL from our API
-            const urlResponse = await fetch('https://project-caribbean-library.vercel.app/api/resume-url');
+            const urlResponse = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=docx');
             if (!urlResponse.ok) {
                 throw new Error(`HTTP error! status: ${urlResponse.status}`);
             }

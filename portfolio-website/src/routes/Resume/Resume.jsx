@@ -24,7 +24,7 @@ function Resume() {
   useEffect(() => {
     const fetchResumeData = async () => {
       try {
-        const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url');
+        const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=docx');
         const data = await response.json();
         setResumeData(data);
         
@@ -90,7 +90,15 @@ function Resume() {
                   className={styles.heroButton}
                   title="Download PDF"
                   style="solid"
-                  // onCustomClick={() => window.open('https://tq0koclkz81vf3zv.public.blob.vercel-storage.com/DanielNarvaez_Resume-tyQaSXEAziDcmgp0FGGBWvGsZJzgnq.docx', '_blank')}
+                  onCustomClick={async () => {
+                    try {
+                      const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=pdf');
+                      const data = await response.json();
+                      window.open(data.url);
+                    } catch (error) {
+                      console.error('Error fetching PDF URL:', error);
+                    }
+                  }}
                 />
               </div>
             </div>

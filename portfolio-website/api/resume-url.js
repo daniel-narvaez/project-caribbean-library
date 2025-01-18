@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         
         console.log('API: Token exists, attempting to list blobs...');
         
+        const { type = 'docx' } = req.query;
         const { blobs } = await list({ prefix: 'DanielNarvaez_Resume' });
         
         console.log('API: Blobs found:', blobs);
@@ -18,15 +19,15 @@ export default async function handler(req, res) {
             throw new Error('No blobs found with the specified prefix');
         }
 
+        const typeFiles = blobs.filter(blob => blob.pathname.endsWith(`.${type}`));
+        
+        if (typeFiles.length === 0) {
+            throw new Error(`No ${type} files found`);
+        }
+
         const latestResume = blobs.sort((a, b) => 
             new Date(b.uploadedAt) - new Date(a.uploadedAt)
         )[0];
-
-        console.log('API: Latest resume:', {
-            url: latestResume.url,
-            uploadedAt: latestResume.uploadedAt,
-            pathname: latestResume.pathname
-        });
 
         res.json({ 
             url: latestResume.url, 
@@ -34,10 +35,7 @@ export default async function handler(req, res) {
             filename: latestResume.pathname 
         });
     } catch (error) {
-        console.error('API Error Details:', {
-            message: error.message,
-            stack: error.stack
-        });
+        console.error('API Error Details:', error);
         res.status(500).json({ 
             error: `Failed to fetch resume URL: ${error.message}`,
             details: error.stack
