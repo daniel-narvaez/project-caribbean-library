@@ -171,7 +171,12 @@ const ResumeContent = () => {
   }
 
   return (
-    <div className={styles.resumeContent}>
+    <div 
+      className={`
+        ${styles.resumeContent}
+        ${styles[size]}
+      `}
+    >
       <div 
         className={`
           ${styles.leftColumn} 

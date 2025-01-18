@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 
 import { Background } from "../../components/Background/Background";
@@ -10,9 +10,11 @@ import { ContactSection } from "../../components/ContactSection/ContactSection";
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import ResumeContent from "./ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
+import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 function Resume() {
   const [uploadDate, setUploadDate] = useState(null);
+  const { size } = useContext(ScreenSizeContext);
   
   const fetchResumeMetadata = async () => {
     try {
@@ -51,21 +53,39 @@ function Resume() {
           <h1 className="sr-only">Resume Résume Resumé Résumé Daniel Narvaez</h1>
           <Chapter 
             id='hero' 
-            className={styles.heroSection}
+            className={`
+              ${styles.heroSection}
+              ${styles[size]}
+            `}
           >
-            <div className={styles.heroContent}>
+            <div 
+              className={`
+                ${styles.heroContent}
+                ${styles[size]}
+              `}
+            >
               <h2 className={styles.headline}>
                 Résumé
               </h2>
               
               <p className={styles.tagline}>
                 I'm currently seeking entry-level <b>game designer</b><br/>
-                roles. Although based in New York, USA,<br/>
-                I'm willing to relocate <b>worldwide</b>.
+                roles. Although based in <b>New York, USA</b>,<br/>
+                I'm willing to relocate worldwide.
               </p>
             </div>
-            <div className={styles.heroMedia}>
-              <div className={styles.pdfDownloader}>
+            <div 
+              className={`
+                ${styles.heroMedia}
+                ${styles[size]}
+              `}
+            >
+              <div 
+                className={`
+                  ${styles.pdfDownloader}
+                  ${styles[size]}
+                `}
+              >
                 <span>Updated: {uploadDate || 'Loading...'}</span>
                 <ActionButton
                   className={styles.heroButton}
@@ -79,7 +99,10 @@ function Resume() {
         </main>
         <Chapter 
           id='resume'
-          className={styles.resumeSection}
+          className={`
+            ${styles.resumeSection}
+            ${styles[size]}
+          `}
         >
           <ResumeContent />
         </Chapter>

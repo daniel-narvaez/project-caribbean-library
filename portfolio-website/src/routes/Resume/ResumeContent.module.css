@@ -3,15 +3,23 @@
   grid-template-columns: 3fr 2fr;
   width: 100%;
   max-width: 80rem;
-  padding: 2rem;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
   align-self: center;
-
+  
   border-radius: var(--number-cornerRadius);
   background: var(--color-bg1-hover);
   box-shadow: var(--fx-boxShadow1);
+  
+  &.Desktop {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  &.Mobile {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 }
 
 .resumeContent .leftColumn {
@@ -82,4 +90,10 @@
   font-family: var(--body-text);
   line-height: 1.5rem;
   list-style-position: inside;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .resumeContent {
+    grid-template-columns: none;
+  }
 }

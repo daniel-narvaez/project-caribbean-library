@@ -7,10 +7,18 @@
   display: flex;
   width: 100%;
   /* max-width: 80rem; 1280px */
-  padding: 5rem;
-  gap: 2rem;
   justify-content: center;
   align-self: stretch;
+  
+  &.Desktop {
+    padding: 5rem;
+    gap: 2rem;
+  }
+
+  &.Mobile {
+    padding: 4rem;
+    gap: 1.5rem;
+  }
 }
 
 .heroSection .heroContent {
@@ -51,6 +59,10 @@
   gap: 0.5rem;
 }
 
+.pdfDownloader span {
+  font-size: 0.75rem;
+}
+
 .heroButton {
   padding: 0.75rem 1.5rem;
   font-size: var(--hero-cta-button-size);
@@ -65,5 +77,35 @@
   width: 100%;
   justify-content: center;
   align-self: stretch;
-  padding: 0rem 5rem;
+
+  &.Desktop {
+    padding: 0rem 5rem;
+  }
+
+  &.Mobile {
+    padding: 0rem max(env(safe-area-inset-right), 0.8rem) 0rem max(env(safe-area-inset-left), 0.8rem);
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .Resume .heroSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroSection .heroContent,
+  .heroSection .heroMedia {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headline,
+  .tagline {
+    text-align: center;
+  }
+
+  .heroMedia .pdfDownloader {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
