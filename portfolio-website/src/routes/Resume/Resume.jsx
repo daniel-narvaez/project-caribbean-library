@@ -24,7 +24,7 @@ function Resume() {
   useEffect(() => {
     const fetchResumeData = async () => {
       try {
-        const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=docx');
+        const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=pdf');
         const data = await response.json();
         setResumeData(data);
         
