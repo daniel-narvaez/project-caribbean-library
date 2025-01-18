@@ -97,7 +97,7 @@ function Resume() {
             </div>
           </Chapter>
         </main>
-        <Chapter 
+        <section
           id='resume'
           className={`
             ${styles.resumeSection}
@@ -105,7 +105,7 @@ function Resume() {
           `}
         >
           <ResumeContent />
-        </Chapter>
+        </section>
         <ContactSection />
         <Footer>
           <FooterNav />
