@@ -2,7 +2,7 @@ import { list } from '@vercel/blob';
 
 export default async function handler(req, res) {
   try {
-    const { blobs } = await list({prefix: 'resume'});
+    const { blobs } = await list({prefix: '_Resume'});
 
     const latestResume = blobs.sort((a, b) => 
       new Date(b.uploadedAt) - new Date(a.uploadedAt)

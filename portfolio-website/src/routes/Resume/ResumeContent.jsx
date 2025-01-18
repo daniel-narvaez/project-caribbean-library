@@ -137,30 +137,38 @@ const ResumeContent = () => {
 
   useEffect(() => {
     const loadResume = async () => {
-      try {
-        const response = await fetch('https://tq0koclkz81vf3zv.public.blob.vercel-storage.com/DanielNarvaez_Resume-tyQaSXEAziDcmgp0FGGBWvGsZJzgnq.docx');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const blob = await response.blob();
-        const arrayBuffer = await blob.arrayBuffer();
+        try {
+            // First get the URL from our API
+            const urlResponse = await fetch('https://project-caribbean-library.vercel.app/api/resume-url');
+            if (!urlResponse.ok) {
+                throw new Error(`HTTP error! status: ${urlResponse.status}`);
+            }
+            const { url } = await urlResponse.json();
 
-        const result = await mammoth.convertToHtml({ arrayBuffer });
-        const domElements = parseHTMLContent(result.value);
-        const { leftContent, rightContent } = processContent(domElements);
-        
-        setLeftColumn(leftContent);
-        setRightColumn(rightContent);
-      } catch (err) {
-        setError(`Failed to load resume: ${err.message}`);
-        console.error('Error:', err);
-      } finally {
-        setIsLoading(false);
-      }
+            // Then use that URL to fetch the actual document
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const blob = await response.blob();
+            const arrayBuffer = await blob.arrayBuffer();
+            const result = await mammoth.convertToHtml({ arrayBuffer });
+            const domElements = parseHTMLContent(result.value);
+            const { leftContent, rightContent } = processContent(domElements);
+            
+            setLeftColumn(leftContent);
+            setRightColumn(rightContent);
+        } catch (err) {
+            setError(`Failed to load resume: ${err.message}`);
+            console.error('Error:', err);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     loadResume();
-  }, []);
+}, []);
 
   if (isLoading) {
     return <div className={styles.loading}>Loading resume...</div>;
