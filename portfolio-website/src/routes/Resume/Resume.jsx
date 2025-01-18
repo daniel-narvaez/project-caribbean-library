@@ -90,15 +90,15 @@ function Resume() {
                   className={styles.heroButton}
                   title="Download PDF"
                   style="solid"
-                  onCustomClick={async () => {
-                    try {
-                      const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=pdf');
-                      const data = await response.json();
-                      window.open(data.url, '_blank');
-                    } catch (error) {
-                      console.error('Error fetching PDF URL:', error);
-                    }
-                  }}
+                  // onCustomClick={async () => {
+                  //   try {
+                  //     const response = await fetch('https://project-caribbean-library.vercel.app/api/resume-url?type=pdf');
+                  //     const data = await response.json();
+                  //     window.open(data.url, '_blank');
+                  //   } catch (error) {
+                  //     console.error('Error fetching PDF URL:', error);
+                  //   }
+                  // }}
                 />
               </div>
             </div>
