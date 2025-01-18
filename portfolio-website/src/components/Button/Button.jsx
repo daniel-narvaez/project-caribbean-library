@@ -63,6 +63,7 @@ export const ActionButton = memo(({
   return (
     <button
       type="button"
+      className='action'
       onClick={onCustomClick}
       disabled={isDisabled}
     >
