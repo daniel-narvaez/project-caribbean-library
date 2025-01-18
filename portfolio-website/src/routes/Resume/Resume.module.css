@@ -16,7 +16,7 @@
   }
 
   &.Mobile {
-    padding: 4rem;
+    padding: 4rem max(env(safe-area-inset-right), 0.8rem) 4rem max(env(safe-area-inset-left), 0.8rem);
     gap: 1.5rem;
   }
 }
