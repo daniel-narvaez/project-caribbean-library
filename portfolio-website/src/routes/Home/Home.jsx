@@ -23,7 +23,7 @@ import { ScrollAnchor } from '../../components/ScrollAnchor/ScrollAnchor';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
 import { ProjectsSection } from '../../components/ProjectsSection/ProjectsSection';
 import { AboutSection } from '../../components/AboutSection/AboutSection';
-import { ContactSection } from '../../components/ContactSection/ContactSection';
+import { EmailSection } from '../../components/EmailSection/EmailSection';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
 import styles from './Home.module.css';
 
@@ -46,7 +46,7 @@ function Home() {
                 <HeroSection />
                 <ProjectsSection />
                 <AboutSection />
-                <ContactSection />
+                <EmailSection />
                 
                 {/* Footer */}
                 <Footer>

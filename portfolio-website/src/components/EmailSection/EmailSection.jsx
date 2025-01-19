@@ -29,7 +29,7 @@ import {
   SubmitButton 
 } from "../Form/Form";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
-import styles from './ContactSection.module.css';
+import styles from './EmailSection.module.css';
 import { Chapter } from "../Chapter/Chapter";
 
 /**
@@ -47,7 +47,7 @@ const SUBJECT_OPTIONS = [
  * ContactSection Component
  * Renders a contact form with success state animation
  */
-export const ContactSection = () => {
+export const EmailSection = () => {
   const { size } = useContext(ScreenSizeContext);
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,7 +58,7 @@ export const ContactSection = () => {
 
   return (
     <Chapter
-        id='contact'
+        id='email'
         className={styles.contactSection}
     >
       <h2 className={`${styles.heading} ${styles[size]}`}>
