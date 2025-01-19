@@ -1,26 +1,45 @@
+/**
+ * Resume.module.css
+ * ===============
+ * 
+ * Styles for resume page featuring:
+ * - Responsive hero section
+ * - PDF downloader component
+ * - Mobile-friendly layout adjustments
+ * - Safe area insets for mobile
+ */
+
+/* Base Container
+   ============= */
 .Resume {
   width: 100%;
   height: 100%;
 }
 
+/* Hero Section
+    =========== */
 .Resume .heroSection {
   display: flex;
   width: 100%;
-  /* max-width: 80rem; 1280px */
   justify-content: center;
   align-self: stretch;
-  
-  &.Desktop {
-    padding: 5rem;
-    gap: 2rem;
-  }
-
-  &.Mobile {
-    padding: 4rem max(env(safe-area-inset-right), 0.8rem) 4rem max(env(safe-area-inset-left), 0.8rem);
-    gap: 1.5rem;
-  }
 }
 
+.Resume .heroSection.Desktop {
+  padding: 5rem;
+  gap: 2rem;
+}
+
+.Resume .heroSection.Mobile {
+  padding: 4rem 
+    max(env(safe-area-inset-right), 0.8rem) 
+    4rem 
+    max(env(safe-area-inset-left), 0.8rem);
+  gap: 1.5rem;
+}
+
+/* Hero Content
+    =========== */
 .heroSection .heroContent {
   display: flex;
   width: 100%;
@@ -28,7 +47,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 1.5rem; /* 24px = 1280px * 1.875% */
+  gap: 1.5rem;
 }
 
 .headline {
@@ -42,15 +61,19 @@
   line-height: normal;
 }
 
+/* Hero Media Section
+    ================= */
 .heroSection .heroMedia {
   display: flex;
   width: 100%;
   max-width: calc(40rem - 1rem);
   justify-content: flex-end;
   align-items: flex-end;
-  gap: 1.5rem; /* 24px = 1280px * 1.875% */
+  gap: 1.5rem;
 }
 
+/* PDF Downloader
+    ============= */
 .heroMedia .pdfDownloader {
   display: flex;
   flex-direction: column;
@@ -63,6 +86,8 @@
   font-size: 0.75rem;
 }
 
+/* Download Button
+    ============== */
 .heroButton {
   padding: 0.75rem 1.5rem;
   font-size: var(--hero-cta-button-size);
@@ -72,21 +97,28 @@
   border-radius: 0.25rem;
 }
 
+/* Resume Section
+    ============= */
 .Resume .resumeSection {
   display: flex;
   width: 100%;
   justify-content: center;
   align-self: stretch;
-
-  &.Desktop {
-    padding: 0rem 5rem;
-  }
-
-  &.Mobile {
-    padding: 0rem max(env(safe-area-inset-right), 0.8rem) 0rem max(env(safe-area-inset-left), 0.8rem);
-  }
 }
 
+.Resume .resumeSection.Desktop {
+  padding: 0 5rem;
+}
+
+.Resume .resumeSection.Mobile {
+  padding: 0 
+    max(env(safe-area-inset-right), 0.8rem) 
+    0 
+    max(env(safe-area-inset-left), 0.8rem);
+}
+
+/* Responsive Adjustments
+    ==================== */
 @media (max-aspect-ratio: 1/1) {
   .Resume .heroSection {
     flex-direction: column;
