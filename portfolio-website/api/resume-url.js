@@ -14,7 +14,7 @@ import { list } from '@vercel/blob';
 
 // Configuration
 const CONFIG = {
-    PREFIX: 'DanielNarvaez_Resume',
+    PREFIX: 'documents/DanielNarvaez_Resume',
     ALLOWED_TYPES: ['docx', 'pdf']
 };
 
