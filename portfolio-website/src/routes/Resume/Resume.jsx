@@ -13,7 +13,7 @@ import { useState, useEffect, useContext, useCallback } from "react";
 import { Background } from "../../components/Background/Background";
 import Chapter from "../../components/Chapter/Chapter";
 import { ActionButton } from "../../components/Button/Button";
-import { ContactSection } from "../../components/ContactSection/ContactSection";
+
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
@@ -117,8 +117,6 @@ function Resume() {
         >
           <ResumeContent />
         </section>
-
-        <ContactSection />
         <Footer>
           <FooterNav />
         </Footer>
