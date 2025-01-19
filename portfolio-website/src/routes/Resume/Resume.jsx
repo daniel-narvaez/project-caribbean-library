@@ -104,7 +104,7 @@ function Resume() {
                   className={styles.heroButton}
                   title="Download PDF"
                   style="solid"
-                  onCustomClick={handleDownload}
+                  // onCustomClick={handleDownload}
                 />
               </div>
             </div>
