@@ -65,50 +65,28 @@ export const ResumeContent = () => {
      */
 const elementToReact = useCallback((element, index) => {
   const key = `${element.tagName}-${index}`;
-
-  // Helper function to process text nodes and inline elements
-  const processTextContent = (node, childIndex) => {
-      if (!node) return null;
-      
-      if (node.nodeType === Node.TEXT_NODE) {
-          return node.textContent;
-      }
-      
-      const childKey = `${key}-${childIndex}`;
-      
-      switch (node.nodeName.toLowerCase()) {
-          case 'strong':
-          case 'b':
-              return <strong key={childKey}>{Array.from(node.childNodes).map((child, i) => processTextContent(child, `${childIndex}-${i}`))}</strong>;
-          case 'em':
-          case 'i':
-              return <em key={childKey}>{Array.from(node.childNodes).map((child, i) => processTextContent(child, `${childIndex}-${i}`))}</em>;
-          default:
-              return Array.from(node.childNodes).map((child, i) => processTextContent(child, `${childIndex}-${i}`));
-      }
-  };
   
   const componentMap = {
       h2: () => (
           <h2 key={key} className={styles.heading}>
-              {Array.from(element.childNodes).map((node, i) => processTextContent(node, i))}
+              {element.textContent}
           </h2>
       ),
       h3: () => (
           <h3 key={key} className={styles.subheading}>
-              {Array.from(element.childNodes).map((node, i) => processTextContent(node, i))}
+              {element.textContent}
           </h3>
       ),
       p: () => (
           <p key={key} className={styles.paragraph}>
-              {Array.from(element.childNodes).map((node, i) => processTextContent(node, i))}
+              {element.textContent}
           </p>
       ),
       ul: () => (
           <ul key={key} className={`${styles.list} ${styles[size]}`}>
               {Array.from(element.children).map((li, liIndex) => (
                   <li key={`${key}-li-${liIndex}`} className={styles.listItem}>
-                      {Array.from(li.childNodes).map((node, i) => processTextContent(node, i))}
+                      {li.textContent}
                   </li>
               ))}
           </ul>
@@ -116,8 +94,9 @@ const elementToReact = useCallback((element, index) => {
   };
 
   const tagName = element.tagName.toLowerCase();
+
   return componentMap[tagName]?.() || null;
-}, [size]);
+  }, [size]);
 
   /**
   * Processes HTML elements into organized sections and columns
