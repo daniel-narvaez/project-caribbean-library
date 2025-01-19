@@ -59,14 +59,14 @@ export const EmailSection = () => {
   return (
     <Chapter
         id='email'
-        className={styles.contactSection}
+        className={styles.emailSection}
     >
       <h2 className={`${styles.heading} ${styles[size]}`}>
           Contact
       </h2>
 
       <article className={`
-          ${styles.contactArticle}
+          ${styles.emailArticle}
           ${submitted ? styles.flipped : ''}
       `}>
         {/* Form Side */}
@@ -132,7 +132,7 @@ export const EmailSection = () => {
         </div>
 
         {/* Success Message Side */}
-        <div className={`${styles.cardContent} ${styles.contactMedia} ${styles[size]}`}>
+        <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[size]}`}>
           <MessageInABottle id='message-in-a-bottle' />
           <div className={styles.taglineContainer}>
             <span className={styles[size]}>

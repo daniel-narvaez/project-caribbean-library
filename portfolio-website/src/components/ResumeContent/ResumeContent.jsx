@@ -65,28 +65,46 @@ export const ResumeContent = () => {
      */
 const elementToReact = useCallback((element, index) => {
   const key = `${element.tagName}-${index}`;
+
+  // Helper function to process text nodes and inline elements
+  const processTextContent = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent;
+      }
+      
+      switch (node.nodeName.toLowerCase()) {
+          case 'strong':
+          case 'b':
+              return <strong key={`${key}-bold-${index}`}>{Array.from(node.childNodes).map(processTextContent)}</strong>;
+          case 'em':
+          case 'i':
+              return <em key={`${key}-italic-${index}`}>{Array.from(node.childNodes).map(processTextContent)}</em>;
+          default:
+              return node.textContent;
+      }
+  };
   
   const componentMap = {
       h2: () => (
           <h2 key={key} className={styles.heading}>
-              {element.textContent}
+              {Array.from(element.childNodes).map(processTextContent)}
           </h2>
       ),
       h3: () => (
           <h3 key={key} className={styles.subheading}>
-              {element.textContent}
+              {Array.from(element.childNodes).map(processTextContent)}
           </h3>
       ),
       p: () => (
           <p key={key} className={styles.paragraph}>
-              {element.textContent}
+              {Array.from(element.childNodes).map(processTextContent)}
           </p>
       ),
       ul: () => (
           <ul key={key} className={`${styles.list} ${styles[size]}`}>
               {Array.from(element.children).map((li, liIndex) => (
                   <li key={`${key}-li-${liIndex}`} className={styles.listItem}>
-                      {li.textContent}
+                      {Array.from(li.childNodes).map(processTextContent)}
                   </li>
               ))}
           </ul>
@@ -94,9 +112,8 @@ const elementToReact = useCallback((element, index) => {
   };
 
   const tagName = element.tagName.toLowerCase();
-
   return componentMap[tagName]?.() || null;
-  }, [size]);
+}, [size]);
 
   /**
   * Processes HTML elements into organized sections and columns
