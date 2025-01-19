@@ -14,15 +14,15 @@
     --color-action-hover: #ab47bc; /* Bright Orchid */
     --color-action-active: #4e1953; /* Pinot Noir */
 
+    --color-bg1: #ece9e4; /* Sand */
+    --color-bg1-hover: #f7f5f2; /* Dune Crest */
+    --color-bg1-active: #dcd8d1; /* Desert Stone */
+
     --color-error: #d6111b; /* Brave Blood */
 
     --color-pointer-link: #b2ffff; /* Celeste */
     --color-pointer-action: #dc9ba3; /* Lilac */
 
-    --color-bg1: #ece9e4; /* Sand */
-    --color-bg1-hover: #f7f5f2; /* Dune Crest */
-    --color-bg1-active: #dcd8d1; /* Desert Stone */
-    
     --matcha: #98c187;
 
     /* Fonts */
