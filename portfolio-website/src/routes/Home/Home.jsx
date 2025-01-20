@@ -17,15 +17,18 @@
  * - Screen reader accessible title
  * - Section-based organization
  */
+import { useContext } from 'react';
 
 import { Background } from '../../components/Background/Background';
 import { ScrollAnchor } from '../../components/ScrollAnchor/ScrollAnchor';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
 import { ProjectsSection } from '../../components/ProjectsSection/ProjectsSection';
 import { AboutSection } from '../../components/AboutSection/AboutSection';
-import { EmailSection } from '../../components/EmailSection/EmailSection';
+import { EmailForm } from '../../components/EmailForm/EmailForm';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
 import styles from './Home.module.css';
+import Chapter from '../../components/Chapter/Chapter';
+import { ScreenSizeContext } from '../../contexts/ScreenSize';
 
 /**
  * Home Component
@@ -33,28 +36,38 @@ import styles from './Home.module.css';
  * of the portfolio in a scrollable layout.
  */
 function Home() {
-    return (
-        <div className={styles.Home}>
-            <Background>
-                {/* Screen reader accessible title */}
-                <h1 className="sr-only">Home Daniel Narvaez</h1>
-                
-                {/* Scroll navigation utility */}
-                <ScrollAnchor />
-                
-                {/* Main content sections */}
-                <HeroSection />
-                <ProjectsSection />
-                <AboutSection />
-                <EmailSection />
-                
-                {/* Footer */}
-                <Footer>
-                    <FooterNav />
-                </Footer>
-            </Background>
-        </div>
-    );
+  const { size } = useContext(ScreenSizeContext);
+  
+  return (
+    <div className={styles.Home}>
+      <Background>
+        {/* Screen reader accessible title */}
+        <h1 className="sr-only">Home | Daniel Narvaez</h1>
+        
+        {/* Scroll navigation utility */}
+        <ScrollAnchor />
+        
+        {/* Main content sections */}
+        <HeroSection />
+        <ProjectsSection />
+        <AboutSection />
+        <Chapter
+          id='contact'
+          className={`
+            ${styles.contactSection}
+            ${styles[size]}
+          `}
+        >
+          <EmailForm tagline="Want to reach out? Cast a message to my inbox, and let's begin our conversation." />
+        </Chapter>
+        
+        {/* Footer */}
+        <Footer>
+          <FooterNav />
+        </Footer>
+      </Background>
+    </div>
+  );
 }
 
 export default Home;

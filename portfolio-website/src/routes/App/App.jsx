@@ -16,17 +16,22 @@
  */
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Navbar from '../../components/Navbar/Navbar';
+import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
+
 import { ScreenSizeProvider } from '../../contexts/ScreenSize';
 import { TypographyProvider } from '../../contexts/Typography';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
-import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
-import Home from '../Home/Home';
-import styles from './App.module.css';
-import { gameProjectsData } from '../../data/gameProjects';
-import { GameProjectPage } from '../GameProjects/GameProjectPage';
-import Resume from '../Resume/Resume';
-import Navbar from '../../components/Navbar/Navbar';
 
+import Home from '../Home/Home';
+import Resume from '../Resume/Resume';
+import Contact from '../Contact/Contact';
+import { GameProjectPage } from '../GameProjects/GameProjectPage';
+
+import { gameProjectsData } from '../../data/gameProjects';
+
+import styles from './App.module.css';
 /**
  * Main App Component
  * Wraps the application in necessary providers and generates routes
@@ -46,39 +51,40 @@ import Navbar from '../../components/Navbar/Navbar';
  * <Route path="/project-b" element={<GameProjectPage game={projectB} />} />
  */
 function App() {
-    // Generate project routes from game projects data
-    const projectRoutes = Object.values(gameProjectsData).map((gameProject) => (
-        <Route
-            key={gameProject.path}
-            path={gameProject.urls.portfolio}
-            element={<GameProjectPage game={gameProject} />}
-        />
-    ));
+  // Generate project routes from game projects data
+  const gameProjectRoutes = Object.values(gameProjectsData).map((gameProject) => (
+    <Route
+      key={gameProject.path}
+      path={gameProject.urls.portfolio}
+      element={<GameProjectPage game={gameProject} />}
+    />
+  ));
 
-    return (
-        <ScreenSizeProvider>
-            <TypographyProvider>
-                <ChaptersProvider>
-                    <div className={styles.App}>
-                        <Navbar />
-                        <BrowserRouter>
-                            <SplashEffect />
-                            <AnimatedCursor />
-                            <Routes>
-                                {/* Static routes */}
-                                <Route key="root" path="/" element={<Home />} />
-                                <Route key="home" path="/home" element={<Home />} />
-                                <Route key="resume" path="/resume" element={<Resume />} />
-                                
-                                {/* Dynamic project routes */}
-                                {projectRoutes}
-                            </Routes>
-                        </BrowserRouter>
-                    </div>
-                </ChaptersProvider>
-            </TypographyProvider>
-        </ScreenSizeProvider>
-    );
+  return (
+    <ScreenSizeProvider>
+      <TypographyProvider>
+        <ChaptersProvider>
+          <div className={styles.App}>
+            <Navbar />
+            <BrowserRouter>
+              <SplashEffect />
+              <AnimatedCursor />
+              <Routes>
+                {/* Static routes */}
+                <Route key="root" path="/" element={<Home />} />
+                <Route key="home" path="/home" element={<Home />} />
+                <Route key="resume" path="/resume" element={<Resume />} />
+                <Route key="contact" path="/contact" element={<Contact />} />
+                
+                {/* Dynamic project routes */}
+                {gameProjectRoutes}
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </ChaptersProvider>
+      </TypographyProvider>
+    </ScreenSizeProvider>
+  );
 }
 
 export default App;

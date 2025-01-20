@@ -134,9 +134,10 @@ const contactItem = createDropdownItem({
   submenu: [
     createDropdownItem({
       title: 'Email',
+      url: "/contact"
     }),
     createDropdownItem({
-      title: 'Platforms',
+      title: 'Social Media',
       submenu: [
         createDropdownItem({
           title: socialMediaData.linkedInIcon.appName,
@@ -155,6 +156,15 @@ const contactItem = createDropdownItem({
           url: socialMediaData.youngArtsPostIcon.profileUrl
         }),
         createDropdownItem({
+          title: socialMediaData.discordIcon.appName,
+          url: socialMediaData.discordIcon.profileUrl
+        })
+      ]
+    }),
+    createDropdownItem({
+      title: 'Creator Profiles',
+      submenu: [
+        createDropdownItem({
           title: socialMediaData.gitHubIcon.appName,
           url: socialMediaData.gitHubIcon.profileUrl
         }),
@@ -162,6 +172,10 @@ const contactItem = createDropdownItem({
           title: socialMediaData.itchIcon.appName,
           url: socialMediaData.itchIcon.profileUrl
         }),
+        createDropdownItem({
+          title: socialMediaData.machinationsIcon.appName,
+          url: socialMediaData.machinationsIcon.profileUrl
+        })
       ]
     })
   ]

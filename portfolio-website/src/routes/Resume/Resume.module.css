@@ -14,27 +14,42 @@
 .Resume {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  
+  &.Desktop {
+    padding: 5rem;
+    gap: 5rem;
+  }
+
+  &.Mobile {
+    padding: 4rem 
+    max(env(safe-area-inset-right), 0.8rem) 
+    4rem 
+    max(env(safe-area-inset-left), 0.8rem);
+    gap: 4rem;
+  }
 }
 
 /* Hero Section
     =========== */
 .Resume .heroSection {
   display: flex;
+  max-width: 80rem; /* 1280 px */
   width: 100%;
+  align-items: flex-end;
   justify-content: center;
-  align-self: stretch;
 }
 
 .Resume .heroSection.Desktop {
-  padding: 5rem;
+  padding-top: 5rem;
   gap: 2rem;
 }
 
 .Resume .heroSection.Mobile {
-  padding: 4rem 
-    max(env(safe-area-inset-right), 0.8rem) 
-    4rem 
-    max(env(safe-area-inset-left), 0.8rem);
+  padding-top: 4rem;
   gap: 1.5rem;
 }
 
@@ -43,7 +58,6 @@
 .heroSection .heroContent {
   display: flex;
   width: 100%;
-  max-width: calc(40rem - 1rem);
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -66,7 +80,6 @@
 .heroSection .heroMedia {
   display: flex;
   width: 100%;
-  max-width: calc(40rem - 1rem);
   justify-content: flex-end;
   align-items: flex-end;
   gap: 1.5rem;

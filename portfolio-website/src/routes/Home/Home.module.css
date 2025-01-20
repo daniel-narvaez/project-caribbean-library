@@ -2,3 +2,21 @@
   width: 100%;
   height: 100%;
 }
+
+.contactSection {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  &.Desktop {
+    padding: 5rem;
+  }
+
+  &.Mobile {
+    padding: 4rem 
+    max(env(safe-area-inset-right), 0.8rem) 
+    4rem 
+    max(env(safe-area-inset-left), 0.8rem);
+  }
+}

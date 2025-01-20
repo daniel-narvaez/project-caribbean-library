@@ -59,7 +59,7 @@ const INITIAL_ITEM_CONFIG = {
  * @param {Object} props
  * @param {string} [props.iconName='linkedin'] - Name of the icon to display
  */
-export const ContactItem = ({ iconName = 'linkedin' }) => {
+export const ContactIcon = ({ iconName = 'linkedin' }) => {
     // Refs and state
     const itemConfig = useRef(INITIAL_ITEM_CONFIG);
     const [appName, setAppName] = useState('');
@@ -123,7 +123,7 @@ export const ContactItem = ({ iconName = 'linkedin' }) => {
 
     return (
         <div 
-          className={`${styles.contactItem} ${styles[size]}`}
+          className={`${styles.contactIcon} ${styles[size]}`}
         >
             <a
                 target="_blank"
@@ -132,7 +132,7 @@ export const ContactItem = ({ iconName = 'linkedin' }) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseEnter}
+                onMouseUp={handleMouseLeave}
             >
                 <AppIcon
                     iconName={iconName}
@@ -147,3 +147,113 @@ export const ContactItem = ({ iconName = 'linkedin' }) => {
         </div>
     );
 };
+
+export const ContactBook = ({ iconName = 'linkedin' }) => {
+  const itemConfig = useRef(INITIAL_ITEM_CONFIG);
+  const [appName, setAppName] = useState('');
+  const [profileUrl, setProfileUrl] = useState('');
+  const [containerColor, setContainerColor] = useState(INITIAL_ITEM_CONFIG.COLORS.CONTAINER.NORMAL);
+  const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
+  const [transitionDuration, setTransitionDuration] = useState('350ms');
+  const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
+  const { size } = useContext(ScreenSizeContext);
+
+  // Initialize colors from CSS custom properties
+  useEffect(() => {
+    const root = getComputedStyle(document.documentElement);
+    
+    itemConfig.current = {
+      ...INITIAL_ITEM_CONFIG,
+      COLORS: {
+        CONTAINER: {
+          NORMAL: root.getPropertyValue('--color-bg1').trim(),
+          HOVER: root.getPropertyValue('--color-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--color-bg1-active').trim()
+        },
+        ICON: {
+          NORMAL: root.getPropertyValue('--color-link').trim(),
+          HOVER: root.getPropertyValue('--color-link-hover').trim(),
+          ACTIVE: root.getPropertyValue('--color-link-active').trim()
+        }
+      }
+    };
+
+    // Initialize with themed colors
+    setContainerColor(itemConfig.current.COLORS.CONTAINER.NORMAL);
+    setIconColor(itemConfig.current.COLORS.ICON.NORMAL);
+  }, []);
+
+    // Event handlers
+  const handleIconLoad = useCallback(({ appName, profileUrl }) => {
+    setAppName(appName);
+    setProfileUrl(profileUrl);
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setContainerColor(itemConfig.current.COLORS.CONTAINER.HOVER);
+    setIconColor(itemConfig.current.COLORS.ICON.HOVER);
+    setTransitionDuration(itemConfig.current.TRANSITIONS.DURATION.HOVER);
+    setTransitionEase(itemConfig.current.TRANSITIONS.EASE.HOVER);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setContainerColor(itemConfig.current.COLORS.CONTAINER.NORMAL);
+    setIconColor(itemConfig.current.COLORS.ICON.NORMAL);
+  }, []);
+
+  const handleMouseDown = useCallback(() => {
+    setContainerColor(itemConfig.current.COLORS.CONTAINER.ACTIVE);
+    setIconColor(itemConfig.current.COLORS.ICON.ACTIVE);
+    setTransitionDuration(itemConfig.current.TRANSITIONS.DURATION.ACTIVE);
+    setTransitionEase(itemConfig.current.TRANSITIONS.EASE.ACTIVE);
+  }, []);
+
+  return (
+    <a 
+      className={`
+        ${styles.contactBook}
+        ${styles[size]}
+      `}
+      target="_blank"
+      rel="noopener noreferrer"
+      href={profileUrl}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseLeave}
+    >
+      <div       
+        className={`
+          ${styles.spine}
+          ${styles.top}
+          ${styles[size]}
+        `} 
+      />
+      <div       
+        className={`
+          ${styles.spine}
+          ${styles.middle}
+          ${styles[size]}
+        `} 
+      >
+        <span>{appName}</span>
+      </div>
+      <div       
+        className={`
+          ${styles.spine}
+          ${styles.bottom}
+          ${styles[size]}
+        `} 
+      >
+        <AppIcon
+          iconName={iconName}
+          containerColor={containerColor}
+          iconColor={iconColor}
+          transitionDuration={transitionDuration}
+          ease={transitionEase}
+          onIconLoad={handleIconLoad}
+        />
+      </div>
+    </a>
+  )
+}

@@ -2,7 +2,7 @@
  * ContactItem.module.css
  * ====================
  * 
- * Styles for the ContactItem component featuring:
+ * Styles for the ContactIcon component featuring:
  * - Responsive layouts for Desktop and Mobile
  * - Interactive hover and active states
  * - Smooth transitions for all interactions
@@ -10,68 +10,217 @@
  */
 
 /* Base styles
-   ========== */
-.contactItem {
-    align-items: center;
-    flex-direction: column;
+  ========== */
+.contactIcon {
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Link styles
-   ========== */
-.contactItem a {
-    transform: scale(100%);
-    transition: var(--menuControl-hover);
+  ========== */
+.contactIcon a {
+  transform: scale(100%);
+  transition: var(--menuControl-hover);
 }
 
 /* Label styles
-   =========== */
-.contactItem span {
-    color: var(--color-bg1);
-    text-align: center;
-    transition: var(--menuControl-hover);
+  =========== */
+.contactIcon span {
+color: var(--color-bg1);
+text-align: center;
+transition: var(--menuControl-hover);
 }
 
 /* Desktop layout
-   ============= */
-.contactItem.Desktop {
-    display: flex;
-    justify-content: flex-start;
-    max-width: 2rem;
-    gap: 0.5rem;
+  ============= */
+.contactIcon.Desktop {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 2rem;
+  gap: 0.5rem;
 }
 
-.contactItem.Desktop span {
-    opacity: 0;
-    max-width: 6rem;
+.contactIcon.Desktop span {
+  opacity: 0;
+  /* max-width: 6rem; */
 }
 
 /* Mobile layout
-   ============ */
-.contactItem.Mobile {
-    display: inline-flex;
-    justify-content: center;
-    max-width: 1.5rem;
+  ============ */
+.contactIcon.Mobile {
+  display: inline-flex;
+  justify-content: center;
+  max-width: 1.5rem;
 }
 
-.contactItem.Mobile span {
-    display: none;
-    max-width: 4.5rem;
+.contactIcon.Mobile span {
+  display: none;
+  /* max-width: 4.5rem; */
 }
 
 /* Interactive states
-   ================= */
-.contactItem:hover span {
-    opacity: 1;
-    color: var(--color-link-hover);
+  ================= */
+.contactIcon:hover span {
+  opacity: 1;
+  color: var(--color-link-hover);
 }
 
-.contactItem:active a {
-    transform: scale(92%);
-    transition: var(--menuControl-active);
+.contactIcon:active a {
+  transform: scale(92%);
+  transition: var(--menuControl-active);
 }
 
-.contactItem:active span {
-    opacity: 1;
-    color: var(--color-link-active);
-    transition: var(--menuControl-active);
+.contactIcon:active span {
+  opacity: 1;
+  color: var(--color-link-active);
+  transition: var(--menuControl-active);
+}
+
+
+
+
+
+
+.contactBook {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--number-cornerRadius);
+  overflow: hidden;
+  background: var(--color-bg1);
+  box-shadow: var(--fx-boxShadow1);
+  transition: var(--menuControl-hover);
+
+  &.Desktop {
+    min-width: 3rem;
+    gap: 0.5rem;
+  }
+
+  &.Mobile {
+    min-width: 2.25rem;
+    gap: 0.375rem;
+  }
+}
+
+.contactBook .spine {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-link);
+  transition: inherit;
+
+  &.Desktop {
+    height: 3rem;
+
+    &.top, &.bottom{
+      width: 3rem;
+      padding: 0.5rem;
+    }
+
+    &.middle {
+      min-width: 5rem;
+      min-height: auto;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  &.Mobile {
+    height: 2.25rem;
+
+    &.top, &.bottom{
+      width: 2.25rem;
+      padding: 0.375rem;
+    }
+
+    &.middle {
+      min-width: 4rem;
+      min-height: auto;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+}
+
+.contactBook:hover {
+  background: var(--color-bg1-hover);
+
+  .spine {
+    background: var(--color-link-hover);
+  }
+}
+
+.contactBook:active {
+  background: var(--color-bg1-active);
+  transition: var(--menuControl-active);
+
+  .spine {
+    background: var(--color-link-active);
+    transition: inherit;
+  }
+}
+
+.spine.top > *,
+.spine.bottom > * {
+  transform: rotate(-90deg);
+}
+
+.spine.middle span {
+  font-family: var(--heading-text);
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--color-bg1)
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .contactBook {
+    flex-direction: column;
+  }
+
+  .contactBook .spine {
+    &.Desktop {
+      width: 3rem;
+  
+      &.top, &.bottom{
+        height: 3rem;
+        padding: 0.5rem;
+      }
+  
+      &.middle {
+        min-width: 2.25rem;
+        min-height: 5rem;
+        height: fit-content;
+        padding: 1rem 0.5rem;
+      }
+    }
+  
+    &.Mobile {
+      width: 2.25rem;
+  
+      &.top, &.bottom{
+        height: 2.25rem;
+        padding: 0.375rem;
+      }
+  
+      &.middle {
+        min-width: 2.25rem;
+        min-height: 4rem;
+        height: fit-content;
+        padding: 0.75rem 0.375rem;
+      }
+    }
+  }
+  
+  .spine.top > *,
+  .spine.bottom > * {
+    transform: none;
+  }
+
+  .spine.middle span {
+    transform: none;
+    white-space: nowrap;
+    writing-mode: vertical-lr; /* Use this for vertical text */
+    text-orientation: mixed;
+  }
 }

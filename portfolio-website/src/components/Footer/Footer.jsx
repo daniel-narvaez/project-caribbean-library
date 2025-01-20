@@ -19,7 +19,7 @@
  */
 
 import { useRef, useEffect, useContext, memo } from 'react';
-import { ContactItem } from '../ContactItem/ContactItem';
+import { ContactIcon } from '../ContactItem/ContactItem';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
 import { Chapter } from '../Chapter/Chapter';
@@ -43,6 +43,7 @@ const CONTACT_PLATFORMS = [
   'TheXPlace',
   'YoungArts Post',
   'Discord',
+  'Machinations'
 ];
 
 /**
@@ -132,8 +133,8 @@ export const FooterNav = memo(() => {
         <span>Find me around the web</span>
       </div>
       <div className={`${styles.footerNav} ${styles[size]}`}>
-        {CONTACT_PLATFORMS.map(platform => (
-          <ContactItem key={platform} iconName={platform} />
+        {CONTACT_PLATFORMS.map(app => (
+          <ContactIcon key={app} iconName={app} />
         ))}
       </div>
     </>

@@ -13,7 +13,7 @@ import { useState, useEffect, useContext, useCallback } from "react";
 import { Background } from "../../components/Background/Background";
 import Chapter from "../../components/Chapter/Chapter";
 import { ActionButton } from "../../components/Button/Button";
-import { EmailSection } from "../../components/EmailSection/EmailSection";
+import { EmailForm } from "../../components/EmailForm/EmailForm";
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
@@ -76,54 +76,56 @@ function Resume() {
   }, [fetchResumeData]);
 
   return (
-    <div className={styles.Resume}>
-      <Background>
+    <Background>
+      <div 
+        className={`
+          ${styles.Resume}
+          ${styles[size]}
+        `}
+      >
         <ScrollAnchor />
-        <main>
-          <h1 className="sr-only">
-            Resume Résume Resumé Résumé Daniel Narvaez
-          </h1>
+        <h1 className="sr-only">
+          Resume Résume Resumé Résumé | Daniel Narvaez
+        </h1>
 
-          <Chapter
-            id="hero"
-            className={`${styles.heroSection} ${styles[size]}`}
-          >
-            <div className={`${styles.heroContent} ${styles[size]}`}>
-              <h2 className={styles.headline}>Résumé</h2>
-              <p className={styles.tagline}>
-                I'm currently seeking entry-level <b>game designer</b><br />
-                roles. Although based in <b>New York, USA</b>,<br />
-                I'm willing to relocate worldwide.
-              </p>
+        <Chapter
+          id="hero"
+          className={`${styles.heroSection} ${styles[size]}`}
+        >
+          <div className={`${styles.heroContent} ${styles[size]}`}>
+            <h2 className={styles.headline}>Résumé</h2>
+            <p className={styles.tagline}>
+              I'm currently seeking entry-level <b>game designer</b><br />
+              roles. Although based in <b>New York, USA</b>,<br />
+              I'm willing to relocate worldwide.
+            </p>
+          </div>
+
+          <div className={`${styles.heroMedia} ${styles[size]}`}>
+            <div className={`${styles.pdfDownloader} ${styles[size]}`}>
+              <span>Updated: {uploadDate || 'Loading...'}</span>
+              <ActionButton
+                className={styles.heroButton}
+                title="Download PDF"
+                style="solid"
+                onCustomClick={handleDownload}
+              />
             </div>
+          </div>
+        </Chapter>
 
-            <div className={`${styles.heroMedia} ${styles[size]}`}>
-              <div className={`${styles.pdfDownloader} ${styles[size]}`}>
-                <span>Updated: {uploadDate || 'Loading...'}</span>
-                <ActionButton
-                  className={styles.heroButton}
-                  title="Download PDF"
-                  style="solid"
-                  onCustomClick={handleDownload}
-                />
-              </div>
-            </div>
-          </Chapter>
-        </main>
-
-        <section
+        <main
           id="resume"
           className={`${styles.resumeSection} ${styles[size]}`}
         >
           <ResumeContent />
-        </section>
+        </main>
 
-        <EmailSection />
-        <Footer>
-          <FooterNav />
-        </Footer>
-      </Background>
-    </div>
+      </div>
+      <Footer>
+        <FooterNav />
+      </Footer>
+    </Background>
   );
 }
 
