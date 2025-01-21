@@ -30,6 +30,7 @@ import {
 } from "../Form/Form";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './EmailForm.module.css';
+import { sendContactForm } from "../../../api/emailHandler";
 
 /**
  * Contact form subject options
@@ -48,18 +49,39 @@ const SUBJECT_OPTIONS = [
  */
 export const EmailForm = ({tagline = ''}) => {
   const { size } = useContext(ScreenSizeContext);
-  const [submitted, setSubmitted] = useState(false);
+  const [flipped, setFlipped] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = useCallback((e) => {
-    setSubmitted(true);
-    console.log('Parent received submit');
+  const handleSubmit = useCallback(async (e) => {
+    try {
+      const formData = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        subject: e.target.subject.value,
+        message: e.target.message.value
+      };
+
+      setFlipped(true);
+      
+      await sendContactForm(formData);
+      
+      setError(null); 
+      console.log('Parent received submit');
+    } catch (error) {
+      if (error.message === 'Too many requests. Please try again later') {
+        setError('You have cast too many messages. Please try again in an hour.');
+      } else {
+        setError('Failed to send message. Please try again later.')
+      }
+      console.error('Form submission error:', error);
+    }
   }, []);
 
   return (
     <article className={`
       ${styles.emailArticle}
       ${styles[size]}
-      ${submitted ? styles.flipped : ''}
+      ${flipped ? styles.flipped : ''}
     `}>
       {/* Form Side */}
       <div className={`${styles.cardContent} ${styles.formContent}`}>
@@ -125,13 +147,23 @@ export const EmailForm = ({tagline = ''}) => {
 
       {/* Success Message Side */}
       <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[size]}`}>
-        <MessageInABottle id='message-in-a-bottle' />
-        <div className={styles.taglineContainer}>
-          <span className={styles[size]}>
-            Message in a bottle sent! <br/>
-            I'll respond within 48 hours.
-          </span>
-        </div>
+        {!error ? (
+          <>
+            <MessageInABottle id='message-in-a-bottle' />
+            <div className={styles.taglineContainer}>
+              <span className={styles[size]}>
+                Message in a bottle sent! <br/>
+                I'll respond within 48 hours.
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className={styles.taglineContainer}>
+            <span className={`${styles[size]} ${styles.error}`}>
+              {error}
+            </span>
+          </div>
+        )}
       </div>
     </article>
   );
