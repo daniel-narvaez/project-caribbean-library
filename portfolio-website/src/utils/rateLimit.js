@@ -5,7 +5,7 @@ const rateLimit = {
 
   // Configuration
   interval: 3600000, // 1 hour in milliseconds
-  maxRequests: 20,    // Maximum requests per interval
+  maxRequests: 3,    // Maximum requests per interval
 
   /**
    * Check if the request should be rate limited
