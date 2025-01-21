@@ -31,6 +31,10 @@ export default async function handler(req, res) {
       host: process.env.PROTON_SMTP_SERVER,
       port: process.env.PROTON_SMTP_PORT,
       secure: true,
+      tls: {
+        ciphers: 'SSLv3',
+        rejectUnauthorized: false
+      },
       auth: {
         user: process.env.PROTON_SMTP_USER,    // Your login email
         pass: process.env.PROTON_SMTP_TOKEN    // Your app-specific password
