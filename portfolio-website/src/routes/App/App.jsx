@@ -18,7 +18,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics, track } from "@vercel/analytics/react"
 
 import Navbar from '../../components/Navbar/Navbar';
 import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
@@ -64,9 +64,13 @@ function App() {
   ));
 
   useEffect(() => {
-    const source = new URLSearchParams(window.location.search).get('utm_source') || 'search';
+    // Skip tracking if no referrer (likely homepage/direct)
+    if (!document.referrer) {
+      return;
+    }
+
     track('Visit', {
-      source: source,
+      source: document.referrer,
       path: window.location.pathname
     });
   }, []);
