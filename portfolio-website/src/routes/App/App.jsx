@@ -64,13 +64,14 @@ function App() {
   ));
 
   useEffect(() => {
-    // Skip tracking if no referrer (likely homepage/direct)
-    if (!document.referrer) {
-      return;
-    }
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get('from') || 
+      params.get('s') || 
+      document.referrer || 
+      'direct';
 
     track('Visit', {
-      source: document.referrer,
+      source: source, 
       path: window.location.pathname
     });
   }, []);
