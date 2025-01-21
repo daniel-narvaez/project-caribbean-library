@@ -29,15 +29,15 @@ export default async function handler(req, res) {
     // Create email transporter for ProtonMail
     const transporter = nodemailer.createTransport({
       host: process.env.PROTON_SMTP_SERVER,
-      port: process.env.PROTON_SMTP_PORT,
+      port: parseInt(process.env.PROTON_SMTP_PORT),
       secure: true,
       tls: {
-        ciphers: 'SSLv3',
-        rejectUnauthorized: false
+        minVersion: 'TLSv1.2',
+        maxVersion: 'TLSv1.3'
       },
       auth: {
-        user: process.env.PROTON_SMTP_USER,    // Your login email
-        pass: process.env.PROTON_SMTP_TOKEN    // Your app-specific password
+        user: process.env.PROTON_SMTP_USER,
+        pass: process.env.PROTON_SMTP_TOKEN
       }
     });
 
