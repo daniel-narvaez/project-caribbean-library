@@ -54,10 +54,15 @@ export const EmailForm = ({tagline = ''}) => {
 
   const handleSubmit = useCallback(async (e) => {
     try {
+      
+      const selectedOption = SUBJECT_OPTIONS.find(opt => 
+        opt.value === e.target.subject.value
+      );
+
       const formData = {
         name: e.target.name.value,
         email: e.target.email.value,
-        subject: e.target.subject.label,
+        subject: selectedOption?.label || 'Other',  // Use the found label or fallback
         message: e.target.message.value
       };
 

@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       from: `"Caribbean Library" <${process.env.PROTON_SMTP_USER}>`,
       to: `"Me" <${process.env.PROTON_SMTP_USER}>`,
       replyTo: `"${name || 'Website Visitor'}" <${email}>`,
-      subject: `${name} wrote to you: "${subject}"`,
+      subject: `${name} wrote to you: ${subject}`,
       text: [
         `Name: ${name || 'Not provided'}`,
         `Email: ${email}`,
