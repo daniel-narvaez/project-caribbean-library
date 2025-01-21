@@ -42,36 +42,18 @@ export default async function handler(req, res) {
       }
     });
 
-    // Configure email content with enhanced formatting
+    // Configure email content - using plain text and letting ProtonMail handle styling
     const mailOptions = {
       from: process.env.PROTON_SMTP_USER,
       to: process.env.PROTON_SMTP_USER,
       replyTo: email,
       subject: `Contact Form: ${subject || 'New Message'} from ${name} (${email})`,
-      text: `
-        Name: ${name || 'Not provided'}
-        Email: ${email}
-        Subject: ${subject || 'Not specified'}
-        
-        Message:
-        ${message}
-      `,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>New Contact Form Submission</h2>
-          <ul style="list-style: none; padding: 0;">
-            <li><strong>Name:</strong> ${name || 'Not provided'}</li>
-            <li><strong>Email:</strong> ${email}</li>
-            <li><strong>Subject:</strong> ${subject || 'Not specified'}</li>
-          </ul>
-          <div style="margin-top: 20px;">
-            <strong>Message:</strong>
-            <div style="white-space: pre-wrap; margin-top: 10px; padding: 15px; background: #f5f5f5; border-radius: 4px;">
-              ${message.replace(/\n/g, '<br>')}
-            </div>
-          </div>
-        </div>
-      `
+      text: 'Name: ' + (name || 'Not provided') + '\n' +
+            'Email: ' + email + '\n' +
+            'Subject: ' + (subject || 'Not specified') + '\n\n' +
+            'Message:\n' + message + '\n\n' +
+            '--\n' +
+            'Sent from your website contact form'
     };
 
     await transporter.sendMail(mailOptions);
