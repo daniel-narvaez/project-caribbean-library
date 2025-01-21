@@ -15,8 +15,7 @@
   border: none;
   cursor: pointer;
   width: fit-content;
-  font-family: var(--heading-text);
-  font-weight: 400;
+  font-family: var(--display-text);
   text-align: center;
   text-transform: capitalize;
   transition: var(--menuControl-hover);
@@ -64,6 +63,7 @@ button:active .button {
 }
 
 .button.solid {
+  font-weight: 400;
   color: var(--color-bg1);
 }
 
@@ -113,6 +113,7 @@ button:active .button.solid::before {
 }
 
 .button.island {
+  font-weight: 500;
   color: var(--color-link);
 }
 

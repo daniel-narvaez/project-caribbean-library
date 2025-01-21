@@ -254,7 +254,7 @@
 
 /* Common text styling */
 .submitButton span {
-  font-family: var(--heading-text);
+  font-family: var(--display-text);
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;

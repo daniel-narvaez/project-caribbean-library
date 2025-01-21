@@ -162,8 +162,9 @@
     .menuButton,
     .menuLink {
       span {
+        font-family: var(--display-text);
         color: var(--color-link);
-        font-weight: 600;
+        font-weight: 500;
       }
     }
   

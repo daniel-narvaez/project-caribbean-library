@@ -28,7 +28,8 @@
 }
 
 .fullName {
-  font-family: var(--font-baskervvilleSC);
+  font-family: var(--heading-display);
+  font-weight: 315;
   font-size: var(--h1-size);
   text-align: center;
 }

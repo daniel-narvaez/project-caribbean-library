@@ -23,9 +23,9 @@
 * Font families are imported from vars.css and aliased here for semantic usage
 */
 :root {
-  --heading-display: var(--font-baskervvilleSC);  /* Used for H1 - special display font */
-  --heading-text: var(--font-libreBaskerville);       /* Used for H2, H3 */
+  --heading-text: var(--font-libreBaskerville);       /* Used for H1, H2, H3 */
   --body-text: var(--font-notoSans);              /* Used for inline and body text */
+  --display-text: var(--font-outfit);  /* Used for UI elements such as buttons */
 }
 
 .sr-only {
