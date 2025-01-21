@@ -28,7 +28,7 @@
 }
 
 .fullName {
-  font-family: var(--heading-display);
+  font-family: var(--display-text);
   font-weight: 315;
   font-size: var(--h1-size);
   text-align: center;
