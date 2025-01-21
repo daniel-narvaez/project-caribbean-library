@@ -15,7 +15,10 @@
  * - ChaptersProvider: Manages chapter navigation
  */
 
+import React from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react"
 
 import Navbar from '../../components/Navbar/Navbar';
 import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
@@ -60,11 +63,20 @@ function App() {
     />
   ));
 
+  useEffect(() => {
+    const source = new URLSearchParams(window.location.search).get('utm_source') || 'search';
+    track('Visit', {
+      source: source,
+      path: window.location.pathname
+    });
+  }, []);
+
   return (
     <ScreenSizeProvider>
       <TypographyProvider>
         <ChaptersProvider>
           <div className={styles.App}>
+            <Analytics />
             <Navbar />
             <BrowserRouter>
               <SplashEffect />
