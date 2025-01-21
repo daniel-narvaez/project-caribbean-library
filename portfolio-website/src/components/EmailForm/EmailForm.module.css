@@ -63,6 +63,10 @@
 .taglineContainer span {
   text-align: center;
   font-family: var(--font-libreBaskerville);
+
+  &.error {
+    color: var(--color-error);
+  }
 }
 
 .taglineContainer span.Mobile {

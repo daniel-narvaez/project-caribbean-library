@@ -44,6 +44,11 @@ export default async function handler(req, res) {
       replyTo: email,                          // Visitor's email
       subject: `Contact Form: ${subject || 'New Message'} from ${name} (${email})`,
       text: `
+        Name: ${name || 'Not provided'}
+        Email: ${email}
+        Subject: ${subject || 'Not specified'}
+        
+        Message:
         ${message}
       `,
       html: `
