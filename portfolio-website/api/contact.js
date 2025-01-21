@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-import rateLimit from '../src/utils/rateLimit'
+import rateLimit from '../src/utils/rateLimit.js';
 
 export default async function handler(req, res) {
   // Get client IP address
