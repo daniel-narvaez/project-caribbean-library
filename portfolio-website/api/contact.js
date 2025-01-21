@@ -44,16 +44,21 @@ export default async function handler(req, res) {
 
     // Configure email content - using plain text and letting ProtonMail handle styling
     const mailOptions = {
-      from: process.env.PROTON_SMTP_USER,
-      to: process.env.PROTON_SMTP_USER,
-      replyTo: email,
-      subject: `Contact Form: ${subject || 'New Message'} from ${name} (${email})`,
-      text: 'Name: ' + (name || 'Not provided') + '\n' +
-            'Email: ' + email + '\n' +
-            'Subject: ' + (subject || 'Not specified') + '\n\n' +
-            'Message:\n' + message + '\n\n' +
-            '--\n' +
-            'Sent from your website contact form'
+      from: `"Caribbean Library" <${process.env.PROTON_SMTP_USER}>`,
+      to: `"Me" <${process.env.PROTON_SMTP_USER}>`,
+      replyTo: `"${name || 'Website Visitor'}" <${email}>`,
+      subject: `${name} wrote to you: "${subject}"`,
+      text: [
+        `Name: ${name || 'Not provided'}`,
+        `Email: ${email}`,
+        `Subject: ${subject || 'Not specified'}`,
+        "",
+        "Message:",
+        message.trim(),
+        "",
+        "--",
+        "Sent from the Caribbean Library's contact form"
+      ].join('\n')
     };
 
     await transporter.sendMail(mailOptions);

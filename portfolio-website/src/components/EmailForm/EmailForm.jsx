@@ -57,19 +57,19 @@ export const EmailForm = ({tagline = ''}) => {
       const formData = {
         name: e.target.name.value,
         email: e.target.email.value,
-        subject: e.target.subject.value,
+        subject: e.target.subject.label,
         message: e.target.message.value
       };
 
       setFlipped(true);
       
       await sendContactForm(formData);
-      
+
       setError(null); 
       console.log('Parent received submit');
     } catch (error) {
       if (error.message === 'Too many requests. Please try again later') {
-        setError('You have cast too many messages. Please try again in an hour.');
+        setError('You have written too many messages. Please try again in an hour.');
       } else {
         setError('Failed to send message. Please try again later.')
       }

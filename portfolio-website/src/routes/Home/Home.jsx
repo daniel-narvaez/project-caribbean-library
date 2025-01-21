@@ -58,7 +58,7 @@ function Home() {
             ${styles[size]}
           `}
         >
-          <EmailForm tagline="Want to reach out? Cast a message to my inbox, and let's begin our conversation." />
+          <EmailForm tagline="Want to reach out? Write a message to my inbox, and let's begin our conversation." />
         </Chapter>
         
         {/* Footer */}

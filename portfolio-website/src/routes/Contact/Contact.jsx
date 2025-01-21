@@ -50,7 +50,7 @@ function Contact() {
               Get in contact
             </h2>
             <p className={styles.tagline}>
-              Want to reach out? <b>Cast a <br/>message</b> to my inbox, 
+              Want to reach out? <b>Write a <br/>message</b> to my inbox, 
               and  <br/>let's begin our conversation.
             </p>
           </div>
