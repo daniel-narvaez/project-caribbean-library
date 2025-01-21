@@ -9,7 +9,7 @@
  */
 export const sendContactForm = async (formData) => {
   try {
-    const response = await fetch('/api/contact', {
+    const response = await fetch('/api/submit-form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
