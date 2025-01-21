@@ -64,14 +64,9 @@ function App() {
   ));
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const source = params.get('from') || 
-      params.get('s') || 
-      document.referrer || 
-      'direct';
-
+    const source = new URLSearchParams(window.location.search).get('utm_source') || 'direct';
     track('Visit', {
-      source: source, 
+      source: source,
       path: window.location.pathname
     });
   }, []);
