@@ -68,6 +68,11 @@ export const AnimatedCursor = () => {
     stylusInRange: false
   });
 
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           (window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+  };
+
   // Effect to detect device capabilities and monitor changes
   useEffect(() => {
     const detectInputCapabilities = () => {
@@ -339,6 +344,11 @@ export const AnimatedCursor = () => {
 
   // Determine if cursor should be shown based on device and input type
   const shouldShowCursor = useMemo(() => {
+      // Always hide on mobile devices unless using a stylus
+    if (isMobileDevice() && (!inputDevice.isStylus || !inputDevice.stylusInRange)) {
+      return false;
+    }
+
     // Show cursor if it's a non-touch device
     if (!inputDevice.hasTouch) return true;
     
