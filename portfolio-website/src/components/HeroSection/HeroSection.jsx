@@ -47,6 +47,7 @@ import { LinkButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
 import { Chapter } from "../Chapter/Chapter";
+import { socialMediaData } from "../../data/appIcons";
  /**
  * Configuration for 3D tilt effect
  * - MAX_ROTATION: Maximum angle of rotation (degrees)
@@ -165,8 +166,8 @@ import { Chapter } from "../Chapter/Chapter";
               />
               <LinkButton
                 className={styles.heroButton}
-                title="Connect with me"
-                url="#contact"
+                title="Connect on LinkedIn"
+                url={socialMediaData.linkedInIcon.profileUrl}
                 style="island"
               />
             </div>

@@ -35,6 +35,7 @@ import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
 import { LinkButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
 import { clockOutProject } from '../../data/gameProjects';
+import { socialMediaData } from '../../data/appIcons';
 
 /**
  * Main About Section Component
@@ -193,8 +194,8 @@ export const AboutSection = () => {
             style='solid'
           />
           <LinkButton
-            title="Reach out"
-            url='#contact'
+            title="Join My Network"
+            url={socialMediaData.linkedInIcon.profileUrl}
             style='island'
           />
         </div>

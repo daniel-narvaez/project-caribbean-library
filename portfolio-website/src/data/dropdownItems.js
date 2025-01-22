@@ -137,12 +137,12 @@ const contactItem = createDropdownItem({
       url: "/contact"
     }),
     createDropdownItem({
+      title: socialMediaData.linkedInIcon.appName,
+      url: socialMediaData.linkedInIcon.profileUrl,
+    }),
+    createDropdownItem({
       title: 'Social Media',
       submenu: [
-        createDropdownItem({
-          title: socialMediaData.linkedInIcon.appName,
-          url: socialMediaData.linkedInIcon.profileUrl,
-        }),
         createDropdownItem({
           title: socialMediaData.blueskyIcon.appName,
           url: socialMediaData.blueskyIcon.profileUrl
