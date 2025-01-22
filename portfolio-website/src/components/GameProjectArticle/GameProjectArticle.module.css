@@ -189,7 +189,7 @@
   align-items: flex-end;
   gap: var(--gap-size);
   transition: height 700ms cubic-bezier(0.19, 1, 0.22, 1);
-  flex: 1 0 0;
+
 }
 
 /**
@@ -224,7 +224,7 @@
 .desktopCard .projectMenu,
 .mobileCard .projectMenu {
    display: flex;
-   padding-top: var(--padding-size);
+   /* padding-top: var(--padding-size); */
    justify-content: flex-end;
    align-items: flex-end;
    gap: calc(var(--gap-size) * 2);

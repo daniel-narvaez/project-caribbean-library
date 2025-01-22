@@ -37,12 +37,11 @@ import React, {
   useEffect,
   memo
  } from "react";
-import { Navbar } from "../Navbar/Navbar";
+
 import { Slideshow } from "../Slideshow/Slideshow";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 
 import { testSlides, heroGifSlides } from "../../data/HeroMedia";
-import { useSmoothScroll } from "../../utils/useSmoothScroll";
 import { LinkButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
@@ -75,67 +74,11 @@ import { socialMediaData } from "../../data/appIcons";
  * Manages 3D tilt effect and layout structure
  */
  export const HeroSection = () => {
-  // Refs for DOM elements and animation frame
-  const containerRef = useRef(null);
-  const frameRef = useRef(null);
-  const [tilt, setTilt] = useState(DEFAULT_TILT_STATE);
+
   const { size } = useContext(ScreenSizeContext)
  
-  /**
-   * Updates tilt state with animation frame optimization
-   * Cancels previous frame request to prevent animation buildup
-   */
-  const updateTilt = useCallback((newTransform) => {
-    if (frameRef.current) {
-      cancelAnimationFrame(frameRef.current);
-    }
-    frameRef.current = requestAnimationFrame(() => {
-      setTilt(newTransform);
-    });
-  }, []);
- 
-  /**
-   * Handles mouse movement for tilt effect
-   * Calculates rotation based on mouse position relative to container center
-   */
-  const handleMouseMove = useCallback((e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const { width, height, left, top } = rect;
- 
-    const xVal = e.clientX - left;
-    const yVal = e.clientY - top;
- 
-    const yRotation = TILT_CONFIG.MAX_ROTATION * ((xVal - width / 2) / width);
-    const xRotation = -TILT_CONFIG.MAX_ROTATION * ((yVal - height / 2) / height);
- 
-    updateTilt({
-      scale: TILT_CONFIG.HOVER_SCALE,
-      xRot: xRotation,
-      yRot: yRotation
-    });
-  }, [updateTilt]);
- 
-  /**
-   * Resets tilt state when mouse leaves container
-   */
-  const handleMouseLeave = useCallback(() => {
-    updateTilt(DEFAULT_TILT_STATE);
-  }, [updateTilt]);
- 
-  /**
-   * Cleanup animation frame on unmount
-   */
-  useEffect(() => {
-    return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    };
-  }, []);
- 
   return (
-    <main ref={containerRef}>
+    <main>
       <Chapter
         id='hero'
         className={styles.heroSection}
@@ -173,11 +116,9 @@ import { socialMediaData } from "../../data/appIcons";
             </div>
           </div>
   
-          <TiltContext.Provider value={{ tilt, setTilt }}>
-            <div className={styles.heroMedia}>
-              <Slideshow slides={heroGifSlides} playbackMode = 'automatic' />
-            </div>
-          </TiltContext.Provider>
+          <div className={styles.heroMedia}>
+            <Slideshow slides={heroGifSlides} playbackMode = 'automatic' />
+          </div>
         </div>
       </Chapter>
     </main>

@@ -183,7 +183,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     const resizeObserver = new ResizeObserver(entries => {
       titleHeight = entries[0].contentRect.height;
       if (size === 'Mobile' || layout.includes('Banner'))
-        zeroToAutoHeight(wrapper, true, {}, titleHeight);
+        wrapper.style.height = 'auto';
       else
         zeroToAutoHeight(wrapper, false, {}, titleHeight);
     });
