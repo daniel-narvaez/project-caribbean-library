@@ -166,7 +166,7 @@ import { Chapter } from "../Chapter/Chapter";
               <LinkButton
                 className={styles.heroButton}
                 title="Connect with me"
-                url="#email"
+                url="#contact"
                 style="island"
               />
             </div>

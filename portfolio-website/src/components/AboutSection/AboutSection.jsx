@@ -194,7 +194,7 @@ export const AboutSection = () => {
           />
           <LinkButton
             title="Reach out"
-            url='#email'
+            url='#contact'
             style='island'
           />
         </div>
