@@ -177,7 +177,17 @@ const contactItem = createDropdownItem({
 
 const resumeItem = createDropdownItem({
   title: 'Résumé',
-  url: '/resume'
+  url: '/resume',
+  // submenu: [
+  //   createDropdownItem({
+  //     title: 'Read',
+  //     url: '/resume'
+  //   }),
+  //   createDropdownItem({
+  //     title: 'Download',
+  //     url: '/'
+  //   })
+  // ]
 })
 
 /* About */
