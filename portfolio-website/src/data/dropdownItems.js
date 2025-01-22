@@ -122,12 +122,6 @@ const gamesItem = createDropdownItem({
   ]
 });
 
-/* About */
-const aboutItem = createDropdownItem({
-  title: 'About',
-  url: '/',
-});
-
 /* Contact */
 const contactItem = createDropdownItem({
   title: 'Contact',
@@ -183,18 +177,15 @@ const contactItem = createDropdownItem({
 
 const resumeItem = createDropdownItem({
   title: 'Résumé',
-  submenu: [
-    createDropdownItem({
-      title: 'Read',
-      url: '/resume'
-    }),
-    createDropdownItem({
-      title: 'Download',
-      url: '/'
-    })
-  ]
+  url: '/resume'
 })
 
+/* About */
+const aboutItem = createDropdownItem({
+  title: 'About',
+  url: '/',
+});
+
 /* Array of menu items */
-export const mainMenuData = [gamesItem, resumeItem, contactItem, aboutItem];
+export const mainMenuData = [gamesItem, resumeItem, contactItem];
 
