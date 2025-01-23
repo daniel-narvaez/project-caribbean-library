@@ -81,9 +81,10 @@ import { socialMediaData } from "../../data/appIcons";
     <main>
       <Chapter
         id='hero'
-        className={styles.heroSection}
-        // onMouseMove={size === 'Desktop' ? handleMouseMove : null}
-        // onMouseLeave={size === 'Desktop' ? handleMouseLeave : null}
+        className={`
+          ${styles.heroSection}
+          ${styles[size]}
+        `}
       >
 
         <div className={styles.heroContainer}>   
@@ -95,12 +96,16 @@ import { socialMediaData } from "../../data/appIcons";
             </h2>
             
             <p className={styles.tagline}>
-              Hi I'm Daniel, a <b>game designer</b> based in <br/>
+              Hi, I'm Dan, a <b>game designer</b> based in <br/>
               The Bronx, NY. I specialize in Economy <br/>
               Systems Design and UI/UX Design.
             </p>
             
-            <div className={styles.ctaMenu}>
+            <div className={`
+                ${styles.ctaMenu}
+                ${styles[size]}
+              `}
+            >
               <LinkButton
                 className={styles.heroButton}
                 title="Browse my work"
