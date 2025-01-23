@@ -68,9 +68,17 @@
 .heroContainer {
   display: flex;
   width: 100%;
-  max-width: 80rem; /* 1280px */
-  gap: 5rem;
+  justify-content: center;
   align-items: center;
+  &.Desktop {
+    max-width: 80rem; /* 1280px */
+    gap: 5rem;
+  }
+
+  &.Mobile {
+    max-width: 60rem; /* 960px */
+    gap: 4rem;
+  }
 }
 
 /**
@@ -164,9 +172,17 @@
     flex-direction: column-reverse;
     justify-content: center;
     width: 100%;
-    max-width: 40rem; /* 640px */
-    gap: 4rem;
     align-items: center;
+
+    &.Desktop {
+      max-width: 60rem; /* 960px */
+      gap: 2rem;
+    }
+  
+    &.Mobile {
+      max-width: 45rem; /* 720px */
+      gap: 1.5rem;
+    }
   }
 
   /* Center alignment for portrait view */

@@ -87,7 +87,11 @@ import { socialMediaData } from "../../data/appIcons";
         `}
       >
 
-        <div className={styles.heroContainer}>   
+        <div className={`
+            ${styles.heroContainer}
+            ${styles[size]}
+          `}
+        >   
           <div className={styles.heroContent}>
             <h2 className={styles.headline}>
               Elevating experiences <br/>
@@ -121,8 +125,8 @@ import { socialMediaData } from "../../data/appIcons";
             </div>
           </div>
   
-          <div className={styles.heroMedia}>
-            <Slideshow slides={heroGifSlides} playbackMode = 'automatic' />
+          <div className={styles.heroMedia} >
+            <Slideshow slides={heroGifSlides} playbackMode = 'automatic' aspectRatio = '4/3'/>
           </div>
         </div>
       </Chapter>

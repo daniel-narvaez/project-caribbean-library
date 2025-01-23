@@ -93,7 +93,7 @@ const ANIMATION_CONFIG = {
  * @param {MediaSlide[]} [props.slides=[]] - Array of media slides to display
  * @param {PlaybackMode} [props.playbackMode='automatic'] - Playback mode
  */
-export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
+export const Slideshow = ({ slides = [], playbackMode = 'automatic', aspectRatio = 'auto' }) => {
   // State management
   const [currentIndex, setCurrentIndex] = useState(slides.length - 1);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -320,6 +320,9 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic' }) => {
                 ${styles.mediaContainer}
                 ${playbackMode === 'manual' ? 'action' : ''}
             `}
+            style={{
+              aspectRatio: aspectRatio
+            }}
             onClick={handleSlideClick}
         >
             {/* Active slide */}
