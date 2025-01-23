@@ -13,7 +13,6 @@ import { useState, useEffect, useContext, useCallback } from "react";
 import { Background } from "../../components/Background/Background";
 import Chapter from "../../components/Chapter/Chapter";
 import { ActionButton } from "../../components/Button/Button";
-import { EmailForm } from "../../components/EmailForm/EmailForm";
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
@@ -21,7 +20,7 @@ import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './Resume.module.css';
 
 const RESUME_CONFIG = {
-  API_URL: 'https://project-caribbean-library.vercel.app/api/resume-url',
+  API_URL: process.env.RESUME,
   DATE_FORMAT: {
     year: 'numeric',
     month: 'long',
@@ -40,7 +39,7 @@ function Resume() {
 
   const fetchResumeData = useCallback(async () => {
     try {
-      const response = await fetch(`${RESUME_CONFIG.API_URL}?type=pdf`);
+      const response = await fetch(`${RESUME_CONFIG.API_URL}/?type=pdf`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

@@ -20,7 +20,7 @@ const RESUME_CONFIG = {
         LEFT: ['core competencies', 'projects'],
         RIGHT: ['education', 'experience', 'skills']
     },
-    API_URL: 'https://project-caribbean-library.vercel.app/api/resume-url',
+    API_URL: process.env.RESUME,
     FILE_TYPE: 'docx'
 };
 
