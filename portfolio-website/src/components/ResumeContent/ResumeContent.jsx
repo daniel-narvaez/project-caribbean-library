@@ -20,7 +20,7 @@ const RESUME_CONFIG = {
         LEFT: ['core competencies', 'projects'],
         RIGHT: ['education', 'experience', 'skills']
     },
-    API_URL: process.env.RESUME,
+    API_URL: '/api/resume-url',
     FILE_TYPE: 'docx'
 };
 

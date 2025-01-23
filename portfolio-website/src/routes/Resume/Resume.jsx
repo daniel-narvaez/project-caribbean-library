@@ -20,7 +20,7 @@ import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './Resume.module.css';
 
 const RESUME_CONFIG = {
-  API_URL: process.env.RESUME,
+  ENDPOINT: '/api/resume-url',
   DATE_FORMAT: {
     year: 'numeric',
     month: 'long',
@@ -39,7 +39,7 @@ function Resume() {
 
   const fetchResumeData = useCallback(async () => {
     try {
-      const response = await fetch(`${RESUME_CONFIG.API_URL}/?type=pdf`);
+      const response = await fetch(`${RESUME_CONFIG.ENDPOINT}?type=pdf`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -61,7 +61,7 @@ function Resume() {
       window.open(resumeData.url, '_blank');
     } else {
       try {
-        const response = await fetch(`${RESUME_CONFIG.API_URL}?type=pdf`);
+        const response = await fetch(`${RESUME_CONFIG.ENDPOINT}?type=pdf`);
         const data = await response.json();
         window.open(data.url, '_blank');
       } catch (error) {
