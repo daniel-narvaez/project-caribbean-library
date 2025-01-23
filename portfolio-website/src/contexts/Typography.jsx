@@ -56,9 +56,9 @@ export const TypographyProvider = ({ children }) => {
       h3: '1.266rem',     // 20.25px (1.125^2)
       inline: '1.125rem', // 18px    (1.125^1)
 
-      heroHeadline: '1.8rem',
-      heroTagline: '1rem',
-      heroCtaButton: '0.8rem'
+      heroHeadline: '2rem',
+      heroTagline: '1.25rem',
+      heroCtaButton: '1.125rem'
     }
   };
 

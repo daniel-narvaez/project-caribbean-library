@@ -26,7 +26,7 @@ export const ProjectsSection = () => {
           <GameProjectArticle projectData={chihuahuaChampProject.projectArticle}/>
           <GameProjectArticle projectData={theHexPerplexProject.projectArticle}/>
         </div>
-        <WavesButton title='Explore my full portfolio' url='/'/>
+        {/* <WavesButton title='Explore my full portfolio' url='/'/> */}
       </div>
     </Chapter>
   );
