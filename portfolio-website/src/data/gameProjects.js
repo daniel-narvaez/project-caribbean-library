@@ -324,6 +324,45 @@ export const chihuahuaChampProject = createGameProject({
       },
     },
     tagline: 'A tiny-but-mighty chihuahua rises to become a powerlifting top dog.',
+  },
+  projectPage: {
+    main: (
+      projectContent.titleFrame(
+        { src: '/../../images/games/ChihuahuaChamp/projectPage/ChihuahuaChamp-Logo.png', alt: 'Clock Out!! logo.'},
+        { src: '/../../images/games/ChihuahuaChamp/projectPage/ChihuahuaChamp-MoneyShot.gif', alt: 'The Opening Sequence of Chihuahua Champ, showing the player character and Pookie on the couch watching TV.'}
+      )    
+    ),
+    walkthrough: [
+      {
+        heading: projectContent.heading('Project Overview'),
+        content: {
+          left: [
+            projectContent.details([
+              { key: 'Platforms', value: 'Web Browser, MacOS, Windows' },
+              { key: 'Duration', value: '2 months' },
+              { key: 'Team Size', value: '5'},
+              { key: 'Builds', value: ({ urls }) => `[Itch](${urls.game})`}
+            ]),
+            projectContent.subheading('Contributions'),
+            projectContent.list({
+              type: 'bullet',
+              items: [
+                "Developed a stamina mechanic that increased user engagement and gated early-game progression by intensifying the difficulty of higher-weight exercises.",
+                "Led the game's development by coordinating team meetings and managing the project schedule throughout a 6-week timeline.",
+              ]
+            })
+          ],
+          right: [
+            projectContent.video({
+              src: 'https://player.vimeo.com/video/771629392?h=c1e68303ca&badge=0&autopause=0&player_id=0&app_id=58479',
+              title: 'Clock Out!! Trailer',
+              width: '100%',
+              height: '100%'
+            })
+          ],
+        }
+      },
+    ]
   }
 });
 
