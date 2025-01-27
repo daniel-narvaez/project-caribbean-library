@@ -18,6 +18,7 @@ import { Footer } from "../../components/Footer/Footer";
 import Chapter from "../../components/Chapter/Chapter";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './Contact.module.css';
+import { socialMediaData } from "../../data/appIcons";
 
 /**
  * Available platform connections
@@ -59,8 +60,9 @@ function Contact() {
               Get in contact
             </h2>
             <p className={styles.tagline}>
-              Want to reach out? <b>Write a <br/>message</b> to my inbox,
-              <br/>and let's begin our conversation.
+              Want to reach out? <b>Write a <br/>
+              message</b> to my inbox, and <br/>
+              let's begin our conversation.
             </p>
           </div>
           <div className={styles.heroMedia}>
@@ -85,12 +87,12 @@ function Contact() {
           </div>
           <div className={styles.platformsMedia}>
             <div className={`${styles.bookshelf} ${styles[size]}`}>
-              {CONTACT_PLATFORMS.map(app => (
-                <ContactBook 
-                  key={app} 
-                  iconName={app} 
-                />
-              ))}
+            {Object.values(socialMediaData).map((icon) => (
+              <ContactBook
+                key={icon.appName} // Assuming AppIconObject has an appName property
+                icon={icon}
+              />
+            ))}
             </div>
           </div>
         </Chapter>

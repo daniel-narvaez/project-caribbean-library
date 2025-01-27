@@ -23,6 +23,7 @@ import { ContactIcon } from '../ContactItem/ContactItem';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
 import { Chapter } from '../Chapter/Chapter';
+import { socialMediaData } from '../../data/appIcons';
 
 // Configuration for wave animation and contact items
 const WAVE_CONFIG = {
@@ -111,7 +112,7 @@ export const Footer = ({ children }) => {
         <div className={`${styles.footerBottom} ${styles[size]}`}>
           <p>
             &copy; 2025 designed & developed by Daniel Narvaez. <br/>
-            All rights reserved. v1.0.0
+            All rights reserved.
           </p>
         </div>
       </Chapter>
@@ -133,8 +134,11 @@ export const FooterNav = memo(() => {
         <span>Find me around the web</span>
       </div>
       <div className={`${styles.footerNav} ${styles[size]}`}>
-        {CONTACT_PLATFORMS.map(app => (
-          <ContactIcon key={app} iconName={app} />
+        {Object.values(socialMediaData).map(icon => (
+          <ContactIcon 
+            key={icon.appName} 
+            icon={icon} 
+          />
         ))}
       </div>
     </>

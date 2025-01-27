@@ -149,10 +149,6 @@ const contactItem = createDropdownItem({
           title: socialMediaData.youngArtsPostIcon.appName,
           url: socialMediaData.youngArtsPostIcon.profileUrl
         }),
-        createDropdownItem({
-          title: socialMediaData.discordIcon.appName,
-          url: socialMediaData.discordIcon.profileUrl
-        })
       ]
     }),
     createDropdownItem({
@@ -196,6 +192,11 @@ const aboutItem = createDropdownItem({
   url: '/',
 });
 
+const homeItem = createDropdownItem({
+  title: 'Home',
+  url: '/home'
+})
+
 /* Array of menu items */
-export const mainMenuData = [gamesItem, resumeItem, contactItem];
+export const mainMenuData = [gamesItem, resumeItem, contactItem, homeItem];
 
