@@ -43,62 +43,67 @@ function Contact() {
   const { size } = useContext(ScreenSizeContext);
 
   return (
-    <Background>
-      <div className={`${styles.Contact} ${styles[size]}`}>
-        <ScrollAnchor />
-        
-        {/* Accessibility title */}
-        <h1 className="sr-only">Contact Email | Daniel Narvaez</h1>
+    <>
+      <Helmet>
+        <title>{`Résumé | Daniel Narvaez`}</title>
+      </Helmet>
+      <Background>
+        <div className={`${styles.Contact} ${styles[size]}`}>
+          <ScrollAnchor />
+          
+          {/* Accessibility title */}
+          <h1 className="sr-only">Contact Email | Daniel Narvaez</h1>
 
-        {/* Email Contact Section */}
-        <Chapter
-          id="hero"
-          className={`${styles.heroSection} ${styles[size]}`}
-        >
-          <div className={styles.heroContent}>
-            <h2 className={styles.headline}>
-              Get in contact
-            </h2>
-            <p className={styles.tagline}>
-              Want to reach out? <b>Write a <br/>
-              message</b> to my inbox, and <br/>
-              let's begin our conversation.
-            </p>
-          </div>
-          <div className={styles.heroMedia}>
-            <EmailForm />
-          </div>
-        </Chapter>
-
-        {/* Social Platforms Section */}
-        <Chapter
-          id="platforms"
-          className={`${styles.platformsSection} ${styles[size]}`}
-        >
-          <div className={styles.platformsContent}>
-            <h2 className={styles.headline}>
-              Let's connect <br/>
-              elsewhere
-            </h2>
-            <p className={styles.tagline}>
-              <b>Select a book</b> to open my <br/>
-              profile on that platform.
-            </p>
-          </div>
-          <div className={styles.platformsMedia}>
-            <div className={`${styles.bookshelf} ${styles[size]}`}>
-            {Object.values(socialMediaData).map((icon) => (
-              <ContactBook
-                key={icon.appName} // Assuming AppIconObject has an appName property
-                icon={icon}
-              />
-            ))}
+          {/* Email Contact Section */}
+          <Chapter
+            id="hero"
+            className={`${styles.heroSection} ${styles[size]}`}
+          >
+            <div className={styles.heroContent}>
+              <h2 className={styles.headline}>
+                Get in contact
+              </h2>
+              <p className={styles.tagline}>
+                Want to reach out? <b>Write a <br/>
+                message</b> to my inbox, and <br/>
+                let's begin our conversation.
+              </p>
             </div>
-          </div>
-        </Chapter>
-      </div>
-      <Footer />
-    </Background>
+            <div className={styles.heroMedia}>
+              <EmailForm />
+            </div>
+          </Chapter>
+
+          {/* Social Platforms Section */}
+          <Chapter
+            id="platforms"
+            className={`${styles.platformsSection} ${styles[size]}`}
+          >
+            <div className={styles.platformsContent}>
+              <h2 className={styles.headline}>
+                Let's connect <br/>
+                elsewhere
+              </h2>
+              <p className={styles.tagline}>
+                <b>Select a book</b> to open my <br/>
+                profile on that platform.
+              </p>
+            </div>
+            <div className={styles.platformsMedia}>
+              <div className={`${styles.bookshelf} ${styles[size]}`}>
+              {Object.values(socialMediaData).map((icon) => (
+                <ContactBook
+                  key={icon.appName} // Assuming AppIconObject has an appName property
+                  icon={icon}
+                />
+              ))}
+              </div>
+            </div>
+          </Chapter>
+        </div>
+        <Footer />
+      </Background>
+    </>
   );
 }
 

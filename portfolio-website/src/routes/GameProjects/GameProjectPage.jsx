@@ -7,6 +7,7 @@
  */
 
 import { useContext, memo } from 'react';
+import { Helmet } from 'react-helmet';
 import { Background } from '../../components/Background/Background';
 import { formatText } from '../../utils/formatText';
 import Chapter from '../../components/Chapter/Chapter';
@@ -184,6 +185,10 @@ export const GameProjectPage = memo(({ game }) => {
   const { size } = useContext(ScreenSizeContext);
 
   return (
+    <>
+    <Helmet>
+      <title>{`${game.title} | Daniel Narvaez`}</title>
+    </Helmet>
     <div className={getClasses('GameProjectPage', size)}>
       <main>
         <h1 className='sr-only'>{game.title} Daniel Narvaez</h1>
@@ -236,5 +241,6 @@ export const GameProjectPage = memo(({ game }) => {
         </Footer>
       </Background>
     </div>
+    </>
   );
 });

@@ -75,56 +75,61 @@ function Resume() {
   }, [fetchResumeData]);
 
   return (
-    <Background>
-      <div 
-        className={`
-          ${styles.Resume}
-          ${styles[size]}
-        `}
-      >
-        <ScrollAnchor />
-        <h1 className="sr-only">
-          Resume Résume Resumé Résumé | Daniel Narvaez
-        </h1>
-
-        <Chapter
-          id="hero"
-          className={`${styles.heroSection} ${styles[size]}`}
+    <>
+      <Helmet>
+        <title>{`Résumé | Daniel Narvaez`}</title>
+      </Helmet>
+      <Background>
+        <div 
+          className={`
+            ${styles.Resume}
+            ${styles[size]}
+          `}
         >
-          <div className={`${styles.heroContent} ${styles[size]}`}>
-            <h2 className={styles.headline}>Résumé</h2>
-            <p className={styles.tagline}>
-              I'm currently seeking entry-level <b>game designer</b><br />
-              roles. Although based in <b>New York, USA</b>,<br />
-              I'm willing to relocate worldwide.
-            </p>
-          </div>
+          <ScrollAnchor />
+          <h1 className="sr-only">
+            Resume Résume Resumé Résumé | Daniel Narvaez
+          </h1>
 
-          <div className={`${styles.heroMedia} ${styles[size]}`}>
-            <div className={`${styles.pdfDownloader} ${styles[size]}`}>
-              <span>Updated: {uploadDate || 'Loading...'}</span>
-              <ActionButton
-                className={styles.heroButton}
-                title="Download PDF"
-                style="solid"
-                onCustomClick={handleDownload}
-              />
+          <Chapter
+            id="hero"
+            className={`${styles.heroSection} ${styles[size]}`}
+          >
+            <div className={`${styles.heroContent} ${styles[size]}`}>
+              <h2 className={styles.headline}>Résumé</h2>
+              <p className={styles.tagline}>
+                I'm currently seeking entry-level <b>game designer</b><br />
+                roles. Although based in <b>New York, USA</b>,<br />
+                I'm willing to relocate worldwide.
+              </p>
             </div>
-          </div>
-        </Chapter>
 
-        <main
-          id="resume"
-          className={`${styles.resumeSection} ${styles[size]}`}
-        >
-          <ResumeContent />
-        </main>
+            <div className={`${styles.heroMedia} ${styles[size]}`}>
+              <div className={`${styles.pdfDownloader} ${styles[size]}`}>
+                <span>Updated: {uploadDate || 'Loading...'}</span>
+                <ActionButton
+                  className={styles.heroButton}
+                  title="Download PDF"
+                  style="solid"
+                  onCustomClick={handleDownload}
+                />
+              </div>
+            </div>
+          </Chapter>
 
-      </div>
-      <Footer>
-        <FooterNav />
-      </Footer>
-    </Background>
+          <main
+            id="resume"
+            className={`${styles.resumeSection} ${styles[size]}`}
+          >
+            <ResumeContent />
+          </main>
+
+        </div>
+        <Footer>
+          <FooterNav />
+        </Footer>
+      </Background>
+    </>
   );
 }
 

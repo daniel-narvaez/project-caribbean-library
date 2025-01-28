@@ -29,6 +29,7 @@ import { Footer, FooterNav } from '../../components/Footer/Footer';
 import styles from './Home.module.css';
 import Chapter from '../../components/Chapter/Chapter';
 import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { Helmet } from 'react-helmet';
 
 /**
  * Home Component
@@ -39,34 +40,39 @@ function Home() {
   const { size } = useContext(ScreenSizeContext);
   
   return (
-    <div className={styles.Home}>
-      <Background>
-        {/* Screen reader accessible title */}
-        <h1 className="sr-only">Home | Daniel Narvaez</h1>
-        
-        {/* Scroll navigation utility */}
-        <ScrollAnchor />
-        
-        {/* Main content sections */}
-        <HeroSection />
-        <ProjectsSection />
-        <AboutSection />
-        <Chapter
-          id='contact'
-          className={`
-            ${styles.contactSection}
-            ${styles[size]}
-          `}
-        >
-          <EmailForm tagline="Want to reach out? Write a message to my inbox, and let's begin our conversation." />
-        </Chapter>
-        
-        {/* Footer */}
-        <Footer>
-          <FooterNav />
-        </Footer>
-      </Background>
-    </div>
+    <>
+      <Helmet>
+        <title>{`Daniel Narvaez`}</title>
+      </Helmet>
+      <div className={styles.Home}>
+        <Background>
+          {/* Screen reader accessible title */}
+          <h1 className="sr-only">Home | Daniel Narvaez</h1>
+          
+          {/* Scroll navigation utility */}
+          <ScrollAnchor />
+          
+          {/* Main content sections */}
+          <HeroSection />
+          <ProjectsSection />
+          <AboutSection />
+          <Chapter
+            id='contact'
+            className={`
+              ${styles.contactSection}
+              ${styles[size]}
+            `}
+          >
+            <EmailForm tagline="Want to reach out? Write a message to my inbox, and let's begin our conversation." />
+          </Chapter>
+          
+          {/* Footer */}
+          <Footer>
+            <FooterNav />
+          </Footer>
+        </Background>
+      </div>
+    </>
   );
 }
 
