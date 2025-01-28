@@ -302,7 +302,8 @@ export const clockOutProject = createGameProject({
 export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
   urls: {
-    game: 'https://daniel-narvaez.itch.io/chihuahua-champ'
+    game: 'https://daniel-narvaez.itch.io/chihuahua-champ',
+    jamPage: 'https://itch.io/jam/gamedevjs-2024'
   },
   projectArticle: {
     images: {
@@ -347,8 +348,9 @@ export const chihuahuaChampProject = createGameProject({
             projectContent.list({
               type: 'bullet',
               items: [
+                "Designed and implemented a progression system that guided the player journey through interconnected training and competition game modes.",
                 "Developed a stamina mechanic that increased user engagement and gated early-game progression by intensifying the difficulty of higher-weight exercises.",
-                "Led the game's development by coordinating team meetings and managing the project schedule throughout a 6-week timeline.",
+                "Led development from game jam prototype to finished product by coordinating team meetings and managing the project schedule throughout a 2-month timeline.",
               ]
             })
           ],
@@ -359,9 +361,52 @@ export const chihuahuaChampProject = createGameProject({
               width: '100%',
               height: '100%'
             })
-          ],
+          ]
         }
       },
+      {
+        heading: projectContent.heading('Repetition-Driven Player Journey'),
+        content: {
+          left: [
+            projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.gamedevJS24}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
+            projectContent.paragraph("I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes: training and competitions. Training mode allowed players to set their own weight and complete exercise reps at their own pace, with higher weights yielding more experience points per rep."),
+            projectContent.paragraph("In competition mode, players faced structured challenges with preset weights. Completing a competition the first time earned players a unique prize, and every following victory increased the preset weight, requiring more training."),
+            projectContent.paragraph("Players could control their training pace and set achievable goals before competing, which made repetitive exercise feel purposeful and rewarding. This system also simulated the real-world strength training, where athletes alternate between daily practice and testing their progress.")
+          ],
+          right: [
+            projectContent.figureSet([
+              {
+                src: "/../../images/games/ChihuahuaChamp/projectPage/player-journey-v2.png",
+                alt: "A flowchart showing the player journey of Chihuahua Champ between the training and competition game modes.",
+                figId: "1",
+                caption: "Players grow their character's strength levels in training mode, and they'd enter competitions to win prizes.",
+              },
+            ])
+          ]
+        }
+      },
+      // {
+      //   heading: projectContent.heading(''),
+      //   content: {
+      //     left: [
+
+      //     ],
+      //     right: [
+
+      //     ]
+      //   }
+      // },
+      // {
+      //   heading: projectContent.heading(''),
+      //   content: {
+      //     left: [
+
+      //     ],
+      //     right: [
+
+      //     ]
+      //   }
+      // },
     ]
   }
 });

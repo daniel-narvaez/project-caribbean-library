@@ -41,6 +41,10 @@ a[aria-disabled="true"] .button {
   pointer-events: none;
 }
 
+.linkButton {
+  text-decoration: none;
+}
+
 /**
  * Common Active State
  * ------------------

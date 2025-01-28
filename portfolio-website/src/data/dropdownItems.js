@@ -135,7 +135,7 @@ const contactItem = createDropdownItem({
       url: socialMediaData.linkedInIcon.profileUrl,
     }),
     createDropdownItem({
-      title: 'Social Media',
+      title: 'More',
       submenu: [
         createDropdownItem({
           title: socialMediaData.blueskyIcon.appName,
@@ -149,11 +149,6 @@ const contactItem = createDropdownItem({
           title: socialMediaData.youngArtsPostIcon.appName,
           url: socialMediaData.youngArtsPostIcon.profileUrl
         }),
-      ]
-    }),
-    createDropdownItem({
-      title: 'Creator Profiles',
-      submenu: [
         createDropdownItem({
           title: socialMediaData.gitHubIcon.appName,
           url: socialMediaData.gitHubIcon.profileUrl
@@ -167,7 +162,7 @@ const contactItem = createDropdownItem({
           url: socialMediaData.machinationsIcon.profileUrl
         })
       ]
-    })
+    }),
   ]
 });
 

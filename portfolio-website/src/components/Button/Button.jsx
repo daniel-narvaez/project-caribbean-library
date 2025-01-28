@@ -116,6 +116,7 @@ export const LinkButton = memo(({
       aria-disabled={isDisabled}
       role="button"
       tabIndex={isDisabled ? -1 : 0}
+      className={styles.linkButton}
       {...getLinkAttributes(finalUrl)}
     >
       <ButtonBase 
