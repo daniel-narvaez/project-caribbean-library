@@ -395,7 +395,7 @@ export const chihuahuaChampProject = createGameProject({
             projectContent.figureSet([
               {
                 src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
-                alt: "A Machinations Diagram showing the relationship between player strength level and the amount of weight they attempt to lift.",
+                alt: "",
                 figId: "2",
                 caption: "",
               },
