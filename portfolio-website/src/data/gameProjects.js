@@ -303,7 +303,8 @@ export const chihuahuaChampProject = createGameProject({
   title: 'Chihuahua Champ',
   urls: {
     game: 'https://daniel-narvaez.itch.io/chihuahua-champ',
-    jamPage: 'https://itch.io/jam/gamedevjs-2024'
+    jamPage: 'https://itch.io/jam/gamedevjs-2024',
+    machinationsDiagram: 'https://machinations.io/community/narvd997/powerlifting-system-0a0cb761c498c3352e810878bc3e46632'
   },
   projectArticle: {
     images: {
@@ -369,7 +370,8 @@ export const chihuahuaChampProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.gamedevJS24}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
-            projectContent.paragraph("I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes: training and competitions. Training mode allowed players to set their own weight and complete exercise reps at their own pace, with higher weights yielding more experience points per rep."),
+            projectContent.paragraph(({ urls }) => `I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes: training and competitions. I then mapped out the core gameplay loop in a [Machinations Diagram](${urls.machinationsDiagram}) **[Figure 2]**.`),
+            projectContent.paragraph("Training mode allowed players to set their own weight and complete exercise reps at their own pace, with higher weights yielding more experience points per rep."),
             projectContent.paragraph("In competition mode, players faced structured challenges with preset weights. Completing a competition the first time earned players a unique prize, and every following victory increased the preset weight, requiring more training."),
             projectContent.paragraph("Players could control their training pace and set achievable goals before competing, which made repetitive exercise feel purposeful and rewarding. This system also simulated the real-world strength training, where athletes alternate between daily practice and testing their progress.")
           ],
@@ -380,6 +382,12 @@ export const chihuahuaChampProject = createGameProject({
                 alt: "A flowchart showing the player journey of Chihuahua Champ between the training and competition game modes.",
                 figId: "1",
                 caption: "Players grow their character's strength levels in training mode, and they'd enter competitions to win prizes.",
+              },
+              {
+                src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
+                alt: "A Machinations Diagram showing the relationship between player strength level and the amount of weight they attempt to lift.",
+                figId: "2",
+                caption: "",
               },
             ])
           ]
@@ -392,6 +400,7 @@ export const chihuahuaChampProject = createGameProject({
             
           ],
           right: [
+<<<<<<< Updated upstream
             projectContent.figureSet([
               {
                 src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
@@ -400,6 +409,9 @@ export const chihuahuaChampProject = createGameProject({
                 caption: "",
               },
             ])
+=======
+
+>>>>>>> Stashed changes
           ]
         }
       },
