@@ -304,7 +304,9 @@ export const chihuahuaChampProject = createGameProject({
   urls: {
     game: 'https://daniel-narvaez.itch.io/chihuahua-champ',
     jamPage: 'https://itch.io/jam/gamedevjs-2024',
-    machinationsDiagram: 'https://machinations.io/community/narvd997/powerlifting-system-0a0cb761c498c3352e810878bc3e46632'
+    machinationsDiagram: 'https://machinations.io/community/narvd997/powerlifting-system-0a0cb761c498c3352e810878bc3e46632',
+    jamResults: 'https://itch.io/jam/gamedevjs-2024/rate/2626657',
+    playcrafting: 'https://playcrafting.com/',
   },
   projectArticle: {
     images: {
@@ -369,7 +371,7 @@ export const chihuahuaChampProject = createGameProject({
         heading: projectContent.heading('System-Driven Player Journey'),
         content: {
           left: [
-            projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.gamedevJS24}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
+            projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.jamPage}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
             projectContent.paragraph("I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes. Training mode let players set weights and complete reps at their own pace for experience points, while Competition mode provided structured challenges at preset weights that increased with each victory, rewarding first-time completions with unique prizes."),
             projectContent.paragraph(({ urls }) => `To validate this design, I mapped the core gameplay loop in a [Machinations diagram](${urls.machinationsDiagram}) **[Figure 2]**. The diagram simulates a player in Training mode attempting to lift weight relative to their strength level. Failing a rep ends the exercise and awards experience points based on their performance.`),
             projectContent.paragraph("This design translated repetitive exercise mechanics into a gameplay experience with meaningful choices and quantifiable goals. The system also simulated real strength training, where athletes alternate between constant practice and competitive challenges.")
@@ -418,17 +420,19 @@ export const chihuahuaChampProject = createGameProject({
           ]
         }
       },
-      // {
-      //   heading: projectContent.heading(''),
-      //   content: {
-      //     left: [
+      {
+        heading: projectContent.heading('Exhibition (Working Title)'),
+        content: {
+          left: [
+            projectContent.paragraph(({ urls }) => `Our ambitious scope for the 2-week game jam led to *Chihuahua Champ* placing [119th out of 229 entries](${urls.jamResults}). Despite this result, strong team synergy and the game's potential motivated us to continue development for a public exhibition.`),
+            projectContent.paragraph("I led our team through a postmortem session to identify successes and opportunities. We prioritized polishing the user interface, menu navigation, and implementing Competition mode, features originally planned for the game jam. Through regular team meetings, I guided development to meet our exhibition timeline."),
+            projectContent.paragraph(({ urls }) => `We expanded the game over 2 months and exhibited the updated version at [Playcrafting's](${urls.playcrafting}) NYC Indie Dev Night, which marked its transition from a jam prototype to a finished product.`)
+          ],
+          right: [
 
-      //     ],
-      //     right: [
-
-      //     ]
-      //   }
-      // },
+          ]
+        }
+      },
     ]
   }
 });
