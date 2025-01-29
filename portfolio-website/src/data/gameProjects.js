@@ -385,17 +385,24 @@ export const chihuahuaChampProject = createGameProject({
           ]
         }
       },
-      // {
-      //   heading: projectContent.heading(''),
-      //   content: {
-      //     left: [
-
-      //     ],
-      //     right: [
-
-      //     ]
-      //   }
-      // },
+      {
+        heading: projectContent.heading('Powerlifting System'),
+        content: {
+          left: [
+            
+          ],
+          right: [
+            projectContent.figureSet([
+              {
+                src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
+                alt: "A Machinations Diagram showing the relationship between player strength level and the amount of weight they attempt to lift.",
+                figId: "2",
+                caption: "",
+              },
+            ])
+          ]
+        }
+      },
       // {
       //   heading: projectContent.heading(''),
       //   content: {
