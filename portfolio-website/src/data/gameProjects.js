@@ -350,7 +350,7 @@ export const chihuahuaChampProject = createGameProject({
               type: 'bullet',
               items: [
                 "Designed and implemented a progression system that guided the player journey through interconnected training and competition game modes.",
-                "Developed a stamina mechanic that increased user engagement and gated early-game progression by intensifying the difficulty of higher-weight exercises.",
+                "Implemented a stamina mechanic in Unity that increased gameplay challenge over time and created natural progression gates as players built their strength.",
                 "Led development from game jam prototype to finished product by coordinating team meetings and managing the project schedule throughout a 2-month timeline.",
               ]
             })
@@ -366,14 +366,13 @@ export const chihuahuaChampProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('Repetition-Driven Player Journey'),
+        heading: projectContent.heading('System-Driven Player Journey'),
         content: {
           left: [
             projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.gamedevJS24}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
-            projectContent.paragraph(({ urls }) => `I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes: training and competitions. I then mapped out the core gameplay loop in a [Machinations Diagram](${urls.machinationsDiagram}) **[Figure 2]**.`),
-            projectContent.paragraph("Training mode allowed players to set their own weight and complete exercise reps at their own pace, with higher weights yielding more experience points per rep."),
-            projectContent.paragraph("In competition mode, players faced structured challenges with preset weights. Completing a competition the first time earned players a unique prize, and every following victory increased the preset weight, requiring more training."),
-            projectContent.paragraph("Players could control their training pace and set achievable goals before competing, which made repetitive exercise feel purposeful and rewarding. This system also simulated the real-world strength training, where athletes alternate between daily practice and testing their progress.")
+            projectContent.paragraph("I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes. Training mode let players set weights and complete reps at their own pace for experience points, while Competition mode provided structured challenges at preset weights that increased with each victory, rewarding first-time completions with unique prizes."),
+            projectContent.paragraph(({ urls }) => `To validate this design, I mapped the core gameplay loop in a [Machinations diagram](${urls.machinationsDiagram}) **[Figure 2]**. The diagram simulates a player in Training mode attempting to lift weight relative to their strength level. Failing a rep ends the exercise and awards experience points based on their performance.`),
+            projectContent.paragraph("This design translated repetitive exercise mechanics into a gameplay experience with meaningful choices and quantifiable goals. The system also simulated real strength training, where athletes alternate between constant practice and competitive challenges.")
           ],
           right: [
             projectContent.figureSet([
@@ -385,33 +384,37 @@ export const chihuahuaChampProject = createGameProject({
               },
               {
                 src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
-                alt: "A Machinations Diagram showing the relationship between player strength level and the amount of weight they attempt to lift.",
+                alt: "A Machinations Diagram modeling the exercise loop of Chihuahua Champ.",
                 figId: "2",
-                caption: "",
+                caption: "The player sets a weight relative to their strength level and is more likely to complete exercises the lighter they set.",
               },
             ])
           ]
         }
       },
       {
-        heading: projectContent.heading('Powerlifting System'),
+        heading: projectContent.heading('Perceived Weight Intensity: Simulating Physical Fatigue'),
         content: {
           left: [
-            
+            projectContent.paragraph("While the Machinations diagram validated my design with static probabilities, real powerlifting involves progressive fatigue. As a web browser game developed in Unity, we needed to translate diminishing stamina into keyboard-based gameplay that made players feel the increasing intensity."),
+            projectContent.paragraph("Players would perform exercises by rapidly inputting keyboard commands. By analyzing average clicking speeds, I determined that 4-6 clicks per rep created a base difficulty that felt challenging but achievable. This informed the Perceived Weight Intensity formula **[Figure 3]**, which scaled difficulty based on exercise duration and relative weight."),
+            projectContent.paragraph("The recorded gameplay **[Figure 4]** demonstrates how players must press keys more rapidly over time to outpace the depleting Rep Meter. This mechanic generated both virtual and physical fatigue through its accelerating input demands.")
           ],
           right: [
-<<<<<<< Updated upstream
             projectContent.figureSet([
               {
-                src: "/../../images/games/ChihuahuaChamp/projectPage/powerlifting-system.gif",
-                alt: "",
-                figId: "2",
-                caption: "",
+                src: "/../../images/games/ChihuahuaChamp/projectPage/perceived-weight-intensity.png",
+                alt: "The formula for calculating perceived weight intensity used in Chihuahua Champ: P(w,L,Δt) = 0.003(w/L)Δt + 0.01",
+                figId: "3",
+                caption: "Formula for calculating perceived weight intensity based on current weight (w), strength level (L), and time interval (Δt).",
               },
+              {
+                src: "/../../images/games/ChihuahuaChamp/projectPage/pwi-demo.gif",
+                alt: "A gif of me pressing my keyboard in order to complete reps in Chihuahua Champ.",
+                figId: "4",
+                caption: "The Rep Meter fills with each key press but depletes faster over time, requiring more rapid inputs."
+              }
             ])
-=======
-
->>>>>>> Stashed changes
           ]
         }
       },
