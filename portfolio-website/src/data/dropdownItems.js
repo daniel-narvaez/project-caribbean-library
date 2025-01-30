@@ -1,7 +1,7 @@
 /**********************************
 * DROPDOWN MENU DATA STRUCTURE
 **********************************/
-import { gameProjectsData } from "./gameProjects";
+import { gameProjectsData } from "./gameProjectRegistry";
 import { appIcons, socialMediaData } from "./appIcons";
 
 /**

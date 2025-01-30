@@ -34,7 +34,6 @@ import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
 import { LinkButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
-import { clockOutProject } from '../../data/gameProjects';
 import { socialMediaData } from '../../data/appIcons';
 
 /**

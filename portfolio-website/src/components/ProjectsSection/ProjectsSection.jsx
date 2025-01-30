@@ -4,7 +4,7 @@ import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
 
 import styles from './ProjectsSection.module.css';
 
-import { clockOutProject, chihuahuaChampProject, theHexPerplexProject } from "../../data/gameProjects";
+import { gameProjectsData } from "../../data/gameProjectRegistry";
 
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import { WavesButton } from "../Button/WavesButton";
@@ -22,9 +22,9 @@ export const ProjectsSection = () => {
           Featured Works
         </h2>
         <div className={`${styles.projectArticles} ${styles[layout]}`}>
-          <GameProjectArticle projectData={clockOutProject.projectArticle}/>
-          <GameProjectArticle projectData={chihuahuaChampProject.projectArticle}/>
-          <GameProjectArticle projectData={theHexPerplexProject.projectArticle}/>
+          <GameProjectArticle projectData={gameProjectsData.dreamscape.projectArticle}/>
+          <GameProjectArticle projectData={gameProjectsData.clockOut.projectArticle}/>
+          <GameProjectArticle projectData={gameProjectsData.chihuahuaChamp.projectArticle}/>
         </div>
         {/* <WavesButton title='Explore my full portfolio' url='/'/> */}
       </div>

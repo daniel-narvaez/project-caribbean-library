@@ -1,0 +1,39 @@
+{
+  "createGameProject Structure": {
+    "prefix": "createGameProject",
+    "body": [
+      "createGameProject({",
+      "\ttitle: \"\",",
+      "\turls: {",
+      "\t\tgame: \"\",",
+      "\t},",
+      "\tprojectArticle: {",
+      "\t\timages: {",
+      "\t\t\tcardFg: {",
+      "\t\t\t\tsrc: \"\",",
+      "\t\t\t\talt: \"\"",
+      "\t\t\t},",
+      "\t\t\tcardBg: {",
+      "\t\t\t\tsrc: \"\",",
+      "\t\t\t\talt: \"\"",
+      "\t\t\t},",
+      "\t\t\tbannerFg: {",
+      "\t\t\t\tsrc: \"\",",
+      "\t\t\t\talt: \"\"",
+      "\t\t\t},",
+      "\t\t\tbannerBg: {",
+      "\t\t\t\tsrc: \"\",",
+      "\t\t\t\talt: \"\"",
+      "\t\t\t}",
+      "\t\t},",
+      "\t\ttagline: \"\"",
+      "\t},",
+      "\tprojectPage: {",
+      "\t\tmain: \"\",",
+      "\t\twalkthrough: []",
+      "\t}",
+      "})"
+    ],
+    "description": "Creates empty structure for createGameProject"
+  }
+}

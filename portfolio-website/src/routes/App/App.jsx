@@ -32,7 +32,7 @@ import Resume from '../Resume/Resume';
 import Contact from '../Contact/Contact';
 import { GameProjectPage } from '../GameProjects/GameProjectPage';
 
-import { gameProjectsData } from '../../data/gameProjects';
+import { gameProjectsData } from '../../data/gameProjectRegistry';
 
 import styles from './App.module.css';
 /**
