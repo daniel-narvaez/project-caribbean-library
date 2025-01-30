@@ -18,6 +18,7 @@ import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './Resume.module.css';
+import { Helmet } from 'react-helmet';
 
 const RESUME_CONFIG = {
   ENDPOINT: '/api/resume-url',

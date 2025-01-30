@@ -19,6 +19,7 @@ import Chapter from "../../components/Chapter/Chapter";
 import { ScreenSizeContext } from "../../contexts/ScreenSize";
 import styles from './Contact.module.css';
 import { socialMediaData } from "../../data/appIcons";
+import { Helmet } from 'react-helmet';
 
 /**
  * Available platform connections

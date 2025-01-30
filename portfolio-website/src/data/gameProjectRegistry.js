@@ -20,6 +20,12 @@ const initializeRegistry = () => {
 
 export const gameProjectsData = initializeRegistry();
 
+export const featuredProjectsData = [
+  gameProjectsData.dreamscape,
+  gameProjectsData.chihuahuaChamp,
+  gameProjectsData.clockOut,
+]
+
 export const getGameProjectByPath = (path) => {
   return Object.values(gameProjectsData).find(project => project.path === path);
 };

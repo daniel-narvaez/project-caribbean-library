@@ -60,65 +60,55 @@ const gamesItem = createDropdownItem({
   url: '/',
   submenu: [
     createDropdownItem({
+      title: gameProjectsData.dreamscape.title,
+      url: gameProjectsData.dreamscape.urls.portfolio,
+    }),
+    createDropdownItem({
       title: gameProjectsData.chihuahuaChamp.title,
-      submenu: [
-        createDropdownItem({
-          title: 'Read More',
-          url: gameProjectsData.chihuahuaChamp.urls.portfolio,
-        }),
-        createDropdownItem({
-          title: 'Play',
-          url: gameProjectsData.chihuahuaChamp.urls.game,
-        })
-      ]
+      url: gameProjectsData.chihuahuaChamp.urls.portfolio,
+      // submenu: [
+      //   createDropdownItem({
+      //     title: 'Read More',
+      //     url: gameProjectsData.chihuahuaChamp.urls.portfolio,
+      //   }),
+      //   createDropdownItem({
+      //     title: 'Play',
+      //     url: gameProjectsData.chihuahuaChamp.urls.game,
+      //   })
+      // ]
+    }),
+
+    createDropdownItem({
+      title: gameProjectsData.clockOut.title,
+      url: gameProjectsData.clockOut.urls.portfolio,
+      // submenu: [
+      //   createDropdownItem({
+      //     title: 'Read More',
+      //     url: gameProjectsData.clockOut.urls.portfolio,
+      //   }),
+      //   createDropdownItem({
+      //     title: 'Play',
+      //     url: gameProjectsData.clockOut.urls.game,
+      //   })
+      // ]
     }),
     // createDropdownItem({
-    //   title: 'Star Sweepers',
-    //   url: '/',
-    // }),
-    // createDropdownItem({
-    //   title: 'Project: Boricuas',
+    //   title: gameProjectsData.theHexPerplex.title,
     //   submenu: [
     //     createDropdownItem({
-    //       title: 'Part 1',
-    //       url: '/',
+    //       title: 'Read More',
+    //       url: gameProjectsData.theHexPerplex.portfolioUrl,
     //     }),
     //     createDropdownItem({
-    //       title: 'Part 2',
-    //       url: '/',
+    //       title: 'Play',
+    //       url: gameProjectsData.theHexPerplex.gameUrl,
     //     })
     //   ]
     // }),
-    createDropdownItem({
-      title: gameProjectsData.clockOut.title,
-      submenu: [
-        createDropdownItem({
-          title: 'Read More',
-          url: gameProjectsData.clockOut.urls.portfolio,
-        }),
-        createDropdownItem({
-          title: 'Play',
-          url: gameProjectsData.clockOut.urls.game,
-        })
-      ]
-    }),
-    createDropdownItem({
-      title: gameProjectsData.theHexPerplex.title,
-      submenu: [
-        createDropdownItem({
-          title: 'Read More',
-          url: gameProjectsData.theHexPerplex.portfolioUrl,
-        }),
-        createDropdownItem({
-          title: 'Play',
-          url: gameProjectsData.theHexPerplex.gameUrl,
-        })
-      ]
-    }),
-    createDropdownItem({
-      title: 'All Games',
-      url: '/',
-    })
+    // createDropdownItem({
+    //   title: 'All Games',
+    //   url: '/',
+    // })
   ]
 });
 

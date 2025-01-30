@@ -1,0 +1,99 @@
+{
+  "Title Frame": {
+    "prefix": "pc.titleFrame",
+    "body": [
+      "projectContent.titleFrame(",
+      "\t{ src: \"\", alt: \"\" },",
+      "\t{ src: \"\", alt: \"\" }",
+      ")"
+    ],
+    "description": "Creates a title frame with logo and money shot"
+  },
+  "Details": {
+    "prefix": "pc.details",
+    "body": [
+      "projectContent.details([",
+      "\t{ key: \"\", value: \"\" },",
+      "\t{ key: \"\", value: \"\" }",
+      "])"
+    ],
+    "description": "Creates a details section"
+  },
+  "Heading": {
+    "prefix": "pc.heading",
+    "body": [
+      "projectContent.heading(\"\")"
+    ],
+    "description": "Creates a heading"
+  },
+  "Subheading": {
+    "prefix": "pc.subheading",
+    "body": [
+      "projectContent.subheading(\"\")"
+    ],
+    "description": "Creates a subheading"
+  },
+  "Paragraph": {
+    "prefix": "pc.paragraph",
+    "body": [
+      "projectContent.paragraph(\"\")"
+    ],
+    "description": "Creates a paragraph"
+  },
+  "Figure Set": {
+    "prefix": "pc.figureSet",
+    "body": [
+      "projectContent.figureSet([",
+      "\t{",
+      "\t\tsrc: \"\",",
+      "\t\talt: \"\",",
+      "\t\tfigId: \"\",",
+      "\t\tcaption: \"\"",
+      "\t}",
+      "])"
+    ],
+    "description": "Creates a figure set"
+  },
+  "Video": {
+    "prefix": "pc.video",
+    "body": [
+      "projectContent.video({",
+      "\tsrc: \"\",",
+      "\ttitle: \"\",",
+      "\twidth: \"\",",
+      "\theight: \"\"",
+      "})"
+    ],
+    "description": "Creates a video element"
+  },
+  "Gallery": {
+    "prefix": "pc.gallery",
+    "body": [
+      "projectContent.gallery({",
+      "\tfigId: \"\",",
+      "\tcaption: \"\",",
+      "\titems: [",
+      "\t\tcreateMediaItem({",
+      "\t\t\ttype: \"\",",
+      "\t\t\turl: \"\",",
+      "\t\t\talt: \"\"",
+      "\t\t})",
+      "\t]",
+      "})"
+    ],
+    "description": "Creates a gallery with media items"
+  },
+  "List": {
+    "prefix": "pc.list",
+    "body": [
+      "projectContent.list({",
+      "\ttype: \"\",",
+      "\titems: [",
+      "\t\t\"\",",
+      "\t\t\"\"",
+      "\t]",
+      "})"
+    ],
+    "description": "Creates a list"
+  }
+}

@@ -23,7 +23,6 @@ import { createMediaItem } from "./HeroMedia";
  * @param {Array} [params.projectPage.walkthrough] - Array of walkthrough content
  * @returns {Object} Complete project data structure with all configured properties
  */
-
 export const createGameProject = ({
   title,
   urls = {
@@ -31,25 +30,8 @@ export const createGameProject = ({
     portfolio: '',
   },
   projectArticle = {
-    images: {
-      cardFg: {
-        src: '',
-        alt: `An image of the project's card foreground.`
-      },
-      cardBg: {
-        src: '',
-        alt: `An image of the project's card background.`
-      },
-      bannerFg: {
-        src: '',
-        alt: `An image of the project's banner foreground.`
-      },
-      bannerBg: {
-        src: '',
-        alt: `An image of the project's banner background.`
-      }
-    },
-    heading: title || 'Untitled Project', 
+    images: {},  // Initialize as empty object
+    heading: title || 'Untitled Project',
     tagline: `A short tagline about the project.`,
     readMoreBtn: '',
     playBtn: ''
@@ -59,7 +41,6 @@ export const createGameProject = ({
     walkthrough: []
   }
 }) => {
-
   // Create URL-friendly path from title:
   // 1. Convert to lowercase
   // 2. Replace any non-alphanumeric characters with hyphens
@@ -71,43 +52,67 @@ export const createGameProject = ({
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
 
-    const finalUrls = {
-      ...urls,
-      portfolio: `/game-projects/${path}`
-    };
-  
+  const finalUrls = {
+    ...urls,
+    portfolio: `/game-projects/${path}`
+  };
+
+  // Define default images with consistent structure
+  const defaultImages = {
+    cardFg: {
+      src: '/../../images/Default-CardFg.png',
+      alt: `An image of ${title}'s card foreground.`
+    },
+    cardBg: {
+      src: '/../../images/Default-CardBg.jpg',
+      alt: `An image of ${title}'s card background.`
+    },
+    bannerFg: {
+      src: '/../../images/Default-BannerFg.png',
+      alt: `An image of ${title}'s banner foreground.`
+    },
+    bannerBg: {
+      src: '/../../images/Default-BannerBg.jpg',
+      alt: `An image of ${title}'s banner background.`
+    }
+  };
+
+  // Merge provided images with defaults, maintaining structure
+  const finalImages = {
+    cardFg: {
+      ...defaultImages.cardFg,
+      ...(projectArticle.images.cardFg || {})
+    },
+    cardBg: {
+      ...defaultImages.cardBg,
+      ...(projectArticle.images.cardBg || {})
+    },
+    bannerFg: {
+      ...defaultImages.bannerFg,
+      ...(projectArticle.images.bannerFg || {})
+    },
+    bannerBg: {
+      ...defaultImages.bannerBg,
+      ...(projectArticle.images.bannerBg || {})
+    }
+  };
+
+  // Build final project article configuration
   const finalProjectArticle = {
     ...projectArticle,
-    images: {
-      ...projectArticle.images,
-      cardFg: {
-        ...projectArticle.images.cardFg,
-        alt: projectArticle.images.cardFg.alt || `An image of ${title}'s card foreground.`
-      },
-      cardBg: {
-        ...projectArticle.images.cardBg,
-        alt: projectArticle.images.cardBg.alt || `An image of ${title}'s card background.`
-      },
-      bannerFg: {
-        ...projectArticle.images.bannerFg,
-        alt: projectArticle.images.bannerFg.alt || `An image of ${title}'s banner foreground.`
-      },
-      bannerBg: {
-        ...projectArticle.images.bannerBg,
-        alt: projectArticle.images.bannerBg.alt || `An image of ${title}'s banner background.`
-      }
-    },
+    images: finalImages,
     heading: projectArticle.heading || title || 'Untitled Project',
-    tagline:  projectArticle.tagline || `A short tagline about ${title}.`,
+    tagline: projectArticle.tagline || `A short tagline about ${title}.`,
     readMoreBtn: finalUrls.portfolio || '/',
     playBtn: finalUrls.game || '/'
   };
 
+  // Return complete project structure
   return {
-  title,
-  path,
-  urls: finalUrls,
-  projectArticle: finalProjectArticle,
-  projectPage,
+    title,
+    path,
+    urls: finalUrls,
+    projectArticle: finalProjectArticle,
+    projectPage,
   };
 };
