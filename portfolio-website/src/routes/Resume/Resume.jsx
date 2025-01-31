@@ -99,8 +99,8 @@ function Resume() {
             <div className={`${styles.heroContent} ${styles[size]}`}>
               <h2 className={styles.headline}>Résumé</h2>
               <p className={styles.tagline}>
-                I'm currently seeking entry-level <b>game designer</b><br />
-                roles. Although based in <b>New York, USA</b>,<br />
+                I'm currently seeking entry-level <b>game designer </b> 
+                roles. Although based in <b>New York, USA</b>,
                 I'm willing to relocate worldwide.
               </p>
             </div>
