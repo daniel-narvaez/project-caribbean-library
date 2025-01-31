@@ -123,34 +123,34 @@ const chihuahuaChampProject = createGameProject({
           ]
         }
       },
-      {
-        heading: projectContent.heading('Project Leadership'),
-        content: {
-          left: [
-            projectContent.paragraph(({ urls }) => `Our ambitious scope for the 2-week game jam led to *Chihuahua Champ* placing [119th out of 229 entries](${urls.jamResults}). Despite this result, strong team synergy and the game's potential motivated us to continue development for a public exhibition.`),
-            projectContent.paragraph("I led our team through a postmortem session that identified our key priorities moving forward. These included polishing the user interface, adding unused assets, and implementing the intended Competition mode. Through team meetings, I guided development to meet our exhibition timeline."),
-            projectContent.paragraph(({ urls }) => `Development lasted a total of 2 months. The updated version we showed at [Playcrafting's](${urls.playcrafting}) NYC Indie Dev Night excited attendees enough to continue playing after the exhibition. This reception validated the game's transition from a jam prototype to a finished product.`)
-          ],
-          right: [
-            projectContent.figureSet([
-              {
-                src: "/../../images/games/ChihuahuaChamp/projectPage/indie-dev-night.jpg",
-                alt: "a picture of our booth for playing Chihuahua Champ at NYC Indie Dev Night.",
-                figId: "5",
-                caption: "We exhibited Chihuahua Champ at NYC Indie Dev Night using a Mac Mini and Logitech G peripherals."
-              },
-            ]),
-            projectContent.figureSet([
-              {
-                src: "/../../images/games/ChihuahuaChamp/projectPage/promo-poster.jpg",
-                alt: "a promotional poster featuring the player character and Pitt from Chihuahua Champ.",
-                figId: "6",
-                caption: "A promotional poster our artist prepared for the exhibition."
-              },
-            ]),
-          ]
-        }
-      },
+      // {
+      //   heading: projectContent.heading('Project Leadership'),
+      //   content: {
+      //     left: [
+      //       projectContent.paragraph(({ urls }) => `Our ambitious scope for the 2-week game jam led to *Chihuahua Champ* placing [119th out of 229 entries](${urls.jamResults}). Despite this result, strong team synergy and the game's potential motivated us to continue development for a public exhibition.`),
+      //       projectContent.paragraph("I led our team through a postmortem session that identified our key priorities moving forward. These included polishing the user interface, adding unused assets, and implementing the intended Competition mode. Through team meetings, I guided development to meet our exhibition timeline."),
+      //       projectContent.paragraph(({ urls }) => `Development lasted a total of 2 months. The updated version we showed at [Playcrafting's](${urls.playcrafting}) NYC Indie Dev Night excited attendees enough to continue playing after the exhibition. This reception validated the game's transition from a jam prototype to a finished product.`)
+      //     ],
+      //     right: [
+      //       projectContent.figureSet([
+      //         {
+      //           src: "/../../images/games/ChihuahuaChamp/projectPage/indie-dev-night.jpg",
+      //           alt: "a picture of our booth for playing Chihuahua Champ at NYC Indie Dev Night.",
+      //           figId: "5",
+      //           caption: "We exhibited Chihuahua Champ at NYC Indie Dev Night using a Mac Mini and Logitech G peripherals."
+      //         },
+      //       ]),
+      //       projectContent.figureSet([
+      //         {
+      //           src: "/../../images/games/ChihuahuaChamp/projectPage/promo-poster.jpg",
+      //           alt: "a promotional poster featuring the player character and Pitt from Chihuahua Champ.",
+      //           figId: "6",
+      //           caption: "A promotional poster our artist prepared for the exhibition."
+      //         },
+      //       ]),
+      //     ]
+      //   }
+      // },
     ]
   }
 });
