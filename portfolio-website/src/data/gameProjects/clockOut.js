@@ -76,8 +76,8 @@ const clockOutProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph("In a fighting game with only 4 combat actions, we needed a way to create increasingly difficult boss encounters that didn't depend on complex mechanics."),
-            projectContent.paragraph("I designed a stat system with 5 core attributes **[Figure 1]**: health (HP), stamina (SP), power (POW), defense (DEF), and agility (AGI). I also implemented different scaling rates between the player character and bosses. The player (Intern) started with higher base stats but grew linearly, while bosses began weaker but scaled exponentially with each encounter."),
-            projectContent.paragraph(({ urls }) => `Taking inspiration from [Akira Kitamura's design rules for Mega Man 1 & 2 (NES)](${urls.kitamuraRule}), I modified the exponential curve so that every 4th boss had fewer stat upgrades than the previous **[Figure 2]**. I designed this pattern to reinforce players' sense of improvement.`),
+            projectContent.paragraph("I designed a stat system with 5 core attributes: health (HP), stamina (SP), power (POW), defense (DEF), and agility (AGI) **(Figure 1)**. I also implemented different scaling rates between the player character and bosses. The player (Intern) started with higher base stats but grew linearly, while bosses began weaker but scaled exponentially with each encounter."),
+            projectContent.paragraph(({ urls }) => `Taking inspiration from [Akira Kitamura's design rules for Mega Man 1 & 2 (NES)](${urls.kitamuraRule}), I modified the exponential curve so that every 4th boss had fewer stat upgrades than the previous **(Figure 2)**. I designed this pattern to reinforce players' sense of improvement.`),
             projectContent.paragraph("These choices created an environment where players could focus on learning the controls in early fights, but later encounters became more challenging through asymmetrical growth. The shark tooth pattern provided relief for players after overcoming a challenging fight.")
           ],
           right: [
@@ -160,7 +160,7 @@ const clockOutProject = createGameProject({
                 "Replace the Intern's automatic stat upgrades with a player-driven system"
               ]
             }),
-            projectContent.paragraph("Early playtests showed the first option didn't work because players felt no meaningful progression between the early and late stages of the game. So, I designed an economy system where players earn 'job experience' based on a combat performance report **[Figure 4]**. Players could spend job experience between fights to manually upgrade, i.e. increase, their stats through a résumé interface **[Figure 5]**."),
+            projectContent.paragraph("Early playtests showed the first option didn't work because players felt no meaningful progression between the early and late stages of the game. So, I designed an economy system where players earn 'job experience' based on a combat performance report **(Figure 4)**. Players could spend job experience between fights to manually upgrade, i.e. increase, their stats through a résumé interface **(Figure 5)**."),
             projectContent.paragraph("The new economy solved our scaling issues and added two benefits: players earned enough job experience per fight to keep up with boss difficulty, and they gained control over their own challenge level since upgrades became optional.")
           ],
           right: [

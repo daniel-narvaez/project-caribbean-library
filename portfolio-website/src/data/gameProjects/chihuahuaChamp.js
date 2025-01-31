@@ -75,8 +75,8 @@ const chihuahuaChampProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.jamPage}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
-            projectContent.paragraph("I designed the player journey **[Figure 1]** to revolve around increasing strength by creating two complementary game modes. Training mode let players set weights and complete reps at their own pace for experience points, while Competition mode provided structured challenges at preset weights that increased with each victory, rewarding first-time completions with unique prizes."),
-            projectContent.paragraph(({ urls }) => `To validate this design, I mapped the core gameplay loop in a [Machinations diagram](${urls.machinationsDiagram}) **[Figure 2]**. The diagram simulates a player in Training mode attempting to lift weight relative to their strength level. Failing a rep ends the exercise and awards experience points based on their performance.`),
+            projectContent.paragraph("I designed the player journey to revolve around increasing strength by creating two complementary game modes **(Figure 1)**. Training mode let players set weights and complete reps at their own pace for experience points, while Competition mode provided structured challenges at preset weights that increased with each victory, rewarding first-time completions with unique prizes."),
+            projectContent.paragraph(({ urls }) => `To validate this design, I mapped the core gameplay loop in a [Machinations diagram](${urls.machinationsDiagram}) **(Figure 2)**. The diagram simulates a player in Training mode attempting to lift weight relative to their strength level. Failing a rep ends the exercise and awards experience points based on their performance.`),
             projectContent.paragraph("This design translated repetitive exercise mechanics into a gameplay experience with meaningful choices and quantifiable goals. The system also simulated real strength training, where athletes alternate between constant practice and competitive challenges.")
           ],
           right: [
@@ -102,8 +102,8 @@ const chihuahuaChampProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph("While the Machinations diagram validated my design with static probabilities, real powerlifting involves progressive fatigue. As a web browser game developed in Unity, we needed to translate diminishing stamina into keyboard-based gameplay that made players feel the increasing intensity."),
-            projectContent.paragraph("Players would perform exercises by rapidly inputting keyboard commands. By analyzing average clicking speeds, I determined that 4-6 clicks per rep created a base difficulty that felt challenging but achievable. This informed the Perceived Weight Intensity formula **[Figure 3]**, which scaled difficulty based on exercise duration and relative weight."),
-            projectContent.paragraph("The recorded gameplay **[Figure 4]** demonstrates how players must press keys more rapidly over time to outpace the depleting Rep Meter. This mechanic generated both virtual and physical fatigue through its accelerating input demands.")
+            projectContent.paragraph("Players would perform exercises by rapidly inputting keyboard commands. By analyzing average clicking speeds, I determined that 4-6 clicks per rep created a base difficulty that felt challenging but achievable. This informed the Perceived Weight Intensity formula, which scaled difficulty based on exercise duration and relative weight **(Figure 3)**."),
+            projectContent.paragraph("The recorded gameplay demonstrates how players must press keys more rapidly over time to outpace the depleting Rep Meter **(Figure 4)**. This mechanic generated both virtual and physical fatigue through its accelerating input demands.")
           ],
           right: [
             projectContent.figureSet([

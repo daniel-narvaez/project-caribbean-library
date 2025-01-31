@@ -125,10 +125,10 @@ const contentRenderers = {
     <div className={getClasses('figureSet', size)} key={key}>
       {element.content.map((item, index) => (
         <figure className={getClasses('figure', size)} key={index}>
+          <img src={item.src} alt={item.alt} />
           <figcaption>
             <b>Figure {item.figId}:</b> <i>{item.caption}</i>
           </figcaption>
-          <img src={item.src} alt={item.alt} />
         </figure>
       ))}
     </div>
