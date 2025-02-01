@@ -101,8 +101,8 @@ import { socialMediaData } from "../../data/appIcons";
             
             <p className={styles.tagline}>
               Hi, I'm Dan, a <b>game designer</b> based in <br/>
-              The Bronx, NY. I specialize in Economy <br/>
-              Systems Design and User Interace Design.
+              The Bronx, NY. I specialize in economy <br/>
+              systems design and user interface design.
             </p>
             
             <div className={`
