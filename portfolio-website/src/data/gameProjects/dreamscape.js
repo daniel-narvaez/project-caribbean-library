@@ -49,7 +49,7 @@ const dreamscapeProject = createGameProject({
             projectContent.details([
               { key: "Platforms", value: "TBD" },
               { key: "Duration", value: "ongoing" },
-              { key: "Team Size", value: "90" },
+              { key: "Team Size", value: "75" },
             ]),
             projectContent.subheading("Summary"),
             projectContent.paragraph(({ urls }) => `*Project Dreamscape* is a third-person 3D hack-and-slash roguelite being developed in Unity by Studio Aspen of the EGD Collective. I lead the balancing division in our 21-person design team.`),
