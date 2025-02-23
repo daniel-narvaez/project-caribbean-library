@@ -117,7 +117,7 @@ const clockOutProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph("The artists created 17 unique boss characters, and we wanted each one to fight differently. Our original stat system increased enemy power exponentially, but every boss felt the same to fight because they all shared identical stat distributions regardless of which one spawned."),
-            projectContent.paragraph(({ urls }) => `I designed four types (agile, burly, strong, and all-around) and gave each one favored stats that were more likely to increase than others. Then I reworked the progression system so bosses only upgraded three random stats between fights instead of all five, with each stat's upgrade probability weighted by their type. I made the [Machinations diagram](${urls.machinationsDiagram}) to simulate these changes.`),
+            projectContent.paragraph(({ urls }) => `I designed four types (agile, burly, strong, and all-around) and gave each one favored stats that were more likely to increase than others. Then I reworked the progression system so bosses only upgraded three random stats between fights instead of all five, with each stat's upgrade probability weighted by their type. I made the [Machinations diagram](${urls.machinationsDiagram}) to simulate these changes **(Figure 3)**.`),
             projectContent.paragraph("This created more diversity in the boss roster. Each body type played differently in combat, even though they all used the same four combat actions. The randomized stat upgrades added variety to repeated playthroughs since the same boss could have different strengths each time the player encountered them.")
           ],
           right: [
