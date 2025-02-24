@@ -10,16 +10,16 @@ const dreamscapeProject = createGameProject({
   projectArticle: {
     images: {
       cardFg: {
-        // src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-",
-        // alt: ""
+        src: "",
+        alt: ""
       },
       cardBg: {
         src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-cardBg.png",
         alt: "Early concept art of Project Dreamscape's player character, by Shavon H."
       },
       bannerFg: {
-        // src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-",
-        // alt: ""
+        src: "",
+        alt: ""
       },
       bannerBg: {
         src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-bannerBg.png",
