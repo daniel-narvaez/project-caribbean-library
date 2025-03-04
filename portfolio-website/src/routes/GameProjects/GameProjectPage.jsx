@@ -222,16 +222,18 @@ export const GameProjectPage = memo(({ game }) => {
                     )
                   ))}
                 </div>
-                <div className={styles.right}>
-                  {chapter.content.right.map((element, eIndex) => (
-                    renderContent(
-                      element,
-                      `right-${cIndex}-${eIndex}`,
-                      game,
-                      size
-                    )
-                  ))}
-                </div>
+                {chapter.content.right && chapter.content.right.length > 0 && (
+                  <div className={styles.right}>
+                    {chapter.content.right.map((element, eIndex) => (
+                      renderContent(
+                        element,
+                        `right-${cIndex}-${eIndex}`,
+                        game,
+                        size
+                      )
+                    ))}
+                  </div>
+                )}
               </div>
             </Chapter>
           ))}

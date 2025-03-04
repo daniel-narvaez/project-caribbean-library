@@ -217,18 +217,18 @@
 
 /* Typography
    ========= */
-.heading {
+.heading ,
+.subheading {
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: flex-start;
   align-self: stretch;
   color: var(--color-heading1);
   text-transform: capitalize;
 }
 
-.subheading {
-  color: var(--color-heading1);
-  text-transform: capitalize;
+section > .heading,
+section > .subheading {
+  padding: 0.5rem 1rem;
 }
 
 /* Content Layout

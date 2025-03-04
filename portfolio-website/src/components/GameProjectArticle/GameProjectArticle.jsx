@@ -285,16 +285,20 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
             </p>
           </div>
           <div className={styles.projectMenu}>
-            <LinkButton 
-              title='Read More'
-              url={projectData.readMoreBtn}
-              style='solid'
-            />
-            <LinkButton
-              title='Play'
-              url={projectData.playBtn}
-              style='island'
-            />
+            { projectData.readMoreBtn !== '/' && (
+              <LinkButton
+                title='Read More'
+                url={projectData.readMoreBtn}
+                style='solid'
+              />
+            )}
+            { projectData.playBtn !== '/' && (
+              <LinkButton
+                title='Play'
+                url={projectData.playBtn}
+                style='island'
+              />
+            )}
           </div>
         </div>
       </div>
