@@ -72,7 +72,7 @@ const dreamscapeProject = createGameProject({
         content: {
           left: [
             projectContent.paragraph("The game's core structure is divided into rounds. Players must select one of three 'events' presented to them at the beginning of each round. Events set the objectives players must complete to progress to the next round. Failure to complete the objectives results in a Game Over."),
-            projectContent.paragraph("There are six possible events that can occur during a playthrough: Survival, Priorities, Defend, Escort, Outbreak, and Wanderlust. In the following sections I explain where our team identified balancing opportunities during testing, how I redesigned each event to address these challenges, and the outcomes of each redesign after I implemented it in the Unity project.")
+            projectContent.paragraph("There are six possible events that can occur during a playthrough: Survival, Defend, Escort, Outbreak, Wanderlust, and Priorities. In the following sections I explain where our team identified balancing opportunities during testing, how I redesigned each event to address these challenges, and the outcomes of each redesign after I implemented it in the Unity project.")
           ]
         }
       },
@@ -181,8 +181,7 @@ const dreamscapeProject = createGameProject({
           left: [
             projectContent.paragraph("The initial premise of the Wanderlust event required players to visit each land, as implied by its former name 'Visit All'. In early stages of the game, players could instant-win the round by walking through the corners of adjacent lands since the entire land area counted as a valid visit zone."),
             projectContent.paragraph("I replaced the full land zones with size-adjustable 'visit indicators' that required players to step further toward the central area of each land. Each visit indicator starts large but shrinks as its land's level increases **(Figure 5)**. This removed the problem of only needing to take one step inside a land for the event to consider it visited."),
-            projectContent.paragraph("Adjusting the criteria for visiting a land exposed another issue: the event became too demanding as the map size and lands' levels increased."),
-            projectContent.paragraph("I addressed this by redesigning the land selection. Rather than requiring the player to visit every land, the event now requires fewer lands relative to the map size **(Figure 6)**."),
+            projectContent.paragraph("Adjusting the criteria for visiting a land exposed another issue: the event became too demanding as the map size and lands' levels increased. I addressed this by redesigning the land selection. Rather than requiring the player to visit every land, the event now requires fewer lands relative to the map size **(Figure 6)**."),
             projectContent.paragraph("The event's difficulty scales naturally with the progression of lands' levels, and players must now consider the level distribution as they expand the map. The red visit indicator spheres seen in **Figure 7** show how both of the changes work together.")
           ],
           right: [
