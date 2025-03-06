@@ -6,7 +6,9 @@ const dreamscapeProject = createGameProject({
   title: "Project Dreamscape",
   urls: {
     game: "",
-    manhattanDist: "https://chris3606.github.io/GoRogue/articles/grid_components/measuring-distance.html#manhattan-distance"
+    manhattanDist: "https://chris3606.github.io/GoRogue/articles/grid_components/measuring-distance.html#manhattan-distance",
+    timedEventsDiagram: "https://machinations.io/community/daniel.narvaez/81715790f52711efabac028ecffc1261",
+
   },
   projectArticle: {
     images: {
@@ -105,6 +107,44 @@ const dreamscapeProject = createGameProject({
                 figId: "2",
                 caption: "The algorithm creates a diamond-shaped pattern by adding absolute x and y coordinates and establishes a predictable spawning area that we can adjust, regardless of player count or NPCs."
               },
+            ])
+          ]
+        }
+      },
+      {
+        heading: projectContent.subheading("Survival"),
+        content: {
+          left: [
+            projectContent.paragraph("The Survival event challenged players to stay alive for two minutes while enemies spawn everywhere. Playtests proved that the 2-minute duration was excessive for early rounds and felt more like a waiting period. Similar to Defend and Escort, this event suffered from the same enemy spawn rate that overwhelmed players as they expanded the map."),
+            projectContent.paragraph(({ urls }) => `I increased the spawn intervals but also scaled the number of enemies per spawn based on player count. This would give players time to evaluate and engage with each wave of enemies. I authored a formula that sets a 40-second timer in the first round and increases linearly as players add lands to the map. To validate these changes, I built a [Machinations diagram](${urls.timedEventsDiagram}) that simulated the relationship between player count, land count, and the time limit **(Figure 3, slide 1)**.`),
+            projectContent.paragraph(({ urls }) => `My teammate's analysis of the diagram showed that, even with increased intervals, my approach would cause the Survival event to spawn 240 enemies at round 20. He proposed we set a fixed number of spawn intervals but revise the formula to scale them directly with the time limit. I revised the Machinations diagram with his feedback and integrated a [Manhattan distance](${urls.manhattanDist}) algorithm to limit enemy spawning further **(Figure 3, slide 2)**.`),
+            projectContent.paragraph("The combined redesign balanced the time limit and enemy spawn rate across each stage of the game. The data showed that for a solo player, the average enemy spawns per event never exceeded 100 at any point in the game, which was an improvement from the original 240 **(Figure 4)**. Players now experience a difficulty for the Survival event that is relative to their strength and progress.")
+          ],
+          flexDir: 'column',
+          right: [
+            projectContent.gallery({
+              figId: "3",
+              caption: "Slide 1 shows the growth of enemy spawning with a fixed spawn interval. Slide 2 shows how my teammate's solution to use a scaling interval controlled the growth better.",
+              items: [
+                createMediaItem({
+                  type: "gif",
+                  url: "/../../images/games/ProjectDreamscape/projectPage/timed-events-test.gif",
+                  alt: "A Machinations diagram showing the relationship between player count, land count, and the time limit during timed world-events in 'Project Dreamscape'. The enemy spawn interval is fixed."
+                }),
+                createMediaItem({
+                  type: "gif",
+                  url: "/../../images/games/ProjectDreamscape/projectPage/timed-events-manhattan-search.gif",
+                  alt: "A Machinations diagram showing the relationship between player count, land count, and the time limit during timed world-events in 'Project Dreamscape'. The enemy spawn interval scales with the time limit, and a Manhattan distance algorithm limits the enemy spawn amount."
+                }),
+              ]
+            }),
+            projectContent.figureSet([
+              {
+                src: "/../../images/games/ProjectDreamscape/projectPage/timed-events-execution-chart.jpg",
+                alt: "A graph showing the average data from 10 simulations in the Machinations Diagram.",
+                figId: "4",
+                caption: "The execution chart for timed events shows, from 10 simulations, the average of each of the following values: enemy spawns per event, lands selected using Manhattan distance, and time limits per event."
+              }
             ])
           ]
         }

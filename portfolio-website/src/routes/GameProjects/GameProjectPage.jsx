@@ -223,7 +223,7 @@ export const GameProjectPage = memo(({ game }) => {
                   ))}
                 </div>
                 {chapter.content.right && chapter.content.right.length > 0 && (
-                  <div className={styles.right}>
+                  <div className={styles.right} style={{ flexDirection: chapter.content.flexDir || 'auto'}}>
                     {chapter.content.right.map((element, eIndex) => (
                       renderContent(
                         element,

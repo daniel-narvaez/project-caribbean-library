@@ -93,19 +93,19 @@ const clockOutProject = createGameProject({
               {  
                 src: "/../../images/games/ClockOut/projectPage/hp-vs-encounters.png", 
                 alt: "A line graph showing the relationship between the progression of the player's Max Health stat vs the boss's Max Health stat.",
-                figId: "2a",
+                figId: "2.1",
                 caption: "The boss's Max HP surpasses the Intern's after 12 encounters."
               },
               {
                 src: "/../../images/games/ClockOut/projectPage/pow-vs-encounters.png", 
                 alt: "A line graph showing the relationship between the progression of the player's Power stat vs the boss's Power stat.",
-                figId: "2b",
+                figId: "2.2",
                 caption: "The boss's POW surpasses the Intern's after 11 encounters."
               },
               {
                 src: "/../../images/games/ClockOut/projectPage/agi-vs-encounters.png", 
                 alt: "A line graph showing the relationship between the progression of the player's Agility stat vs the boss's Agility stat.",
-                figId: "2c",
+                figId: "2.3",
                 caption: "The boss's AGI surpasses the Intern's after 10 encounters."
               }
             ])
@@ -121,10 +121,9 @@ const clockOutProject = createGameProject({
             projectContent.paragraph("This created more diversity in the boss roster. Each body type played differently in combat, even though they all used the same four combat actions. The randomized stat upgrades added variety to repeated playthroughs since the same boss could have different strengths each time the player encountered them.")
           ],
           right: [
-            projectContent.gallery(
-              {
+            projectContent.gallery({
                 figId: "3",
-                caption: "Weighted upgrade chances based on boss type",
+                caption: "Weighted upgrade chances based on boss type. slide 1 = agile; slide 2 = burly; slide 3 = strong",
                 items: [
                   createMediaItem({
                     type: "gif",
@@ -142,8 +141,7 @@ const clockOutProject = createGameProject({
                     alt: "A Machinations diagram showing the stat upgrade probabilities of strong-type bosses in Clock Out!!"
                   }),
                 ]
-              }
-            )
+              })
           ]
         }
       },
@@ -151,7 +149,7 @@ const clockOutProject = createGameProject({
         heading: projectContent.heading('Job Experience Economy System'),
         content: {
           left: [
-            projectContent.paragraph("After implementing boss types, we discovered another balance issue. The Intern upgraded all five stats after every fight, but bosses only upgraded three. This meant bosses couldn't scale fast enough to create proper challenge, which broke the game’s difficulty curve."),
+            projectContent.paragraph("After implementing boss types, we discovered another balance issue. The Intern upgraded all five stats after every fight, but bosses only upgraded three. This meant bosses couldn't scale fast enough to create proper challenge, which broke the game's difficulty curve."),
             projectContent.paragraph("I thought of two solutions, and tested one at a time:"),
             projectContent.list({
               type: 'numbered',
