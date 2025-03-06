@@ -37,7 +37,7 @@ const dreamscapeProject = createGameProject({
           alt: "Project Dreamscape logo."
         },
         {
-          src: "/../../images/games/ProjectDreamscape/projectPage/ProjectDreamscape-MoneyShot001.gif",
+          src: "/../../images/games/ProjectDreamscape/projectPage/ProjectDreamscape-MoneyShot002.gif",
           alt: "A snippet of gameplay from an early version of Project Dreamscape, which depicts the player character using the Charger-type Memory attack, and then performing a launch-to-aerial three-hit combo on an enemy."
         }
       )
