@@ -3,30 +3,29 @@ import { projectContent } from "../../utils/contentBuilder";
 import { createMediaItem } from "../HeroMedia";
 
 const dreamscapeProject = createGameProject({
-  title: "Project Dreamscape",
+  title: "Dreamscape",
   urls: {
     game: "",
     manhattanDist: "https://chris3606.github.io/GoRogue/articles/grid_components/measuring-distance.html#manhattan-distance",
     timedEventsDiagram: "https://machinations.io/community/daniel.narvaez/81715790f52711efabac028ecffc1261",
-
   },
   projectArticle: {
     images: {
       cardFg: {
-        src: "",
-        alt: ""
+        src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-cardFg.png",
+        alt: "An image of the Guide from Dreamscape flying on a yellow star board."
       },
       cardBg: {
-        src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-cardBg.png",
-        alt: "Early concept art of Project Dreamscape's player character, by Shavon H."
+        src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-cardBg.png",
+        alt: "A splash screen of Dreamscape featuring the player character leaning on a hammer in the dream forest biome."
       },
       bannerFg: {
-        src: "",
-        alt: ""
+        src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-bannerFg.png",
+        alt: "An image of the Guide from Dreamscape flying on a yellow star board."
       },
       bannerBg: {
-        src: "/../../images/games/ProjectDreamscape/projectArticle/ProjectDreamscape-bannerBg.png",
-        alt: "Early concept art of Project Dreamscape's player character, by Shavon H."
+        src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-bannerBg.png",
+        alt: "A splash screen of Dreamscape featuring the player character leaning on a hammer in the dream forest biome."
       }
     },
     tagline: "A third-person 3D hack-and-slash roguelite launching April 2025."
@@ -35,11 +34,11 @@ const dreamscapeProject = createGameProject({
     main: (
       projectContent.titleFrame(
         {
-          src: "/../../images/games/ProjectDreamscape/projectPage/ProjectDreamscape-Logo.png",
+          src: "/../../images/games/Dreamscape/projectPage/ProjectDreamscape-Logo.png",
           alt: "Project Dreamscape logo."
         },
         {
-          src: "/../../images/games/ProjectDreamscape/projectPage/ProjectDreamscape-MoneyShot002.gif",
+          src: "/../../images/games/Dreamscape/projectPage/Dreamscape-MoneyShot002.gif",
           alt: "A snippet of gameplay from an early version of Project Dreamscape, which depicts the player character using the Charger-type Memory attack, and then performing a launch-to-aerial three-hit combo on an enemy."
         }
       )
@@ -55,7 +54,7 @@ const dreamscapeProject = createGameProject({
               { key: "Team Size", value: "75" },
             ]),
             projectContent.subheading("Summary"),
-            projectContent.paragraph(({ urls }) => `*Project Dreamscape* is a third-person 3D hack-and-slash roguelite being developed in Unity by Studio Aspen of the EGD Collective. I lead the balancing division in our 21-person design team.`),
+            projectContent.paragraph(({ urls }) => `*Dreamscape* is a third-person 3D hack-and-slash roguelite being developed in Unity by Studio Aspen of the EGD Collective. I lead the balancing division in our 21-person design team.`),
             projectContent.subheading("Contributions"),
             projectContent.list({
               type: 'bullet',
@@ -96,13 +95,13 @@ const dreamscapeProject = createGameProject({
           right: [
             projectContent.figureSet([
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/radial-spawn-zone.jpeg",
+                src: "/../../images/games/Dreamscape/projectPage/radial-spawn-zone.jpeg",
                 alt: "A sketch showing how a radius-based spawn zone would work in a grid-based map, and how it might not work in multiplayer scenarios.",
                 figId: "1",
                 caption: "The sphere would follow players, and enemies could only spawn within the zone. This would reduce the total spawn count, regardless of the map size."
               },
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/manhattan-spawn-zone.jpeg",
+                src: "/../../images/games/Dreamscape/projectPage/manhattan-spawn-zone.jpeg",
                 alt: "A sketch showing how a grid-based spawn zone, using a manhattan distance algorithm, could work in the game regardless of player count.",
                 figId: "2",
                 caption: "The algorithm creates a diamond-shaped pattern by adding absolute x and y coordinates and establishes a predictable spawning area that we can adjust, regardless of player count or NPCs."
@@ -128,19 +127,19 @@ const dreamscapeProject = createGameProject({
               items: [
                 createMediaItem({
                   type: "gif",
-                  url: "/../../images/games/ProjectDreamscape/projectPage/timed-events-test.gif",
+                  url: "/../../images/games/Dreamscape/projectPage/timed-events-test.gif",
                   alt: "A Machinations diagram showing the relationship between player count, land count, and the time limit during timed world-events in 'Project Dreamscape'. The enemy spawn interval is fixed."
                 }),
                 createMediaItem({
                   type: "gif",
-                  url: "/../../images/games/ProjectDreamscape/projectPage/timed-events-manhattan-search.gif",
+                  url: "/../../images/games/Dreamscape/projectPage/timed-events-manhattan-search.gif",
                   alt: "A Machinations diagram showing the relationship between player count, land count, and the time limit during timed world-events in 'Project Dreamscape'. The enemy spawn interval scales with the time limit, and a Manhattan distance algorithm limits the enemy spawn amount."
                 }),
               ]
             }),
             projectContent.figureSet([
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/timed-events-execution-chart.jpg",
+                src: "/../../images/games/Dreamscape/projectPage/timed-events-execution-chart.jpg",
                 alt: "A graph showing the average data from 10 simulations in the Machinations Diagram.",
                 figId: "4",
                 caption: "The execution chart for timed events shows, from 10 simulations, the average of each of the following values: enemy spawns per event, lands selected using Manhattan distance, and time limits per event."
@@ -160,13 +159,13 @@ const dreamscapeProject = createGameProject({
           right: [
             projectContent.figureSet([
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/quadrant-based-selection.jpeg",
+                src: "/../../images/games/Dreamscape/projectPage/quadrant-based-selection.jpeg",
                 alt: "A sketch showing how the original 'Zones' event searched for lands in a 3x3 quadrant.",
                 figId: "3",
                 caption: "The original quadrant-based selection randomly chose a group of up to nine lands."
               },
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/zones-search-visualizer.gif",
+                src: "/../../images/games/Dreamscape/projectPage/zones-search-visualizer.gif",
                 alt: "A react component that plays an animation of the spiral search pattern on a randomly generated map.",
                 figId: "4",
                 caption: "Starting from the epicenter (E), the spiral search pattern expands to find nearby lands (green) until it reaches the target amount."
@@ -187,19 +186,19 @@ const dreamscapeProject = createGameProject({
           right: [
             projectContent.figureSet([
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/indicator-radius-scaling.jpeg",
+                src: "/../../images/games/Dreamscape/projectPage/indicator-radius-scaling.jpeg",
                 alt: "a sketch showing a graph and equations for scaling the radius of a visit indicator inversely as its land's level increases.",
                 figId: "5",
                 caption: "I drew a graph showing how I wanted a visit indicator's radius to scale, and then I iterated the equation that would make this behavior happen."
               },
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/visit-indicators-scaling.jpeg",
+                src: "/../../images/games/Dreamscape/projectPage/visit-indicators-scaling.jpeg",
                 alt: "a sketch showing a graph and equations for scaling the number of visit indicators relative to the number of spawned lands on the map.",
                 figId: "6",
                 caption: "While the total land count increases linearly, the number of required visits grows slower, preventing late-game scenarios where players would need to visit an overwhelming amount of lands."
               },
               {
-                src: "/../../images/games/ProjectDreamscape/projectPage/wanderlust-changes.gif",
+                src: "/../../images/games/Dreamscape/projectPage/wanderlust-changes.gif",
                 alt: "a snippet of gameplay from an early version of Project Dreamscape, which depicts the Wanderlust world-event generating visit indicators on the map.",
                 figId: "7",
                 caption: "The world-event spawns visit indicators for 7 out of 9 lands on the map and adjusts each one's radius based on its land's level."
