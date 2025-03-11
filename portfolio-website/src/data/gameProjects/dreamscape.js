@@ -17,7 +17,7 @@ const dreamscapeProject = createGameProject({
       },
       cardBg: {
         src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-cardBg.png",
-        alt: "A splash screen of Dreamscape featuring the player character leaning on a hammer in the dream forest biome."
+        alt: "A splash screen of Dreamscape featuring the Dreamer leaning on a hammer in the dream forest biome."
       },
       bannerFg: {
         src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-bannerFg.png",
@@ -25,10 +25,10 @@ const dreamscapeProject = createGameProject({
       },
       bannerBg: {
         src: "/../../images/games/Dreamscape/projectArticle/Dreamscape-bannerBg.png",
-        alt: "A splash screen of Dreamscape featuring the player character leaning on a hammer in the dream forest biome."
+        alt: "A splash screen of Dreamscape featuring the Dreamer leaning on a hammer in the dream forest biome."
       }
     },
-    tagline: "A third-person 3D hack-and-slash roguelite launching April 2025."
+    tagline: "A dreamer battles her inner demons in a subconscious landscape to protect her slumber."
   },
   projectPage: {
     main: (
