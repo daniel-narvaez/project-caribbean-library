@@ -28,7 +28,7 @@ const dreamscapeProject = createGameProject({
         alt: "A splash screen of Dreamscape featuring the Dreamer leaning on a hammer in the dream forest biome."
       }
     },
-    tagline: "A dreamer battles her inner demons in a subconscious landscape."
+    tagline: "A dreamer battles her inner demons in a subconscious world to protect her slumber."
   },
   projectPage: {
     main: (
