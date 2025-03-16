@@ -17,8 +17,8 @@ import styles from './ResumeContent.module.css';
  */
 const RESUME_CONFIG = {
     SECTIONS: {
-        LEFT: ['core competencies', 'projects'],
-        RIGHT: ['education', 'experience', 'skills']
+        LEFT: ['experience', 'projects'],
+        RIGHT: ['education', 'skills']
     },
     API_URL: '/api/resume-url',
     FILE_TYPE: 'docx'
