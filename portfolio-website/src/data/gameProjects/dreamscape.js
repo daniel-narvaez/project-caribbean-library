@@ -6,6 +6,7 @@ const dreamscapeProject = createGameProject({
   title: "Project Dreamscape",
   urls: {
     game: "https://store.steampowered.com/app/3569570/Project_Dreamscape/",
+    transitionalProgram: "https://www.egdcollective.org/transitional-program",
     manhattanDist: "https://chris3606.github.io/GoRogue/articles/grid_components/measuring-distance.html#manhattan-distance",
     timedEventsDiagram: "https://machinations.io/community/daniel.narvaez/81715790f52711efabac028ecffc1261",
   },
@@ -50,12 +51,12 @@ const dreamscapeProject = createGameProject({
           left: [
             projectContent.details([
               { key: "Platforms", value: "Windows, MacOS" },
-              { key: "Duration", value: "Ongoing" },
+              { key: "Release Date", value: "May 2025" },
               { key: "Team Size", value: "100+" },
               { key: "Builds", value: ({ urls }) => `[Steam](${urls.game})`}
             ]),
             projectContent.subheading("Summary"),
-            projectContent.paragraph(({ urls }) => `*Project Dreamscape* is a third-person 3D hack-and-slash roguelite being developed in Unity by Studio Aspen of the EGD Collective. I lead the balancing division in our 21-person design team.`),
+            projectContent.paragraph(({ urls }) => `A third-person 3D hack-and-slash roguelite game for desktop platforms. My team of 100+ developed Project Dreamscape with Unity in 9 months at the [EGD Collective's Game Studio program](${urls.transitionalProgram}). Our design team consisted of 21 people, and we operated with other teams in a AAA environment.`),
             projectContent.subheading("Contributions"),
             projectContent.list({
               type: 'bullet',
