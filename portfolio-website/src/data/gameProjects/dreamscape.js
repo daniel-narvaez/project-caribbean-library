@@ -56,7 +56,7 @@ const dreamscapeProject = createGameProject({
               { key: "Builds", value: ({ urls }) => `[Steam](${urls.game})`}
             ]),
             projectContent.subheading("Summary"),
-            projectContent.paragraph(({ urls }) => `A third-person 3D hack-and-slash roguelite game for desktop platforms. My team of 100+ developed Project Dreamscape with Unity in 9 months at the [EGD Collective's Game Studio program](${urls.transitionalProgram}). Our design team consisted of 21 people, and we operated with other teams in a AAA environment.`),
+            projectContent.paragraph(({ urls }) => `A third-person 3D hack-and-slash roguelite game for desktop platforms. My team of 100+ developed *Project Dreamscape* with Unity in 9 months at the [EGD Collective's Game Studio program](${urls.transitionalProgram}). Our design team consisted of 21 people, and we operated with other teams in a AAA environment.`),
             projectContent.subheading("Contributions"),
             projectContent.list({
               type: 'bullet',
