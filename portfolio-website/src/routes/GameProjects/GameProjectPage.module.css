@@ -217,12 +217,19 @@
 
 /* Typography
    ========= */
-.heading ,
-.subheading {
+.heading {
   display: flex;
   align-items: flex-start;
   align-self: stretch;
   color: var(--color-heading1);
+  text-transform: capitalize;
+}
+
+.subheading {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  color: var(--color-text1);
   text-transform: capitalize;
 }
 
