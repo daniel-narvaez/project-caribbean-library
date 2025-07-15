@@ -19,7 +19,7 @@
  */
 
 import React, { createContext, useContext, useEffect } from 'react';
-import { ScreenSizeContext } from './ScreenSize';
+import { DeviceContext } from './DeviceContext';
 import '../typography.css';
 
 // Initialize context for typography settings
@@ -34,11 +34,11 @@ const TypographyContext = createContext();
  */
 export const TypographyProvider = ({ children }) => {
   // Consume screen size context to determine which typography scale to use
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   // Define typography scales for different device sizes
   const fontSizes = {
-    Desktop: {
+    desktop: {
       // Minor Third Scale (1.2)
       h1: '2.074rem',     // 33.18 px (1.2^4)
       h2: '1.728rem',      // 27.65px (1.2^3)
@@ -49,7 +49,7 @@ export const TypographyProvider = ({ children }) => {
       heroTagline: '1.5rem',
       heroCtaButton: '1.5rem'
     },
-    Mobile: {
+    mobile: {
       // Major Second Scale (1.125)
       h1: '1.602rem',     // 25.63px (1.125^4)
       h2: '1.424rem',     // 22.78px (1.125^3)
@@ -99,7 +99,7 @@ export const TypographyProvider = ({ children }) => {
 /**
  * Usage Example:
  * 
- * import { TypographyProvider } from './Typography';
+ * import { TypographyProvider } from './contexts/Typography';
  * 
  * function App() {
  *   return (

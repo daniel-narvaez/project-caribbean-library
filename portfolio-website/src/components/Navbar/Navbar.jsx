@@ -2,11 +2,11 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Title } from '../Title/Title';
 import { MobileDropdown } from '../DropdownMenu/DropdownMobile';
 import { DesktopDropdown } from '../DropdownMenu/DropdownDesktop';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 

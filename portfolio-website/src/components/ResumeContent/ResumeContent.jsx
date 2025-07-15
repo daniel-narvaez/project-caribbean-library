@@ -9,7 +9,7 @@
 
 import { useState, useEffect, useContext, useCallback } from 'react';
 import mammoth from 'mammoth';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './ResumeContent.module.css';
 
 /**
@@ -33,7 +33,7 @@ export const ResumeContent = () => {
     const [rightColumn, setRightColumn] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { size } = useContext(ScreenSizeContext);
+    const { size } = useContext(DeviceContext);
 
     /**
      * Determines which column a section belongs in based on its heading

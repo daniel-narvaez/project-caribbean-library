@@ -16,7 +16,7 @@ import { ActionButton } from "../../components/Button/Button";
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './Resume.module.css';
 import { Helmet } from 'react-helmet';
 
@@ -36,7 +36,7 @@ function Resume() {
     filename: ''
   });
   const [uploadDate, setUploadDate] = useState(null);
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   const fetchResumeData = useCallback(async () => {
     try {

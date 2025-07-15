@@ -39,7 +39,7 @@ import React, {
  } from "react";
 
 import { Slideshow } from "../Slideshow/Slideshow";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 
 import { testSlides, heroGifSlides } from "../../data/HeroMedia";
 import { LinkButton } from "../Button/Button";
@@ -75,7 +75,7 @@ import { socialMediaData } from "../../data/appIcons";
  */
  export const HeroSection = () => {
 
-  const { size } = useContext(ScreenSizeContext)
+  const { size } = useContext(DeviceContext)
  
   return (
     <main>

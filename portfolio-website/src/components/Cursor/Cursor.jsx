@@ -30,7 +30,7 @@
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import gsap from 'gsap';
-import '../../vars.css';
+import '../../variables.css';
 import styles from './Cursor.module.css';
 
 // Initial config with default values

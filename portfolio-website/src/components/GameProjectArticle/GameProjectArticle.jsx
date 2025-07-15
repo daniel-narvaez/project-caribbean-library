@@ -29,7 +29,7 @@
 */
 
 import React, { useContext, useEffect, useRef } from 'react';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './GameProjectArticle.module.css';
 import { zeroToAutoHeight } from '../../utils';
 import { LinkButton } from '../Button/Button';
@@ -328,7 +328,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
 */
 export const GameProjectArticle = ({ projectData }) => {
   // Access screen context for responsive behavior
-  const { size, layout } = useContext(ScreenSizeContext);
+  const { size, layout } = useContext(DeviceContext);
  
   // Refs for DOM manipulation and effects
   const articleRef = useRef(null);

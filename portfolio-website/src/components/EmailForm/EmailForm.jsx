@@ -28,7 +28,7 @@ import {
   TextBox, 
   SubmitButton 
 } from "../Form/Form";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './EmailForm.module.css';
 import { sendContactForm } from "../../../api/emailHandler";
 
@@ -48,7 +48,7 @@ const SUBJECT_OPTIONS = [
  * Renders a contact form with success state animation
  */
 export const EmailForm = ({tagline = ''}) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   const [flipped, setFlipped] = useState(false);
   const [error, setError] = useState(null);
 

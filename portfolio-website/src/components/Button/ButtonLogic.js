@@ -1,6 +1,6 @@
 // ButtonLogic.js
 import { useContext } from "react";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import { useSmoothScroll } from "../../utils/useSmoothScroll";
 
 /**
@@ -13,7 +13,7 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
  * @property {boolean} isDisabled - Whether the button should be disabled
  */
 export const useActionButtonLogic = (onCustomClick) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   
   return {
     size,
@@ -33,7 +33,7 @@ export const useActionButtonLogic = (onCustomClick) => {
  * @property {Function} handleClick - Click event handler
  */
 export const useLinkButtonLogic = (url = '/') => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   const smoothScrollTo = useSmoothScroll();
 
   // Link buttons disabled for empty/root URLs

@@ -14,7 +14,7 @@ import Chapter from '../../components/Chapter/Chapter';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
 import ScrollAnchor from '../../components/ScrollAnchor/ScrollAnchor';
 import { Slideshow } from '../../components/Slideshow/Slideshow';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './GameProjectPage.module.css';
 
 /**
@@ -182,7 +182,7 @@ const renderContent = (element, key, game, size) => {
 * @param {Object} props.game - Game project data
 */
 export const GameProjectPage = memo(({ game }) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   return (
     <>

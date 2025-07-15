@@ -20,7 +20,7 @@
 
 import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactIcon } from '../ContactItem/ContactItem';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './Footer.module.css';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
@@ -56,7 +56,7 @@ const CONTACT_PLATFORMS = [
  */
 export const Footer = ({ children }) => {
   const waveConfig = useRef(WAVE_CONFIG);
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   // Update wave color from CSS custom property if available
   useEffect(() => {
@@ -126,7 +126,7 @@ export const Footer = ({ children }) => {
  * Memoized to prevent unnecessary re-renders
  */
 export const FooterNav = memo(() => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   return (
     <>

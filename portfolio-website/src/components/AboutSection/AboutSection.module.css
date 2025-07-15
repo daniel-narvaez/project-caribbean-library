@@ -29,7 +29,7 @@
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  padding: 5rem 2rem;
+  padding: var(--num-m20) var(--num-m8);
   gap: 5%;
   flex-wrap: wrap;
 }
@@ -43,9 +43,9 @@
   align-items: flex-start;
   aspect-ratio: 3.4375/4.1875;  /* 55/67 for cleaner numbers */
   width: calc(50% - 2.5%);
-  min-width: 18.75rem;  /* 300px */
-  max-width: 37.5rem;  /* 600px */
-  max-height: 50rem;   /* 800px */
+  min-width: 300px;
+  max-width: 600px;
+  max-height: 800px;
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
   overflow: hidden;
@@ -70,9 +70,9 @@
 .aboutContent {
   display: flex;
   width: calc(50% - 2.5%);
-  min-width: 18.75rem;  /* 300px */
-  max-width: 37.5rem;  /* 600px */
-  max-height: 50rem;   /* 800px */
+  min-width: 300px;  /* 300px */
+  max-width: 600px;  /* 600px */
+  max-height: 800px;   /* 800px */
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -84,7 +84,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: var(--num-m8);
   align-self: stretch;
 }
 
@@ -95,7 +95,7 @@
   align-items: center;
   gap: 1rem;
   align-self: stretch;
-  padding-top: 1.5rem;
+  padding-top: var(--num-m8);
 }
 
 /* Heading styles with responsive sizing */

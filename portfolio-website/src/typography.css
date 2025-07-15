@@ -16,7 +16,7 @@
 * @requires vars.css - Contains color and font family variables
 */
 
-@import './vars.css';
+@import './variables.css';
 
 /* 
 * Root Typography Variables

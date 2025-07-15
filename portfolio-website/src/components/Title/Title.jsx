@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useContext } from 'react';
 
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 
 import Logo from '../../../assets/images/dn-logo-w20.svg?react';
 import styles from './Title.module.css'
@@ -10,7 +10,7 @@ import styles from './Title.module.css'
 const fullName = 'Daniel Narvaez';
 
 export const Title = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
     return (
       <a 
         className={styles.title}

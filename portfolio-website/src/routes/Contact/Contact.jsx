@@ -16,7 +16,7 @@ import { EmailForm } from "../../components/EmailForm/EmailForm";
 import { ContactBook } from "../../components/ContactItem/ContactItem";
 import { Footer } from "../../components/Footer/Footer";
 import Chapter from "../../components/Chapter/Chapter";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './Contact.module.css';
 import { socialMediaData } from "../../data/appIcons";
 import { Helmet } from 'react-helmet';
@@ -41,7 +41,7 @@ const CONTACT_PLATFORMS = [
  * Provides multiple ways to connect including email and social platforms
  */
 function Contact() {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   return (
     <>

@@ -21,7 +21,7 @@
 
 import { useState, useContext, useEffect, useRef, useCallback } from 'react';
 import { AppIcon } from "../AppIcon/AppIcon";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './ContactItem.module.css';
 
 /**
@@ -68,7 +68,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {
@@ -151,7 +151,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {

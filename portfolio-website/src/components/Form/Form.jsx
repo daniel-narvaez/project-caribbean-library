@@ -22,7 +22,7 @@
 
 import { useState, useContext, memo, useCallback } from 'react';
 import styles from './Form.module.css';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import { getArticle } from '../../utils';
 
 /**
@@ -102,7 +102,7 @@ export const InputField = ({
   inputConfig = {}
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   const defaultInputConfig = {
       type: "text",
@@ -170,7 +170,7 @@ export const SelectField = ({
   options = []
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   const defaultSelectConfig = {
       id: createUniqueId('select'),
@@ -242,7 +242,7 @@ export const TextBox = ({
 }) => {
   const [error, setError] = useState('');
   const [charCount, setCharCount] = useState(0);
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
 
   const defaultTextareaConfig = {
       id: createUniqueId('textarea'),

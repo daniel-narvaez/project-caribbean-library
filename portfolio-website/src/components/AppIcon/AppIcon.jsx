@@ -20,7 +20,7 @@
  */
 import { useEffect, useContext, useRef } from 'react';
 import gsap from 'gsap';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './AppIcon.module.css';
 
 /**
@@ -53,7 +53,7 @@ export const AppIcon = ({
   ease = DEFAULT_CONFIG.EASE,
   onIconLoad = () => {}
 }) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   const containerRef = useRef(null);
   const iconRef = useRef(null);
 

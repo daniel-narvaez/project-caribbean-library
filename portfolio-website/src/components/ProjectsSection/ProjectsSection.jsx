@@ -6,12 +6,12 @@ import styles from './ProjectsSection.module.css';
 
 import { gameProjectsData, featuredProjectsData } from "../../data/gameProjectRegistry";
 
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import { WavesButton } from "../Button/WavesButton";
 import { Chapter } from "../Chapter/Chapter";
 
 export const ProjectsSection = () => {
-  const { size, layout } = useContext(ScreenSizeContext);
+  const { size, layout } = useContext(DeviceContext);
   return (
     <Chapter
       id='projects'

@@ -12,7 +12,7 @@
  * - Background image preloading
  * - Smooth image transitions with flash effect
  * - Interactive text triggers for image changes
- * - Responsive design handling through ScreenSizeContext
+ * - Responsive design handling through DeviceContext
  * - Custom buttons integrated within text content
  * 
  * Technical Implementation:
@@ -22,14 +22,14 @@
  * - CSS-based animations using transitions
  * 
  * Dependencies:
- * - ScreenSizeContext for responsive handling
+ * - DeviceContext for responsive handling
  * - aboutMedia data source
  * - Button components for CTAs
  * - CSS modules for styling
  */
 
 import React, { useContext, useRef, useCallback, useEffect } from 'react';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
 import { LinkButton } from '../Button/Button';
@@ -41,7 +41,7 @@ import { socialMediaData } from '../../data/appIcons';
  * Manages image transitions and content display
  */
 export const AboutSection = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { size } = useContext(DeviceContext);
   const mediaRef = useRef(null);
   const sectionRef = useRef(null);
   const mediaContainerRef = useRef(null);  // New ref for the media container
