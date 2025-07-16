@@ -57,7 +57,7 @@ export const Navbar = () => {
       `}
     >
       <Title />
-      {device === 'Mobile' ? <MobileDropdown /> : <DesktopDropdown />}
+      {device === 'mobile' ? <MobileDropdown /> : <DesktopDropdown />}
     </nav>
   );
 };

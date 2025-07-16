@@ -15,8 +15,8 @@ import { getLinkAttributes } from '../../utils/externalUrls';
  * @param {boolean} props.disabled - Whether the button is disabled
  * @param {string} props.title - Button text content
  */
-const ButtonBase = memo(({ className, style = 'solid', size, disabled, title }) => {
-  const buttonClassName = `${styles.button} ${styles[style]} ${styles[size]} ${className}`;
+const ButtonBase = memo(({ className, style = 'solid', device, disabled, title }) => {
+  const buttonClassName = `${styles.button} ${styles[style]} ${styles[device]} ${className}`;
   
   return (
     <span className={buttonClassName} aria-disabled={disabled}>
@@ -58,7 +58,7 @@ export const ActionButton = memo(({
   className = '',
   onCustomClick
 }) => {
-  const { size, isDisabled } = useActionButtonLogic(onCustomClick);
+  const { device, isDisabled } = useActionButtonLogic(onCustomClick);
 
   return (
     <button
@@ -70,7 +70,7 @@ export const ActionButton = memo(({
       <ButtonBase 
         className={className}
         style={style}
-        size={size}
+        size={device}
         disabled={isDisabled}
         title={title}
       />
@@ -107,7 +107,7 @@ export const LinkButton = memo(({
   style = 'solid',
   className = ''
 }) => {
-  const { size, isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
+  const { device, isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
 
   return (
     <a
@@ -122,7 +122,7 @@ export const LinkButton = memo(({
       <ButtonBase 
         className={className}
         style={style}
-        size={size}
+        size={device}
         disabled={isDisabled}
         title={title}
       />

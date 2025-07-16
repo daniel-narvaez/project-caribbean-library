@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
-  padding: var(--padding-size) calc(var(--padding-size) * 2);
+  padding: var(--num-m2) var(--num-m4);
   text-decoration: none;
   background: none;
   border: none;
@@ -176,10 +176,10 @@ button:active .button.island {
  * -----------------
  */
 .button.hero {
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   font-size: var(--hero-cta-button-size);
 }
 
 .button.hero::before {
-  border-radius: 0.25rem;
+  border-radius: 4px;
 }
