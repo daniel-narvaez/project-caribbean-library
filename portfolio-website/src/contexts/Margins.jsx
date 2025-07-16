@@ -5,7 +5,7 @@ const MarginsContext = createContext();
 
 export const MarginsProvider = ({children}) => {
   // Consume screen size context to determine which typography scale to use
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   // Define margin sizes for different devices
   // 
@@ -45,8 +45,7 @@ export const MarginsProvider = ({children}) => {
 
   useEffect(() => {
     const root = document.documentElement;
-    const device = size;
-
+    
     // Set CSS custom variables for margins, given the device context.
     // Because these are numbers, we use the 'num' prefix.
     root.style.setProperty('--num-m1', margins[device].m1);
@@ -57,7 +56,7 @@ export const MarginsProvider = ({children}) => {
     root.style.setProperty('--num-m12', margins[device].m12);
     root.style.setProperty('--num-m20', margins[device].m20);
     root.style.setProperty('--num-m32', margins[device].m32);
-  }, [size]); // Re-run when the device context changes
+  }, [device]); // Re-run when the device context changes
 
   return (
     <MarginsContext.Provider  value={{}}>

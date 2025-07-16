@@ -36,7 +36,7 @@ function Resume() {
     filename: ''
   });
   const [uploadDate, setUploadDate] = useState(null);
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   const fetchResumeData = useCallback(async () => {
     try {
@@ -84,7 +84,7 @@ function Resume() {
         <div 
           className={`
             ${styles.Resume}
-            ${styles[size]}
+            ${styles[device]}
           `}
         >
           <ScrollAnchor />
@@ -94,9 +94,9 @@ function Resume() {
 
           <Chapter
             id="hero"
-            className={`${styles.heroSection} ${styles[size]}`}
+            className={`${styles.heroSection} ${styles[device]}`}
           >
-            <div className={`${styles.heroContent} ${styles[size]}`}>
+            <div className={`${styles.heroContent} ${styles[device]}`}>
               <h2 className={styles.headline}>Résumé</h2>
               <p className={styles.tagline}>
                 I'm currently seeking entry-level <b>game designer</b><br />
@@ -105,8 +105,8 @@ function Resume() {
               </p>
             </div>
 
-            <div className={`${styles.heroMedia} ${styles[size]}`}>
-              <div className={`${styles.pdfDownloader} ${styles[size]}`}>
+            <div className={`${styles.heroMedia} ${styles[device]}`}>
+              <div className={`${styles.pdfDownloader} ${styles[device]}`}>
                 <span>Updated: {uploadDate || 'Loading...'}</span>
                 <ActionButton
                   className={styles.heroButton}
@@ -120,7 +120,7 @@ function Resume() {
 
           <main
             id="resume"
-            className={`${styles.resumeSection} ${styles[size]}`}
+            className={`${styles.resumeSection} ${styles[device]}`}
           >
             <ResumeContent />
           </main>

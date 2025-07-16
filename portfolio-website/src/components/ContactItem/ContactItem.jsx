@@ -68,7 +68,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {
@@ -119,7 +119,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
   }, []);
 
   return (
-    <div className={`${styles.contactIcon} ${styles[size]}`}>
+    <div className={`${styles.contactIcon} ${styles[device]}`}>
       <a
         target="_blank"
         rel="noopener noreferrer"
@@ -151,7 +151,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {
@@ -205,7 +205,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
     <a
       className={`
         ${styles.contactBook}
-        ${styles[size]}
+        ${styles[device]}
       `}
       target="_blank"
       rel="noopener noreferrer"
@@ -219,14 +219,14 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
         className={`
           ${styles.spine}
           ${styles.top}
-          ${styles[size]}
+          ${styles[device]}
         `}
       />
       <div
         className={`
           ${styles.spine}
           ${styles.middle}
-          ${styles[size]}
+          ${styles[device]}
         `}
       >
         <span>{appName}</span>
@@ -235,7 +235,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
         className={`
           ${styles.spine}
           ${styles.bottom}
-          ${styles[size]}
+          ${styles[device]}
         `}
       >
         <AppIcon

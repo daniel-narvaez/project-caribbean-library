@@ -33,7 +33,7 @@ export const ResumeContent = () => {
     const [rightColumn, setRightColumn] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { size } = useContext(DeviceContext);
+    const { device } = useContext(DeviceContext);
 
     /**
      * Determines which column a section belongs in based on its heading
@@ -83,7 +83,7 @@ const elementToReact = useCallback((element, index) => {
           </p>
       ),
       ul: () => (
-          <ul key={key} className={`${styles.list} ${styles[size]}`}>
+          <ul key={key} className={`${styles.list} ${styles[device]}`}>
               {Array.from(element.children).map((li, liIndex) => (
                   <li key={`${key}-li-${liIndex}`} className={styles.listItem}>
                       {li.textContent}
@@ -96,7 +96,7 @@ const elementToReact = useCallback((element, index) => {
   const tagName = element.tagName.toLowerCase();
 
   return componentMap[tagName]?.() || null;
-  }, [size]);
+  }, [device]);
 
   /**
   * Processes HTML elements into organized sections and columns
@@ -108,7 +108,7 @@ const elementToReact = useCallback((element, index) => {
     const sections = elements.reduce((acc, element, index) => {
         if (element.tagName.toLowerCase() === 'h2' && acc.currentSection.length > 0) {
             acc.sections.push(
-                <section key={`section-${acc.sections.length}`} className={`${styles.section} ${styles[size]}`}>
+                <section key={`section-${acc.sections.length}`} className={`${styles.section} ${styles[device]}`}>
                     {acc.currentSection}
                 </section>
             );
@@ -124,7 +124,7 @@ const elementToReact = useCallback((element, index) => {
         sections.sections.push(
             <section 
                 key={`section-${sections.sections.length}`}
-                className={`${styles.section} ${styles[size]}`}
+                className={`${styles.section} ${styles[device]}`}
             >
                 {sections.currentSection}
             </section>
@@ -141,7 +141,7 @@ const elementToReact = useCallback((element, index) => {
         }
         return columns;
     }, { leftContent: [], rightContent: [] });
-  }, [size, elementToReact, getSectionType]);
+  }, [device, elementToReact, getSectionType]);
 
 /**
      * Fetches and processes resume content
@@ -196,11 +196,11 @@ if (error) {
 
 // Render resume content
 return (
-  <div className={`${styles.resumeContent} ${styles[size]}`}>
-      <div className={`${styles.leftColumn} ${styles[size]}`}>
+  <div className={`${styles.resumeContent} ${styles[device]}`}>
+      <div className={`${styles.leftColumn} ${styles[device]}`}>
           {leftColumn}
       </div>
-      <div className={`${styles.rightColumn} ${styles[size]}`}>
+      <div className={`${styles.rightColumn} ${styles[device]}`}>
           {rightColumn}
       </div>
   </div>

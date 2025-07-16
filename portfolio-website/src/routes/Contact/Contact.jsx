@@ -41,7 +41,7 @@ const CONTACT_PLATFORMS = [
  * Provides multiple ways to connect including email and social platforms
  */
 function Contact() {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   return (
     <>
@@ -49,7 +49,7 @@ function Contact() {
         <title>{`Résumé | Daniel Narvaez`}</title>
       </Helmet>
       <Background>
-        <div className={`${styles.Contact} ${styles[size]}`}>
+        <div className={`${styles.Contact} ${styles[device]}`}>
           <ScrollAnchor />
           
           {/* Accessibility title */}
@@ -58,7 +58,7 @@ function Contact() {
           {/* Email Contact Section */}
           <Chapter
             id="hero"
-            className={`${styles.heroSection} ${styles[size]}`}
+            className={`${styles.heroSection} ${styles[device]}`}
           >
             <div className={styles.heroContent}>
               <h2 className={styles.headline}>
@@ -78,7 +78,7 @@ function Contact() {
           {/* Social Platforms Section */}
           <Chapter
             id="platforms"
-            className={`${styles.platformsSection} ${styles[size]}`}
+            className={`${styles.platformsSection} ${styles[device]}`}
           >
             <div className={styles.platformsContent}>
               <h2 className={styles.headline}>
@@ -91,7 +91,7 @@ function Contact() {
               </p>
             </div>
             <div className={styles.platformsMedia}>
-              <div className={`${styles.bookshelf} ${styles[size]}`}>
+              <div className={`${styles.bookshelf} ${styles[device]}`}>
               {Object.values(socialMediaData).map((icon) => (
                 <ContactBook
                   key={icon.appName} // Assuming AppIconObject has an appName property

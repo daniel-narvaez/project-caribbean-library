@@ -10,7 +10,7 @@ import styles from './Title.module.css'
 const fullName = 'Daniel Narvaez';
 
 export const Title = () => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
     return (
       <a 
         className={styles.title}
@@ -19,10 +19,10 @@ export const Title = () => {
         <Logo 
           className={`
             ${styles.logo}
-            ${styles[size]}
+            ${styles[device]}
           `}
         />
-        {size === 'Desktop' && (
+        {device === 'Desktop' && (
           <span
             className={`${styles.fullName}`}>
             {fullName}

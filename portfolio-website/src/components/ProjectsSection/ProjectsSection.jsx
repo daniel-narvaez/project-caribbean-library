@@ -11,14 +11,14 @@ import { WavesButton } from "../Button/WavesButton";
 import { Chapter } from "../Chapter/Chapter";
 
 export const ProjectsSection = () => {
-  const { size, layout } = useContext(DeviceContext);
+  const { device, layout } = useContext(DeviceContext);
   return (
     <Chapter
       id='projects'
       className={styles.projectsSection}
       >
       <div className={`${styles.featuredWorks} ${styles[layout]}`}>
-        <h2 className={`${styles.heading} ${styles[size]}`}>
+        <h2 className={`${styles.heading} ${styles[device]}`}>
           Featured Works
         </h2>
         <div className={`${styles.projectArticles} ${styles[layout]}`}>

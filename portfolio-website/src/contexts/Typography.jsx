@@ -34,7 +34,7 @@ const TypographyContext = createContext();
  */
 export const TypographyProvider = ({ children }) => {
   // Consume screen size context to determine which typography scale to use
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   // Define typography scales for different device sizes
   const fontSizes = {
@@ -76,7 +76,6 @@ export const TypographyProvider = ({ children }) => {
    */
   useEffect(() => {
     const root = document.documentElement;
-    const device = size; // 'Mobile' or 'Desktop' from ScreenSizeContext
 
     // Set CSS custom properties for typography
     root.style.setProperty('--h1-size', fontSizes[device].h1);
@@ -87,7 +86,7 @@ export const TypographyProvider = ({ children }) => {
     root.style.setProperty('--hero-headline-size', fontSizes[device].heroHeadline);
     root.style.setProperty('--hero-tagline-size', fontSizes[device].heroTagline);
     root.style.setProperty('--hero-cta-button-size', fontSizes[device].heroCtaButton);
-  }, [size]); // Re-run when screen size changes
+  }, [device]); // Re-run when screen size changes
 
   return (
     <TypographyContext.Provider value={{}}>

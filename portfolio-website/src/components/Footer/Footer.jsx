@@ -56,7 +56,7 @@ const CONTACT_PLATFORMS = [
  */
 export const Footer = ({ children }) => {
   const waveConfig = useRef(WAVE_CONFIG);
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   // Update wave color from CSS custom property if available
   useEffect(() => {
@@ -75,7 +75,7 @@ export const Footer = ({ children }) => {
     <footer>
       <Chapter 
         id='footer'
-        className={`${styles.footerContainer} ${styles[size]}`}
+        className={`${styles.footerContainer} ${styles[device]}`}
       >
         <div className={styles.waves}>
           <svg
@@ -105,11 +105,11 @@ export const Footer = ({ children }) => {
           </svg>
         </div>
 
-        <div className={`${styles.footerContent} ${styles[size]}`}>
+        <div className={`${styles.footerContent} ${styles[device]}`}>
           {children}
         </div>
 
-        <div className={`${styles.footerBottom} ${styles[size]}`}>
+        <div className={`${styles.footerBottom} ${styles[device]}`}>
           <p>
             &copy; 2025 designed & developed by Daniel Narvaez. <br/>
             All rights reserved.
@@ -126,14 +126,14 @@ export const Footer = ({ children }) => {
  * Memoized to prevent unnecessary re-renders
  */
 export const FooterNav = memo(() => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   return (
     <>
-      <div className={`${styles.footerCta} ${styles[size]}`}>
+      <div className={`${styles.footerCta} ${styles[device]}`}>
         <span>Find me around the web</span>
       </div>
-      <div className={`${styles.footerNav} ${styles[size]}`}>
+      <div className={`${styles.footerNav} ${styles[device]}`}>
         {Object.values(socialMediaData).map(icon => (
           <ContactIcon 
             key={icon.appName} 

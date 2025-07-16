@@ -75,7 +75,7 @@ import { socialMediaData } from "../../data/appIcons";
  */
  export const HeroSection = () => {
 
-  const { size } = useContext(DeviceContext)
+  const { device } = useContext(DeviceContext)
  
   return (
     <main>
@@ -83,13 +83,13 @@ import { socialMediaData } from "../../data/appIcons";
         id='hero'
         className={`
           ${styles.heroSection}
-          ${styles[size]}
+          ${styles[device]}
         `}
       >
 
         <div className={`
             ${styles.heroContainer}
-            ${styles[size]}
+            ${styles[device]}
           `}
         >   
           <div className={styles.heroContent}>
@@ -107,7 +107,7 @@ import { socialMediaData } from "../../data/appIcons";
             
             <div className={`
                 ${styles.ctaMenu}
-                ${styles[size]}
+                ${styles[device]}
               `}
             >
               <LinkButton

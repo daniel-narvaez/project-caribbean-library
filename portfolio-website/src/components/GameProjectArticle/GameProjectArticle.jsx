@@ -328,7 +328,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
 */
 export const GameProjectArticle = ({ projectData }) => {
   // Access screen context for responsive behavior
-  const { size, layout } = useContext(DeviceContext);
+  const { device, layout } = useContext(DeviceContext);
  
   // Refs for DOM manipulation and effects
   const articleRef = useRef(null);
@@ -337,9 +337,9 @@ export const GameProjectArticle = ({ projectData }) => {
   const titleRef = useRef(null);
  
   // Apply interactive effects based on device context
-  useContentExpansion(articleRef, wrapperRef, titleRef, size, layout);
-  useDesktopParallax(articleRef, backgroundRef, size, layout);
-  useMobileParallax(articleRef, backgroundRef, size, layout);
+  useContentExpansion(articleRef, wrapperRef, titleRef, device, layout);
+  useDesktopParallax(articleRef, backgroundRef, device, layout);
+  useMobileParallax(articleRef, backgroundRef, device, layout);
  
   return (
     <ArticleLayout

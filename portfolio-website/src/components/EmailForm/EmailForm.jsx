@@ -48,7 +48,7 @@ const SUBJECT_OPTIONS = [
  * Renders a contact form with success state animation
  */
 export const EmailForm = ({tagline = ''}) => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
   const [flipped, setFlipped] = useState(false);
   const [error, setError] = useState(null);
 
@@ -85,13 +85,13 @@ export const EmailForm = ({tagline = ''}) => {
   return (
     <article className={`
       ${styles.emailArticle}
-      ${styles[size]}
+      ${styles[device]}
       ${flipped ? styles.flipped : ''}
     `}>
       {/* Form Side */}
       <div className={`${styles.cardContent} ${styles.formContent}`}>
         <div className={styles.taglineContainer}>
-          <span className={styles[size]}>
+          <span className={styles[device]}>
             {tagline}
           </span>
         </div>
@@ -151,12 +151,12 @@ export const EmailForm = ({tagline = ''}) => {
       </div>
 
       {/* Success Message Side */}
-      <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[size]}`}>
+      <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[device]}`}>
         {!error ? (
           <>
             <MessageInABottle id='message-in-a-bottle' />
             <div className={styles.taglineContainer}>
-              <span className={styles[size]}>
+              <span className={styles[device]}>
                 Message in a bottle sent! <br/>
                 I'll respond within 48 hours.
               </span>
@@ -164,7 +164,7 @@ export const EmailForm = ({tagline = ''}) => {
           </>
         ) : (
           <div className={styles.taglineContainer}>
-            <span className={`${styles[size]} ${styles.error}`}>
+            <span className={`${styles[device]} ${styles.error}`}>
               {error}
             </span>
           </div>

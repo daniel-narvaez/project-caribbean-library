@@ -102,7 +102,7 @@ export const InputField = ({
   inputConfig = {}
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   const defaultInputConfig = {
       type: "text",
@@ -146,7 +146,7 @@ export const InputField = ({
   }, [finalInputConfig.required, finalInputConfig.type, finalLabelConfig.text]);
 
   return (
-      <div className={`${styles.inputField} ${styles[size]}`}>
+      <div className={`${styles.inputField} ${styles[device]}`}>
           <input 
               className='action'
               {...finalInputConfig}
@@ -170,7 +170,7 @@ export const SelectField = ({
   options = []
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   const defaultSelectConfig = {
       id: createUniqueId('select'),
@@ -206,7 +206,7 @@ export const SelectField = ({
   });
 
   return (
-      <div className={`${styles.selectField} ${styles[size]}`}>
+      <div className={`${styles.selectField} ${styles[device]}`}>
           <select 
               className='action'
               {...finalSelectConfig}
@@ -242,7 +242,7 @@ export const TextBox = ({
 }) => {
   const [error, setError] = useState('');
   const [charCount, setCharCount] = useState(0);
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   const defaultTextareaConfig = {
       id: createUniqueId('textarea'),
@@ -278,7 +278,7 @@ export const TextBox = ({
   }, [finalTextareaConfig.required, finalTextareaConfig.name]);
 
   return (
-      <div className={`${styles.textBox} ${styles[size]}`}>
+      <div className={`${styles.textBox} ${styles[device]}`}>
           <textarea 
               className='action'
               {...finalTextareaConfig}

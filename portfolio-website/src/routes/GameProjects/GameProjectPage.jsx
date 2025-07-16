@@ -182,43 +182,43 @@ const renderContent = (element, key, game, size) => {
 * @param {Object} props.game - Game project data
 */
 export const GameProjectPage = memo(({ game }) => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
 
   return (
     <>
     <Helmet>
       <title>{`${game.title} | Daniel Narvaez`}</title>
     </Helmet>
-    <div className={getClasses('GameProjectPage', size)}>
+    <div className={getClasses('GameProjectPage', device)}>
       <main>
         <h1 className='sr-only'>{game.title} Daniel Narvaez</h1>
         <Chapter id="moneyShot">
-            {renderContent(game.projectPage.main, 'main', game, size)}
+            {renderContent(game.projectPage.main, 'main', game, device)}
         </Chapter>
       </main>
       <Background>
         <ScrollAnchor />
-        <div className={getClasses('walkthrough', size)}>
+        <div className={getClasses('walkthrough', device)}>
           {game.projectPage.walkthrough.map((chapter, cIndex) => (
             <Chapter 
                 key={cIndex}
-                className={getClasses('chapter', size)}
+                className={getClasses('chapter', device)}
                 id={`chapter-${cIndex + 1}`}
             >
               {renderContent(
                 chapter.heading,
                 `heading-${cIndex}`,
                 game,
-                size
+                device
               )}
-              <div className={getClasses('content', size)}>
+              <div className={getClasses('content', device)}>
                 <div className={styles.left}>
                   {chapter.content.left.map((element, eIndex) => (
                     renderContent(
                       element,
                       `left-${cIndex}-${eIndex}`,
                       game,
-                      size
+                      device
                     )
                   ))}
                 </div>
@@ -229,7 +229,7 @@ export const GameProjectPage = memo(({ game }) => {
                         element,
                         `right-${cIndex}-${eIndex}`,
                         game,
-                        size
+                        device
                       )
                     ))}
                   </div>

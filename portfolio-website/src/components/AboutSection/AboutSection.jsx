@@ -41,7 +41,7 @@ import { socialMediaData } from '../../data/appIcons';
  * Manages image transitions and content display
  */
 export const AboutSection = () => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
   const mediaRef = useRef(null);
   const sectionRef = useRef(null);
   const mediaContainerRef = useRef(null);  // New ref for the media container
@@ -133,7 +133,7 @@ export const AboutSection = () => {
   return (
     <Chapter
       id='about'
-      className={`${styles.aboutSection} ${styles[size]}`}
+      className={`${styles.aboutSection} ${styles[device]}`}
     >
       <div className={styles.aboutMedia}>
         <img
@@ -146,7 +146,7 @@ export const AboutSection = () => {
 
       <div className={styles.aboutContent}>
         <div className={styles.aboutInfo}>
-          <h2 className={`${styles.heading} ${styles[size]}`}>
+          <h2 className={`${styles.heading} ${styles[device]}`}>
             About Myself
           </h2>
           

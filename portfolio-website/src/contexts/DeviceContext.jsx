@@ -22,27 +22,27 @@ const spacings = {
 }
 
 export const DeviceProvider = ({children}) => {
-  const [size, setSize] = useState('desktop');
+  const [device, setDevice] = useState('desktop');
   const [layout, setLayout] = useState('desktopCard');
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
       if(width < 768 || height < 480)
         return {
-          size: mobile,
+          device: mobile,
           layout: height > width ? 'mobileCard' : 'mobileBanner',
           spacing: spacings.mobile
         };
       else {
         if(width >= 1440) {
           return {
-            size: desktop,
+            device: desktop,
             layout: 'desktopCard',
             spacing: spacings.desktop
           };
         } else {
           return {
-            size: mobile,
+            device: mobile,
             layout: height > width ? 'mobileBanner' : 'mobileCard',
             spacing: spacings.mobile
           };
@@ -60,7 +60,7 @@ export const DeviceProvider = ({children}) => {
       root.style.setProperty('--padding-size', config.spacing.padding);
       root.style.setProperty('--gap-size', config.spacing.gap);
 
-      setSize(config.size);
+      setDevice(config.device);
       setLayout(config.layout);
     };
 
@@ -82,10 +82,10 @@ export const DeviceProvider = ({children}) => {
         window.clearTimeout(timeoutId);
       }
     };
-  }, [size, layout, spacings]);
+  }, [device, layout, spacings]);
 
   return (
-    <DeviceContext.Provider value={{ size: size, layout }}>
+    <DeviceContext.Provider value={{ device, layout }}>
       {children}
     </DeviceContext.Provider>
   );

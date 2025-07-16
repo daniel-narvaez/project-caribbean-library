@@ -6,7 +6,7 @@ import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
-  const { size } = useContext(DeviceContext);
+  const { device } = useContext(DeviceContext);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
@@ -52,12 +52,12 @@ export const Navbar = () => {
     <nav
       className={`
         ${styles.navbar}
-        ${styles[size]}
+        ${styles[device]}
         ${isVisible ? styles.visible : styles.hidden}
       `}
     >
       <Title />
-      {size === 'Mobile' ? <MobileDropdown /> : <DesktopDropdown />}
+      {device === 'Mobile' ? <MobileDropdown /> : <DesktopDropdown />}
     </nav>
   );
 };
