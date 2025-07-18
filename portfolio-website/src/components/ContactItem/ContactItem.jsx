@@ -205,7 +205,6 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
     <a
       className={`
         ${styles.contactBook}
-        ${styles[device]}
       `}
       target="_blank"
       rel="noopener noreferrer"
@@ -219,14 +218,12 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
         className={`
           ${styles.spine}
           ${styles.top}
-          ${styles[device]}
         `}
       />
       <div
         className={`
           ${styles.spine}
           ${styles.middle}
-          ${styles[device]}
         `}
       >
         <span>{appName}</span>
@@ -235,7 +232,6 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
         className={`
           ${styles.spine}
           ${styles.bottom}
-          ${styles[device]}
         `}
       >
         <AppIcon
