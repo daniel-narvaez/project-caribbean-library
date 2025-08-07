@@ -20,7 +20,6 @@
 
 import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactIcon } from '../ContactItem/ContactItem';
-import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './Footer.module.css';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
@@ -56,7 +55,6 @@ const CONTACT_PLATFORMS = [
  */
 export const Footer = ({ children }) => {
   const waveConfig = useRef(WAVE_CONFIG);
-  const { device } = useContext(DeviceContext);
 
   // Update wave color from CSS custom property if available
   useEffect(() => {
@@ -75,7 +73,7 @@ export const Footer = ({ children }) => {
     <footer>
       <Chapter 
         id='footer'
-        className={`${styles.footerContainer} ${styles[device]}`}
+        className={`${styles.footerContainer}`}
       >
         <div className={styles.waves}>
           <svg
@@ -105,13 +103,13 @@ export const Footer = ({ children }) => {
           </svg>
         </div>
 
-        <div className={`${styles.footerContent} ${styles[device]}`}>
+        <div className={`${styles.footerContent}`}>
           {children}
         </div>
 
-        <div className={`${styles.footerBottom} ${styles[device]}`}>
+        <div className={`${styles.footerBottom}`}>
           <p>
-            &copy; 2025 designed & developed by Daniel Narvaez. <br/>
+            &copy; {new Date().getFullYear()} designed & developed by Daniel Narvaez. <br/>
             All rights reserved.
           </p>
         </div>
@@ -126,14 +124,12 @@ export const Footer = ({ children }) => {
  * Memoized to prevent unnecessary re-renders
  */
 export const FooterNav = memo(() => {
-  const { device } = useContext(DeviceContext);
-
   return (
     <>
-      <div className={`${styles.footerCta} ${styles[device]}`}>
+      <div className={`${styles.footerCta}`}>
         <span>Find me around the web</span>
       </div>
-      <div className={`${styles.footerNav} ${styles[device]}`}>
+      <div className={`${styles.footerNav}`}>
         {Object.values(socialMediaData).map(icon => (
           <ContactIcon 
             key={icon.appName} 

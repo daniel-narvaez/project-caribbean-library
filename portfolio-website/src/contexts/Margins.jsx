@@ -19,7 +19,7 @@ export const MarginsProvider = ({children}) => {
       m8: '32px',
       m12: '48px',
       m20: '80px',
-      m32: '128px'
+      m32: '128px',
     },
     tablet: {
       m1: '3px',
@@ -29,7 +29,7 @@ export const MarginsProvider = ({children}) => {
       m8: '24px',
       m12: '36px',
       m20: '60px',
-      m32: '96px'
+      m32: '96px',
     },
     mobile: {
       m1: '3px',
@@ -39,7 +39,7 @@ export const MarginsProvider = ({children}) => {
       m8: '24px',
       m12: '36px',
       m20: '60px',
-      m32: '96px'
+      m32: '96px',
     }
   };
 
@@ -59,7 +59,7 @@ export const MarginsProvider = ({children}) => {
   }, [device]); // Re-run when the device context changes
 
   return (
-    <MarginsContext.Provider  value={{}}>
+    <MarginsContext.Provider value={{}}>
       {children}
     </MarginsContext.Provider>
   );

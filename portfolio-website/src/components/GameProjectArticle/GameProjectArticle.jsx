@@ -53,14 +53,14 @@ const PARALLAX_CONFIG = {
 * 
 * @param {RefObject} articleRef - Reference to article container
 * @param {RefObject} backgroundRef - Reference to background image
-* @param {string} size - Current device size from ScreenSizeContext
+* @param {string} device - Current device size from ScreenSizeContext
 */
-const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
+const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
  
-    if (!article || !background || size === 'Mobile') 
+    if (!article || !background || device === 'mobile') 
       return () => background.style.transform = 'translate(0%, 0%)';
  
     let frameId;
@@ -90,13 +90,13 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
       background.style.transform = 'translate(0%, 0%)';
     };
  
-    if (size === 'Desktop') {
+    if (device === 'desktop') {
       article.addEventListener('mousemove', handleMouseParallax, { passive: true });
       article.addEventListener('mouseleave', resetMouseParallax);
     }
  
     return () => {
-      if (size === 'Desktop') {
+      if (device === 'desktop') {
         article.removeEventListener('mousemove', handleMouseParallax);
         article.removeEventListener('mouseleave', resetMouseParallax);
       }
@@ -104,7 +104,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size, layout]);
+  }, [device, layout]);
 };
  
  /**
@@ -121,7 +121,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
     const article = articleRef.current;
     const background = backgroundRef.current;
     
-    if (!article || !background || size === 'Desktop') 
+    if (!article || !background || size === 'desktop') 
       return () => background.style.transform = 'translate(0%, 0%)';
   
     let frameId;
@@ -168,9 +168,9 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
 * @param {RefObject} articleRef - Reference to article container
 * @param {RefObject} wrapperRef - Reference to content wrapper
 * @param {RefObject} titleRef - Reference to title element
-* @param {string} size - Current device size from ScreenSizeContext
+* @param {string} device - Current device size from ScreenSizeContext
 */
-const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => {
+const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const wrapper = wrapperRef.current;
@@ -182,7 +182,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     
     const resizeObserver = new ResizeObserver(entries => {
       titleHeight = entries[0].contentRect.height;
-      if (size === 'Mobile' || layout.includes('Banner'))
+      if (device === 'mobile' || layout.includes('Banner'))
         wrapper.style.height = 'auto';
       else
         zeroToAutoHeight(wrapper, false, {}, titleHeight);
@@ -191,7 +191,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     resizeObserver.observe(title);
 
     // If it's mobile or banner, just setup the resize observer
-    if (size === 'Mobile' || layout.includes('Banner')) {
+    if (device === 'mobile' || layout.includes('Banner')) {
       return () => {
         resizeObserver.disconnect();
       };
@@ -217,7 +217,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [size, layout]);
+  }, [device, layout]);
  };
  
  /**

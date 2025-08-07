@@ -2,6 +2,12 @@
   display: flex;
   position: fixed;
   width: 100%;
+  height: var(--num-m20);
+  padding: 
+    var(--num-m4)
+    max(env(safe-area-inset-right), var(--num-m4))
+    var(--num-m4)
+    max(env(safe-area-inset-right), var(--num-m4));
   top: env(safe-area-inset-top);  /* Handle notch */
   left: 0;
   right: 0;
@@ -14,21 +20,5 @@
 
   &.hidden {
     transform: translateY(calc(-100% - env(safe-area-inset-top)));
-  }
-
-  &.Desktop {
-    height: 5rem;
-    padding: 1rem;  /* Desktop keeps normal padding since it won't have safe areas */
-
-  }
-
-  &.Mobile {
-    height: 4rem;
-    padding: 
-      0.8rem 
-      max(env(safe-area-inset-right), 0.8rem) 
-      0.8rem 
-      max(env(safe-area-inset-left), 0.8rem);
-    /* Keep vertical padding as is, but respect safe areas on sides */
   }
 }

@@ -52,7 +52,6 @@ export const Navbar = () => {
     <nav
       className={`
         ${styles.navbar}
-        ${styles[device]}
         ${isVisible ? styles.visible : styles.hidden}
       `}
     >

@@ -31,7 +31,6 @@ import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownDesktop.module.css';
-import { Burgershelf } from '../Burgershelf/Burgershelf';
 
 /**
  * Individual menu item component handling both regular items and submenus

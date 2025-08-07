@@ -13,10 +13,7 @@ import { useSmoothScroll } from "../../utils/useSmoothScroll";
  * @property {boolean} isDisabled - Whether the button should be disabled
  */
 export const useActionButtonLogic = (onCustomClick) => {
-  const { device } = useContext(DeviceContext);
-  
   return {
-    device,
     isDisabled: !onCustomClick
   };
 };
@@ -33,7 +30,6 @@ export const useActionButtonLogic = (onCustomClick) => {
  * @property {Function} handleClick - Click event handler
  */
 export const useLinkButtonLogic = (url = '/') => {
-  const { device } = useContext(DeviceContext);
   const smoothScrollTo = useSmoothScroll();
 
   // Link buttons disabled for empty/root URLs
@@ -59,7 +55,6 @@ export const useLinkButtonLogic = (url = '/') => {
   };
 
   return {
-    device,
     isDisabled,
     finalUrl: url,
     handleClick
