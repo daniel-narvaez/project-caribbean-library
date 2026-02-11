@@ -117,6 +117,6 @@
   100% {
     transform: translate(-20.9%, -20.9%) scale(var(--scale-splash));
     opacity: 0;
-    border-width: 0rem;
+    border-width: 0;
   }
 }

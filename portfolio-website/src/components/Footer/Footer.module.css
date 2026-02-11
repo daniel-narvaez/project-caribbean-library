@@ -20,10 +20,10 @@ footer {
     var(--color-link-active) 100%
   );
   position: relative;
-  margin-top: 4rem;
+  margin-top: 64px;
   
   /* Spacing and safe area handling */
-  padding: 4rem 0 0;
+  padding: 64px 0 0;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);
@@ -33,7 +33,7 @@ footer {
   ===================== */
 .waves {
   position: absolute;
-  top: calc(-4rem + 2px);
+  top: calc(-64px + 2px);
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -41,7 +41,7 @@ footer {
 
 .wavesSvg {
   width: 100%;
-  height: 4rem;
+  height: 64px;
 }
 
 /* Parallax wave animations

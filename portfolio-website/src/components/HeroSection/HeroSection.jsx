@@ -66,9 +66,6 @@ import { socialMediaData } from "../../data/appIcons";
   yRot: TILT_CONFIG.DEFAULT_ROTATION
  };
  
- // Context for sharing tilt state with child components
- export const TiltContext = createContext();
- 
  /**
  * Main Hero Section Component
  * Manages 3D tilt effect and layout structure

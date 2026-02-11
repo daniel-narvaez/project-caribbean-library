@@ -18,7 +18,6 @@
 /* Base Elements
    ------------ */
   .mainNav {
-    /* padding: 0rem 3rem; */
     display: flex;
   }
 
@@ -35,7 +34,7 @@
      Maintains space in document flow while wrapper is absolute positioned */
   .phantom {
     visibility: hidden;
-    height: 3rem;  /* Matches height of menu items */
+    height: var(--num-m12);  /* Matches height of menu items */
   }
   
   /* Wrapper Styling
@@ -49,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--num-m2);
     border: 0px solid transparent;
     border-style: inset;
     border-radius: var(--number-cornerRadius);
@@ -58,14 +57,14 @@
     &::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
       border-radius: var(--number-cornerRadius);
       z-index: -1;
       opacity: 0;
-      transform: translateY(-0.25rem);
+      transform: translateY(calc(-1 * var(--num-m1)));
       transition: var(--opening-dropdown);
     }
   }
@@ -75,8 +74,7 @@
   .menuButton,
   .menuLink {
     /* Base layout */
-    padding: 0.5rem 1rem;
-    /* height: 3rem; */
+    padding: var(--num-m2) var(--num-m4);
     display: flex;
     align-items: center;
     position: relative;
@@ -146,7 +144,7 @@
     height: 0;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(-0.25rem);
+    transform: translateY(calc(-1 * var(--num-m1)));
     transition: var(--closing-dropdown);
   
     .menuItem {
@@ -239,7 +237,7 @@
       position: absolute;
       top: 0;
       left: 100%;
-      width: 1rem;
+      width: var(--num-m4);
       height: 100%;
       background: transparent;
     }
@@ -248,10 +246,10 @@
     &::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
       border-radius: var(--number-cornerRadius);
       z-index: 1;
       background-color: var(--color-link);

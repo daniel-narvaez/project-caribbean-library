@@ -28,7 +28,7 @@
  * - CSS modules for styling
  */
 
-import React, { useContext, useRef, useCallback, useEffect } from 'react';
+import { useContext, useRef, useCallback, useEffect } from 'react';
 import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './AboutSection.module.css';
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';

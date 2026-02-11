@@ -1,5 +1,5 @@
 // Buttons.js
-import React, { memo } from 'react';
+import { memo } from 'react';
 import styles from './Button.module.css';
 import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
 import { getLinkAttributes } from '../../utils/externalUrls';

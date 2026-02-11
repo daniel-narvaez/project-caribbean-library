@@ -10,7 +10,7 @@
   justify-content: center;
   padding: var(--num-m20); 
 
-  &.mobile {
+  &.Mobile {
     padding-left: max(env(safe-area-inset-left), var(--num-m4));
     padding-right: max(env(safe-area-inset-right), var(--num-m4)) 
   }

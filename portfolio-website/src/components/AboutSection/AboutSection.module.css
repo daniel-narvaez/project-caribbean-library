@@ -69,10 +69,10 @@
 /* Content container */
 .aboutContent {
   display: flex;
-  width: calc(50% - 2.5%);
-  min-width: 300px;  /* 300px */
-  max-width: 600px;  /* 600px */
-  max-height: 800px;   /* 800px */
+  width: 47.5%;
+  min-width: 300px;
+  max-width: 600px;
+  max-height: 800px; 
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -93,7 +93,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: var(--num-m4);
   align-self: stretch;
   padding-top: var(--num-m8);
 }
@@ -102,16 +102,16 @@
 .aboutInfo .heading {
   z-index: 1;
 
-  &.Desktop { font-size: 2.5rem }
+  &.desktop { font-size: 2.5rem }
   
-  &.Mobile { font-size: 1.875rem }
+  &.mobile { font-size: 1.875rem }
 }
 
 /* Responsive layout adjustments */
 @media (max-aspect-ratio: 1/1) {
   .aboutSection,
   .aboutContent {
-    gap: 2rem;
+    gap: var(--num-m8);
   }
 
   .aboutMedia {

@@ -33,10 +33,10 @@
     &.menuOpen::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
       border-radius: var(--number-cornerRadius);
       z-index: 0;
       background-color: var(--color-link);
@@ -64,7 +64,7 @@
      --------------------------------- */
   .phantom {
     visibility: hidden;
-    height: 2rem;  /* Matches menu button height */
+    height: var(--num-m8);
   }
   
   /* Wrapper (Contains Button/Link and Submenu)
@@ -76,7 +76,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.375rem;
+    gap: var(--num-m2);
   }
   
   /* Menu Controls (Button & Link)
@@ -84,8 +84,8 @@
   .menuButton,
   .menuLink {
     /* Base Layout */
-    padding: 0.375rem 0.75rem;
-    height: 2rem;
+    padding: var(--num-m2) var(--num-m4);
+    height: var(--num-m8);
     width: max-content;
     margin-left: auto;
     display: flex;

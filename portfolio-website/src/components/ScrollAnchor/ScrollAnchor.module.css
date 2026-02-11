@@ -10,12 +10,12 @@
   z-index: 50;
   pointer-events: auto;
   
-  &.desktop {
+  &.Desktop {
     bottom: var(--num-m4);
     right: var(--num-m4);
   }
   
-  &.mobile {
+  &.Mobile {
     bottom: max(env(safe-area-inset-bottom), var(--num-m4));
     right: max(env(safe-area-inset-right), var(--num-m4));
   }

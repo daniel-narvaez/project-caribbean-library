@@ -176,10 +176,10 @@ button:active .button.island {
  * -----------------
  */
 .button.hero {
-  padding: 12px 24px;
+  padding: var(--num-m4) var(--num-m8);
   font-size: var(--hero-cta-button-size);
 }
 
 .button.hero::before {
-  border-radius: 4px;
+  border-radius: var(--num-m1);
 }
