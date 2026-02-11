@@ -23,9 +23,9 @@
 * Font families are imported from vars.css and aliased here for semantic usage
 */
 :root {
-  --heading-text: var(--font-libreBaskerville);       /* Used for H1, H2, H3 */
-  --body-text: var(--font-notoSans);              /* Used for inline and body text */
-  --display-text: var(--font-outfit);  /* Used for UI elements such as buttons */
+  --heading-text: var(--tf-libreBaskerville);
+  --body-text: var(--tf-notoSans);
+  --display-text: var(--tf-outfit);
 }
 
 .sr-only {

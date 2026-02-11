@@ -25,11 +25,10 @@
 
     --matcha: #98c187;
 
-    /* Fonts */
-    --font-outfit: "Outfit Variable", sans-serif;
-    --font-baskervvilleSC: "Baskervville SC";
-    --font-libreBaskerville: 'Libre Baskerville';
-    --font-notoSans: "Noto Sans Variable", sans-serif;
+    /* Typefaces */
+    --tf-libreBaskerville: "Libre Baskerville", serif;
+    --tf-notoSans: "Noto Sans Variable", sans-serif;
+    --tf-outfit: "Outfit Variable", sans-serif;
 
     /* Numbers */
     --number-cornerRadius: 3px;
