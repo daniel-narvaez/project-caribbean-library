@@ -25,7 +25,7 @@ import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
 
 import { DeviceProvider } from '../../contexts/DeviceContext';
 import { MarginsProvider } from '../../contexts/Margins';
-import { TypographyProvider } from '../../contexts/Typography';
+import { TypescalesProvider } from '../../contexts/Typescales';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
 
 import Home from '../Home/Home';
@@ -75,7 +75,7 @@ function App() {
   return (
     <DeviceProvider>
       <MarginsProvider>
-        <TypographyProvider>
+        <TypescalesProvider>
           <ChaptersProvider>
             <div className={styles.App}>
               <Analytics />
@@ -97,7 +97,7 @@ function App() {
               </BrowserRouter>
             </div>
           </ChaptersProvider>
-        </TypographyProvider>
+        </TypescalesProvider>
       </MarginsProvider>
     </DeviceProvider>
   );
