@@ -22,7 +22,7 @@ export const Title = () => {
             ${styles[device]}
           `}
         />
-        {device === 'Desktop' && (
+        {device === 'desktop' && (
           <span
             className={`${styles.fullName}`}>
             {fullName}

@@ -8,15 +8,10 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  padding: var(--num-m20); 
 
-  &.Desktop {
-    padding: 5rem;
-  }
-
-  &.Mobile {
-    padding: 4rem 
-    max(env(safe-area-inset-right), 0.8rem) 
-    4rem 
-    max(env(safe-area-inset-left), 0.8rem);
+  &.mobile {
+    padding-left: max(env(safe-area-inset-left), var(--num-m4));
+    padding-right: max(env(safe-area-inset-right), var(--num-m4)) 
   }
 }

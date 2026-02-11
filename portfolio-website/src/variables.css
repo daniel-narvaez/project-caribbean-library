@@ -32,9 +32,9 @@
     --font-notoSans: "Noto Sans Variable", sans-serif;
 
     /* Numbers */
-    --number-cornerRadius: 0.15rem;
-    --num-dotSize: 0.15rem;
-    --num-cellSize: 1rem;
+    --number-cornerRadius: 3px;
+    --num-dotSize: 3px;
+    --num-cellSize: 16px;
 
     /* Effects */
     --effect-poolShadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.5) inset;

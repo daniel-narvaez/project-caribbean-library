@@ -10,11 +10,11 @@
   position: relative;
   display: flex;
   width: fit-content;
-  padding: 5rem 2rem;
+  padding: var(--num-m20) var(--num-m8);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: var(--num-m20);
   /* transform: translateY(-2.5rem); */
   
   /* &.desktopCard::before,
@@ -43,7 +43,7 @@
   z-index: 1;
   /* color: var(--color-text1); */
   
-  &.Desktop {font-size: 2.5rem; }
+  &.Desktop { font-size: 2.5rem; }
 
   &.Mobile { font-size: 1.875rem; }
 }
@@ -57,15 +57,15 @@
   flex-wrap: wrap;
 
   &.desktopCard {
-    gap: 2rem 5rem;
+    gap: var(--num-m8) var(--num-m20);
   }
 
   &.mobileCard {
-    gap: 3.75rem 1.5rem;
+    gap: var(--num-m20) var(--num-m8);
   }
 
   &.mobileBanner {
-    gap: 1.5rem;
+    gap: var(--num-m8);
   }
 }
 

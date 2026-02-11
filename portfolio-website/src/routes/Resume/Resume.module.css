@@ -18,18 +18,12 @@
   flex-direction: column;
   align-items: center;
   align-self: stretch;
-  
-  &.Desktop {
-    padding: 5rem;
-    gap: 5rem;
-  }
+  padding: var(--num-m20);
+  gap: var(--num-m20);
 
-  &.Mobile {
-    padding: 4rem 
-    max(env(safe-area-inset-right), 0.8rem) 
-    4rem 
-    max(env(safe-area-inset-left), 0.8rem);
-    gap: 4rem;
+  &.mobile {
+    padding-left: max(env(safe-area-inset-left), var(--num-m4));
+    padding-right: max(env(safe-area-inset-right), var(--num-m4)) 
   }
 }
 
@@ -41,16 +35,8 @@
   width: 100%;
   align-items: flex-end;
   justify-content: center;
-}
-
-.Resume .heroSection.Desktop {
-  padding-top: 5rem;
-  gap: 2rem;
-}
-
-.Resume .heroSection.Mobile {
-  padding-top: 4rem;
-  gap: 1.5rem;
+  padding-top: var(--num-m20);
+  gap: var(--num-m8);
 }
 
 /* Hero Content
@@ -61,7 +47,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: var(--num-m8);
 }
 
 .headline {
@@ -82,7 +68,7 @@
   width: 100%;
   justify-content: flex-end;
   align-items: flex-end;
-  gap: 1.5rem;
+  gap: var(--num-m8);
 }
 
 /* PDF Downloader
@@ -92,7 +78,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  gap: 0.5rem;
+  gap: var(--num-m2);
 }
 
 .pdfDownloader > span {
@@ -102,12 +88,12 @@
 /* Download Button
     ============== */
 .heroButton {
-  padding: 0.75rem 1.5rem;
+  padding: var(--num-m3) var(--num-m8);
   font-size: var(--hero-cta-button-size);
 }
 
 .heroButton::before {
-  border-radius: 0.25rem;
+  border-radius: var(--num-m1);
 }
 
 /* Resume Section
@@ -117,17 +103,12 @@
   width: 100%;
   justify-content: center;
   align-self: stretch;
-}
+  padding: 0px var(--num-m20);
 
-.Resume .resumeSection.Desktop {
-  padding: 0 5rem;
-}
-
-.Resume .resumeSection.Mobile {
-  padding: 0 
-    max(env(safe-area-inset-right), 0.8rem) 
-    0 
-    max(env(safe-area-inset-left), 0.8rem);
+  &.mobile {
+    padding-left: max(env(safe-area-inset-left), var(--num-m4));
+    padding-right: max(env(safe-area-inset-right), var(--num-m4)) 
+  }
 }
 
 /* Responsive Adjustments
