@@ -16,12 +16,11 @@ import { getLinkAttributes } from '../../utils/externalUrls';
  * @param {string} props.title - Button text content
  */
 const ButtonBase = memo(({ className, style = 'solid', disabled, title }) => {
-  const buttonClassName = `${styles.button} ${styles[style]} ${className}`;
+  const buttonClassName = `${className} ${styles.button} ${styles[style]}`;
   
   return (
     <span className={buttonClassName} aria-disabled={disabled}>
-      {/* Increase the font weight to medium if it's an island-style button */}
-      { style === 'island' ? <b>{title}</b> : title }
+      { title }
     </span>
   );
 });
@@ -69,7 +68,7 @@ export const ActionButton = memo(({
       disabled={isDisabled}
     >
       <ButtonBase 
-        className={className}
+        className={`user-interface3 ${className}`}
         style={style}
         disabled={isDisabled}
         title={title}
@@ -120,7 +119,7 @@ export const LinkButton = memo(({
       {...getLinkAttributes(finalUrl)}
     >
       <ButtonBase 
-        className={className}
+        className={`user-interface3 ${className}`}
         style={style}
         disabled={isDisabled}
         title={title}

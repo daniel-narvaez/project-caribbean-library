@@ -14,7 +14,6 @@
   background: none;
   border: none;
   width: fit-content;
-  font-family: var(--display-text);
   text-align: center;
   text-transform: capitalize;
   transition: var(--menuControl-hover);
@@ -177,7 +176,6 @@ button:active .button.island {
  */
 .button.hero {
   padding: var(--num-m4) var(--num-m8);
-  font-size: var(--hero-cta-button-size);
 }
 
 .button.hero::before {

@@ -24,7 +24,7 @@ export const Title = () => {
         />
         {device === 'desktop' && (
           <span
-            className={`${styles.fullName}`}>
+            className={`user-interface1 ${styles.fullName}`}>
             {fullName}
           </span>
         )}

@@ -88,7 +88,7 @@ function App() {
                   <Route key="root" path="/" element={<Home />} />
                   <Route key="home" path="/home" element={<Home />} />
                   <Route key="welcome" path="/welcome" element={<Home />} /> {/* Invite via QR Code */}
-                  <Route key="resume" path="/resume" element={<Resume />} />
+                  {/* <Route key="resume" path="/resume" element={<Resume />} /> */}
                   <Route key="contact" path="/contact" element={<Contact />} />
                   
                   {/* Dynamic project routes */}

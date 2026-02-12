@@ -88,17 +88,13 @@ function Resume() {
           `}
         >
           <ScrollAnchor />
-          <h1 className="sr-only">
-            Resume Résume Resumé Résumé | Daniel Narvaez
-          </h1>
-
           <Chapter
             id="hero"
             className={`${styles.heroSection} ${styles[device]}`}
           >
             <div className={`${styles.heroContent} ${styles[device]}`}>
-              <h2 className={styles.headline}>Résumé</h2>
-              <p className={styles.tagline}>
+              <h1 className={`heading1 ${styles.headline}`}>Résumé</h1>
+              <p className={`body1 ${styles.tagline}`}>
                 I'm currently seeking entry-level <b>game designer</b><br />
                 roles. Although based in <b>New York, USA</b>,<br />
                 I'm willing to relocate worldwide.
@@ -107,7 +103,7 @@ function Resume() {
 
             <div className={`${styles.heroMedia} ${styles[device]}`}>
               <div className={`${styles.pdfDownloader} ${styles[device]}`}>
-                <span>Updated: {uploadDate || 'Loading...'}</span>
+                <span className={`user-interface4`}>Updated: {uploadDate || 'Loading...'}</span>
                 <ActionButton
                   className={styles.heroButton}
                   title="Download PDF"

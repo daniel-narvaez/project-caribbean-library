@@ -20,8 +20,7 @@
 }
 
 .fullName {
-  font-family: var(--display-text);
+  color: var(--color-text1) !important;
   font-weight: 315;
-  font-size: var(--h1-size);
   text-align: center;
 }

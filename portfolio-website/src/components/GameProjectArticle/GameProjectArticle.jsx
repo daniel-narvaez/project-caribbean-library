@@ -274,13 +274,13 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) =
           className={styles.contentWrapper}
         >
           <div className={styles.projectInfo}>
-            <h2 
+            <h3 
               ref={titleRef} 
-              className={styles.projectTitle}
+              className={`heading3 ${styles.projectTitle}`}
             >
-              <b>{projectData.heading}</b>
-            </h2>
-            <p className={styles.projectTagline}>
+              {projectData.heading}
+            </h3>
+            <p className={`body2 ${styles.projectTagline}`}>
               {projectData.tagline}
             </p>
           </div>

@@ -67,9 +67,6 @@
 }
 
 .list li {
-    font-size: 1rem;
-    font-family: var(--body-text);
-    line-height: 1.5rem;
     list-style-position: inside;
 }
 

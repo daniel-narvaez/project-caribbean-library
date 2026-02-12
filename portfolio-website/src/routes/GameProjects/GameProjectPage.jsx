@@ -65,12 +65,12 @@ const contentRenderers = {
         {element.content.map((item, index) => (
           <tr key={index}>
             <td 
-              className={getClasses('detail', size)} 
+              className={`body2 ${getClasses('detail', size)}`} 
               style={{fontWeight: '700'}}
             >
               {formatText(item.key)}:
             </td>
-            <td className={getClasses('detail', size)}>
+            <td className={`body2 ${getClasses('detail', size)}`}>
               {formatText(
                 typeof item.value === 'function' 
                   ? item.value({ urls: game.urls }) 
@@ -83,20 +83,20 @@ const contentRenderers = {
     </table>
   ),
 
-  heading: (element, key, size) => (
-    <h2 className={getClasses('heading', size)} key={key}>
+  heading2: (element, key, size) => (
+    <h2 className={`heading2 ${getClasses('', size)}`} key={key}>
       {element.content}
     </h2>
   ),
 
-  subheading: (element, key, size) => (
-    <h3 className={getClasses('subheading', size)} key={key}>
+  heading3: (element, key, size) => (
+    <h3 className={`heading3 ${getClasses('', size)}`} key={key}>
       {element.content}
     </h3>
   ),
 
   paragraph: (element, key, size, game) => (  // added size parameter to match others
-    <p key={key}>
+    <p className={`body2`} key={key}>
       {formatText(
         typeof element.content === 'function' 
           ? element.content({ urls: game.urls })  // Reverted back to original
@@ -107,15 +107,15 @@ const contentRenderers = {
 
   list: (element, key, size) => (
     element.content.type === 'bullet' ? (
-      <ul className={getClasses('list', size)} key={key}>
+      <ul className={`${getClasses('list', size)}`} key={key}>
           {element.content.items.map((item, index) => (
-            <li key={index}>{formatText(item)}</li>
+            <li className={`body2`} key={index}>{formatText(item)}</li>
           ))}
       </ul>
     ) : (
-      <ol className={getClasses('list', size)} key={key}>
+      <ol className={`${getClasses('list', size)}`} key={key}>
         {element.content.items.map((item, index) => (
-          <li key={index}>{formatText(item)}</li>
+          <li className={`body2`} key={index}>{formatText(item)}</li>
         ))}
       </ol>
     )
@@ -126,7 +126,7 @@ const contentRenderers = {
       {element.content.map((item, index) => (
         <figure className={getClasses('figure', size)} key={index}>
           <img src={item.src} alt={item.alt} />
-          <figcaption>
+          <figcaption className={`body3`}>
             <b>Figure {item.figId}:</b> <i>{item.caption}</i>
           </figcaption>
         </figure>
@@ -136,7 +136,7 @@ const contentRenderers = {
 
   gallery: (element, key, size) => (
     <figure className={getClasses('figure', size)} key={key}>
-      <figcaption>
+      <figcaption className={`body3`}>
         <b>Figure {element.content.figId}:</b> <i>{element.content.caption}</i>
       </figcaption>
       <Slideshow slides={element.content.items} playbackMode="manual" />

@@ -101,15 +101,13 @@
 * Fluid sizing based on viewport width
 */
 .headline {
-  font-family: var(--font-libreBaskerville);
-  font-size: var(--hero-headline-size);
   text-transform: capitalize;
 }
 
-.tagline {
+/* .tagline {
   font-size: var(--hero-tagline-size);
   line-height: normal;
-}
+} */
 
 /**
 * CTA Menu
@@ -122,10 +120,9 @@
   gap: var(--num-m4);
 }
 
-.ctaMenu .heroButton {
+/* .ctaMenu .heroButton {
   padding: var(--num-m4) var(--num-m8);
-  font-size: var(--hero-cta-button-size);
-}
+} */
 
 .ctaMenu .heroButton::before {
   border-radius: var(--num-m1);
@@ -185,7 +182,7 @@
 
   .heroButton {
     width: 100%;
-    padding: var(--num-m2) var(--num-m4);
+    /* padding: var(--num-m2) var(--num-m4); */
 
     &::before {
       border-width: var(--number-cornerRadius);

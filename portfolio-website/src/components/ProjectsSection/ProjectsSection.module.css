@@ -39,14 +39,14 @@
   } */
 }
 
-.heading {
+/* .heading {
   z-index: 1;
-  /* color: var(--color-text1); */
+   color: var(--color-text1); 
   
   &.Desktop { font-size: 2.5rem; }
 
   &.Mobile { font-size: 1.875rem; }
-}
+} */
 
 .projectArticles {
   z-index: 1;

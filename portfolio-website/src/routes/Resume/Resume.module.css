@@ -51,14 +51,7 @@
 }
 
 .headline {
-  font-family: var(--font-libreBaskerville);
-  font-size: var(--hero-headline-size);
   text-transform: capitalize;
-}
-
-.tagline {
-  font-size: var(--hero-tagline-size);
-  line-height: normal;
 }
 
 /* Hero Media Section
@@ -81,15 +74,10 @@
   gap: var(--num-m2);
 }
 
-.pdfDownloader > span {
-  font-size: 0.75rem;
-}
-
 /* Download Button
     ============== */
 .heroButton {
   padding: var(--num-m3) var(--num-m8);
-  font-size: var(--hero-cta-button-size);
 }
 
 .heroButton::before {

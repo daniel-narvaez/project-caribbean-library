@@ -48,12 +48,12 @@
   width: 100%;
   object-fit: contain;
 
-  &.Desktop {
+  &.desktop {
     max-width: 480px;
     max-height: 480px;
   }
 
-  &.Mobile {
+  &.mobile {
     max-width: 360px;
     max-height: 360px;
   }
@@ -96,11 +96,23 @@
   justify-content: space-between;
 }
 
-.projectDetails .detail {
+/* .projectDetails .detail {
   font-size: 1rem;
-  font-family: var(--body-text);
+  font-family: var(--tf-body);
   line-height: 1.5rem;
-}
+
+  a {
+    font-family: inherit;
+  }
+
+  b {
+    font-family: inherit;
+  }
+
+  i {
+    font-family: inherit;
+  }
+} */
 
 /* Content Lists
    ============ */
@@ -111,15 +123,12 @@
 }
 
 .list li {
-  font-size: 1rem;
-  font-family: var(--body-text);
-  line-height: 1.5rem;
   list-style-position: inside;
 }
 
-.list li::marker {
+/* .list li::marker {
   font-weight: 700;
-}
+} */
 
 /* Figure and Media Elements
    ======================= */
@@ -144,10 +153,6 @@
 .figure figcaption {
   color: var(--color-text2);
   text-align: center;
-  font-family: var(--body-text);
-  font-size: 0.75rem;
-  font-style: normal;
-  line-height: 1.125rem;
 }
 
 .figure img {
@@ -204,24 +209,14 @@
 
 /* Typography
    ========= */
-.heading {
+h2, h3 {
   display: flex;
   align-items: flex-start;
   align-self: stretch;
-  color: var(--color-heading1);
-  text-transform: capitalize;
 }
 
-.subheading {
-  display: flex;
-  align-items: flex-start;
-  align-self: stretch;
-  color: var(--color-text1);
-  text-transform: capitalize;
-}
-
-section > .heading,
-section > .subheading {
+section > h2,
+section > h3 {
   padding: 0.5rem 1rem;
 }
 

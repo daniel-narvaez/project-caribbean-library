@@ -41,7 +41,7 @@ const chihuahuaChampProject = createGameProject({
     ),
     walkthrough: [
       {
-        heading: projectContent.heading('Project Overview'),
+        heading: projectContent.heading2('Project Overview'),
         content: {
           left: [
             projectContent.details([
@@ -50,7 +50,7 @@ const chihuahuaChampProject = createGameProject({
               { key: 'Team Size', value: '5'},
               { key: 'Builds', value: ({ urls }) => `[Itch](${urls.game})`}
             ]),
-            projectContent.subheading('Contributions'),
+            projectContent.heading3('Contributions'),
             projectContent.list({
               type: 'bullet',
               items: [
@@ -71,7 +71,7 @@ const chihuahuaChampProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('System-Driven Player Journey'),
+        heading: projectContent.heading2('System-Driven Player Journey'),
         content: {
           left: [
             projectContent.paragraph(({ urls }) => `The theme of [Gamedev.js Jam 2024](${urls.jamPage}) was 'Power'. We brainstormed how we might make a game about strength training, a repetitive activity by nature, while designing a core loop that made repetition engaging and rewarding.`),
@@ -98,7 +98,7 @@ const chihuahuaChampProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('Perceived Weight Intensity: Simulating Physical Fatigue'),
+        heading: projectContent.heading2('Perceived Weight Intensity: Simulating Physical Fatigue'),
         content: {
           left: [
             projectContent.paragraph("While the Machinations diagram validated my design with static probabilities, real powerlifting involves progressive fatigue. As a web browser game developed in Unity, we needed to translate diminishing stamina into keyboard-based gameplay that made players feel the increasing intensity."),

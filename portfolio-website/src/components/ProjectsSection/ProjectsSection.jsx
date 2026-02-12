@@ -18,7 +18,7 @@ export const ProjectsSection = () => {
       className={styles.projectsSection}
       >
       <div className={`${styles.featuredWorks} ${styles[layout]}`}>
-        <h2 className={`${styles.heading} ${styles[device]}`}>
+        <h2 className={`heading2`}>
           Featured Works
         </h2>
         <div className={`${styles.projectArticles} ${styles[layout]}`}>

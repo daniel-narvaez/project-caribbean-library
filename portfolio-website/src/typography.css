@@ -117,10 +117,8 @@ h3.heading3, h4.heading4 {
   font-family: var(--tf-heading);
   font-style: normal;
 
-  b {
-    font-family: inherit;
-    font-weight: 700;
-  }
+  /* Headings are bold by default */
+  font-weight: 700;
 
   /* No italic for heading text */
 }
@@ -146,42 +144,43 @@ h4.heading4 {
 }
 
 
-
-p.body1, p.body2, p.body3 {
-  color: var(--color-text1);
-  font-family: var(--tf-body);
-  font-style: normal;
-
-  a {
-    font-family: inherit;
-    font-style: underline;
+p, li, tr, td, figcaption {
+  &.body1, &.body2, &.body3 {
+    color: var(--color-text1);
+    font-family: var(--tf-body);
+    font-style: normal;
+  
+    a {
+      font-family: inherit;
+      font-style: underline;
+    }
+  
+    b {
+      font-family: inherit;
+      font-weight: 700;
+    }
+  
+    i {
+      font-family: inherit;
+      font-style: italic;
+    }
   }
 
-  b {
-    font-family: inherit;
-    font-weight: 700;
+  &.body1 {
+    font-size: var(--fs-b1);
+    line-height: var(--lh-b1);
   }
 
-  i {
-    font-family: inherit;
-    font-style: italic;
+  /* Base size for body */
+  &.body2{
+    font-size: var(--fs-b2);
+    line-height: var(--lh-b2);
   }
-}
 
-p.body1 {
-  font-size: var(--fs-b1);
-  line-height: var(--lh-b1);
-}
-
-/* Base size for body */
-p.body2 {
-  font-size: var(--fs-b2);
-  line-height: var(--lh-b2);
-}
-
-p.body3 {
-  font-size: var(--fs-b3);
-  line-height: var(--lh-b3);
+  &.body3 {
+    font-size: var(--fs-b3);
+    line-height: var(--lh-b3);
+  }
 }
 
 span.user-interface1, span.user-interface2,
