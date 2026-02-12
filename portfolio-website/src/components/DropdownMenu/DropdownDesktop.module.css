@@ -165,25 +165,21 @@
     .menuButton,
     .menuLink {
       span {
-        font-family: var(--display-text);
         color: var(--color-link);
-        font-weight: 500;
       }
     }
   
     /* Hover state */
     .menuButton:hover span,
     .menuLink:hover span {
-      color: var(--color-bg1);
-      font-weight: 400;
+      color: var(--color-bg1-hover);
     }
   
     /* Active state */
     .menuButtonActive,
     .menuLinkActive {
       span {
-        color: var(--color-bg1);
-        font-weight: 400;
+        color: var(--color-bg1-active);
       }
     }
   
@@ -210,7 +206,6 @@
     .menuButton span,
     .menuLink span {
       color: var(--color-bg1);
-      font-weight: 400;
     }
   
     /* Remove background from wrapper */

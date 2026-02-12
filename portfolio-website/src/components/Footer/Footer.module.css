@@ -111,14 +111,12 @@ footer {
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  text-transform: capitalize;
   padding: var(--num-m2);
 }
 
 .footerCta span {
   color: var(--color-bg1);
   text-align: center;
-  font-family: var(--font-libreBaskerville);
 }
 
 /* Navigation grid

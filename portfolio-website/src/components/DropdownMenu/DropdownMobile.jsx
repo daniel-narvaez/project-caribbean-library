@@ -87,7 +87,7 @@ const DropdownItem = memo(({
         direction={isInActivePath ? 'up' : 'down'} 
       />}
       {item.icon}
-      <span>{item.title}</span>
+      <span className={`user-interface3`}>{item.title}</span>
     </>
   );
 

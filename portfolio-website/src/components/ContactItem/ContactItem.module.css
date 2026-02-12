@@ -41,7 +41,6 @@ transition: var(--menuControl-hover);
 }
 
 .contactIcon.Desktop span {
-  font-family: var(--display-text);
   opacity: 0;
   /* max-width: 6rem; */
 }
@@ -141,7 +140,6 @@ transition: var(--menuControl-hover);
 }
 
 .spine.middle span {
-  font-family: var(--heading-text);
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;

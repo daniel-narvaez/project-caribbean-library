@@ -12,7 +12,6 @@
  * @file DropdownDesktop.jsx
  */
 
-import React from 'react';
 import {
   useState,
   useRef,
@@ -80,7 +79,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
       >
         {(hasSubmenu && level !== 0) && <Chevron direction={isActive ? 'right' : 'left'} />}
         {item.icon}
-        <span>{item.title}</span>
+        <span className={`user-interface3`}>{item.title}</span>
       </a>
     ) : (
       <button

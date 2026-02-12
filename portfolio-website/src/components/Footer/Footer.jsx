@@ -108,7 +108,7 @@ export const Footer = ({ children }) => {
         </div>
 
         <div className={`${styles.footerBottom}`}>
-          <p>
+          <p className={`body3`}>
             &copy; {new Date().getFullYear()} designed & developed by Daniel Narvaez. <br/>
             All rights reserved.
           </p>
@@ -127,7 +127,7 @@ export const FooterNav = memo(() => {
   return (
     <>
       <div className={`${styles.footerCta}`}>
-        <span>Find me around the web</span>
+        <span className={`user-interface2`}>Find me around the web</span>
       </div>
       <div className={`${styles.footerNav}`}>
         {Object.values(socialMediaData).map(icon => (

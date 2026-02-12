@@ -52,21 +52,12 @@
   max-width: 480px;
 }
 
-.taglineContainer span {
+.taglineContainer {
   text-align: center;
-  font-family: var(--font-libreBaskerville);
 
-  &.error {
+  .error {
     color: var(--color-error);
   }
-}
-
-.taglineContainer span.Mobile {
-  font-size: 1.125rem;
-}
-
-.taglineContainer span.Desktop {
-  font-size: 1.1875rem;
 }
 
 /* Form Content

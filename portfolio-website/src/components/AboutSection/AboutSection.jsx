@@ -146,11 +146,11 @@ export const AboutSection = () => {
 
       <div className={styles.aboutContent}>
         <div className={styles.aboutInfo}>
-          <h2 className={`${styles.heading} ${styles[device]}`}>
+          <h2 className={`heading2 ${styles.heading} ${styles[device]}`}>
             About Myself
           </h2>
           
-          <p>
+          <p className={`body2`}>
             <span className='action' type='button' onClick={() => setMedia('default')}>Currently</span>
             , I volunteer as a Transitional Fellow for the{' '}
             <a target='_blank' href='https://www.egdcollective.org/transitional-program'>
@@ -158,7 +158,7 @@ export const AboutSection = () => {
             </a> where I lead the design team's balancing division.
           </p>
           
-          <p>
+          <p className={`body2`}>
             I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}
             <span className='action' type='button' onClick={() => setMedia('participate')}>
               participate in game jams
@@ -166,7 +166,7 @@ export const AboutSection = () => {
             {' '}to consistently improve my skills.
           </p>
           
-          <p>
+          <p className={`body2`}>
             I{' '}
             <span className='action' type='button' onClick={() => setMedia('graduated')}>
               graduated from Parsons School of Design
@@ -174,14 +174,14 @@ export const AboutSection = () => {
             {' '}in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
           </p>
           
-          <p>
+          <p className={`body2`}>
             During the Summer of 2021 I interned as a Game Designer at{' '}
             <a target='_blank' href='https://www.massdigi.org'>MassDigi</a>
             , where I prototyped & fine-tuned player progression systems for{' '}
             <a href='game-projects/clock-out'><i>Clock Out!!</i></a>.
           </p>
           
-          <p>
+          <p className={`body2`}>
             In my spare time I enjoy reading books, lifting weights, and dancing Salsa at socials.
           </p>
         </div>

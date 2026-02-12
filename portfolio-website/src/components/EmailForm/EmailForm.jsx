@@ -91,7 +91,7 @@ export const EmailForm = ({tagline = ''}) => {
       {/* Form Side */}
       <div className={`${styles.cardContent} ${styles.formContent}`}>
         <div className={styles.taglineContainer}>
-          <span className={styles[device]}>
+          <span className={`user-interface3`}>
             {tagline}
           </span>
         </div>
@@ -156,15 +156,15 @@ export const EmailForm = ({tagline = ''}) => {
           <>
             <MessageInABottle id='message-in-a-bottle' />
             <div className={styles.taglineContainer}>
-              <span className={styles[device]}>
-                Message in a bottle sent! <br/>
+              <span className={`user-interface3`}>
+                Message sent! <br/>
                 I'll respond within 48 hours.
               </span>
             </div>
           </>
         ) : (
           <div className={styles.taglineContainer}>
-            <span className={`${styles[device]} ${styles.error}`}>
+            <span className={`user-interface3 ${styles.error}`}>
               {error}
             </span>
           </div>

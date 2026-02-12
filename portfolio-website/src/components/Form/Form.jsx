@@ -20,7 +20,7 @@
  * - Unique ID generation for form elements
  */
 
-import { useState, useContext, memo, useCallback } from 'react';
+import { useState, memo, useCallback } from 'react';
 import styles from './Form.module.css';
 import { getArticle } from '../../utils';
 
@@ -308,7 +308,7 @@ export const SubmitButton = memo(({
           className={`${styles.submitButton} ${styles[style]} ${styles[className]} ${className}`}
           disabled={disabled}
       >
-          <span>{title}</span>
+          <span className={`user-interface4`}>{title}</span>
       </button>
   );
 });

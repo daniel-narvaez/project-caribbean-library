@@ -138,7 +138,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
           onIconLoad={handleIconLoad}
         />
       </a>
-      <span>{appName}</span>
+      <span className={`user-interface3`}>{appName}</span>
     </div>
   );
 };
@@ -226,7 +226,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
           ${styles.middle}
         `}
       >
-        <span>{appName}</span>
+        <span className={`user-interface3`}>{appName}</span>
       </div>
       <div
         className={`

@@ -43,7 +43,7 @@
   top: 0;
   height: 32px;
   align-items: center;
-  font-family: var(--font-libreBaskerville);
+  font-family: var(--tf-libreBaskerville);
   font-size: 1rem;
   line-height: 2rem;
   text-decoration: none;
@@ -73,7 +73,7 @@
   border-radius: 0;
   outline: none;
   border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-  font-family: var(--font-notoSans) !important;
+  font-family: var(--tf-notoSans) !important;
   font-size: 1rem !important;
   line-height: 2rem !important;
   color: var(--color-text1) !important;
@@ -95,7 +95,7 @@
   border-radius: 0;
   outline: none;
   border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-  font-family: var(--font-notoSans) !important;
+  font-family: var(--tf-notoSans) !important;
   font-size: 1rem !important;
   line-height: 2rem !important;
   color: var(--color-text1) !important;
@@ -119,7 +119,7 @@
   outline: none;
   border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
   resize: vertical;
-  font-family: var(--font-notoSans) !important;
+  font-family: var(--tf-notoSans) !important;
   font-size: 1rem !important;
   line-height: 2rem !important;
   color: var(--color-text1) !important;
@@ -254,7 +254,7 @@
 
 /* Common text styling */
 .submitButton span {
-  font-family: var(--display-text);
+  font-family: var(--tf-outfit);
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;

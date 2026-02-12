@@ -20,7 +20,8 @@ const ButtonBase = memo(({ className, style = 'solid', disabled, title }) => {
   
   return (
     <span className={buttonClassName} aria-disabled={disabled}>
-      {title}
+      {/* Increase the font weight to medium if it's an island-style button */}
+      { style === 'island' ? <b>{title}</b> : title }
     </span>
   );
 });

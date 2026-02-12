@@ -120,9 +120,7 @@
   
     /* Text Styling */
     span {
-      font-family: var(--display-text);
       color: var(--color-bg1);
-      font-weight: 500;
       transition: var(--menuControl-active);
     }
   
