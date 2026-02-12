@@ -23,66 +23,6 @@
   display: none;
 }
 
-/* 
-* Shared Heading Styles
-* Applied to all heading levels for consistency
-*/
-/* h1, h2, h3 {
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  color: var(--color-text1);
-} */
-
-/* 
-* Individual Heading Styles
-* Font sizes are set via CSS variables from Typography.jsx context
-*/
-/* h1 {
-  font-family: var(--tf-heading);
-  text-transform: capitalize;
-  font-size: var(--h1-size);
-  color: var(--color-text1);
-}
-
-h2 {
-  font-family: var(--tf-heading);
-  font-size: var(--h2-size);
-  color: var(--color-text1);
-}
-
-h3 {
-  font-family: var(--tf-heading);
-  font-size: var(--h3-size);
-  color: var(--color-text1);
-} */
-
-/* 
-* Inline Text Elements
-* Used for spans and labels that appear inline with other content
-*/
-/* span, label {
-  font-family: var(--tf-body);
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  font-size: var(--inline-size);
-  color: var(--color-text1);
-} */
-
-/* 
-* Paragraph Text
-* Used for body copy with fixed size regardless of screen size
-*/
-/* p {
-  font-family: var(--tf-body);
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  font-size: 1rem;
-  color: var(--color-text1);
-} */
-
 a {
   /* font-family: var(--tf-body); */
   color: var(--color-link);
@@ -183,37 +123,39 @@ p, li, tr, td, figcaption {
   }
 }
 
-span.user-interface1, span.user-interface2,
-span.user-interface3, span.user-interface4 {
-  font-family: var(--tf-user-interface);
-  font-style: normal;
-
-  /* The bold for user interface text is medium weight. */
-  b {
-    font-family: inherit;
-    font-weight: 500; 
+span {
+  &.user-interface1, &.user-interface2,
+  &.user-interface3, &.user-interface4 {
+    font-family: var(--tf-user-interface);
+    font-style: normal;
+  
+    /* The bold for user interface text is medium weight. */
+    b {
+      font-family: inherit;
+      font-weight: 500; 
+    }
+  
+    /* No italic for user interface text. */
   }
-
-  /* No italic for user interface text. */
-}
-
-span.user-interface1 {
-  font-size: var(--fs-ui1);
-  line-height: var(--lh-ui1);
-}
-
-span.user-interface2 {
-  font-size: var(--fs-ui2);
-  line-height: var(--lh-ui2);
-}
-
-/* Base size for UI */
-span.user-interface3 { 
-  font-size: var(--fs-ui3);
-  line-height: var(--lh-ui3);
-}
-
-span.user-interface4 {
-  font-size: var(--fs-ui4);
-  line-height: var(--lh-ui4);
+  
+  &.user-interface1 {
+    font-size: var(--fs-ui1);
+    line-height: var(--lh-ui1);
+  }
+  
+  &.user-interface2 {
+    font-size: var(--fs-ui2);
+    line-height: var(--lh-ui2);
+  }
+  
+  /* Base size for UI */
+  &.user-interface3 { 
+    font-size: var(--fs-ui3);
+    line-height: var(--lh-ui3);
+  }
+  
+  &.user-interface4 {
+    font-size: var(--fs-ui4);
+    line-height: var(--lh-ui4);
+  }
 }
