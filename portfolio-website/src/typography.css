@@ -11,12 +11,12 @@
 @import './variables.css';
 
 /* 
-* Root Typography Variables
+* Root Typeface Variables (tf)
 */
 :root {
-  --tf-heading: var(--tf-libreBaskerville);
-  --tf-body: var(--tf-notoSans);
-  --tf-user-interface: var(--tf-outfit);
+  --tf-heading: var(--ff-libreBaskerville);
+  --tf-body: var(--ff-notoSans);
+  --tf-userInterface: var(--ff-outfit);
 }
 
 .sr-only {
@@ -126,7 +126,7 @@ p, li, tr, td, figcaption {
 span {
   &.user-interface1, &.user-interface2,
   &.user-interface3, &.user-interface4 {
-    font-family: var(--tf-user-interface);
+    font-family: var(--tf-userInterface);
     font-style: normal;
   
     /* The bold for user interface text is medium weight. */

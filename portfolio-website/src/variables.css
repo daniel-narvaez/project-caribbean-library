@@ -1,7 +1,7 @@
 /* @import "./reset.css"; */
 
 :root {
-    /* Colors */
+    /* Swatches (swt) */
     --color-text1: #00052b; /* Midnight */
     --color-text2: #202C22; /* Seaweed */
     --color-heading1: #4a2512; /* Mahogany */
@@ -23,14 +23,29 @@
     --color-pointer-link: #b2ffff; /* Celeste */
     --color-pointer-action: #dc9ba3; /* Lilac */
 
-    --swatch-matcha: #98c187;
+    --swt-amethyst: #7b1fa2;
+    --swt-aquamarine: #00a9ce;
+    --swt-celeste: #b2ffff;
+    --swt-cobalt: #0047ab;
+    --swt-deepReef: #007a99;
+    --swt-desertStone: #dcd8d1;
+    --swt-duneCrest: #f7f5f2;
+    --swt-lilac: #dc9ba3;
+    --swt-magaflower: #d6111b;
+    --swt-mahogany: #4a2512;
+    --swt-matcha: #98c187;
+    --swt-midnight: #00052b;
+    --swt-orchid: #ab47bc;
+    --swt-pinotNoir: #4e1953;
+    --swt-sand: #ece9e4;
+    --swt-seaweed: #202c22;
 
-    /* Typefaces */
-    --tf-libreBaskerville: "Libre Baskerville", serif;
-    --tf-notoSans: "Noto Sans Variable", sans-serif;
-    --tf-outfit: "Outfit Variable", sans-serif;
+    /* Font Families (ff) */
+    --ff-libreBaskerville: "Libre Baskerville", serif;
+    --ff-notoSans: "Noto Sans Variable", sans-serif;
+    --ff-outfit: "Outfit Variable", sans-serif;
 
-    /* Numbers */
+    /* Numbers (num) */
     --number-cornerRadius: 3px;
     --num-dotSize: 3px;
     --num-cellSize: 16px;

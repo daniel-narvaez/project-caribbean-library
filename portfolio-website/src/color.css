@@ -1,0 +1,65 @@
+/**
+* Color styles
+*
+*
+*
+* @requires variables.css - Contains color and font family variables
+*/
+
+@import './variables.css';
+
+/* 
+* Root Color Variables (col)
+*/
+:root {
+  /* Primary */
+  --col-text1: var(--swt-midnight);
+
+  --col-link1: var(--swt-cobalt);
+  --col-link1-hover: var(--swt-aquamarine);
+  --col-link1-active: var(--swt-deepReef);
+  
+  --col-error1: var(--swt-magaflower);
+
+  --col-background1: var(--swt-sand);
+
+  --col-frame1: var(--swt-duneCrest);
+
+  --col-nav-text1: var(--swt-sand);
+  --col-nav-text1-hover: var(--swt-duneCrest);
+  --col-nav-text1-active: var(--swt-desertStone);
+
+  --col-nav-error1: var(--swt-magaflower);
+
+  --col-nav-background1: var(--swt-cobalt);
+  --col-nav-background1-hover: var(--swt-aquamarine);
+  --col-nav-background1-active: var(--swt-deepReef);
+  
+  --col-pointer-stroke: var(--swt-midnight);
+  --col-pointer-fill: var(--swt-sand);
+  --col-pointer-fill-hover1: var(--swt-celeste);
+  
+  /* Secondary */
+  --col-text2: var(--swt-seaweed);
+  
+  --col-link2: var(--swt-amethyst);
+  --col-link2-hover: var(--swt-orchid);
+  --col-link2-active: var(--swt-pinotNoir);
+
+  --col-background2: var(--swt-desertStone);
+
+  --col-nav-text2: var(--swt-cobalt);
+  --col-nav-text2-hover: var(--swt-aquamarine);
+  --col-nav-text2-active: var(--swt-deepReef);
+
+  --col-nav-background2: var(--swt-sand);
+  --col-nav-background2-hover: var(--swt-duneCrest);
+  --col-nav-background2-active: var(--swt-desertStone);
+  
+  --col-pointer-fill-hover2: var(--swt-lilac);
+
+  /* Tertiary */
+  --col-nav-background3: var(--swt-amethyst);
+  --col-nav-background3-hover: var(--swt-orchid);
+  --col-nav-background3-active: var(--swt-pinotNoir);
+}

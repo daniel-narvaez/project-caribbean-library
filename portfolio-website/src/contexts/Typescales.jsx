@@ -1,8 +1,8 @@
 /**
- * Typography Context Provider
+ * Typoscales Context Provider
  * 
- * This context manages responsive typography sizes throughout the application.
- * It consumes the ScreenSizeContext to determine which set of font sizes to apply.
+ * This context manages responsive typescales throughout the application.
+ * It consumes the DeviceContext to determine which set of font sizes to apply.
  * Font sizes are applied via CSS variables to allow for efficient updates and maintainability.
  * 
  * Type Scales Used:
@@ -13,9 +13,9 @@
  * Desktop (1.2 ratio): 1rem × 1.2^n
  * Mobile (1.125 ratio): 1rem × 1.125^n
  * 
- * @file Typography.jsx
+ * @file Typescales.jsx
  * @requires React
- * @requires ScreenSizeContext
+ * @requires DeviceContext
  */
 
 import { createContext, useContext, useEffect } from 'react';
@@ -35,6 +35,9 @@ const TypescalesContext = createContext();
 export const TypescalesProvider = ({ children }) => {
   // Consume screen size context to determine which typography scale to use
   const { device } = useContext(DeviceContext);
+
+  // Store the root style in a variable
+  const rootCss = document.documentElement.style;
 
   // Define typography scales for different device sizes
   const fontSizes = {
@@ -165,39 +168,37 @@ export const TypescalesProvider = ({ children }) => {
    * --text-size: Size for inline elements (spans, labels)
    */
   useEffect(() => {
-    const root = document.documentElement;
-
     // Set CSS custom properties for the font sizes
-    root.style.setProperty('--fs-h1', calcRem(fontSizes[device].h1));
-    root.style.setProperty('--fs-h2', calcRem(fontSizes[device].h2));
-    root.style.setProperty('--fs-h3', calcRem(fontSizes[device].h3));
-    root.style.setProperty('--fs-h4', calcRem(fontSizes[device].h4));
-    root.style.setProperty('--fs-b1', calcRem(fontSizes[device].b1));
-    root.style.setProperty('--fs-b2', calcRem(fontSizes[device].b2));
-    root.style.setProperty('--fs-b3', calcRem(fontSizes[device].b3));
-    root.style.setProperty('--fs-ui1', calcRem(fontSizes[device].ui1));
-    root.style.setProperty('--fs-ui2', calcRem(fontSizes[device].ui2));
-    root.style.setProperty('--fs-ui3', calcRem(fontSizes[device].ui3));
-    root.style.setProperty('--fs-ui4', calcRem(fontSizes[device].ui4));
+    rootCss.setProperty('--fs-h1', calcRem(fontSizes[device].h1));
+    rootCss.setProperty('--fs-h2', calcRem(fontSizes[device].h2));
+    rootCss.setProperty('--fs-h3', calcRem(fontSizes[device].h3));
+    rootCss.setProperty('--fs-h4', calcRem(fontSizes[device].h4));
+    rootCss.setProperty('--fs-b1', calcRem(fontSizes[device].b1));
+    rootCss.setProperty('--fs-b2', calcRem(fontSizes[device].b2));
+    rootCss.setProperty('--fs-b3', calcRem(fontSizes[device].b3));
+    rootCss.setProperty('--fs-ui1', calcRem(fontSizes[device].ui1));
+    rootCss.setProperty('--fs-ui2', calcRem(fontSizes[device].ui2));
+    rootCss.setProperty('--fs-ui3', calcRem(fontSizes[device].ui3));
+    rootCss.setProperty('--fs-ui4', calcRem(fontSizes[device].ui4));
 
     // Set CSS custom properties for the lineheights
-    root.style.setProperty('--lh-h1', calcRem(lineHeights[device].h1));
-    root.style.setProperty('--lh-h2', calcRem(lineHeights[device].h2));
-    root.style.setProperty('--lh-h3', calcRem(lineHeights[device].h3));
-    root.style.setProperty('--lh-h4', calcRem(lineHeights[device].h4));
-    root.style.setProperty('--lh-b1', calcRem(lineHeights[device].b1));
-    root.style.setProperty('--lh-b2', calcRem(lineHeights[device].b2));
-    root.style.setProperty('--lh-b3', calcRem(lineHeights[device].b3));
-    root.style.setProperty('--lh-ui1', calcRem(lineHeights[device].ui1));
-    root.style.setProperty('--lh-ui2', calcRem(lineHeights[device].ui2));
-    root.style.setProperty('--lh-ui3', calcRem(lineHeights[device].ui3));
-    root.style.setProperty('--lh-ui4', calcRem(lineHeights[device].ui4));
+    rootCss.setProperty('--lh-h1', calcRem(lineHeights[device].h1));
+    rootCss.setProperty('--lh-h2', calcRem(lineHeights[device].h2));
+    rootCss.setProperty('--lh-h3', calcRem(lineHeights[device].h3));
+    rootCss.setProperty('--lh-h4', calcRem(lineHeights[device].h4));
+    rootCss.setProperty('--lh-b1', calcRem(lineHeights[device].b1));
+    rootCss.setProperty('--lh-b2', calcRem(lineHeights[device].b2));
+    rootCss.setProperty('--lh-b3', calcRem(lineHeights[device].b3));
+    rootCss.setProperty('--lh-ui1', calcRem(lineHeights[device].ui1));
+    rootCss.setProperty('--lh-ui2', calcRem(lineHeights[device].ui2));
+    rootCss.setProperty('--lh-ui3', calcRem(lineHeights[device].ui3));
+    rootCss.setProperty('--lh-ui4', calcRem(lineHeights[device].ui4));
 
     // obsolete
-    root.style.setProperty('--inline-size', fontSizes[device].inline);
-    root.style.setProperty('--hero-headline-size', fontSizes[device].heroHeadline);
-    root.style.setProperty('--hero-tagline-size', fontSizes[device].heroTagline);
-    root.style.setProperty('--hero-cta-button-size', fontSizes[device].heroCtaButton);
+    rootCss.setProperty('--inline-size', fontSizes[device].inline);
+    rootCss.setProperty('--hero-headline-size', fontSizes[device].heroHeadline);
+    rootCss.setProperty('--hero-tagline-size', fontSizes[device].heroTagline);
+    rootCss.setProperty('--hero-cta-button-size', fontSizes[device].heroCtaButton);
   }, [device]); // Re-run when screen size changes
 
   return (
