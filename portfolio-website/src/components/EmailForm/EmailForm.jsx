@@ -29,7 +29,9 @@ import {
   SubmitButton 
 } from "../Form/Form";
 import { DeviceContext } from "../../contexts/DeviceContext";
+
 import styles from './EmailForm.module.css';
+
 import { sendContactForm } from "../../../api/emailHandler";
 
 /**

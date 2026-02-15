@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const DeviceContext = createContext();
 
-const devices = {
+export const devices = {
   desktop: 'desktop',
   tablet: 'tablet',
   mobile: 'mobile'

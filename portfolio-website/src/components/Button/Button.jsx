@@ -1,6 +1,7 @@
 // Buttons.js
 import { memo } from 'react';
 import styles from './Button.module.css';
+import typographies from '../../typography.module.css';
 import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
 import { getLinkAttributes } from '../../utils/externalUrls';
 
@@ -68,7 +69,7 @@ export const ActionButton = memo(({
       disabled={isDisabled}
     >
       <ButtonBase 
-        className={`user-interface3 ${className}`}
+        className={`${typographies.ui3} ${className}`}
         style={style}
         disabled={isDisabled}
         title={title}
@@ -119,7 +120,7 @@ export const LinkButton = memo(({
       {...getLinkAttributes(finalUrl)}
     >
       <ButtonBase 
-        className={`user-interface3 ${className}`}
+        className={`${typographies.ui3} ${className}`}
         style={style}
         disabled={isDisabled}
         title={title}

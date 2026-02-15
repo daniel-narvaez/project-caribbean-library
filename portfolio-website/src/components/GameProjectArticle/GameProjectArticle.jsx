@@ -29,8 +29,11 @@
 */
 
 import React, { useContext, useEffect, useRef } from 'react';
-import { DeviceContext } from '../../contexts/DeviceContext';
+import { DeviceContext, devices } from '../../contexts/DeviceContext';
+
 import styles from './GameProjectArticle.module.css';
+import typographies from '../../typography.module.css';
+
 import { zeroToAutoHeight } from '../../utils';
 import { LinkButton } from '../Button/Button';
 
@@ -60,7 +63,7 @@ const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
     const article = articleRef.current;
     const background = backgroundRef.current;
  
-    if (!article || !background || device === 'mobile') 
+    if (!article || !background || device === devices.mobile) 
       return () => background.style.transform = 'translate(0%, 0%)';
  
     let frameId;
@@ -90,13 +93,13 @@ const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
       background.style.transform = 'translate(0%, 0%)';
     };
  
-    if (device === 'desktop') {
+    if (device === devices.desktop) {
       article.addEventListener('mousemove', handleMouseParallax, { passive: true });
       article.addEventListener('mouseleave', resetMouseParallax);
     }
  
     return () => {
-      if (device === 'desktop') {
+      if (device === devices.desktop) {
         article.removeEventListener('mousemove', handleMouseParallax);
         article.removeEventListener('mouseleave', resetMouseParallax);
       }
@@ -114,14 +117,14 @@ const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
  * 
  * @param {RefObject} articleRef - Reference to article container
  * @param {RefObject} backgroundRef - Reference to background image
- * @param {string} size - Current device size from ScreenSizeContext
+ * @param {string} device - Current device size from ScreenSizeContext
  */
- const useMobileParallax = (articleRef, backgroundRef, size, layout) => {
+ const useMobileParallax = (articleRef, backgroundRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
     
-    if (!article || !background || size === 'desktop') 
+    if (!article || !background || device === devices.desktop) 
       return () => background.style.transform = 'translate(0%, 0%)';
   
     let frameId;
@@ -156,7 +159,7 @@ const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size, layout]);
+  }, [device, layout]);
 };
 
 /**
@@ -182,7 +185,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) =
     
     const resizeObserver = new ResizeObserver(entries => {
       titleHeight = entries[0].contentRect.height;
-      if (device === 'mobile' || layout.includes('Banner'))
+      if (device === devices.mobile || layout.includes('Banner'))
         wrapper.style.height = 'auto';
       else
         zeroToAutoHeight(wrapper, false, {}, titleHeight);
@@ -191,7 +194,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) =
     resizeObserver.observe(title);
 
     // If it's mobile or banner, just setup the resize observer
-    if (device === 'mobile' || layout.includes('Banner')) {
+    if (device === devices.mobile || layout.includes('Banner')) {
       return () => {
         resizeObserver.disconnect();
       };
@@ -276,11 +279,11 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) =
           <div className={styles.projectInfo}>
             <h3 
               ref={titleRef} 
-              className={`heading3 ${styles.projectTitle}`}
+              className={`${typographies.h3} ${styles.projectTitle}`}
             >
               {projectData.heading}
             </h3>
-            <p className={`body2 ${styles.projectTagline}`}>
+            <p className={`${typographies.body2} ${styles.projectTagline}`}>
               {projectData.tagline}
             </p>
           </div>

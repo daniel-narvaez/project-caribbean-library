@@ -22,6 +22,7 @@
 
 import { useState, memo, useCallback } from 'react';
 import styles from './Form.module.css';
+import typographies from '../../typography.module.css';
 import { getArticle } from '../../utils';
 
 /**

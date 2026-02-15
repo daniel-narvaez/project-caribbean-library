@@ -20,7 +20,7 @@
 
 import { createContext, useContext, useEffect } from 'react';
 import { DeviceContext } from './DeviceContext';
-import '../typography.css';
+// import '../typography.css';
 
 // Initialize context for typography settings
 const TypescalesContext = createContext();

@@ -5,7 +5,9 @@ import { useContext } from 'react';
 import { DeviceContext } from '../../contexts/DeviceContext';
 
 import Logo from '../../../assets/images/dn-logo-w20.svg?react';
+
 import styles from './Title.module.css'
+import typographies from '../../typography.module.css';
 
 const fullName = 'Daniel Narvaez';
 
@@ -24,7 +26,7 @@ export const Title = () => {
         />
         {device === 'desktop' && (
           <span
-            className={`user-interface1 ${styles.fullName}`}>
+            className={`${typographies.ui1} ${styles.fullName}`}>
             {fullName}
           </span>
         )}

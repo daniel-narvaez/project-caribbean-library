@@ -37,6 +37,8 @@ import { heroGifSlides } from "../../data/HeroMedia";
 import { LinkButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
+import typographies from '../../typography.module.css';
+
 import { Chapter } from "../Chapter/Chapter";
 import { socialMediaData } from "../../data/appIcons";
  
@@ -53,35 +55,23 @@ import { socialMediaData } from "../../data/appIcons";
     <main>
       <Chapter
         id='hero'
-        className={`
-          ${styles.heroSection}
-          ${styles[device]}
-        `}
+        className={`${styles.heroSection}`}
       >
-
-        <div className={`
-            ${styles.heroContainer}
-            ${styles[device]}
-          `}
-        >   
+        <div className={`${styles.heroContainer}`}>   
           <div className={styles.heroContent}>
-            <h1 className={`heading1 ${styles.headline}`}>
+            <h1 className={`${typographies.h1} ${styles.headline}`}>
               Elevating experiences <br/>
               through meticulous <br/>
               game design.
             </h1>
             
-            <p className={`body1 ${styles.tagline}`}>
+            <p className={`${typographies.body1} ${styles.tagline}`}>
               Hi, I'm Dan, a <b>game designer</b> based in <br/>
               The Bronx, NY. I specialize in economy <br/>
               and progression systems design.
             </p>
             
-            <div className={`
-                ${styles.ctaMenu}
-                ${styles[device]}
-              `}
-            >
+            <div className={`${styles.ctaMenu}`}>
               <LinkButton
                 className={`${styles.heroButton}`}
                 title="Browse my work"

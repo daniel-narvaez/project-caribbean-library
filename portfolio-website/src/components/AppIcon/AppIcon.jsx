@@ -53,7 +53,6 @@ export const AppIcon = ({
   ease = DEFAULT_CONFIG.EASE,
   onIconLoad = () => {}
 }) => {
-  const { device } = useContext(DeviceContext);
   const containerRef = useRef(null);
   const iconRef = useRef(null);
 
@@ -99,7 +98,7 @@ export const AppIcon = ({
 
   return (
     <svg
-      className={`${styles.appIcon} ${styles[device]}`}
+      className={`${styles.appIcon}`}
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
     >

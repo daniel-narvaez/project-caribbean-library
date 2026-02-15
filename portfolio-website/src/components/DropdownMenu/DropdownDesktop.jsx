@@ -30,6 +30,7 @@ import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownDesktop.module.css';
+import typographies from '../../typography.module.css';
 
 /**
  * Individual menu item component handling both regular items and submenus
@@ -79,7 +80,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
       >
         {(hasSubmenu && level !== 0) && <Chevron direction={isActive ? 'right' : 'left'} />}
         {item.icon}
-        <span className={`user-interface3`}>{item.title}</span>
+        <span className={`${typographies.ui3}`}>{item.title}</span>
       </a>
     ) : (
       <button
