@@ -2,9 +2,11 @@ import { createContext, useState, useEffect } from "react";
 
 export const DeviceContext = createContext();
 
-const desktop = 'desktop';
-const tablet = 'tablet';
-const mobile = 'mobile';
+const devices = {
+  desktop: 'desktop',
+  tablet: 'tablet',
+  mobile: 'mobile'
+}
 
 const spacings = {
   desktop: {
@@ -22,27 +24,27 @@ const spacings = {
 }
 
 export const DeviceProvider = ({children}) => {
-  const [device, setDevice] = useState('desktop');
+  const [device, setDevice] = useState(devices.desktop);
   const [layout, setLayout] = useState('desktopCard');
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
       if(width < 768 || height < 480)
         return {
-          device: mobile,
+          device: devices.mobile,
           layout: height > width ? 'mobileCard' : 'mobileBanner',
           spacing: spacings.mobile
         };
       else {
         if(width >= 1440) {
           return {
-            device: desktop,
+            device: devices.desktop,
             layout: 'desktopCard',
             spacing: spacings.desktop
           };
         } else {
           return {
-            device: mobile,
+            device: devices.mobile,
             layout: height > width ? 'mobileBanner' : 'mobileCard',
             spacing: spacings.mobile
           };

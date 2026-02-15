@@ -58,7 +58,7 @@ export const ActionButton = memo(({
   className = '',
   onCustomClick
 }) => {
-  const { device, isDisabled } = useActionButtonLogic(onCustomClick);
+  const { isDisabled } = useActionButtonLogic(onCustomClick);
 
   return (
     <button

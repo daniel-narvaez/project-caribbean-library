@@ -9,13 +9,8 @@
  * - "/" and "/home" => Home component
  * - "/{project-url}" => Individual GameProjectPage components
  * 
- * Context Providers:
- * - ScreenSizeProvider: Handles responsive design
- * - TypographyProvider: Manages font loading and text styles
- * - ChaptersProvider: Manages chapter navigation
  */
 
-import React from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics, track } from "@vercel/analytics/react"
@@ -24,8 +19,10 @@ import Navbar from '../../components/Navbar/Navbar';
 import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
 
 import { DeviceProvider } from '../../contexts/DeviceContext';
-import { MarginsProvider } from '../../contexts/Margins';
+import { AppearanceProvider } from '../../contexts/Appearance';
 import { TypescalesProvider } from '../../contexts/Typescales';
+import { ColorsProvider } from '../../contexts/Colors';
+import { MarginsProvider } from '../../contexts/Margins';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
 
 import Home from '../Home/Home';
@@ -74,31 +71,35 @@ function App() {
 
   return (
     <DeviceProvider>
-      <MarginsProvider>
+      <AppearanceProvider>
         <TypescalesProvider>
-          <ChaptersProvider>
-            <div className={styles.App}>
-              <Analytics />
-              <Navbar />
-              <BrowserRouter>
-                <SplashEffect />
-                <AnimatedCursor />
-                <Routes>
-                  {/* Static routes */}
-                  <Route key="root" path="/" element={<Home />} />
-                  <Route key="home" path="/home" element={<Home />} />
-                  <Route key="welcome" path="/welcome" element={<Home />} /> {/* Invite via QR Code */}
-                  {/* <Route key="resume" path="/resume" element={<Resume />} /> */}
-                  <Route key="contact" path="/contact" element={<Contact />} />
-                  
-                  {/* Dynamic project routes */}
-                  {gameProjectRoutes}
-                </Routes>
-              </BrowserRouter>
-            </div>
-          </ChaptersProvider>
+          <ColorsProvider>
+            <MarginsProvider>
+              <ChaptersProvider>
+                <div className={styles.App}>
+                  <Analytics />
+                  <Navbar />
+                  <BrowserRouter>
+                    <SplashEffect />
+                    <AnimatedCursor />
+                    <Routes>
+                      {/* Static routes */}
+                      <Route key="root" path="/" element={<Home />} />
+                      <Route key="home" path="/home" element={<Home />} />
+                      <Route key="welcome" path="/welcome" element={<Home />} /> {/* Invite via QR Code */}
+                      {/* <Route key="resume" path="/resume" element={<Resume />} /> */}
+                      <Route key="contact" path="/contact" element={<Contact />} />
+                      
+                      {/* Dynamic project routes */}
+                      {gameProjectRoutes}
+                    </Routes>
+                  </BrowserRouter>
+                </div>
+              </ChaptersProvider>
+            </MarginsProvider>
+          </ColorsProvider>
         </TypescalesProvider>
-      </MarginsProvider>
+      </AppearanceProvider>
     </DeviceProvider>
   );
 }

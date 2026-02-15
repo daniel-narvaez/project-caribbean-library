@@ -24,7 +24,7 @@
 }
 
 a {
-  /* font-family: var(--tf-body); */
+  /* font-family: var(--tf-txt-body); */
   color: var(--color-link);
   transition: var(--menuControl-hover);
 
@@ -51,41 +51,41 @@ a {
   }
 }
 
-h1.heading1, h2.heading2,
-h3.heading3, h4.heading4 {
+h1.txt-h1, h2.txt-h2,
+h3.txt-h3, h4.txt-h4 {
   color: var(--color-text1);
   font-family: var(--tf-heading);
   font-style: normal;
 
-  /* Headings are bold by default */
+  /* txt-hs are bold by default */
   font-weight: 700;
 
-  /* No italic for heading text */
+  /* No italic for txt-h text */
 }
 
-h1.heading1 {
+h1.txt-h1 {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
 }
 
-h2.heading2 {
+h2.txt-h2 {
   font-size: var(--fs-h2);
   line-height: var(--lh-h2);
 }
 
-h3.heading3 {
+h3.txt-h3 {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
 }
 
-h4.heading4 {
+h4.txt-h4 {
   font-size: var(--fs-h4);
   line-height: var(--lh-h4);
 }
 
 
 p, li, tr, td, figcaption {
-  &.body1, &.body2, &.body3 {
+  &.txt-body1, &.txt-body2, &.txt-body3 {
     color: var(--color-text1);
     font-family: var(--tf-body);
     font-style: normal;
@@ -106,26 +106,26 @@ p, li, tr, td, figcaption {
     }
   }
 
-  &.body1 {
+  &.txt-body1 {
     font-size: var(--fs-b1);
     line-height: var(--lh-b1);
   }
 
-  /* Base size for body */
-  &.body2{
+  /* Base size for txt-body */
+  &.txt-body2 {
     font-size: var(--fs-b2);
     line-height: var(--lh-b2);
   }
 
-  &.body3 {
+  &.txt-body3 {
     font-size: var(--fs-b3);
     line-height: var(--lh-b3);
   }
 }
 
 span {
-  &.user-interface1, &.user-interface2,
-  &.user-interface3, &.user-interface4 {
+  &.txt-ui1, &.txt-ui2,
+  &.txt-ui3, &.txt-ui4 {
     font-family: var(--tf-userInterface);
     font-style: normal;
   
@@ -138,23 +138,23 @@ span {
     /* No italic for user interface text. */
   }
   
-  &.user-interface1 {
+  &.txt-ui1 {
     font-size: var(--fs-ui1);
     line-height: var(--lh-ui1);
   }
   
-  &.user-interface2 {
+  &.txt-ui2 {
     font-size: var(--fs-ui2);
     line-height: var(--lh-ui2);
   }
   
   /* Base size for UI */
-  &.user-interface3 { 
+  &.txt-ui3 { 
     font-size: var(--fs-ui3);
     line-height: var(--lh-ui3);
   }
   
-  &.user-interface4 {
+  &.txt-ui4 {
     font-size: var(--fs-ui4);
     line-height: var(--lh-ui4);
   }

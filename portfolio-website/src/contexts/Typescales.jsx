@@ -104,8 +104,8 @@ export const TypescalesProvider = ({ children }) => {
     desktop: {
       h1: '58px',
       h2: '52px',
-      h3: '44',
-      h4: '35',
+      h3: '44px',
+      h4: '35px',
       b1: '28px',
       b2: '24px',
       b3: '21px',
@@ -150,7 +150,7 @@ export const TypescalesProvider = ({ children }) => {
 
     let remStr = (parseFloat(pxStr) / 16).toLocaleString('en-US', {
       minimumFractionDigits: 0,
-      maximumFractionDigits: 7
+      maximumFractionDigits: 6
     }) + 'rem';
 
     return remStr
@@ -202,7 +202,7 @@ export const TypescalesProvider = ({ children }) => {
   }, [device]); // Re-run when screen size changes
 
   return (
-    <TypescalesContext.Provider value={{}}>
+    <TypescalesContext.Provider>
       {children}
     </TypescalesContext.Provider>
   );
