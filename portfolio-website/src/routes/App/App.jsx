@@ -21,7 +21,7 @@ import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
 import { DeviceProvider } from '../../contexts/DeviceContext';
 import { AppearanceProvider } from '../../contexts/Appearance';
 import { TypescalesProvider } from '../../contexts/Typescales';
-import { ColorsProvider } from '../../contexts/Colors';
+import { ColorsProvider } from '../../contexts/Color';
 import { MarginsProvider } from '../../contexts/Margins';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
 

@@ -21,13 +21,15 @@
 
 a {
   /* font-family: var(--tf-body); */
-  color: var(--color-link);
+  /* color: var(--color-link); */
   transition: var(--menuControl-hover);
 
-  &:hover { color: var(--color-link-hover) }
+  &:hover {
+    /* color: var(--color-link-hover)  */
+  }
 
   &:active { 
-    color: var(--color-link-active);
+    /* color: var(--color-link-active); */
     transition: var(--menuControl-active);
   }
 }
@@ -35,21 +37,22 @@ a {
 .action {
   font-family: var(--tf-body);
   font-size: inherit;
-  color: var(--color-action);
+  /* color: var(--color-action); */
   transition: var(--menuControl-hover);
   text-decoration: underline dotted;
 
-  &:hover { color: var(--color-action-hover) }
+  &:hover { 
+    /* color: var(--color-action-hover)  */
+  }
 
   &:active { 
-    color: var(--color-action-active);
+    /* color: var(--color-action-active); */
     transition: var(--menuControl-active);
   }
 }
 
 h1.h1, h2.h2,
 h3.h3, h4.h4 {
-  color: var(--color-text1);
   font-family: var(--tf-heading);
   font-style: normal;
 

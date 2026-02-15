@@ -34,43 +34,43 @@ export const ColorsProvider = ({children}) => {
   const colors = {
     light: {
       text1: swatches.midnight,
-      link1: {
+      nav1: {
         normal: swatches.cobalt,
         hover: swatches.aquamarine,
         active: swatches.deepReef
       },
-      link2: {
+      nav2: {
         normal: swatches.amethyst,
         hover: swatches.orchid,
         active: swatches.pinotNoir
       },
-      background1: swatches.sand,
-      background2: swatches.desertStone,
+      bg1: swatches.sand,
+      bg2: swatches.desertStone,
       frame1: swatches.duneCrest,
       error1: swatches.magaflower,
       ui: {
         text1: swatches.seaweed,
-        link1: {
+        nav1: {
           normal: swatches.sand,
           hover: swatches.duneCrest,
           active: swatches.desertStone
         },
-        link2: {
+        nav2: {
           normal: swatches.cobalt,
           hover: swatches.aquamarine,
           active: swatches.deepReef
         },
-        background1: {
+        bg1: {
           normal: swatches.cobalt,
           hover: swatches.aquamarine,
           active: swatches.deepReef
         },
-        background2: {
+        bg2: {
           normal: swatches.sand,
           hover: swatches.duneCrest,
           active: swatches.desertStone
         },
-        background3: {
+        bg3: {
           normal: swatches.amethyst,
           hover: swatches.orchid,
           active: swatches.pinotNoir
@@ -90,33 +90,33 @@ export const ColorsProvider = ({children}) => {
   useEffect(() => {
     // Set CSS custom properties for the palette colors
     rootCss.setProperty('--col-text1', colors[theme].text1);
-    rootCss.setProperty('--col-link1', colors[theme].link1.normal);
-    rootCss.setProperty('--col-link1-hover', colors[theme].link1.hover);
-    rootCss.setProperty('--col-link1-active', colors[theme].link1.active);
-    rootCss.setProperty('--col-link2', colors[theme].link2.normal);
-    rootCss.setProperty('--col-link2-hover', colors[theme].link2.hover);
-    rootCss.setProperty('--col-link2-active', colors[theme].link2.active);
-    rootCss.setProperty('--col-background1', colors[theme].background1);
-    rootCss.setProperty('--col-background2', colors[theme].background2);
+    rootCss.setProperty('--col-nav1', colors[theme].nav1.normal);
+    rootCss.setProperty('--col-nav1-hover', colors[theme].nav1.hover);
+    rootCss.setProperty('--col-nav1-active', colors[theme].nav1.active);
+    rootCss.setProperty('--col-nav2', colors[theme].nav2.normal);
+    rootCss.setProperty('--col-nav2-hover', colors[theme].nav2.hover);
+    rootCss.setProperty('--col-nav2-active', colors[theme].nav2.active);
+    rootCss.setProperty('--col-bg1', colors[theme].bg1);
+    rootCss.setProperty('--col-bg2', colors[theme].bg2);
     rootCss.setProperty('--col-frame1', colors[theme].frame1);
     rootCss.setProperty('--col-error1', colors[theme].error1);
 
     rootCss.setProperty('--col-ui-text1', colors[theme].ui.text1);
-    rootCss.setProperty('--col-ui-link1', colors[theme].ui.link1.normal);
-    rootCss.setProperty('--col-ui-link1-hover', colors[theme].ui.link1.hover);
-    rootCss.setProperty('--col-ui-link1-active', colors[theme].ui.link1.active);
-    rootCss.setProperty('--col-ui-link2', colors[theme].ui.link2.normal);
-    rootCss.setProperty('--col-ui-link2-hover', colors[theme].ui.link2.hover);
-    rootCss.setProperty('--col-ui-link2-active', colors[theme].ui.link2.active);
-    rootCss.setProperty('--col-ui-background1', colors[theme].ui.background1.normal);
-    rootCss.setProperty('--col-ui-background1-hover', colors[theme].ui.background1.hover);
-    rootCss.setProperty('--col-ui-background1-active', colors[theme].ui.background1.active);
-    rootCss.setProperty('--col-ui-background2', colors[theme].ui.background2.normal);
-    rootCss.setProperty('--col-ui-background2-hover', colors[theme].ui.background2.hover);
-    rootCss.setProperty('--col-ui-background2-active', colors[theme].ui.background2.active);
-    rootCss.setProperty('--col-ui-background3', colors[theme].ui.background3.normal);
-    rootCss.setProperty('--col-ui-background3-hover', colors[theme].ui.background3.hover);
-    rootCss.setProperty('--col-ui-background3-active', colors[theme].ui.background3.active);
+    rootCss.setProperty('--col-ui-nav1', colors[theme].ui.nav1.normal);
+    rootCss.setProperty('--col-ui-nav1-hover', colors[theme].ui.nav1.hover);
+    rootCss.setProperty('--col-ui-nav1-active', colors[theme].ui.nav1.active);
+    rootCss.setProperty('--col-ui-nav2', colors[theme].ui.nav2.normal);
+    rootCss.setProperty('--col-ui-nav2-hover', colors[theme].ui.nav2.hover);
+    rootCss.setProperty('--col-ui-nav2-active', colors[theme].ui.nav2.active);
+    rootCss.setProperty('--col-ui-bg1', colors[theme].ui.bg1.normal);
+    rootCss.setProperty('--col-ui-bg1-hover', colors[theme].ui.bg1.hover);
+    rootCss.setProperty('--col-ui-bg1-active', colors[theme].ui.bg1.active);
+    rootCss.setProperty('--col-ui-bg2', colors[theme].ui.bg2.normal);
+    rootCss.setProperty('--col-ui-bg2-hover', colors[theme].ui.bg2.hover);
+    rootCss.setProperty('--col-ui-bg2-active', colors[theme].ui.bg2.active);
+    rootCss.setProperty('--col-ui-bg3', colors[theme].ui.bg3.normal);
+    rootCss.setProperty('--col-ui-bg3-hover', colors[theme].ui.bg3.hover);
+    rootCss.setProperty('--col-ui-bg3-active', colors[theme].ui.bg3.active);
 
     rootCss.setProperty('--col-pointer-stroke', colors[theme].pointer.stroke);
     rootCss.setProperty('--col-pointer-fill', colors[theme].pointer.fill.normal);
