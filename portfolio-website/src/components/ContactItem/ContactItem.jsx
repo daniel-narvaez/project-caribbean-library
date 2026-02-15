@@ -23,6 +23,8 @@ import { useState, useContext, useEffect, useRef, useCallback } from 'react';
 import { AppIcon } from "../AppIcon/AppIcon";
 import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './ContactItem.module.css';
+import typographies from '../../typography.module.css';
+
 
 /**
  * Default configuration for transitions and colors
@@ -138,7 +140,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
           onIconLoad={handleIconLoad}
         />
       </a>
-      <span className={`user-interface3`}>{appName}</span>
+      <span className={`${typographies.ui3}`}>{appName}</span>
     </div>
   );
 };
@@ -226,7 +228,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
           ${styles.middle}
         `}
       >
-        <span className={`user-interface3`}>{appName}</span>
+        <span className={`${typographies.ui3}`}>{appName}</span>
       </div>
       <div
         className={`

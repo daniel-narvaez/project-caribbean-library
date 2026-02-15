@@ -31,6 +31,7 @@ import {
 import { DeviceContext } from "../../contexts/DeviceContext";
 
 import styles from './EmailForm.module.css';
+import typographies from '../../typography.module.css';
 
 import { sendContactForm } from "../../../api/emailHandler";
 
@@ -93,9 +94,9 @@ export const EmailForm = ({tagline = ''}) => {
       {/* Form Side */}
       <div className={`${styles.cardContent} ${styles.formContent}`}>
         <div className={styles.taglineContainer}>
-          <span className={`user-interface3`}>
+          <p className={`${typographies.b1}`}>
             {tagline}
-          </span>
+          </p>
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -158,7 +159,7 @@ export const EmailForm = ({tagline = ''}) => {
           <>
             <MessageInABottle id='message-in-a-bottle' />
             <div className={styles.taglineContainer}>
-              <span className={`user-interface3`}>
+              <span className={`${typographies.ui3}`}>
                 Message sent! <br/>
                 I'll respond within 48 hours.
               </span>
@@ -166,7 +167,7 @@ export const EmailForm = ({tagline = ''}) => {
           </>
         ) : (
           <div className={styles.taglineContainer}>
-            <span className={`user-interface3 ${styles.error}`}>
+            <span className={`${typographies.ui3} ${styles.error}`}>
               {error}
             </span>
           </div>

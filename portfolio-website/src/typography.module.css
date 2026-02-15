@@ -80,9 +80,10 @@ h4.h4 {
 }
 
 
-p, li, tr, td, figcaption {
-  &.body1, &.body2, &.body3 {
-    color: var(--color-text1);
+p, li, tr, td, figcaption,
+input, textarea, select, option {
+  &.b1, &.b2, &.b3 {
+    /* color: var(--color-text1); */
     font-family: var(--tf-body);
     font-style: normal;
   
@@ -102,26 +103,26 @@ p, li, tr, td, figcaption {
     }
   }
 
-  &.body1 {
+  &.b1 {
     font-size: var(--fs-b1);
     line-height: var(--lh-b1);
   }
 
   /* Base size for body */
-  &.body2 {
+  &.b2 {
     font-size: var(--fs-b2);
     line-height: var(--lh-b2);
   }
 
-  &.body3 {
+  &.b3 {
     font-size: var(--fs-b3);
     line-height: var(--lh-b3);
   }
 }
 
-span {
-  &.ui1, &.ui2,
-  &.ui3, &.ui4 {
+span, label {
+  &.ui1, &.ui2, &.ui3, 
+  &.ui4, &.ui5 {
     font-family: var(--tf-userInterface);
     font-style: normal;
   

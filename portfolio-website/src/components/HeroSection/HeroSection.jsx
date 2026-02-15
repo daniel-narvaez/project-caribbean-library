@@ -65,7 +65,7 @@ import { socialMediaData } from "../../data/appIcons";
               game design.
             </h1>
             
-            <p className={`${typographies.body1} ${styles.tagline}`}>
+            <p className={`${typographies.b1} ${styles.tagline}`}>
               Hi, I'm Dan, a <b>game designer</b> based in <br/>
               The Bronx, NY. I specialize in economy <br/>
               and progression systems design.

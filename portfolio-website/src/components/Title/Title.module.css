@@ -21,6 +21,7 @@
 
 .fullName {
   color: var(--color-text1) !important;
+  font-size: 33px;
   font-weight: 315;
   text-align: center;
 }

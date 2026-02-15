@@ -114,8 +114,7 @@ footer {
   padding: var(--num-m2);
 }
 
-.footerCta span {
-  color: var(--color-bg1);
+.ctaHeading {
   text-align: center;
 }
 

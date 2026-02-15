@@ -21,6 +21,7 @@
 import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactIcon } from '../ContactItem/ContactItem';
 import styles from './Footer.module.css';
+import typographies from '../../typography.module.css';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
 
@@ -108,7 +109,7 @@ export const Footer = ({ children }) => {
         </div>
 
         <div className={`${styles.footerBottom}`}>
-          <p className={`body3`}>
+          <p className={`${typographies.b3}`}>
             &copy; {new Date().getFullYear()} designed & developed by Daniel Narvaez. <br/>
             All rights reserved.
           </p>
@@ -127,7 +128,7 @@ export const FooterNav = memo(() => {
   return (
     <>
       <div className={`${styles.footerCta}`}>
-        <span className={`user-interface2`}>Find me around the web</span>
+        <h4 className={`${typographies.h4} ${styles.ctaHeading}`}>Find me around the web</h4>
       </div>
       <div className={`${styles.footerNav}`}>
         {Object.values(socialMediaData).map(icon => (

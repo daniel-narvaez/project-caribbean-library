@@ -147,14 +147,14 @@ export const InputField = ({
   return (
       <div className={`${styles.inputField}`}>
           <input 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalInputConfig}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className='action' htmlFor={finalInputConfig.id}>
+          <label className={`${typographies.ui4}`} htmlFor={finalInputConfig.id}>
               {finalLabelConfig.text}
           </label>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -206,21 +206,21 @@ export const SelectField = ({
   return (
       <div className={`${styles.selectField}`}>
           <select 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalSelectConfig}
               onBlur={(e) => validateInput(e.target.value)}
           >
-              <option value="" hidden> </option>
+              <option className={`${typographies.b2}`} value="" hidden> </option>
               {uniqueOptions.map(option => (
-                  <option key={option.value} value={option.value}>
+                  <option className={`${typographies.b2}`} key={option.value} value={option.value}>
                       {option.label}
                   </option>
               ))}
           </select>
-          <label className='action' htmlFor={finalSelectConfig.id}>
+          <label className={`${typographies.ui4}`} htmlFor={finalSelectConfig.id}>
               {finalLabelConfig.text}
           </label>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -277,18 +277,18 @@ export const TextBox = ({
   return (
       <div className={`${styles.textBox}`}>
           <textarea 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalTextareaConfig}
               onChange={handleInput}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className='action' htmlFor={finalTextareaConfig.id}>
+          <label className={`${typographies.ui4}`} htmlFor={finalTextareaConfig.id}>
               {finalLabelConfig.text}
           </label>
-          <span className={styles.charCount}>
+          <span className={`${typographies.ui4} ${styles.charCount}`}>
               {finalTextareaConfig.maxLength - charCount} characters remaining
           </span>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -309,7 +309,7 @@ export const SubmitButton = memo(({
           className={`${styles.submitButton} ${styles[style]} ${styles[className]} ${className}`}
           disabled={disabled}
       >
-          <span className={`user-interface4`}>{title}</span>
+          <span className={`${typographies.ui3}`}>{title}</span>
       </button>
   );
 });

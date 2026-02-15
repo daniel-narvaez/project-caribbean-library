@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useContext } from 'react';
 
-import { DeviceContext } from '../../contexts/DeviceContext';
+import { DeviceContext, devices } from '../../contexts/DeviceContext';
 
 import Logo from '../../../assets/images/dn-logo-w20.svg?react';
 
@@ -24,7 +24,7 @@ export const Title = () => {
             ${styles[device]}
           `}
         />
-        {device === 'desktop' && (
+        {device === devices.desktop && (
           <span
             className={`${typographies.ui1} ${styles.fullName}`}>
             {fullName}
