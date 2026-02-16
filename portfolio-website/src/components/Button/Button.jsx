@@ -2,6 +2,7 @@
 import { memo } from 'react';
 import styles from './Button.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
 import { getLinkAttributes } from '../../utils/externalUrls';
 
@@ -20,8 +21,8 @@ const ButtonBase = memo(({ className, style = 'solid', disabled, title }) => {
   const buttonClassName = `${className} ${styles.button} ${styles[style]}`;
   
   return (
-    <span className={buttonClassName} aria-disabled={disabled}>
-      { title }
+    <span className={`${buttonClassName}`} aria-disabled={disabled}>
+      {title}
     </span>
   );
 });
@@ -127,6 +128,29 @@ export const LinkButton = memo(({
       />
     </a>
   );
+});
+
+export const PrimaryButton = memo(({
+  title = 'Button',
+  url = '/',
+}) => {
+  const { isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
+
+  return (
+    <a
+      href={isDisabled ? "#" : finalUrl}
+      onClick={handleClick}
+      aria-disabled={isDisabled}
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      className={`${colors.uiBg1} ${styles.button}`}
+      {...getLinkAttributes(finalUrl)}
+    >
+      <span className={`${typographies.ui3} ${colors.uiNav1}`} aria-disabled={isDisabled}>
+        {title}
+      </span>
+    </a>
+  )
 });
 
 /**

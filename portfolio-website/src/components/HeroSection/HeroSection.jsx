@@ -34,10 +34,11 @@ import { Slideshow } from "../Slideshow/Slideshow";
 import { DeviceContext } from "../../contexts/DeviceContext";
 
 import { heroGifSlides } from "../../data/HeroMedia";
-import { LinkButton } from "../Button/Button";
+import { LinkButton, PrimaryButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 
 import { Chapter } from "../Chapter/Chapter";
 import { socialMediaData } from "../../data/appIcons";
@@ -59,24 +60,23 @@ import { socialMediaData } from "../../data/appIcons";
       >
         <div className={`${styles.heroContainer}`}>   
           <div className={styles.heroContent}>
-            <h1 className={`${typographies.h1} ${styles.headline}`}>
+            <h1 className={`${typographies.h1} ${colors.text1} ${styles.headline}`}>
               Elevating experiences <br/>
               through meticulous <br/>
               game design.
             </h1>
             
-            <p className={`${typographies.b1} ${styles.tagline}`}>
+            <p className={`${typographies.b1} ${colors.text1} ${styles.tagline}`}>
               Hi, I'm Dan, a <b>game designer</b> based in <br/>
               The Bronx, NY. I specialize in economy <br/>
               and progression systems design.
             </p>
             
             <div className={`${styles.ctaMenu}`}>
-              <LinkButton
-                className={`${styles.heroButton}`}
+              <PrimaryButton
+                // className={`${styles.heroButton}`}
                 title="Browse my work"
                 url="#projects"
-                style="solid"
               />
               <LinkButton
                 className={`${styles.heroButton}`}

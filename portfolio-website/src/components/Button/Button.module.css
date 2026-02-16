@@ -26,7 +26,7 @@
   inset: 0;
   transform-origin: center;
   z-index: -1;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--number-cornerRadius); 
   transition: var(--menuControl-hover);
 }
 
@@ -60,33 +60,33 @@ button:active .button {
  * -------------------
  */
 .button.solid::before {
-  background-color: var(--color-link);
+  /* background-color: var(--color-link); */
   box-shadow: var(--fx-boxShadow1);
 }
 
 .button.solid {
   font-weight: 400;
-  color: var(--color-bg1);
+  /* color: var(--color-bg1); */
 }
 
 .button.solid:hover::before,
 button:hover .button.solid::before {
-  background-color: var(--color-link-hover);
+  /* background-color: var(--color-link-hover); */
 }
 
 .button.solid:hover,
 button:hover .button.solid {
-  color: var(--color-bg1-hover);
+  /* color: var(--color-bg1-hover); */
 }
 
 .button.solid:active::before,
 button:active .button.solid::before {
-  background-color: var(--color-link-active);
+  /* background-color: var(--color-link-active); */
 }
 
 .button.solid:active,
 button:active .button.solid {
-  color: var(--color-bg1-active);
+  /* color: var(--color-bg1-active); */
 }
 
 /* Solid Action Variant */
@@ -116,7 +116,7 @@ button:active .button.solid::before {
 
 .button.island {
   font-weight: 500;
-  color: var(--color-link);
+  /* color: var(--color-link); */
 }
 
 .button.island:hover::before,
@@ -126,7 +126,7 @@ button:hover .button.island::before {
 
 .button.island:hover,
 button:hover .button.island {
-  color: var(--color-link-hover);
+  /* color: var(--color-link-hover); */
 }
 
 .button.island:active::before,
@@ -136,7 +136,7 @@ button:active .button.island::before {
 
 .button.island:active,
 button:active .button.island {
-  color: var(--color-link-active);
+  /* color: var(--color-link-active); */
 }
 
 /* Island Action Variant */
@@ -147,7 +147,7 @@ button .button.island::before {
 
 .button.island.action,
 button .button.island {
-  color: var(--color-action);
+  /* color: var(--color-action); */
 }
 
 .button.island.action:hover::before,
@@ -157,7 +157,7 @@ button:hover .button.island::before {
 
 .button.island.action:hover,
 button:hover .button.island {
-  color: var(--color-action-hover);
+  /* color: var(--color-action-hover); */
 }
 
 .button.island.action:active::before,
@@ -167,7 +167,7 @@ button:active .button.island::before {
 
 .button.island.action:active,
 button:active .button.island {
-  color: var(--color-action-active);
+  /* color: var(--color-action-active); */
 }
 
 /**
