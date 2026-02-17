@@ -230,101 +230,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 0;
-  padding: var(--padding-size) calc(var(--padding-size) * 2);
-  text-decoration: none;
-}
-
-/* Common pseudo-element styling */
-.submitButton::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform-origin: center;
-  z-index: -1;
-  border-radius: var(--number-cornerRadius);
-  transition: var(--menuControl-hover);
-}
-
-/* Common text styling */
-.submitButton span {
+  padding: var(--num-m1) var(--num-m2);
+  border-style: solid;
+  border-radius: var(--num-m1);
+  box-shadow: var(--fx-boxShadow1);
+  width: fit-content;
   text-align: center;
-  text-transform: capitalize;
   transition: var(--menuControl-hover);
-}
 
-.submitButton:disabled,
-.submitButton[aria-disabled="true"] {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/**
- * Common Active State
- * ------------------
- * Shared transform and transition properties
- */
-.submitButton:active::before,
-.submitButton:active span {
-  transform: scale(92%);
-  transition: var(--menuControl-active);
-}
-
-/**
- * Solid Button Variant
- * -------------------
- */
- .submitButton.solid::before {
-  background-color: var(--color-action);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.submitButton.solid span {
-  color: var(--color-bg1);
-}
-
-.submitButton.solid:hover::before {
-  background-color: var(--color-action-hover);
-}
-
-.submitButton.solid:hover span {
-  color: var(--color-bg1-hover);
-}
-
-.submitButton.solid:active::before {
-  background-color: var(--color-action-active);
-}
-
-.submitButton.solid:active span {
-  color: var(--color-bg1-active);
-}
-
-/**
- * Island Button Variant
- * -------------------
- */
- .submitButton.island::before {
-  border: var(--number-cornerRadius) solid var(--color-action);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.submitButton.island span {
-  color: var(--color-action);
-}
-
-.submitButton.island:hover::before {
-  border-color: var(--color-action-hover);
-}
-
-.submitButton.island:hover span {
-  color: var(--color-action-hover);
-}
-
-.submitButton.island:active::before {
-  border-color: var(--color-action-active);
-}
-
-.submitButton.island:active span {
-  color: var(--color-action-active);
+  &:active {
+    transform: scale(92%);
+    transition: var(--menuControl-active);
+  }
 }

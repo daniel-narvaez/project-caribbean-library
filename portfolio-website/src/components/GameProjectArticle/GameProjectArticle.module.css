@@ -213,7 +213,7 @@
    padding-top: var(--num-m2);
    justify-content: flex-end;
    align-items: flex-end;
-   gap: var(--num-m4);
+   gap: var(--num-m2);
    align-self: stretch;
  }
  
@@ -222,6 +222,6 @@
   padding-top: var(--num-m2);
   justify-content: flex-end;
   align-items: flex-end;
-  gap: var(--num-m4);
+  gap: var(--num-m2);
   flex: 2 0 0;
 }

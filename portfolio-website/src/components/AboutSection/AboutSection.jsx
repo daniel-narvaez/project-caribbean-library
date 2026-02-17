@@ -33,9 +33,10 @@ import { DeviceContext } from '../../contexts/DeviceContext';
 
 import styles from './AboutSection.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
-import { LinkButton } from '../Button/Button';
+import { LinkButton, PrimaryButton, SecondaryButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
 
@@ -154,34 +155,27 @@ export const AboutSection = () => {
           </h2>
           
           <p className={`${typographies.b2}`}>
-            <span className='action' type='button' onClick={() => setMedia('default')}>Currently</span>
-            , I volunteer as a Transitional Fellow for the{' '}
-            <a target='_blank' href='https://www.egdcollective.org/transitional-program'>
+            <a className={`${colors.nav2}`} type='button' onClick={() => setMedia('default')}>Currently</a>{' '}, I volunteer as a Transitional Fellow for the{' '}
+            <a className={`${colors.nav1}`} target='_blank' href='https://www.egdcollective.org/transitional-program'>
               EGD Collective's Game Studio Program
             </a> where I lead the design team's balancing division.
           </p>
           
           <p className={`${typographies.b2}`}>
-            I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}
-            <span className='action' type='button' onClick={() => setMedia('participate')}>
-              participate in game jams
-            </span>
-            {' '}to consistently improve my skills.
+            I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}<a className={`${colors.nav2}`} type='button' onClick={() => setMedia('participate')}>participate in game jams</a>{' '}
+            to consistently improve my skills.
           </p>
           
           <p className={`${typographies.b2}`}>
-            I{' '}
-            <span className='action' type='button' onClick={() => setMedia('graduated')}>
-              graduated from Parsons School of Design
-            </span>
-            {' '}in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
+            I{' '}<a className={`${colors.nav2}`} type='button' onClick={() => setMedia('graduated')}>graduated from Parsons School of Design</a>{' '}
+            in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
           </p>
           
           <p className={`${typographies.b2}`}>
             During the Summer of 2021 I interned as a Game Designer at{' '}
-            <a target='_blank' href='https://www.massdigi.org'>MassDigi</a>
+            <a className={`${colors.nav1}`} target='_blank' href='https://www.massdigi.org'>MassDigi</a>
             , where I prototyped & fine-tuned player progression systems for{' '}
-            <a href='game-projects/clock-out'><i>Clock Out!!</i></a>.
+            <a className={`${colors.nav1}`} href='game-projects/clock-out'><i>Clock Out!!</i></a>.
           </p>
           
           <p className={`${typographies.b2}`}>
@@ -190,15 +184,13 @@ export const AboutSection = () => {
         </div>
 
         <div className={`${styles.ctaMenu}`}>
-          <LinkButton
-            title="Read my résumé"
+          <PrimaryButton
             url='/resume'
-            style='solid'
+            title="Read my résumé"
           />
-          <LinkButton
-            title="Join My Network"
+          <SecondaryButton
             url={socialMediaData.linkedInIcon.profileUrl}
-            style='island'
+            title="Join My Network"
           />
         </div>
       </div>

@@ -22,6 +22,7 @@ import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactIcon } from '../ContactItem/ContactItem';
 import styles from './Footer.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
 
@@ -71,7 +72,7 @@ export const Footer = ({ children }) => {
   }, []);
 
   return (
-    <footer>
+    <footer className={styles.footer}>
       <Chapter 
         id='footer'
         className={`${styles.footerContainer}`}
@@ -128,7 +129,7 @@ export const FooterNav = memo(() => {
   return (
     <>
       <div className={`${styles.footerCta}`}>
-        <h4 className={`${typographies.h4} ${styles.ctaHeading}`}>Find me around the web</h4>
+        <span className={`${typographies.ui2} ${styles.ctaHeading}`}>Find me around the web</span>
       </div>
       <div className={`${styles.footerNav}`}>
         {Object.values(socialMediaData).map(icon => (

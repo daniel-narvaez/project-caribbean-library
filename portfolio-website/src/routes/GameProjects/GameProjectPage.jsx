@@ -17,6 +17,7 @@ import { Slideshow } from '../../components/Slideshow/Slideshow';
 import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './GameProjectPage.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 
 
 /**
@@ -67,12 +68,12 @@ const contentRenderers = {
         {element.content.map((item, index) => (
           <tr key={index}>
             <td 
-              className={`${typographies.b2} ${getClasses('detail', size)}`} 
+              className={`${typographies.b2} ${colors.text1} ${getClasses('detail', size)}`} 
               style={{fontWeight: '700'}}
             >
               {formatText(item.key)}:
             </td>
-            <td className={`${typographies.b2} ${getClasses('detail', size)}`}>
+            <td className={`${typographies.b2} ${colors.text1} ${getClasses('detail', size)}`}>
               {formatText(
                 typeof item.value === 'function' 
                   ? item.value({ urls: game.urls }) 
@@ -86,19 +87,19 @@ const contentRenderers = {
   ),
 
   heading2: (element, key, size) => (
-    <h2 className={`${typographies.h2} ${getClasses('', size)}`} key={key}>
+    <h2 className={`${typographies.h2} ${colors.text1} ${getClasses('', size)}`} key={key}>
       {element.content}
     </h2>
   ),
 
   heading3: (element, key, size) => (
-    <h3 className={`${typographies.h3} ${getClasses('', size)}`} key={key}>
+    <h3 className={`${typographies.h3} ${colors.text1} ${getClasses('', size)}`} key={key}>
       {element.content}
     </h3>
   ),
 
   paragraph: (element, key, size, game) => (
-    <p className={`${typographies.b2}`} key={key}>
+    <p className={`${typographies.b2} ${colors.text1}`} key={key}>
       {formatText(
         typeof element.content === 'function' 
           ? element.content({ urls: game.urls })
@@ -111,13 +112,13 @@ const contentRenderers = {
     element.content.type === 'bullet' ? (
       <ul className={`${getClasses('list', size)}`} key={key}>
           {element.content.items.map((item, index) => (
-            <li className={`${typographies.b2}`} key={index}>{formatText(item)}</li>
+            <li className={`${typographies.b2} ${colors.text1}`} key={index}>{formatText(item)}</li>
           ))}
       </ul>
     ) : (
       <ol className={`${getClasses('list', size)}`} key={key}>
         {element.content.items.map((item, index) => (
-          <li className={`${typographies.b2}`} key={index}>{formatText(item)}</li>
+          <li className={`${typographies.b2} ${colors.text1}`} key={index}>{formatText(item)}</li>
         ))}
       </ol>
     )
@@ -138,7 +139,7 @@ const contentRenderers = {
 
   gallery: (element, key, size) => (
     <figure className={getClasses('figure', size)} key={key}>
-      <figcaption className={`${typographies.b3}`}>
+      <figcaption className={`${typographies.b3} ${colors.text1}`}>
         <b>Figure {element.content.figId}:</b> <i>{element.content.caption}</i>
       </figcaption>
       <Slideshow slides={element.content.items} playbackMode="manual" />

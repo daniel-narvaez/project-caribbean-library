@@ -35,7 +35,7 @@ import styles from './GameProjectArticle.module.css';
 import typographies from '../../typography.module.css';
 
 import { zeroToAutoHeight } from '../../utils';
-import { LinkButton } from '../Button/Button';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 
 /**
  * Configuration for parallax effects
@@ -289,17 +289,15 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) =
           </div>
           <div className={styles.projectMenu}>
             { projectData.readMoreBtn !== '/' && (
-              <LinkButton
-                title='Read More'
+              <PrimaryButton
                 url={projectData.readMoreBtn}
-                style='solid'
+                title='Read More'
               />
             )}
             { projectData.playBtn !== '/' && (
-              <LinkButton
-                title='Play'
+              <SecondaryButton
                 url={projectData.playBtn}
-                style='island'
+                title='Play'
               />
             )}
           </div>

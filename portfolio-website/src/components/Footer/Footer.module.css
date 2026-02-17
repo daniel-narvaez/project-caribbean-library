@@ -8,8 +8,9 @@
  * - Gradient background with custom property integration
  * - Safe area handling for modern devices
  */
-footer {
+.footer {
   width: 100%;
+  color: var(--swt-sand);
 }
 /* Main container
   ============== */

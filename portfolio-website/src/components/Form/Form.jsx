@@ -23,6 +23,7 @@
 import { useState, memo, useCallback } from 'react';
 import styles from './Form.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { getArticle } from '../../utils';
 
 /**
@@ -298,18 +299,19 @@ export const TextBox = ({
 * A styled submit button with variants
 */
 export const SubmitButton = memo(({
-  title = 'Submit',
-  className = '',
-  style = 'solid',
-  disabled = false
-}) => {
+    typography = `${typographies.ui3}`,
+    palette = `${colors.uiNav1} ${colors.uiBg3}`,
+    className = '',
+    disabled = false,
+    title = 'Submit',
+  }) => {
   return (
       <button
           type="submit"
-          className={`${styles.submitButton} ${styles[style]} ${styles[className]} ${className}`}
+          className={`${typography} ${palette} ${styles.submitButton}`}
           disabled={disabled}
       >
-          <span className={`${typographies.ui3}`}>{title}</span>
+        {title}
       </button>
   );
 });

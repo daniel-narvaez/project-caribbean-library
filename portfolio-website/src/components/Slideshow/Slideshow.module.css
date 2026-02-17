@@ -149,7 +149,7 @@
   width: var(--num-m4);
   height: var(--num-m4);
   border-radius: var(--number-cornerRadius);
-  border: var(--number-cornerRadius) solid var(--color-action);
+  border-style: solid;
   background: transparent;
   cursor: pointer;
   padding: 0;
@@ -160,20 +160,20 @@
 /* Interactive States
   ================= */
 .slideIndicator:hover:not(:disabled) {
-  border-color: var(--color-action-hover);
-  background-color: var(--color-action-hover);
+  /* border-color: var(--color-action-hover);
+  background-color: var(--color-action-hover); */
 }
 
 .slideIndicator:active:not(:disabled) {
   transition: var(--menuControl-active);
-  border-color: var(--color-action-active);
-  background-color: var(--color-action-active);
+  /* border-color: var(--color-action-active);
+  background-color: var(--color-action-active); */
   transform: scale(92%);
 }
 
 .slideIndicator.active {
-  border-color: var(--color-action);
-  background-color: var(--color-action-active);
+  /* border-color: var(--color-action);
+  background-color: var(--color-action-active); */
 }
 
 /* Disabled State

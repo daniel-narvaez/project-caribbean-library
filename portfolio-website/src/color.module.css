@@ -60,7 +60,7 @@ span {
   &.uiText1 { color: var(--col-ui-text1); }
 }
 
-a, a > span {
+a {
   &.nav1 {
     color: var(--col-nav1);
 
@@ -77,19 +77,21 @@ a, a > span {
     &:active { color: var(--col-nav2-active); }
   }
 
+}
+button {
   &.uiNav1 {
     color: var(--col-ui-nav1);
-
+  
     &:hover { color: var(--col-ui-nav1-hover); }
-
+  
     &:active { color: var(--col-ui-nav1-active); }
   }
-
+  
   &.uiNav2 {
     color: var(--col-ui-nav2);
-
+  
     &:hover { color: var(--col-ui-nav2-hover); }
-
+  
     &:active { color: var(--col-ui-nav2-active); }
   }
 }
@@ -107,21 +109,44 @@ div, section, article {
 a, nav, button {
   &.uiBg1 {
     background-color: var(--col-ui-bg1);
+    border-color: var(--col-ui-bg1);
 
-    &:hover { background-color: var(--col-ui-bg1-hover); }
+    &:hover { 
+      background-color: var(--col-ui-bg1-hover); 
+      border-color: var(--col-ui-bg1-hover);
+    }
 
-    &:active { background-color: var(--col-ui-bg1-active); }
+    &:active { 
+      background-color: var(--col-ui-bg1-active); 
+      border-color: var(--col-ui-bg1-active);
+    }
   }
 
   &.uiBg2 {
-
+    background: none;
+    border-color: var(--col-ui-bg1);
 
     &:hover {
-
+      border-color: var(--col-ui-bg1-hover);
     }
 
     &:active {
+      border-color: var(--col-ui-bg1-active);
+    }
+  }
 
+  &.uiBg3 {
+    background-color: var(--col-ui-bg3);
+    border-color: var(--col-ui-bg3);
+
+    &:hover { 
+      background-color: var(--col-ui-bg3-hover); 
+      border-color: var(--col-ui-bg3-hover);
+    }
+
+    &:active { 
+      background-color: var(--col-ui-bg3-active); 
+      border-color: var(--col-ui-bg3-active);
     }
   }
 }

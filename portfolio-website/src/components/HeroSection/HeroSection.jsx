@@ -34,7 +34,7 @@ import { Slideshow } from "../Slideshow/Slideshow";
 import { DeviceContext } from "../../contexts/DeviceContext";
 
 import { heroGifSlides } from "../../data/HeroMedia";
-import { LinkButton, PrimaryButton } from "../Button/Button";
+import { LinkButton, PrimaryButton, SecondaryButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
 import typographies from '../../typography.module.css';
@@ -42,15 +42,14 @@ import colors from '../../color.module.css';
 
 import { Chapter } from "../Chapter/Chapter";
 import { socialMediaData } from "../../data/appIcons";
- 
- 
- /**
+
+/**
  * Main Hero Section Component
  * Manages 3D tilt effect and layout structure
  */
- export const HeroSection = () => {
+export const HeroSection = () => {
 
-  const { device } = useContext(DeviceContext)
+const { device } = useContext(DeviceContext)
  
   return (
     <main>
@@ -74,15 +73,14 @@ import { socialMediaData } from "../../data/appIcons";
             
             <div className={`${styles.ctaMenu}`}>
               <PrimaryButton
-                // className={`${styles.heroButton}`}
+                typography={`${typographies.ui2}`}
                 title="Browse my work"
                 url="#projects"
               />
-              <LinkButton
-                className={`${styles.heroButton}`}
+              <SecondaryButton
+                typography={`${typographies.ui2}`}
                 title="Connect on LinkedIn"
                 url={socialMediaData.linkedInIcon.profileUrl}
-                style="island"
               />
             </div>
           </div>
@@ -94,4 +92,4 @@ import { socialMediaData } from "../../data/appIcons";
       </Chapter>
     </main>
   );
- };
+};

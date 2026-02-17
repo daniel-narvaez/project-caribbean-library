@@ -48,6 +48,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { usePreloader } from '../../utils/mediaPreloader';
 import styles from './Slideshow.module.css';
+import colors from '../../color.module.css';
 
 /**
  * Configuration constants for slideshow animations and timing
@@ -350,9 +351,9 @@ export const Slideshow = ({ slides = [], playbackMode = 'automatic', aspectRatio
                     <button
                         key={index}
                         className={`
+                            ${colors.uiBg3}
                             ${styles.slideIndicator}
                             ${index === (currentIndex + 1) % slides.length ? styles.active : ''}
-                            action
                         `}
                         onClick={(e) => {
                             e.stopPropagation();

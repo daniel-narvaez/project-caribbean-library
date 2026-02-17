@@ -92,7 +92,11 @@ input, textarea, select, option {
   
     a {
       font-family: inherit;
-      font-style: underline;
+      text-decoration: underline;
+
+      &:not([href]) {
+        text-decoration: underline dotted;
+      }
     }
   
     b {
@@ -123,12 +127,13 @@ input, textarea, select, option {
   }
 }
 
-span, label {
+span, label, button {
   &.ui1, &.ui2, &.ui3, 
   &.ui4, &.ui5 {
     font-family: var(--tf-userInterface);
     font-style: normal;
-  
+    text-decoration: none; 
+
     /* The bold for user interface text is medium weight. */
     b {
       font-family: inherit;

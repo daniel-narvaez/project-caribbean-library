@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 import typographies from '../../typography.module.css';
 import colors from '../../color.module.css';
 import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
-import { getLinkAttributes } from '../../utils/externalUrls';
+import { getLinkAttributes, isExternalUrl } from '../../utils/externalUrls';
 
 /**
  * Base Button Component
@@ -113,7 +113,7 @@ export const LinkButton = memo(({
   return (
     <a
       href={isDisabled ? "#" : finalUrl}
-      onClick={handleClick}
+      onclick={handleClick}
       aria-disabled={isDisabled}
       role="button"
       tabIndex={isDisabled ? -1 : 0}
@@ -130,27 +130,49 @@ export const LinkButton = memo(({
   );
 });
 
-export const PrimaryButton = memo(({
-  title = 'Button',
-  url = '/',
-}) => {
-  const { isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
-
+const Button = memo(({ 
+    classes, 
+    url, 
+    disabled,
+    title, 
+  }) => {
   return (
-    <a
-      href={isDisabled ? "#" : finalUrl}
-      onClick={handleClick}
-      aria-disabled={isDisabled}
-      role="button"
-      tabIndex={isDisabled ? -1 : 0}
-      className={`${colors.uiBg1} ${styles.button}`}
-      {...getLinkAttributes(finalUrl)}
+    <button
+      onClick={() => isExternalUrl(url) ? window.open(url) : window.location.href = url}
+      className={`${classes} ${styles.button}`}
+      disabled = {disabled}
     >
-      <span className={`${typographies.ui3} ${colors.uiNav1}`} aria-disabled={isDisabled}>
-        {title}
-      </span>
-    </a>
-  )
+      {title}
+    </button>
+  );
+});
+
+export const PrimaryButton = memo(({
+  typography = `${typographies.ui3}`,
+  palette = `${colors.uiNav1} ${colors.uiBg1}`,
+  url = '/',
+  title = 'Button',
+  disabled = false,
+}) => {
+  return <Button 
+    classes={`${typography} ${palette}`}
+    url = {url}
+    title = {title}
+    disabled = {disabled}
+  />
+});
+
+export const SecondaryButton = memo(({
+  typography = `${typographies.ui3}`,
+  palette = `${colors.uiNav2} ${colors.uiBg2}`,
+  url = '/',
+  title = 'Button',
+}) => {
+  return <Button 
+    classes={`${typography} ${palette}`}
+    url = {url}
+    title = {title}
+  />
 });
 
 /**

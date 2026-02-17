@@ -134,17 +134,10 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--num-m2);
-  }
 
-  .heroButton {
-    width: 100%;
-    /* padding: var(--num-m2) var(--num-m4); */
-
-    &::before {
-      border-width: var(--number-cornerRadius);
-      border-radius: var(--number-cornerRadius); 
+    button {
+      width: 100%;
     }
-
   }
 
   main > .heroMedia {
