@@ -70,7 +70,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
   color: var(--col-text1) !important;
@@ -91,7 +91,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
   color: var(--col-text1) !important;
@@ -113,7 +113,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
   resize: vertical;
   font-size: 16px !important;
   line-height: 32px !important;
@@ -140,8 +140,8 @@
         135deg,
         transparent 50%,
         var(--col-bg2) 50%
-    ) no-repeat right var(--number-cornerRadius) bottom var(--number-cornerRadius) / 
-    calc(100% - var(--number-cornerRadius)) calc(100% - var(--number-cornerRadius));
+    ) no-repeat right var(--num-brd-radius) bottom var(--num-brd-radius) / 
+    calc(100% - var(--num-brd-radius)) calc(100% - var(--num-brd-radius));
     background-color: transparent;
 }
 

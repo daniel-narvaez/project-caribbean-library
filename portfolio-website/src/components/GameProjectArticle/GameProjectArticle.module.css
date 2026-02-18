@@ -23,7 +23,7 @@
 * 
 * Dependencies:
 * Global CSS custom properties:
-* - --number-cornerRadius: Border radius value
+* - --num-brd-radius: Border radius value
 * - --fx-cardShadow: Shadow effect
 * - --fx-textShadow: Text shadow effect
 * - --menuControl-hover: Hover transition timing
@@ -75,7 +75,7 @@
    flex-direction: column;
    justify-content: flex-end;
    position: relative;
-   border-radius: var(--number-cornerRadius);
+   border-radius: var(--num-brd-radius);
    box-shadow: var(--fx-boxShadow1);
    overflow: hidden;
  }
@@ -87,7 +87,7 @@
    flex-direction: column;
    justify-content: flex-end;
    position: relative;
-   border-radius: var(--number-cornerRadius);
+   border-radius: var(--num-brd-radius);
    box-shadow: var(--fx-boxShadow1);
    overflow: hidden;
  }

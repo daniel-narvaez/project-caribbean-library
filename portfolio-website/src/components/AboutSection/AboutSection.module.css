@@ -17,7 +17,7 @@
  * - Fluid spacing system
  * 
  * CSS Custom Properties Used:
- * --number-cornerRadius: Border radius for containers
+ * --num-brd-radius: Border radius for containers
  * --fx-boxShadow1: Primary shadow effect
  * --color-bg1-hover: Background color for media container
  */
@@ -46,7 +46,7 @@
   min-width: 300px;
   max-width: 600px;
   max-height: 800px;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   box-shadow: var(--fx-boxShadow1);
   overflow: hidden;
   background: var(--col-frame1);

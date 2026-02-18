@@ -8,7 +8,7 @@
  * - Includes interactive backgrounds and hover effects
  * 
  * Variables Used:
- * --number-cornerRadius: Border radius for menu items
+ * --num-brd-radius: Border radius for menu items
  * --color-link: Primary color for level 0 items
  * --color-bg1: Text color for submenu items
  * --effect-poolShadow: Shadow effect for active menus
@@ -51,7 +51,7 @@
     gap: var(--num-m2);
     border: 0px solid transparent;
     border-style: inset;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
   
     /* Background effect layer */
     &::before {
@@ -61,7 +61,7 @@
       left: calc(-1 * var(--num-m2));
       right: calc(-1 * var(--num-m2));
       bottom: calc(-1 * var(--num-m2));
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       z-index: -1;
       opacity: 0;
       transform: translateY(calc(-1 * var(--num-m1)));
@@ -84,7 +84,7 @@
     background-color: transparent;
     border: inherit;
     border-style: inherit;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     white-space: nowrap;
     text-decoration: none;
     transition: var(--menuControl-active);
@@ -100,7 +100,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);
@@ -245,7 +245,7 @@
       left: calc(-1 * var(--num-m2));
       right: calc(-1 * var(--num-m2));
       bottom: calc(-1 * var(--num-m2));
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       z-index: 1;
       background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);

@@ -23,7 +23,7 @@
     position: absolute;
     width: calc(100% - 20rem);
     height: 100%;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     background: var(--color-bg2-overlay);
     box-shadow: var(--fx-blockShadow);
   }
@@ -33,7 +33,7 @@
     position: absolute;
     width: calc(100% - 7.5rem);
     height: 100%;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     background: var(--color-bg2-overlay);
     box-shadow: var(--fx-blockShadow);
   } */

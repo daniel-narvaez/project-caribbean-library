@@ -23,7 +23,7 @@
       background-color: transparent;
       border: 1px solid transparent;
       border-style: inset;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       padding: 0;
       margin: 0;
       align-self: flex-end;
@@ -37,7 +37,7 @@
       left: calc(-1 * var(--num-m2));
       right: calc(-1 * var(--num-m2));
       bottom: calc(-1 * var(--num-m2));
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       z-index: 0;
       background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);
@@ -95,9 +95,9 @@
   
     /* Visual Styling */
     background-color: transparent;
-    border: 1px solid transparent;
+    border: solid transparent;
     border-style: inset;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     white-space: nowrap;
     text-decoration: none;
     transition: var(--menuControl-active);
@@ -110,7 +110,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);

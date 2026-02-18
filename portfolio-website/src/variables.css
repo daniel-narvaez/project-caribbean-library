@@ -63,7 +63,8 @@
   --num-m32: 128px;
   
   /* Numbers (num) */
-  --number-cornerRadius: 3px;
+  --num-brd-width: 2px;
+  --num-brd-radius: 2px;
   --num-dotSize: 3px;
   --num-cellSize: 16px;
   

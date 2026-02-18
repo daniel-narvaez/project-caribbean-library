@@ -10,7 +10,8 @@
   align-items: center;
   padding: var(--num-m1) var(--num-m2);
   border-style: solid;
-  border-radius: var(--num-m1);
+  border-width: var(--num-brd-width);
+  border-radius: var(--num-brd-radius);
   box-shadow: var(--fx-boxShadow1);
   width: fit-content;
   text-align: center;

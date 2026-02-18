@@ -10,14 +10,14 @@ export const Background = ({ children }) => {
               id="dotPattern"
               x="0"
               y="0"
-              width="16"
-              height="16"
+              width="32"
+              height="32"
               patternUnits="userSpaceOnUse"
             >
               <circle 
-                cx="8"
-                cy="8"
-                r="1"
+                cx="16"
+                cy="16"
+                r="2"
                 fill="#dcd8d1"
               />
             </pattern>

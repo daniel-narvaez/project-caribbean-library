@@ -137,7 +137,7 @@
   gap: var(--num-m2);
   padding: var(--num-m2) var(--num-m4);
   width: max-content;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   background: var(--col-frame1);
   box-shadow: var(--fx-boxShadow1);
   z-index: 50;
@@ -148,7 +148,7 @@
 .slideIndicator {
   width: var(--num-m4);
   height: var(--num-m4);
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   border-style: solid;
   background: transparent;
   cursor: pointer;

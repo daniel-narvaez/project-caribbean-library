@@ -85,7 +85,7 @@ transition: var(--menuControl-hover);
   justify-content: center;
   align-items: center;
 
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   overflow: hidden;
   background: var(--col-ui-nav1);
   box-shadow: var(--fx-boxShadow1);

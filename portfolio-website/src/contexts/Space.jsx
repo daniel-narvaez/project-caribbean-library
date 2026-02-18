@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect } from 'react';
 import { DeviceContext } from './DeviceContext';
 
-const MarginsContext = createContext();
+const SpaceContext = createContext();
 
-export const MarginsProvider = ({children}) => {
+
+
+export const SpaceProvider = ({children}) => {
   // Consume screen size context to determine which typography scale to use
   const { device } = useContext(DeviceContext);
 
@@ -46,6 +48,21 @@ export const MarginsProvider = ({children}) => {
     }
   };
 
+  const borders = {
+    desktop: {
+      width: '2px',
+      radius: '2px'
+    },
+    tablet: {
+      width: '1px',
+      radius: '1px'
+    },
+    mobile: {
+      width: '1px',
+      radius: '1px'
+    }
+  }
+
   useEffect(() => {
     // Set CSS custom variables for margins, given the device context.
     // Because these are numbers, we use the 'num' prefix.
@@ -57,12 +74,15 @@ export const MarginsProvider = ({children}) => {
     rootCss.setProperty('--num-m12', margins[device].m12);
     rootCss.setProperty('--num-m20', margins[device].m20);
     rootCss.setProperty('--num-m32', margins[device].m32);
+
+    rootCss.setProperty('--num-brd-width', borders[device].width);
+    rootCss.setProperty('--num-brd-radius', borders[device].radius);
   }, [device]); // Re-run when the device context changes
 
   return (
-    <MarginsContext.Provider value={{}}>
+    <SpaceContext.Provider value={{}}>
       {children}
-    </MarginsContext.Provider>
+    </SpaceContext.Provider>
   );
 };
 

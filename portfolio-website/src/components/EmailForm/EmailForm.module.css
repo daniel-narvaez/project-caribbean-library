@@ -23,7 +23,7 @@
   padding: var(--num-m8);
   gap: var(--num-m8);
   align-self: center;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   background: var(--col-frame1);
   box-shadow: var(--fx-boxShadow1);
   transform-style: preserve-3d;
@@ -79,7 +79,7 @@
   gap: var(--num-m2);
   transform: rotateY(180deg);
   background: var(--col-frame1);
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   justify-content: center;
 }
 

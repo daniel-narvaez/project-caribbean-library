@@ -76,13 +76,11 @@
   gap: var(--num-m4);
 }
 
-/* .ctaMenu .heroButton {
+.ctaMenu .button {
   padding: var(--num-m4) var(--num-m8);
-} */
-
-.ctaMenu .heroButton::before {
-  border-radius: var(--num-m1);
 }
+
+
 
 /**
 * Responsive Design

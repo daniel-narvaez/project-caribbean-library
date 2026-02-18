@@ -22,7 +22,7 @@ import { DeviceProvider } from '../../contexts/DeviceContext';
 import { AppearanceProvider } from '../../contexts/Appearance';
 import { TypescalesProvider } from '../../contexts/Typescales';
 import { ColorsProvider } from '../../contexts/Color';
-import { MarginsProvider } from '../../contexts/Margins';
+import { SpaceProvider } from '../../contexts/Space';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
 
 import Home from '../Home/Home';
@@ -74,7 +74,7 @@ function App() {
       <AppearanceProvider>
         <TypescalesProvider>
           <ColorsProvider>
-            <MarginsProvider>
+            <SpaceProvider>
               <ChaptersProvider>
                 <div className={styles.App}>
                   <Analytics />
@@ -96,7 +96,7 @@ function App() {
                   </BrowserRouter>
                 </div>
               </ChaptersProvider>
-            </MarginsProvider>
+            </SpaceProvider>
           </ColorsProvider>
         </TypescalesProvider>
       </AppearanceProvider>

@@ -158,7 +158,7 @@
 .figure img {
   width: 100%;
   object-fit: contain;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   box-shadow: var(--fx-boxShadow1);
 }
 
@@ -166,7 +166,7 @@
   width: 100%;
   aspect-ratio: 16/9;
   border: none;
-  border-radius: var(--number-cornerRadius);
+  border-radius: var(--num-brd-radius);
   box-shadow: var(--fx-boxShadow1);
   z-index: 1;
 }
