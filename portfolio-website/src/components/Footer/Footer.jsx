@@ -20,8 +20,9 @@
 
 import { useRef, useEffect, useContext, memo } from 'react';
 import { ContactIcon } from '../ContactItem/ContactItem';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
 import styles from './Footer.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
 
@@ -56,7 +57,6 @@ const CONTACT_PLATFORMS = [
  */
 export const Footer = ({ children }) => {
   const waveConfig = useRef(WAVE_CONFIG);
-  const { size } = useContext(ScreenSizeContext);
 
   // Update wave color from CSS custom property if available
   useEffect(() => {
@@ -72,10 +72,10 @@ export const Footer = ({ children }) => {
   }, []);
 
   return (
-    <footer>
+    <footer className={styles.footer}>
       <Chapter 
         id='footer'
-        className={`${styles.footerContainer} ${styles[size]}`}
+        className={`${styles.footerContainer}`}
       >
         <div className={styles.waves}>
           <svg
@@ -105,13 +105,13 @@ export const Footer = ({ children }) => {
           </svg>
         </div>
 
-        <div className={`${styles.footerContent} ${styles[size]}`}>
+        <div className={`${styles.footerContent}`}>
           {children}
         </div>
 
-        <div className={`${styles.footerBottom} ${styles[size]}`}>
-          <p>
-            &copy; 2025 designed & developed by Daniel Narvaez. <br/>
+        <div className={`${styles.footerBottom}`}>
+          <p className={`${typographies.b3}`}>
+            &copy; {new Date().getFullYear()} designed & developed by Daniel Narvaez. <br/>
             All rights reserved.
           </p>
         </div>
@@ -126,14 +126,12 @@ export const Footer = ({ children }) => {
  * Memoized to prevent unnecessary re-renders
  */
 export const FooterNav = memo(() => {
-  const { size } = useContext(ScreenSizeContext);
-
   return (
     <>
-      <div className={`${styles.footerCta} ${styles[size]}`}>
-        <span>Find me around the web</span>
+      <div className={`${styles.footerCta}`}>
+        <span className={`${typographies.ui2} ${styles.ctaHeading}`}>Find me around the web</span>
       </div>
-      <div className={`${styles.footerNav} ${styles[size]}`}>
+      <div className={`${styles.footerNav}`}>
         {Object.values(socialMediaData).map(icon => (
           <ContactIcon 
             key={icon.appName} 

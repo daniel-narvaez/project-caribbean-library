@@ -20,9 +20,10 @@
  * - Unique ID generation for form elements
  */
 
-import { useState, useContext, memo, useCallback } from 'react';
+import { useState, memo, useCallback } from 'react';
 import styles from './Form.module.css';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { getArticle } from '../../utils';
 
 /**
@@ -102,7 +103,6 @@ export const InputField = ({
   inputConfig = {}
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(ScreenSizeContext);
 
   const defaultInputConfig = {
       type: "text",
@@ -146,16 +146,16 @@ export const InputField = ({
   }, [finalInputConfig.required, finalInputConfig.type, finalLabelConfig.text]);
 
   return (
-      <div className={`${styles.inputField} ${styles[size]}`}>
+      <div className={`${styles.inputField}`}>
           <input 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalInputConfig}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className='action' htmlFor={finalInputConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalInputConfig.id}>
               {finalLabelConfig.text}
           </label>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -170,7 +170,6 @@ export const SelectField = ({
   options = []
 }) => {
   const [error, setError] = useState('');
-  const { size } = useContext(ScreenSizeContext);
 
   const defaultSelectConfig = {
       id: createUniqueId('select'),
@@ -206,23 +205,23 @@ export const SelectField = ({
   });
 
   return (
-      <div className={`${styles.selectField} ${styles[size]}`}>
+      <div className={`${styles.selectField}`}>
           <select 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalSelectConfig}
               onBlur={(e) => validateInput(e.target.value)}
           >
-              <option value="" hidden> </option>
+              <option className={`${typographies.b2}`} value="" hidden> </option>
               {uniqueOptions.map(option => (
-                  <option key={option.value} value={option.value}>
+                  <option className={`${typographies.b2}`} key={option.value} value={option.value}>
                       {option.label}
                   </option>
               ))}
           </select>
-          <label className='action' htmlFor={finalSelectConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalSelectConfig.id}>
               {finalLabelConfig.text}
           </label>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -242,7 +241,6 @@ export const TextBox = ({
 }) => {
   const [error, setError] = useState('');
   const [charCount, setCharCount] = useState(0);
-  const { size } = useContext(ScreenSizeContext);
 
   const defaultTextareaConfig = {
       id: createUniqueId('textarea'),
@@ -278,20 +276,20 @@ export const TextBox = ({
   }, [finalTextareaConfig.required, finalTextareaConfig.name]);
 
   return (
-      <div className={`${styles.textBox} ${styles[size]}`}>
+      <div className={`${styles.textBox}`}>
           <textarea 
-              className='action'
+              className={`${typographies.b2}`}
               {...finalTextareaConfig}
               onChange={handleInput}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className='action' htmlFor={finalTextareaConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalTextareaConfig.id}>
               {finalLabelConfig.text}
           </label>
-          <span className={styles.charCount}>
+          <span className={`${typographies.ui4} ${styles.charCount}`}>
               {finalTextareaConfig.maxLength - charCount} characters remaining
           </span>
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
       </div>
   );
 };
@@ -301,18 +299,19 @@ export const TextBox = ({
 * A styled submit button with variants
 */
 export const SubmitButton = memo(({
-  title = 'Submit',
-  className = '',
-  style = 'solid',
-  disabled = false
-}) => {
+    typography = `${typographies.ui3}`,
+    palette = `${colors.uiNav1} ${colors.uiBg3}`,
+    className = '',
+    disabled = false,
+    title = 'Submit',
+  }) => {
   return (
       <button
           type="submit"
-          className={`${styles.submitButton} ${styles[style]} ${styles[className]} ${className}`}
+          className={`${typography} ${palette} ${styles.submitButton}`}
           disabled={disabled}
       >
-          <span>{title}</span>
+        {title}
       </button>
   );
 });

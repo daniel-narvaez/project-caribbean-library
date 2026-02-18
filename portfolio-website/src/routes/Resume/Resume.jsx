@@ -16,7 +16,7 @@ import { ActionButton } from "../../components/Button/Button";
 import { Footer, FooterNav } from "../../components/Footer/Footer";
 import { ResumeContent } from "../../components/ResumeContent/ResumeContent";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './Resume.module.css';
 import { Helmet } from 'react-helmet';
 
@@ -36,7 +36,7 @@ function Resume() {
     filename: ''
   });
   const [uploadDate, setUploadDate] = useState(null);
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
 
   const fetchResumeData = useCallback(async () => {
     try {
@@ -84,30 +84,26 @@ function Resume() {
         <div 
           className={`
             ${styles.Resume}
-            ${styles[size]}
+            ${styles[device]}
           `}
         >
           <ScrollAnchor />
-          <h1 className="sr-only">
-            Resume Résume Resumé Résumé | Daniel Narvaez
-          </h1>
-
           <Chapter
             id="hero"
-            className={`${styles.heroSection} ${styles[size]}`}
+            className={`${styles.heroSection} ${styles[device]}`}
           >
-            <div className={`${styles.heroContent} ${styles[size]}`}>
-              <h2 className={styles.headline}>Résumé</h2>
-              <p className={styles.tagline}>
+            <div className={`${styles.heroContent} ${styles[device]}`}>
+              <h1 className={`heading1 ${styles.headline}`}>Résumé</h1>
+              <p className={`body1 ${styles.tagline}`}>
                 I'm currently seeking entry-level <b>game designer</b><br />
                 roles. Although based in <b>New York, USA</b>,<br />
                 I'm willing to relocate worldwide.
               </p>
             </div>
 
-            <div className={`${styles.heroMedia} ${styles[size]}`}>
-              <div className={`${styles.pdfDownloader} ${styles[size]}`}>
-                <span>Updated: {uploadDate || 'Loading...'}</span>
+            <div className={`${styles.heroMedia} ${styles[device]}`}>
+              <div className={`${styles.pdfDownloader} ${styles[device]}`}>
+                <span className={`user-interface4`}>Updated: {uploadDate || 'Loading...'}</span>
                 <ActionButton
                   className={styles.heroButton}
                   title="Download PDF"
@@ -120,7 +116,7 @@ function Resume() {
 
           <main
             id="resume"
-            className={`${styles.resumeSection} ${styles[size]}`}
+            className={`${styles.resumeSection} ${styles[device]}`}
           >
             <ResumeContent />
           </main>

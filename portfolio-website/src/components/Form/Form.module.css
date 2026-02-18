@@ -12,25 +12,25 @@
 
 /* Base Form Layout
    =============== */
-   .form {
-    display: flex;
-    position: relative;
-    align-self: flex-start;
-    flex-direction: column;
-    gap: 2.5rem;
-    width: 100%;
+  .form {
+  display: flex;
+  position: relative;
+  align-self: flex-start;
+  flex-direction: column;
+  gap: var(--num-m12);
+  width: 100%;
 }
 
 /* Field Container Styles
    ==================== */
 .inputField,
 .selectField {
-    position: relative;
-    width: max-content;
+  position: relative;
+  width: max-content;
 }
 
 .textBox {
-    position: relative;
+  position: relative;
 }
 
 /* Label Styles
@@ -38,25 +38,23 @@
 .inputField label,
 .selectField label,
 .textBox label {
-    display: flex;
-    position: absolute;
-    top: 0;
-    height: 2rem;
-    align-items: center;
-    font-family: var(--font-libreBaskerville);
-    font-size: 1rem;
-    line-height: 2rem;
-    text-decoration: none;
-    pointer-events: none;
-    transition: var(--menuControl-hover);
+  display: flex;
+  position: absolute;
+  top: 0;
+  height: 32px;
+  align-items: center;
+  text-decoration: none;
+  pointer-events: none;
+  transition: var(--menuControl-hover);
 }
 
-.inputField label::after,
+/* Places the red * after every label */
+/* .inputField label::after,
 .selectField label::after,
 .textBox label::after {
-    content: '*';
-    color: var(--color-error);
-}
+  content: '*';
+  color: var(--color-error);
+} */
 
 /* Input Field Styles
   ================= */
@@ -65,18 +63,17 @@
   -moz-appearance: none;
   appearance: none;
   display: flex;
-  min-width: 12.5rem;
+  min-width: 200px;
   width: fit-content;
-  height: 2rem;
+  height: 32px;
   background: none;
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-  font-family: var(--font-notoSans) !important;
-  font-size: 1rem !important;
-  line-height: 2rem !important;
-  color: var(--color-text1) !important;
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
+  font-size: 16px !important;
+  line-height: 32px !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
   transition: var(--menuControl-hover);
 }
@@ -88,17 +85,16 @@
   -moz-appearance: none;
   appearance: none;
   display: flex;
-  min-width: 12.5rem;
-  height: 2rem;
+  min-width: 200px;
+  height: 32px;
   background: none;
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
-  font-family: var(--font-notoSans) !important;
-  font-size: 1rem !important;
-  line-height: 2rem !important;
-  color: var(--color-text1) !important;
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
+  font-size: 16px !important;
+  line-height: 32px !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
 }
 
@@ -110,19 +106,18 @@
   appearance: none;
   display: flex;
   width: 100%;
-  min-height: 8rem;
-  height: 12rem;
-  max-height: 30rem;
+  min-height: 128px;
+  height: 192px;
+  max-height: 480px;
   background: none;
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  border-bottom: var(--num-brd-width) solid var(--col-bg2);
   resize: vertical;
-  font-family: var(--font-notoSans) !important;
-  font-size: 1rem !important;
-  line-height: 2rem !important;
-  color: var(--color-text1) !important;
+  font-size: 16px !important;
+  line-height: 32px !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
 }
 
@@ -131,9 +126,9 @@
 .textBox .charCount {
     position: absolute;
     right: 0;
-    color: var(--color-bg1-active);
-    font-size: 0.75rem;
-    height: 1rem;
+    color: var(--col-bg2);
+    font-size: 12px;
+    height: 16px;
     opacity: 0;
     transition: var(--menuControl-hover);
 }
@@ -144,9 +139,9 @@
     background: linear-gradient(
         135deg,
         transparent 50%,
-        var(--color-bg1-active) 50%
-    ) no-repeat right var(--number-cornerRadius) bottom var(--number-cornerRadius) / 
-    calc(100% - var(--number-cornerRadius)) calc(100% - var(--number-cornerRadius));
+        var(--col-bg2) 50%
+    ) no-repeat right var(--num-brd-radius) bottom var(--num-brd-radius) / 
+    calc(100% - var(--num-brd-radius)) calc(100% - var(--num-brd-radius));
     background-color: transparent;
 }
 
@@ -165,7 +160,7 @@
   appearance: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  font-size: 1rem;
+  font-size: 16px !important;
 }
 
 /* Floating Label Animations
@@ -178,10 +173,10 @@
 .textBox textarea:not(:placeholder-shown) ~ label {
     top: 0;
     transform: translateY(-100%);
-    height: 1rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: var(--color-bg1-active);
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--col-bg2);
 }
 
 .inputField input:focus ~ label::after,
@@ -196,7 +191,7 @@
 .inputField input:disabled,
 .selectField select:disabled,
 .textBox textarea:disabled {
-  background: var(--color-bg1-active);
+  background: var(--col-bg2);
   opacity: 0.4;
   pointer-events: none;
 
@@ -220,9 +215,9 @@
    =================== */
 .error {
     position: absolute;
-    color: var(--color-error);
-    font-size: 0.75rem;
-    height: 1rem;
+    color: var(--col-error1);
+    font-size: 12px !important;
+    height: 16px;
 }
 
 /**
@@ -235,103 +230,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 0;
-  padding: var(--padding-size) calc(var(--padding-size) * 2);
-  text-decoration: none;
-}
-
-/* Common pseudo-element styling */
-.submitButton::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform-origin: center;
-  z-index: -1;
-  border-radius: var(--number-cornerRadius);
-  transition: var(--menuControl-hover);
-}
-
-/* Common text styling */
-.submitButton span {
-  font-family: var(--display-text);
-  font-weight: 400;
+  padding: var(--num-m1) var(--num-m2);
+  border-style: solid;
+  border-radius: var(--num-m1);
+  box-shadow: var(--fx-boxShadow1);
+  width: fit-content;
   text-align: center;
-  text-transform: capitalize;
   transition: var(--menuControl-hover);
-}
 
-.submitButton:disabled,
-.submitButton[aria-disabled="true"] {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/**
- * Common Active State
- * ------------------
- * Shared transform and transition properties
- */
-.submitButton:active::before,
-.submitButton:active span {
-  transform: scale(92%);
-  transition: var(--menuControl-active);
-}
-
-/**
- * Solid Button Variant
- * -------------------
- */
- .submitButton.solid::before {
-  background-color: var(--color-action);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.submitButton.solid span {
-  color: var(--color-bg1);
-}
-
-.submitButton.solid:hover::before {
-  background-color: var(--color-action-hover);
-}
-
-.submitButton.solid:hover span {
-  color: var(--color-bg1-hover);
-}
-
-.submitButton.solid:active::before {
-  background-color: var(--color-action-active);
-}
-
-.submitButton.solid:active span {
-  color: var(--color-bg1-active);
-}
-
-/**
- * Island Button Variant
- * -------------------
- */
- .submitButton.island::before {
-  border: var(--number-cornerRadius) solid var(--color-action);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.submitButton.island span {
-  color: var(--color-action);
-}
-
-.submitButton.island:hover::before {
-  border-color: var(--color-action-hover);
-}
-
-.submitButton.island:hover span {
-  color: var(--color-action-hover);
-}
-
-.submitButton.island:active::before {
-  border-color: var(--color-action-active);
-}
-
-.submitButton.island:active span {
-  color: var(--color-action-active);
+  &:active {
+    transform: scale(92%);
+    transition: var(--menuControl-active);
+  }
 }

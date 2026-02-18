@@ -1,8 +1,10 @@
 // Buttons.js
-import React, { memo } from 'react';
+import { memo } from 'react';
 import styles from './Button.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { useActionButtonLogic, useLinkButtonLogic } from './ButtonLogic';
-import { getLinkAttributes } from '../../utils/externalUrls';
+import { getLinkAttributes, isExternalUrl } from '../../utils/externalUrls';
 
 /**
  * Base Button Component
@@ -15,11 +17,11 @@ import { getLinkAttributes } from '../../utils/externalUrls';
  * @param {boolean} props.disabled - Whether the button is disabled
  * @param {string} props.title - Button text content
  */
-const ButtonBase = memo(({ className, style = 'solid', size, disabled, title }) => {
-  const buttonClassName = `${styles.button} ${styles[style]} ${styles[size]} ${className}`;
+const ButtonBase = memo(({ className, style = 'solid', disabled, title }) => {
+  const buttonClassName = `${className} ${styles.button} ${styles[style]}`;
   
   return (
-    <span className={buttonClassName} aria-disabled={disabled}>
+    <span className={`${buttonClassName}`} aria-disabled={disabled}>
       {title}
     </span>
   );
@@ -58,7 +60,7 @@ export const ActionButton = memo(({
   className = '',
   onCustomClick
 }) => {
-  const { size, isDisabled } = useActionButtonLogic(onCustomClick);
+  const { isDisabled } = useActionButtonLogic(onCustomClick);
 
   return (
     <button
@@ -68,9 +70,8 @@ export const ActionButton = memo(({
       disabled={isDisabled}
     >
       <ButtonBase 
-        className={className}
+        className={`${typographies.ui3} ${className}`}
         style={style}
-        size={size}
         disabled={isDisabled}
         title={title}
       />
@@ -107,12 +108,12 @@ export const LinkButton = memo(({
   style = 'solid',
   className = ''
 }) => {
-  const { size, isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
+  const { isDisabled, finalUrl, handleClick } = useLinkButtonLogic(url);
 
   return (
     <a
       href={isDisabled ? "#" : finalUrl}
-      onClick={handleClick}
+      onclick={handleClick}
       aria-disabled={isDisabled}
       role="button"
       tabIndex={isDisabled ? -1 : 0}
@@ -120,14 +121,58 @@ export const LinkButton = memo(({
       {...getLinkAttributes(finalUrl)}
     >
       <ButtonBase 
-        className={className}
+        className={`${typographies.ui3} ${className}`}
         style={style}
-        size={size}
         disabled={isDisabled}
         title={title}
       />
     </a>
   );
+});
+
+const Button = memo(({ 
+    classes, 
+    url, 
+    disabled,
+    title, 
+  }) => {
+  return (
+    <button
+      onClick={() => isExternalUrl(url) ? window.open(url) : window.location.href = url}
+      className={`${classes} ${styles.button}`}
+      disabled = {disabled}
+    >
+      {title}
+    </button>
+  );
+});
+
+export const PrimaryButton = memo(({
+  typography = `${typographies.ui3}`,
+  palette = `${colors.uiNav1} ${colors.uiBg1}`,
+  url = '/',
+  title = 'Button',
+  disabled = false,
+}) => {
+  return <Button 
+    classes={`${typography} ${palette}`}
+    url = {url}
+    title = {title}
+    disabled = {disabled}
+  />
+});
+
+export const SecondaryButton = memo(({
+  typography = `${typographies.ui3}`,
+  palette = `${colors.uiNav2} ${colors.uiBg2}`,
+  url = '/',
+  title = 'Button',
+}) => {
+  return <Button 
+    classes={`${typography} ${palette}`}
+    url = {url}
+    title = {title}
+  />
 });
 
 /**

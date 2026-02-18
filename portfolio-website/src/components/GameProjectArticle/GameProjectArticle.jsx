@@ -29,10 +29,13 @@
 */
 
 import React, { useContext, useEffect, useRef } from 'react';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext, devices } from '../../contexts/DeviceContext';
+
 import styles from './GameProjectArticle.module.css';
+import typographies from '../../typography.module.css';
+
 import { zeroToAutoHeight } from '../../utils';
-import { LinkButton } from '../Button/Button';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 
 /**
  * Configuration for parallax effects
@@ -53,14 +56,14 @@ const PARALLAX_CONFIG = {
 * 
 * @param {RefObject} articleRef - Reference to article container
 * @param {RefObject} backgroundRef - Reference to background image
-* @param {string} size - Current device size from ScreenSizeContext
+* @param {string} device - Current device size from ScreenSizeContext
 */
-const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
+const useDesktopParallax = (articleRef, backgroundRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
  
-    if (!article || !background || size === 'Mobile') 
+    if (!article || !background || device === devices.mobile) 
       return () => background.style.transform = 'translate(0%, 0%)';
  
     let frameId;
@@ -90,13 +93,13 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
       background.style.transform = 'translate(0%, 0%)';
     };
  
-    if (size === 'Desktop') {
+    if (device === devices.desktop) {
       article.addEventListener('mousemove', handleMouseParallax, { passive: true });
       article.addEventListener('mouseleave', resetMouseParallax);
     }
  
     return () => {
-      if (size === 'Desktop') {
+      if (device === devices.desktop) {
         article.removeEventListener('mousemove', handleMouseParallax);
         article.removeEventListener('mouseleave', resetMouseParallax);
       }
@@ -104,7 +107,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size, layout]);
+  }, [device, layout]);
 };
  
  /**
@@ -114,14 +117,14 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
  * 
  * @param {RefObject} articleRef - Reference to article container
  * @param {RefObject} backgroundRef - Reference to background image
- * @param {string} size - Current device size from ScreenSizeContext
+ * @param {string} device - Current device size from ScreenSizeContext
  */
- const useMobileParallax = (articleRef, backgroundRef, size, layout) => {
+ const useMobileParallax = (articleRef, backgroundRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const background = backgroundRef.current;
     
-    if (!article || !background || size === 'Desktop') 
+    if (!article || !background || device === devices.desktop) 
       return () => background.style.transform = 'translate(0%, 0%)';
   
     let frameId;
@@ -156,7 +159,7 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [size, layout]);
+  }, [device, layout]);
 };
 
 /**
@@ -168,9 +171,9 @@ const useDesktopParallax = (articleRef, backgroundRef, size, layout) => {
 * @param {RefObject} articleRef - Reference to article container
 * @param {RefObject} wrapperRef - Reference to content wrapper
 * @param {RefObject} titleRef - Reference to title element
-* @param {string} size - Current device size from ScreenSizeContext
+* @param {string} device - Current device size from ScreenSizeContext
 */
-const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => {
+const useContentExpansion = (articleRef, wrapperRef, titleRef, device, layout) => {
   useEffect(() => {
     const article = articleRef.current;
     const wrapper = wrapperRef.current;
@@ -182,7 +185,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     
     const resizeObserver = new ResizeObserver(entries => {
       titleHeight = entries[0].contentRect.height;
-      if (size === 'Mobile' || layout.includes('Banner'))
+      if (device === devices.mobile || layout.includes('Banner'))
         wrapper.style.height = 'auto';
       else
         zeroToAutoHeight(wrapper, false, {}, titleHeight);
@@ -191,7 +194,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
     resizeObserver.observe(title);
 
     // If it's mobile or banner, just setup the resize observer
-    if (size === 'Mobile' || layout.includes('Banner')) {
+    if (device === devices.mobile || layout.includes('Banner')) {
       return () => {
         resizeObserver.disconnect();
       };
@@ -217,7 +220,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
       article.removeEventListener('mouseenter', handleMouseEnter);
       article.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [size, layout]);
+  }, [device, layout]);
  };
  
  /**
@@ -274,29 +277,27 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
           className={styles.contentWrapper}
         >
           <div className={styles.projectInfo}>
-            <h2 
+            <h3 
               ref={titleRef} 
-              className={styles.projectTitle}
+              className={`${typographies.h3} ${styles.projectTitle}`}
             >
-              <b>{projectData.heading}</b>
-            </h2>
-            <p className={styles.projectTagline}>
+              {projectData.heading}
+            </h3>
+            <p className={`${typographies.b2} ${styles.projectTagline}`}>
               {projectData.tagline}
             </p>
           </div>
           <div className={styles.projectMenu}>
             { projectData.readMoreBtn !== '/' && (
-              <LinkButton
-                title='Read More'
+              <PrimaryButton
                 url={projectData.readMoreBtn}
-                style='solid'
+                title='Read More'
               />
             )}
             { projectData.playBtn !== '/' && (
-              <LinkButton
-                title='Play'
+              <SecondaryButton
                 url={projectData.playBtn}
-                style='island'
+                title='Play'
               />
             )}
           </div>
@@ -328,7 +329,7 @@ const useContentExpansion = (articleRef, wrapperRef, titleRef, size, layout) => 
 */
 export const GameProjectArticle = ({ projectData }) => {
   // Access screen context for responsive behavior
-  const { size, layout } = useContext(ScreenSizeContext);
+  const { device, layout } = useContext(DeviceContext);
  
   // Refs for DOM manipulation and effects
   const articleRef = useRef(null);
@@ -337,9 +338,9 @@ export const GameProjectArticle = ({ projectData }) => {
   const titleRef = useRef(null);
  
   // Apply interactive effects based on device context
-  useContentExpansion(articleRef, wrapperRef, titleRef, size, layout);
-  useDesktopParallax(articleRef, backgroundRef, size, layout);
-  useMobileParallax(articleRef, backgroundRef, size, layout);
+  useContentExpansion(articleRef, wrapperRef, titleRef, device, layout);
+  useDesktopParallax(articleRef, backgroundRef, device, layout);
+  useMobileParallax(articleRef, backgroundRef, device, layout);
  
   return (
     <ArticleLayout

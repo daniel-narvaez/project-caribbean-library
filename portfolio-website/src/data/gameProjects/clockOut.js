@@ -41,7 +41,7 @@ const clockOutProject = createGameProject({
     ),
     walkthrough: [
       {
-        heading: projectContent.heading('Project Overview'),
+        heading: projectContent.heading2('Project Overview'),
         content: {
           left: [
             projectContent.details([
@@ -50,7 +50,7 @@ const clockOutProject = createGameProject({
               { key: 'Team Size', value: '7'},
               { key: 'Builds', value: ({ urls }) => `[App Store](${urls.appStore}), [Google Play](${urls.googlePlay})`}
             ]),
-            projectContent.subheading('Contributions'),
+            projectContent.heading3('Contributions'),
             projectContent.list({
               type: 'bullet',
               items: [
@@ -72,7 +72,7 @@ const clockOutProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('Stat Progression System'),
+        heading: projectContent.heading2('Stat Progression System'),
         content: {
           left: [
             projectContent.paragraph("In a fighting game with only 4 combat actions, we needed a way to create increasingly difficult boss encounters that didn't depend on complex mechanics."),
@@ -113,7 +113,7 @@ const clockOutProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('Weighted Stat Upgrades'),
+        heading: projectContent.heading2('Weighted Stat Upgrades'),
         content: {
           left: [
             projectContent.paragraph("The artists created 17 unique boss characters, and we wanted each one to fight differently. Our original stat system increased enemy power exponentially, but every boss felt the same to fight because they all shared identical stat distributions regardless of which one spawned."),
@@ -146,7 +146,7 @@ const clockOutProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading('Job Experience Economy System'),
+        heading: projectContent.heading2('Job Experience Economy System'),
         content: {
           left: [
             projectContent.paragraph("After implementing boss types, we discovered another balance issue. The Intern upgraded all five stats after every fight, but bosses only upgraded three. This meant bosses couldn't scale fast enough to create proper challenge, which broke the game's difficulty curve."),

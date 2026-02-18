@@ -12,7 +12,6 @@
  * @file DropdownDesktop.jsx
  */
 
-import React from 'react';
 import {
   useState,
   useRef,
@@ -31,7 +30,8 @@ import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownDesktop.module.css';
-import { Burgershelf } from '../Burgershelf/Burgershelf';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 
 /**
  * Individual menu item component handling both regular items and submenus
@@ -81,7 +81,7 @@ const DropdownItem = memo(({ item, level = 0, onClose }) => {
       >
         {(hasSubmenu && level !== 0) && <Chevron direction={isActive ? 'right' : 'left'} />}
         {item.icon}
-        <span>{item.title}</span>
+        <span className={`${typographies.ui3}`}>{item.title}</span>
       </a>
     ) : (
       <button

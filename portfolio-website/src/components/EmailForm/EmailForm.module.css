@@ -19,23 +19,15 @@
   align-items: center;
   perspective: 1000px; /* For 3D card effect */
   width: 100%;
-  max-width: 45rem;
+  max-width: 720px;
+  padding: var(--num-m8);
+  gap: var(--num-m8);
   align-self: center;
-  border-radius: var(--number-cornerRadius);
-  background: var(--color-bg1-hover);
+  border-radius: var(--num-brd-radius);
+  background: var(--col-frame1);
   box-shadow: var(--fx-boxShadow1);
   transform-style: preserve-3d;
   transition: transform 0.8s;
-  
-  &.Desktop {
-    padding: 2rem;
-    gap: 2rem;
-  }
-
-  &.Mobile {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
 
   &.flipped {
     transform: rotateY(180deg);
@@ -48,7 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--num-m8);
   align-self: stretch;
   backface-visibility: hidden;
 }
@@ -57,24 +49,15 @@
    ================ */
 .taglineContainer {
   display: flex;
-  max-width: 30rem;
+  max-width: 480px;
 }
 
-.taglineContainer span {
+.taglineContainer {
   text-align: center;
-  font-family: var(--font-libreBaskerville);
 
-  &.error {
-    color: var(--color-error);
+  .error {
+    color: var(--col-error1);
   }
-}
-
-.taglineContainer span.Mobile {
-  font-size: 1.125rem;
-}
-
-.taglineContainer span.Desktop {
-  font-size: 1.1875rem;
 }
 
 /* Form Content
@@ -92,22 +75,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 2rem;
-  gap: 0.5rem;
+  padding: var(--num-m8);
+  gap: var(--num-m2);
   transform: rotateY(180deg);
-  background: var(--color-bg1-hover);
-  border-radius: var(--number-cornerRadius);
+  background: var(--col-frame1);
+  border-radius: var(--num-brd-radius);
   justify-content: center;
 }
 
 /* Responsive SVG Scaling
    ==================== */
 .emailMedia.Mobile svg {
-  width: 12rem;
-  height: 12rem;
+  width: 192px;
+  height: 192px;
 }
 
 .emailMedia.Desktop svg {
-  width: 16rem;
-  height: 16rem;
+  width: 256px;
+  height: 256px;
 }

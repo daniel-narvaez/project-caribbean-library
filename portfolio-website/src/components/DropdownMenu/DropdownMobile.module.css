@@ -23,7 +23,7 @@
       background-color: transparent;
       border: 1px solid transparent;
       border-style: inset;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       padding: 0;
       margin: 0;
       align-self: flex-end;
@@ -33,13 +33,13 @@
     &.menuOpen::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
-      border-radius: var(--number-cornerRadius);
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
+      border-radius: var(--num-brd-radius);
       z-index: 0;
-      background-color: var(--color-link);
+      background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);
     }
   }
@@ -64,7 +64,7 @@
      --------------------------------- */
   .phantom {
     visibility: hidden;
-    height: 2rem;  /* Matches menu button height */
+    height: var(--num-m8);
   }
   
   /* Wrapper (Contains Button/Link and Submenu)
@@ -76,7 +76,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.375rem;
+    gap: var(--num-m2);
   }
   
   /* Menu Controls (Button & Link)
@@ -84,8 +84,8 @@
   .menuButton,
   .menuLink {
     /* Base Layout */
-    padding: 0.375rem 0.75rem;
-    height: 2rem;
+    padding: var(--num-m2) var(--num-m4);
+    height: var(--num-m8);
     width: max-content;
     margin-left: auto;
     display: flex;
@@ -95,9 +95,9 @@
   
     /* Visual Styling */
     background-color: transparent;
-    border: 1px solid transparent;
+    border: solid transparent;
     border-style: inset;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     white-space: nowrap;
     text-decoration: none;
     transition: var(--menuControl-active);
@@ -110,19 +110,17 @@
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);
-      background-color: var(--color-link-hover);
+      background-color: var(--col-ui-bg1-hover);
       z-index: -1;
     }
   
     /* Text Styling */
     span {
-      font-family: var(--display-text);
-      color: var(--color-bg1);
-      font-weight: 500;
+      color: var(--col-ui-nav1);
       transition: var(--menuControl-active);
     }
   
@@ -130,9 +128,9 @@
     &:hover {
       &::before {
         transform: scaleY(1);
-        background-color: var(--color-link-hover);
+        background-color: var(--col-ui-bg1-hover);
       }
-      span { color: var(--color-bg1-hover); }
+      span { color: var(--col-ui-nav1-hover); }
       .chevron svg { fill: red; }
     }
   
@@ -141,17 +139,17 @@
     &.menuLinkActive {
       &::before {
         transform: scaleY(1);
-        background-color: var(--color-link-active);
+        background-color: var(--col-ui-bg1-active);
       }
-      span { color: var(--color-bg1-active); }
-      .chevron svg path { fill: var(--color-bg1-active); }
+      span { color: var(--col-ui-nav1-active); }
+      .chevron svg path { fill: var(--col-ui-nav1-active); }
     }
   
     /* Click Animation */
     &:active {
       transform: scale(96%);
       span { transform: scale(104.2%); /* Counteracts parent scale */ }
-      &::before { background-color: var(--color-link-active); }
+      &::before { background-color: var(--col-ui-bg1-active); }
     }
   }
   

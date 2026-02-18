@@ -1,35 +1,27 @@
-@import '../../vars.css';
+
 
 .title {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--num-m2);
   text-decoration: none;
   z-index: 1;
+
 }
 
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: var(--color-text1);
-}
-
-.Mobile {
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-}
-
-.Desktop {
-  width: 48px;
-  height: 48px;
-  padding: 8px;
+  width: var(--num-m12);
+  height: var(--num-m12);
+  padding: var(--num-m2);
+  fill: var(--col-text1);
 }
 
 .fullName {
-  font-family: var(--display-text);
+  color: var(--col-text1) !important;
+  font-size: 33px;
   font-weight: 315;
-  font-size: var(--h1-size);
   text-align: center;
 }

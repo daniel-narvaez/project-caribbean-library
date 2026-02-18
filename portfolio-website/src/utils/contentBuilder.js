@@ -8,8 +8,8 @@
  * @typedef {Object} ProjectContent
  * @property {(logo: ImageConfig, moneyShot: ImageConfig) => any} titleFrame
  * @property {(items: Array<{key: string, value: string}>) => any} details
- * @property {(content: string) => any} heading
- * @property {(content: string) => any} subheading
+ * @property {(content: string) => any} heading2
+ * @property {(content: string) => any} heading3
  * @property {(content: string) => any} paragraph
  * @property {(items: Array<{src: string, alt: string, figId: string, caption: string}>) => any} figureSet
  * @property {(config: {src: string, title: string, width?: string, height?: string}) => any} video
@@ -34,9 +34,9 @@ export const projectContent = {
 
     details: (items) => createElement('details', items),
 
-    heading: (content) => createElement('heading', content),
+    heading2: (content) => createElement('heading2', content),
 
-    subheading: (content) => createElement('subheading', content),
+    heading3: (content) => createElement('heading3', content),
 
     paragraph: (content) => createElement('paragraph', content),
 

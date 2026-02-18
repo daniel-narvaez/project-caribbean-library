@@ -32,6 +32,7 @@ import { getLinkAttributes } from '../../utils/externalUrls';
 
 // Styles
 import styles from './DropdownMobile.module.css';
+import typographies from '../../typography.module.css';
 
 /**
  * Individual menu item component that handles both regular items and submenus
@@ -87,7 +88,7 @@ const DropdownItem = memo(({
         direction={isInActivePath ? 'up' : 'down'} 
       />}
       {item.icon}
-      <span>{item.title}</span>
+      <span className={`${typographies.ui3}`}>{item.title}</span>
     </>
   );
 

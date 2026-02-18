@@ -21,8 +21,10 @@
 
 import { useState, useContext, useEffect, useRef, useCallback } from 'react';
 import { AppIcon } from "../AppIcon/AppIcon";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './ContactItem.module.css';
+import typographies from '../../typography.module.css';
+
 
 /**
  * Default configuration for transitions and colors
@@ -68,7 +70,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {
@@ -77,14 +79,14 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
       ...INITIAL_ITEM_CONFIG,
       COLORS: {
         CONTAINER: {
-          NORMAL: root.getPropertyValue('--color-bg1').trim(),
-          HOVER: root.getPropertyValue('--color-link-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-link-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg2').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         },
         ICON: {
-          NORMAL: root.getPropertyValue('--color-link').trim(),
-          HOVER: root.getPropertyValue('--color-bg1-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-bg1-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         }
       }
     };
@@ -119,7 +121,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
   }, []);
 
   return (
-    <div className={`${styles.contactIcon} ${styles[size]}`}>
+    <div className={`${styles.contactIcon} ${styles[device]}`}>
       <a
         target="_blank"
         rel="noopener noreferrer"
@@ -138,7 +140,7 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
           onIconLoad={handleIconLoad}
         />
       </a>
-      <span>{appName}</span>
+      <span className={`${typographies.ui3}`}>{appName}</span>
     </div>
   );
 };
@@ -151,7 +153,7 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
   const [iconColor, setIconColor] = useState(INITIAL_ITEM_CONFIG.COLORS.ICON.NORMAL);
   const [transitionDuration, setTransitionDuration] = useState('350ms');
   const [transitionEase, setTransitionEase] = useState(INITIAL_ITEM_CONFIG.TRANSITIONS.EASE.HOVER);
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
 
   // Initialize colors from CSS custom properties
   useEffect(() => {
@@ -160,14 +162,14 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
       ...INITIAL_ITEM_CONFIG,
       COLORS: {
         CONTAINER: {
-          NORMAL: root.getPropertyValue('--color-bg1').trim(),
-          HOVER: root.getPropertyValue('--color-bg1-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-bg1-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         },
         ICON: {
-          NORMAL: root.getPropertyValue('--color-link').trim(),
-          HOVER: root.getPropertyValue('--color-link-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-link-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         }
       }
     };
@@ -205,7 +207,6 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
     <a
       className={`
         ${styles.contactBook}
-        ${styles[size]}
       `}
       target="_blank"
       rel="noopener noreferrer"
@@ -219,23 +220,20 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
         className={`
           ${styles.spine}
           ${styles.top}
-          ${styles[size]}
         `}
       />
       <div
         className={`
           ${styles.spine}
           ${styles.middle}
-          ${styles[size]}
         `}
       >
-        <span>{appName}</span>
+        <span className={`${typographies.ui3}`}>{appName}</span>
       </div>
       <div
         className={`
           ${styles.spine}
           ${styles.bottom}
-          ${styles[size]}
         `}
       >
         <AppIcon

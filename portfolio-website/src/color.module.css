@@ -1,0 +1,155 @@
+/**
+* Color styles
+*
+*
+*
+* @requires variables.css - Contains color and font family variables
+*/
+
+@import './variables.css';
+
+/* 
+* Root Color Variables (col)
+*/
+:root {
+  /* Body */
+  --col-text1: var(--swt-midnight);
+  --col-nav1: var(--swt-cobalt);
+  --col-nav1-hover: var(--swt-aquamarine);
+  --col-nav1-active: var(--swt-deepReef);
+  --col-nav2: var(--swt-amethyst);
+  --col-nav2-hover: var(--swt-orchid);
+  --col-nav2-active: var(--swt-pinotNoir);
+  --col-error1: var(--swt-magaflower);
+  --col-bg1: var(--swt-sand);
+  --col-bg2: var(--swt-desertStone);
+  --col-frame1: var(--swt-duneCrest);
+  
+  /* User Interface */
+  --col-ui-text1: var(--swt-sand);
+  --col-ui-text2: var(--swt-seaweed);
+  --col-ui-nav1: var(--swt-sand);
+  --col-ui-nav1-hover: var(--swt-duneCrest);
+  --col-ui-nav1-active: var(--swt-desertStone);
+  --col-ui-nav2: var(--swt-cobalt);
+  --col-ui-nav2-hover: var(--swt-aquamarine);
+  --col-ui-nav2-active: var(--swt-deepReef);
+  --col-ui-bg1: var(--swt-cobalt);
+  --col-ui-bg1-hover: var(--swt-aquamarine);
+  --col-ui-bg1-active: var(--swt-deepReef);
+  --col-ui-bg2: var(--swt-sand);
+  --col-ui-bg2-hover: var(--swt-duneCrest);
+  --col-ui-bg2-active: var(--swt-desertStone);
+  --col-ui-bg3: var(--swt-amethyst);
+  --col-ui-bg3-hover: var(--swt-orchid);
+  --col-ui-bg3-active: var(--swt-pinotNoir);
+  
+  /* Pointer */
+  --col-pointer-stroke: var(--swt-midnight);
+  --col-pointer-fill: var(--swt-sand);
+  --col-pointer-fill-hover1: var(--swt-celeste);
+  --col-pointer-fill-hover2: var(--swt-lilac);
+}
+
+h1, h2, h3, h4,
+p, li, tr, td, figcaption,
+input, textarea, select, option {
+  &.text1 { color: var(--col-text1); }
+}
+
+span, label, button {
+  &.uiText1 { color: var(--col-ui-text1); }
+
+  &.uiText2 { color: var(--col-ui-text2); }
+}
+
+a {
+  &.nav1 {
+    color: var(--col-nav1);
+
+    &:hover { color: var(--col-nav1-hover); }
+
+    &:active { color: var(--col-nav1-active); }
+  }
+
+  &.nav2 {
+    color: var(--col-nav2);
+
+    &:hover { color: var(--col-nav2-hover); }
+
+    &:active { color: var(--col-nav2-active); }
+  }
+
+}
+button {
+  &.uiNav1 {
+    color: var(--col-ui-nav1);
+  
+    &:hover { color: var(--col-ui-nav1-hover); }
+  
+    &:active { color: var(--col-ui-nav1-active); }
+  }
+  
+  &.uiNav2 {
+    color: var(--col-ui-nav2);
+  
+    &:hover { color: var(--col-ui-nav2-hover); }
+  
+    &:active { color: var(--col-ui-nav2-active); }
+  }
+}
+
+div, section, article {
+  &.bg1 {
+
+  }
+
+  &.bg2 {
+
+  }
+}
+
+a, nav, button {
+  &.uiBg1 {
+    background-color: var(--col-ui-bg1);
+    border-color: var(--col-ui-bg1);
+
+    &:hover { 
+      background-color: var(--col-ui-bg1-hover); 
+      border-color: var(--col-ui-bg1-hover);
+    }
+
+    &:active { 
+      background-color: var(--col-ui-bg1-active); 
+      border-color: var(--col-ui-bg1-active);
+    }
+  }
+
+  &.uiBg2 {
+    background: none;
+    border-color: var(--col-ui-bg1);
+
+    &:hover {
+      border-color: var(--col-ui-bg1-hover);
+    }
+
+    &:active {
+      border-color: var(--col-ui-bg1-active);
+    }
+  }
+
+  &.uiBg3 {
+    background-color: var(--col-ui-bg3);
+    border-color: var(--col-ui-bg3);
+
+    &:hover { 
+      background-color: var(--col-ui-bg3-hover); 
+      border-color: var(--col-ui-bg3-hover);
+    }
+
+    &:active { 
+      background-color: var(--col-ui-bg3-active); 
+      border-color: var(--col-ui-bg3-active);
+    }
+  }
+}

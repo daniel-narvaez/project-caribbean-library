@@ -2,15 +2,17 @@ import React from 'react'
 
 import { useContext } from 'react';
 
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext, devices } from '../../contexts/DeviceContext';
 
 import Logo from '../../../assets/images/dn-logo-w20.svg?react';
+
 import styles from './Title.module.css'
+import typographies from '../../typography.module.css';
 
 const fullName = 'Daniel Narvaez';
 
 export const Title = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
     return (
       <a 
         className={styles.title}
@@ -19,12 +21,12 @@ export const Title = () => {
         <Logo 
           className={`
             ${styles.logo}
-            ${styles[size]}
+            ${styles[device]}
           `}
         />
-        {size === 'Desktop' && (
+        {device === devices.desktop && (
           <span
-            className={`${styles.fullName}`}>
+            className={`${typographies.ui1} ${styles.fullName}`}>
             {fullName}
           </span>
         )}

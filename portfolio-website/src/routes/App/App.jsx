@@ -9,13 +9,8 @@
  * - "/" and "/home" => Home component
  * - "/{project-url}" => Individual GameProjectPage components
  * 
- * Context Providers:
- * - ScreenSizeProvider: Handles responsive design
- * - TypographyProvider: Manages font loading and text styles
- * - ChaptersProvider: Manages chapter navigation
  */
 
-import React from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics, track } from "@vercel/analytics/react"
@@ -23,8 +18,11 @@ import { Analytics, track } from "@vercel/analytics/react"
 import Navbar from '../../components/Navbar/Navbar';
 import { AnimatedCursor, SplashEffect } from '../../components/Cursor/Cursor';
 
-import { ScreenSizeProvider } from '../../contexts/ScreenSize';
-import { TypographyProvider } from '../../contexts/Typography';
+import { DeviceProvider } from '../../contexts/DeviceContext';
+import { AppearanceProvider } from '../../contexts/Appearance';
+import { TypescalesProvider } from '../../contexts/Typescales';
+import { ColorsProvider } from '../../contexts/Color';
+import { SpaceProvider } from '../../contexts/Space';
 import { ChaptersProvider } from '../../contexts/ChaptersContext';
 
 import Home from '../Home/Home';
@@ -72,31 +70,37 @@ function App() {
   }, []);
 
   return (
-    <ScreenSizeProvider>
-      <TypographyProvider>
-        <ChaptersProvider>
-          <div className={styles.App}>
-            <Analytics />
-            <Navbar />
-            <BrowserRouter>
-              <SplashEffect />
-              <AnimatedCursor />
-              <Routes>
-                {/* Static routes */}
-                <Route key="root" path="/" element={<Home />} />
-                <Route key="home" path="/home" element={<Home />} />
-                <Route key="welcome" path="/welcome" element={<Home />} /> {/* Invite via QR Code */}
-                <Route key="resume" path="/resume" element={<Resume />} />
-                <Route key="contact" path="/contact" element={<Contact />} />
-                
-                {/* Dynamic project routes */}
-                {gameProjectRoutes}
-              </Routes>
-            </BrowserRouter>
-          </div>
-        </ChaptersProvider>
-      </TypographyProvider>
-    </ScreenSizeProvider>
+    <DeviceProvider>
+      <AppearanceProvider>
+        <TypescalesProvider>
+          <ColorsProvider>
+            <SpaceProvider>
+              <ChaptersProvider>
+                <div className={styles.App}>
+                  <Analytics />
+                  <Navbar />
+                  <BrowserRouter>
+                    <SplashEffect />
+                    <AnimatedCursor />
+                    <Routes>
+                      {/* Static routes */}
+                      <Route key="root" path="/" element={<Home />} />
+                      <Route key="home" path="/home" element={<Home />} />
+                      <Route key="welcome" path="/welcome" element={<Home />} /> {/* Invite via QR Code */}
+                      {/* <Route key="resume" path="/resume" element={<Resume />} /> */}
+                      <Route key="contact" path="/contact" element={<Contact />} />
+                      
+                      {/* Dynamic project routes */}
+                      {gameProjectRoutes}
+                    </Routes>
+                  </BrowserRouter>
+                </div>
+              </ChaptersProvider>
+            </SpaceProvider>
+          </ColorsProvider>
+        </TypescalesProvider>
+      </AppearanceProvider>
+    </DeviceProvider>
   );
 }
 

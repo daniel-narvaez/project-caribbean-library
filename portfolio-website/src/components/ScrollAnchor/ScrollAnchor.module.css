@@ -5,23 +5,20 @@
   padding: 0;
   margin: 0;
   display: block;
+  width: var(--num-m12);
+  height: var(--num-m12);
   z-index: 50;
   pointer-events: auto;
   
   &.Desktop {
-    width: 3rem;
-    height: 3rem;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: var(--num-m4);
+    right: var(--num-m4);
   }
   
   &.Mobile {
-    width: 2.25rem;
-    height: 2.25rem;
-    bottom: max(env(safe-area-inset-bottom), 0.8rem);
-    right: max(env(safe-area-inset-right), 0.8rem);
+    bottom: max(env(safe-area-inset-bottom), var(--num-m4));
+    right: max(env(safe-area-inset-right), var(--num-m4));
   }
-
 }
 
 .svg {

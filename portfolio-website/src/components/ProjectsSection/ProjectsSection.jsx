@@ -3,22 +3,22 @@ import React, { useContext } from "react";
 import { GameProjectArticle } from "../GameProjectArticle/GameProjectArticle";
 
 import styles from './ProjectsSection.module.css';
+import typographies from '../../typography.module.css';
 
 import { gameProjectsData, featuredProjectsData } from "../../data/gameProjectRegistry";
 
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
-import { WavesButton } from "../Button/WavesButton";
+import { DeviceContext } from "../../contexts/DeviceContext";
 import { Chapter } from "../Chapter/Chapter";
 
 export const ProjectsSection = () => {
-  const { size, layout } = useContext(ScreenSizeContext);
+  const { layout } = useContext(DeviceContext);
   return (
     <Chapter
       id='projects'
       className={styles.projectsSection}
       >
       <div className={`${styles.featuredWorks} ${styles[layout]}`}>
-        <h2 className={`${styles.heading} ${styles[size]}`}>
+        <h2 className={`${typographies.h2}`}>
           Featured Works
         </h2>
         <div className={`${styles.projectArticles} ${styles[layout]}`}>
@@ -29,7 +29,6 @@ export const ProjectsSection = () => {
             />
           ))}
         </div>
-        {/* <WavesButton title='Explore my full portfolio' url='/'/> */}
       </div>
     </Chapter>
   );

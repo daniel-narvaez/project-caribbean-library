@@ -28,8 +28,11 @@ import {
   TextBox, 
   SubmitButton 
 } from "../Form/Form";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
+
 import styles from './EmailForm.module.css';
+import typographies from '../../typography.module.css';
+
 import { sendContactForm } from "../../../api/emailHandler";
 
 /**
@@ -48,7 +51,7 @@ const SUBJECT_OPTIONS = [
  * Renders a contact form with success state animation
  */
 export const EmailForm = ({tagline = ''}) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
   const [flipped, setFlipped] = useState(false);
   const [error, setError] = useState(null);
 
@@ -85,15 +88,15 @@ export const EmailForm = ({tagline = ''}) => {
   return (
     <article className={`
       ${styles.emailArticle}
-      ${styles[size]}
+      ${styles[device]}
       ${flipped ? styles.flipped : ''}
     `}>
       {/* Form Side */}
       <div className={`${styles.cardContent} ${styles.formContent}`}>
         <div className={styles.taglineContainer}>
-          <span className={styles[size]}>
+          <p className={`${typographies.b1}`}>
             {tagline}
-          </span>
+          </p>
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -151,20 +154,20 @@ export const EmailForm = ({tagline = ''}) => {
       </div>
 
       {/* Success Message Side */}
-      <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[size]}`}>
+      <div className={`${styles.cardContent} ${styles.emailMedia} ${styles[device]}`}>
         {!error ? (
           <>
             <MessageInABottle id='message-in-a-bottle' />
             <div className={styles.taglineContainer}>
-              <span className={styles[size]}>
-                Message in a bottle sent! <br/>
+              <span className={`${typographies.ui3}`}>
+                Message sent! <br/>
                 I'll respond within 48 hours.
               </span>
             </div>
           </>
         ) : (
           <div className={styles.taglineContainer}>
-            <span className={`${styles[size]} ${styles.error}`}>
+            <span className={`${typographies.ui3} ${styles.error}`}>
               {error}
             </span>
           </div>

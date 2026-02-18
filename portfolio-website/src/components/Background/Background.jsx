@@ -17,7 +17,7 @@ export const Background = ({ children }) => {
               <circle 
                 cx="8"
                 cy="8"
-                r="1.2"
+                r="1"
                 fill="#dcd8d1"
               />
             </pattern>

@@ -1,62 +1,13 @@
-/**
-* HeroSection.module.css
-* =====================
-* 
-* Overview:
-* Styles for the portfolio's hero section, featuring a responsive layout,
-* interactive CTA buttons, and dynamic sizing based on viewport dimensions.
-* Implements a fully responsive design that adapts between landscape and
-* portrait orientations.
-* 
-* Design System Integration:
-* - Uses CSS variables for consistent theming
-* - Implements fluid typography with viewport units
-* - Maintains consistent spacing ratios
-* - Handles interactive states with smooth transitions
-* 
-* Key Features:
-* - Fluid responsive layout
-* - Viewport-based typography
-* - Interactive button variants
-* - Orientation-specific layouts
-* - Consistent spacing system
-* 
-* Dependencies:
-* CSS Variables (defined in root):
-* --color-link: Primary button color
-* --color-link-hover: Button hover state
-* --color-link-active: Button active state
-* --color-bg1: Base background
-* --font-baskervville: Typography
-* --menuControl-hover: Transition timing
-* --menuControl-active: Active state timing
-*/
-
-/* Root Variables */
-:root {
-  --bg-heroSection: linear-gradient(var(--color-bg1-hover), var(--color-bg1-active));
-}
-
-/**
-* Main Layout
-* ----------
-* Full-viewport hero section with flexible spacing
-*/
 .heroSection {
   display: flex;
   width: 100%;
   min-height: 100vh;
   justify-content: center;
-
-  &.Desktop {
-    padding: 5rem;
-  }
+  padding: var(--num-m20);
 
   &.Mobile {
-    padding: 4rem 
-    max(env(safe-area-inset-right), 0.8rem) 
-    4rem 
-    max(env(safe-area-inset-left), 0.8rem);
+    padding-left: max(env(safe-area-inset-left), var(--num-m4));
+    padding-right: max(env(safe-area-inset-right), var(--num-m4));
   }
 }
 
@@ -68,17 +19,10 @@
 .heroContainer {
   display: flex;
   width: 100%;
+  max-width: calc(var(--num-m32) * 10);
+  gap: var(--num-m20);
   justify-content: center;
   align-items: center;
-  &.Desktop {
-    max-width: 80rem; /* 1280px */
-    gap: 5rem;
-  }
-
-  &.Mobile {
-    max-width: 60rem; /* 960px */
-    gap: 4rem;
-  }
 }
 
 /**
@@ -91,7 +35,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 1.5rem; /* 24px = 1280px * 1.875% */
+  gap: var(--num-m8);
   width: calc(50% - 2.5%); /* Half the container minus half the gap */
 }
 
@@ -113,15 +57,13 @@
 * Fluid sizing based on viewport width
 */
 .headline {
-  font-family: var(--font-libreBaskerville);
-  font-size: var(--hero-headline-size);
   text-transform: capitalize;
 }
 
-.tagline {
+/* .tagline {
   font-size: var(--hero-tagline-size);
   line-height: normal;
-}
+} */
 
 /**
 * CTA Menu
@@ -131,23 +73,14 @@
 .ctaMenu {
   display: flex;
   align-items: center;
-  &.Desktop {
-    gap: 1rem;
-  }
-
-  &.Mobile {
-    gap: 0.75rem
-  }
+  gap: var(--num-m4);
 }
 
-.ctaMenu .heroButton {
-  padding: 0.75rem 1.5rem;
-  font-size: var(--hero-cta-button-size);
+.ctaMenu .button {
+  padding: var(--num-m4) var(--num-m8);
 }
 
-.ctaMenu .heroButton::before {
-  border-radius: 0.25rem;
-}
+
 
 /**
 * Responsive Design
@@ -172,17 +105,9 @@
     flex-direction: column-reverse;
     justify-content: center;
     width: 100%;
+    max-width: calc(var(--num-m20) * 10);
+    gap: var(--num-m8);
     align-items: center;
-
-    &.Desktop {
-      max-width: 60rem; /* 960px */
-      gap: 2rem;
-    }
-  
-    &.Mobile {
-      max-width: 45rem; /* 720px */
-      gap: 1.5rem;
-    }
   }
 
   /* Center alignment for portrait view */
@@ -190,7 +115,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    gap: 1rem;
+    gap: var(--num-m4);
   }
 
   .heroMedia {
@@ -198,38 +123,22 @@
   }
 
   /* Adjusted typography for portrait orientation */
-  .headline {
-    text-align: center;
-  }
-
-  .heroContent .tagline {
+  .headline,
+  .tagline {
     text-align: center;
   }
 
   .ctaMenu {
     flex-direction: column;
     align-items: stretch;
-    &.Desktop {
-      gap: 0.5rem;
-    }
-  
-    &.Mobile {
-      gap: 0.375rem
-    }
-  }
+    gap: var(--num-m2);
 
-  .heroButton {
-    width: 100%;
-    padding: 0.5rem 1rem;
-
-    &::before {
-      border-width: var(--number-cornerRadius);
-      border-radius: var(--number-cornerRadius); 
+    button {
+      width: 100%;
     }
-
   }
 
   main > .heroMedia {
-    filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
   }
 }

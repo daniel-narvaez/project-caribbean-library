@@ -8,7 +8,7 @@
  * - Includes interactive backgrounds and hover effects
  * 
  * Variables Used:
- * --number-cornerRadius: Border radius for menu items
+ * --num-brd-radius: Border radius for menu items
  * --color-link: Primary color for level 0 items
  * --color-bg1: Text color for submenu items
  * --effect-poolShadow: Shadow effect for active menus
@@ -18,7 +18,6 @@
 /* Base Elements
    ------------ */
   .mainNav {
-    /* padding: 0rem 3rem; */
     display: flex;
   }
 
@@ -35,7 +34,7 @@
      Maintains space in document flow while wrapper is absolute positioned */
   .phantom {
     visibility: hidden;
-    height: 3rem;  /* Matches height of menu items */
+    height: var(--num-m12);  /* Matches height of menu items */
   }
   
   /* Wrapper Styling
@@ -49,23 +48,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--num-m2);
     border: 0px solid transparent;
     border-style: inset;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
   
     /* Background effect layer */
     &::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
-      border-radius: var(--number-cornerRadius);
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
+      border-radius: var(--num-brd-radius);
       z-index: -1;
       opacity: 0;
-      transform: translateY(-0.25rem);
+      transform: translateY(calc(-1 * var(--num-m1)));
       transition: var(--opening-dropdown);
     }
   }
@@ -75,8 +74,7 @@
   .menuButton,
   .menuLink {
     /* Base layout */
-    padding: 0.5rem 1rem;
-    /* height: 3rem; */
+    padding: var(--num-m2) var(--num-m4);
     display: flex;
     align-items: center;
     position: relative;
@@ -86,7 +84,7 @@
     background-color: transparent;
     border: inherit;
     border-style: inherit;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     white-space: nowrap;
     text-decoration: none;
     transition: var(--menuControl-active);
@@ -102,11 +100,11 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: var(--number-cornerRadius);
+      border-radius: var(--num-brd-radius);
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);
-      background-color: var(--color-link-hover);
+      background-color: var(--col-ui-bg1-hover);
     }
   
     /* Interactive states */
@@ -114,24 +112,24 @@
     &.menuLinkActive {
       &::before { 
         transform: scaleY(1); 
-        background-color: var(--color-link-active);
+        background-color: var(--col-ui-bg1-active);
       }
-      span { color: var(--color-bg1-active); }
+      span { color: var(--col-ui-nav1-active); }
     }
   
     &:hover {
       &::before { 
         transform: scaleY(1); 
-        background-color: var(--color-link-hover);
+        background-color: var(--col-ui-bg1-hover);
       }
-      span { color: var(--color-bg1-hover); }
+      span { color: var(--col-ui-nav1-hover); }
     }
   
     /* Click animation */
     &:active {
       transform: scale(92%);
       span { transform: scale(108.7%); /* Counteracts parent scale */ }
-      &::before { background-color: var(--color-link-active); }
+      &::before { background-color: var(--col-ui-bg1-active); }
     }
   }
   
@@ -146,7 +144,7 @@
     height: 0;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(-0.25rem);
+    transform: translateY(calc(-1 * var(--num-m1)));
     transition: var(--closing-dropdown);
   
     .menuItem {
@@ -167,25 +165,21 @@
     .menuButton,
     .menuLink {
       span {
-        font-family: var(--display-text);
-        color: var(--color-link);
-        font-weight: 500;
+        color: var(--col-ui-nav2);
       }
     }
   
     /* Hover state */
     .menuButton:hover span,
     .menuLink:hover span {
-      color: var(--color-bg1);
-      font-weight: 400;
+      color: var(--col-ui-nav1-hover);
     }
   
     /* Active state */
     .menuButtonActive,
     .menuLinkActive {
       span {
-        color: var(--color-bg1);
-        font-weight: 400;
+        color: var(--col-ui-nav1-active);
       }
     }
   
@@ -193,7 +187,7 @@
     .wrapper:has(.menuButtonActive),
     .wrapper:has(.menuLinkActive) {
       &::before {
-        background-color: var(--color-link);
+        background-color: var(--col-ui-nav2);
         box-shadow: var(--effect-poolShadow);
         opacity: 1;
         transform: translateY(0);
@@ -211,8 +205,7 @@
     /* Text styling for submenu items */
     .menuButton span,
     .menuLink span {
-      color: var(--color-bg1);
-      font-weight: 400;
+      color: var(--col-ui-nav1);
     }
   
     /* Remove background from wrapper */
@@ -239,7 +232,7 @@
       position: absolute;
       top: 0;
       left: 100%;
-      width: 1rem;
+      width: var(--num-m4);
       height: 100%;
       background: transparent;
     }
@@ -248,13 +241,13 @@
     &::before {
       content: '';
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
-      right: -0.5rem;
-      bottom: -0.5rem;
-      border-radius: var(--number-cornerRadius);
+      top: calc(-1 * var(--num-m2));
+      left: calc(-1 * var(--num-m2));
+      right: calc(-1 * var(--num-m2));
+      bottom: calc(-1 * var(--num-m2));
+      border-radius: var(--num-brd-radius);
       z-index: 1;
-      background-color: var(--color-link);
+      background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);
     }
   }

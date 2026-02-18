@@ -2,11 +2,11 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Title } from '../Title/Title';
 import { MobileDropdown } from '../DropdownMenu/DropdownMobile';
 import { DesktopDropdown } from '../DropdownMenu/DropdownDesktop';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
@@ -52,12 +52,11 @@ export const Navbar = () => {
     <nav
       className={`
         ${styles.navbar}
-        ${styles[size]}
         ${isVisible ? styles.visible : styles.hidden}
       `}
     >
       <Title />
-      {size === 'Mobile' ? <MobileDropdown /> : <DesktopDropdown />}
+      {device === 'mobile' ? <MobileDropdown /> : <DesktopDropdown />}
     </nav>
   );
 };

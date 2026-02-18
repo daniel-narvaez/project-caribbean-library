@@ -1,46 +1,52 @@
 import { createContext, useState, useEffect } from "react";
 
-export const ScreenSizeContext = createContext();
+export const DeviceContext = createContext();
+
+export const devices = {
+  desktop: 'desktop',
+  tablet: 'tablet',
+  mobile: 'mobile'
+}
 
 const spacings = {
-  Desktop: {
-    width: '25rem',       // 400px
-    height: '37.5rem',    // 600px
-    padding: '0.5rem',    // 8px
-    gap: '0.5rem'         // 8px
+  desktop: {
+    width: '400px',
+    height: '600px',
+    padding: '8px',
+    gap: '8px'
   },
-  Mobile: {
-    width: '18.75rem',    // 300px
-    height: '28.125rem',  // 450px
-    padding: '0.375rem',  // 6px
-    gap: '0.375rem'       // 6px
+  mobile: {
+    width: '300px',
+    height: '450px',
+    padding: '6px',
+    gap: '6px'
   }
 }
 
-export const ScreenSizeProvider = ({children}) => {
-  const [size, setSize] = useState('Desktop');
+export const DeviceProvider = ({children}) => {
+  const [device, setDevice] = useState(devices.desktop);
   const [layout, setLayout] = useState('desktopCard');
 
   useEffect(() => {
     const getDeviceConfig = (width, height) => {
       if(width < 768 || height < 480)
         return {
-          size: 'Mobile',
+          device: devices.mobile,
           layout: height > width ? 'mobileCard' : 'mobileBanner',
-          spacing: spacings.Mobile
+          spacing: spacings.mobile
         };
       else {
         if(width >= 1440) {
           return {
-            size: 'Desktop',
+            device: devices.desktop,
             layout: 'desktopCard',
-            spacing: spacings.Desktop
+            spacing: spacings.desktop
           };
         } else {
           return {
-            size: 'Mobile',
+            device: devices.mobile,
             layout: height > width ? 'mobileBanner' : 'mobileCard',
-            spacing: spacings.Mobile
+            spacing: spacings.mobile
           };
         }
       }
@@ -56,7 +62,7 @@ export const ScreenSizeProvider = ({children}) => {
       root.style.setProperty('--padding-size', config.spacing.padding);
       root.style.setProperty('--gap-size', config.spacing.gap);
 
-      setSize(config.size);
+      setDevice(config.device);
       setLayout(config.layout);
     };
 
@@ -78,11 +84,11 @@ export const ScreenSizeProvider = ({children}) => {
         window.clearTimeout(timeoutId);
       }
     };
-  }, [size, layout, spacings]);
+  }, [device, layout, spacings]);
 
   return (
-    <ScreenSizeContext.Provider value={{ size, layout }}>
+    <DeviceContext.Provider value={{ device, layout }}>
       {children}
-    </ScreenSizeContext.Provider>
+    </DeviceContext.Provider>
   );
 };

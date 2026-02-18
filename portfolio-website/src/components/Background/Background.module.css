@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--color-bg1);
+  background-color: var(--col-bg1);
   clip-path: inset(0)
 }
 

@@ -28,7 +28,7 @@ import { EmailForm } from '../../components/EmailForm/EmailForm';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
 import styles from './Home.module.css';
 import Chapter from '../../components/Chapter/Chapter';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import { Helmet } from 'react-helmet';
 
 /**
@@ -37,7 +37,7 @@ import { Helmet } from 'react-helmet';
  * of the portfolio in a scrollable layout.
  */
 function Home() {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
   
   return (
     <>
@@ -60,7 +60,7 @@ function Home() {
             id='contact'
             className={`
               ${styles.contactSection}
-              ${styles[size]}
+              ${styles[device]}
             `}
           >
             <EmailForm tagline="Want to reach out? Write a message to my inbox, and let's begin our conversation." />

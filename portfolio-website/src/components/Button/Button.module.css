@@ -8,27 +8,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 0;
-  padding: var(--padding-size) calc(var(--padding-size) * 2);
-  text-decoration: none;
-  background: none;
-  border: none;
+  padding: var(--num-m1) var(--num-m2);
+  border-style: solid;
+  border-width: var(--num-brd-width);
+  border-radius: var(--num-brd-radius);
+  box-shadow: var(--fx-boxShadow1);
   width: fit-content;
-  font-family: var(--display-text);
   text-align: center;
-  text-transform: capitalize;
   transition: var(--menuControl-hover);
-}
 
-/* Common pseudo-element styling */
-.button::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform-origin: center;
-  z-index: -1;
-  border-radius: var(--number-cornerRadius);
-  transition: var(--menuControl-hover);
+  &:active {
+    transform: scale(92%);
+    transition: var(--menuControl-active);
+  }
 }
 
 /* Disabled states */
@@ -38,148 +30,4 @@ button:disabled .button,
 a[aria-disabled="true"] .button {
   opacity: 0.4;
   pointer-events: none;
-}
-
-.linkButton {
-  text-decoration: none;
-}
-
-/**
- * Common Active State
- * ------------------
- */
-.button:active::before,
-.button:active,
-button:active .button::before,
-button:active .button {
-  transform: scale(92%);
-  transition: var(--menuControl-active);
-}
-
-/**
- * Solid Button Variant
- * -------------------
- */
-.button.solid::before {
-  background-color: var(--color-link);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.button.solid {
-  font-weight: 400;
-  color: var(--color-bg1);
-}
-
-.button.solid:hover::before,
-button:hover .button.solid::before {
-  background-color: var(--color-link-hover);
-}
-
-.button.solid:hover,
-button:hover .button.solid {
-  color: var(--color-bg1-hover);
-}
-
-.button.solid:active::before,
-button:active .button.solid::before {
-  background-color: var(--color-link-active);
-}
-
-.button.solid:active,
-button:active .button.solid {
-  color: var(--color-bg1-active);
-}
-
-/* Solid Action Variant */
-.button.solid.action::before,
-button .button.solid::before {
-  background-color: var(--color-action);
-}
-
-.button.solid.action:hover::before,
-button:hover .button.solid::before {
-  background-color: var(--color-action-hover);
-}
-
-.button.solid.action:active::before,
-button:active .button.solid::before {
-  background-color: var(--color-action-active);
-}
-
-/**
- * Island Button Variant
- * -------------------
- */
-.button.island::before {
-  border: var(--number-cornerRadius) solid var(--color-link);
-  box-shadow: var(--fx-boxShadow1);
-}
-
-.button.island {
-  font-weight: 500;
-  color: var(--color-link);
-}
-
-.button.island:hover::before,
-button:hover .button.island::before {
-  border-color: var(--color-link-hover);
-}
-
-.button.island:hover,
-button:hover .button.island {
-  color: var(--color-link-hover);
-}
-
-.button.island:active::before,
-button:active .button.island::before {
-  border-color: var(--color-link-active);
-}
-
-.button.island:active,
-button:active .button.island {
-  color: var(--color-link-active);
-}
-
-/* Island Action Variant */
-.button.island.action::before,
-button .button.island::before {
-  border-color: var(--color-action);
-}
-
-.button.island.action,
-button .button.island {
-  color: var(--color-action);
-}
-
-.button.island.action:hover::before,
-button:hover .button.island::before {
-  border-color: var(--color-action-hover);
-}
-
-.button.island.action:hover,
-button:hover .button.island {
-  color: var(--color-action-hover);
-}
-
-.button.island.action:active::before,
-button:active .button.island::before {
-  border-color: var(--color-action-active);
-}
-
-.button.island.action:active,
-button:active .button.island {
-  color: var(--color-action-active);
-}
-
-/**
- * Hero Button Variant
- * -----------------
- */
-.button.hero {
-  padding: 0.75rem 1.5rem;
-  font-size: var(--hero-cta-button-size);
-}
-
-.button.hero::before {
-  border-radius: 0.25rem;
 }

@@ -46,7 +46,7 @@ const dreamscapeProject = createGameProject({
     ),
     walkthrough: [
       {
-        heading: projectContent.heading("Project Overview"),
+        heading: projectContent.heading2("Project Overview"),
         content: {
           left: [
             projectContent.details([
@@ -55,9 +55,9 @@ const dreamscapeProject = createGameProject({
               { key: "Team Size", value: "100+" },
               { key: "Builds", value: ({ urls }) => `[Steam](${urls.game})`}
             ]),
-            projectContent.subheading("Summary"),
+            projectContent.heading3("Summary"),
             projectContent.paragraph(({ urls }) => `A third-person 3D hack-and-slash roguelite game for desktop platforms. My team of 100+ developed *Project Dreamscape* with Unity in 9 months at the [EGD Collective's Game Studio program](${urls.transitionalProgram}). Our design team consisted of 21 people, and we operated with other teams in a AAA environment.`),
-            projectContent.subheading("Contributions"),
+            projectContent.heading3("Contributions"),
             projectContent.list({
               type: 'bullet',
               items: [
@@ -71,7 +71,7 @@ const dreamscapeProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading("World Events: Balances & Redesigns"),
+        heading: projectContent.heading2("World Events: Balances & Redesigns"),
         content: {
           left: [
             projectContent.paragraph("The game's core structure is divided into rounds. Players must select one of three 'events' presented to them at the beginning of each round. Events set the objectives players must complete to progress to the next round. Failure to complete the objectives results in a Game Over."),
@@ -91,7 +91,7 @@ const dreamscapeProject = createGameProject({
         }
       },
       {
-        heading: projectContent.subheading("Defend & Escort"),
+        heading: projectContent.heading3("Defend & Escort"),
         content: {
           left: [
             projectContent.paragraph("Both the Defend and Escort events require players to protect a non-playable character (NPC) from enemy attacks. In Defend, players guard a stationary NPC for the duration of the event. In Escort, players must safeguard an NPC to its destination across the map."),
@@ -157,7 +157,7 @@ const dreamscapeProject = createGameProject({
       //   }
       // },
       {
-        heading: projectContent.subheading("Outbreak"),
+        heading: projectContent.heading3("Outbreak"),
         content: {
           left: [
             projectContent.paragraph("The original Outbreak event, formerly called 'Zones', selected a random 3x3 quadrant of lands to spawn enemies, which the player would defeat to complete the round **(Figure 4)**."),
@@ -184,7 +184,7 @@ const dreamscapeProject = createGameProject({
         }
       },
       {
-        heading: projectContent.subheading("Wanderlust"),
+        heading: projectContent.heading3("Wanderlust"),
         content: {
           left: [
             projectContent.paragraph("The initial premise of the Wanderlust event required players to visit each land, as implied by its former name 'Visit All'. In early stages of the game, players could instant-win the round by walking through the corners of adjacent lands since the entire land area counted as a valid visit zone."),
@@ -222,7 +222,7 @@ const dreamscapeProject = createGameProject({
         }
       },
       {
-        heading: projectContent.heading("Quest Categories & Criteria System"),
+        heading: projectContent.heading2("Quest Categories & Criteria System"),
         content: {
           left: [
             projectContent.paragraph("Originally, the game selected three random [side] quests each round. Alongside the round's objective, it was unclear to players what tasks were mandatory vs. optional. This led to information overload, especially for players who were still learning the basics. Players also weren't motivated to practice new techniques because there was no incentive."),

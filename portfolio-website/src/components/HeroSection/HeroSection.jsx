@@ -28,99 +28,59 @@
 * - CSS modules for styling
 */
 
-import React, {
-  useRef,
-  useState,
-  createContext,
-  useContext,
-  useCallback,
-  useEffect,
-  memo
- } from "react";
+import { useContext } from "react";
 
 import { Slideshow } from "../Slideshow/Slideshow";
-import { ScreenSizeContext } from "../../contexts/ScreenSize";
+import { DeviceContext } from "../../contexts/DeviceContext";
 
-import { testSlides, heroGifSlides } from "../../data/HeroMedia";
-import { LinkButton } from "../Button/Button";
+import { heroGifSlides } from "../../data/HeroMedia";
+import { LinkButton, PrimaryButton, SecondaryButton } from "../Button/Button";
 
 import styles from './HeroSection.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
+
 import { Chapter } from "../Chapter/Chapter";
 import { socialMediaData } from "../../data/appIcons";
- /**
- * Configuration for 3D tilt effect
- * - MAX_ROTATION: Maximum angle of rotation (degrees)
- * - HOVER_SCALE: Zoom effect on hover (percentage)
- * - DEFAULT values: Initial/rest state values
- */
- const TILT_CONFIG = {
-  MAX_ROTATION: 15,
-  HOVER_SCALE: 104.2,
-  DEFAULT_SCALE: 100,
-  DEFAULT_ROTATION: 0
- };
- 
- const DEFAULT_TILT_STATE = {
-  scale: TILT_CONFIG.DEFAULT_SCALE,
-  xRot: TILT_CONFIG.DEFAULT_ROTATION,
-  yRot: TILT_CONFIG.DEFAULT_ROTATION
- };
- 
- // Context for sharing tilt state with child components
- export const TiltContext = createContext();
- 
- /**
+
+/**
  * Main Hero Section Component
  * Manages 3D tilt effect and layout structure
  */
- export const HeroSection = () => {
+export const HeroSection = () => {
 
-  const { size } = useContext(ScreenSizeContext)
+const { device } = useContext(DeviceContext)
  
   return (
     <main>
       <Chapter
         id='hero'
-        className={`
-          ${styles.heroSection}
-          ${styles[size]}
-        `}
+        className={`${styles.heroSection}`}
       >
-
-        <div className={`
-            ${styles.heroContainer}
-            ${styles[size]}
-          `}
-        >   
+        <div className={`${styles.heroContainer}`}>   
           <div className={styles.heroContent}>
-            <h2 className={styles.headline}>
+            <h1 className={`${typographies.h1} ${colors.text1} ${styles.headline}`}>
               Elevating experiences <br/>
               through meticulous <br/>
               game design.
-            </h2>
+            </h1>
             
-            <p className={styles.tagline}>
+            <p className={`${typographies.b1} ${colors.text1} ${styles.tagline}`}>
               Hi, I'm Dan, a <b>game designer</b> based in <br/>
               The Bronx, NY. I specialize in economy <br/>
               and progression systems design.
             </p>
             
-            <div className={`
-                ${styles.ctaMenu}
-                ${styles[size]}
-              `}
-            >
-              <LinkButton
-                className={styles.heroButton}
+            <div className={`${styles.ctaMenu}`}>
+              <PrimaryButton
+                typography={`${typographies.ui2}`}
                 title="Browse my work"
                 url="#projects"
-                style="solid"
               />
-              <LinkButton
-                className={styles.heroButton}
+              <SecondaryButton
+                typography={`${typographies.ui2}`}
                 title="Connect on LinkedIn"
                 url={socialMediaData.linkedInIcon.profileUrl}
-                style="island"
               />
             </div>
           </div>
@@ -132,4 +92,4 @@ import { socialMediaData } from "../../data/appIcons";
       </Chapter>
     </main>
   );
- };
+};

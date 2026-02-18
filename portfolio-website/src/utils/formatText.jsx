@@ -1,4 +1,6 @@
 import { getLinkAttributes } from './externalUrls';
+import typographies from '../typography.module.css';
+import colors from '../color.module.css';
 
 const PATTERNS = {
   SPLIT: /(\[.*?\]\(.*?\)|\*\*.*?\*\*|\*.*?\*|__.*?__)/,
@@ -28,6 +30,7 @@ export const formatText = (text) => {
         const linkAttributes = getLinkAttributes(url);
         return (
             <a
+              className={`${colors.nav1}`}
               key={`link-${index}`}
               href={url}
               {...linkAttributes}

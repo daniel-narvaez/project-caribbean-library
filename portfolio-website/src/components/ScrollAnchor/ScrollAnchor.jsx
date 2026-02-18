@@ -32,7 +32,7 @@ import gsap from 'gsap';
 import styles from './ScrollAnchor.module.css';
 import { useChapters } from '../../contexts/ChaptersContext';
 import { useSmoothScroll } from '../../utils/useSmoothScroll';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 
 // SVG path definitions for arrow states
 const SVG_PATHS = {
@@ -74,7 +74,7 @@ const INITIAL_ARROW_CONFIG = {
 
 export const ScrollAnchor = () => {
   // Context and utility hooks
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
   const { getNextChapter } = useChapters();
   const smoothScrollTo = useSmoothScroll();
 
@@ -267,7 +267,7 @@ export const ScrollAnchor = () => {
       onClick={handleClick}
       {...handlePointerEvents}
       style={{ touchAction: 'manipulation' }}
-      className={`${styles.scrollAnchor} ${styles[size]}`}
+      className={`${styles.scrollAnchor} ${styles[device]}`}
       aria-label={isUp ? "Scroll up" : "Scroll down"}
     >
       <svg

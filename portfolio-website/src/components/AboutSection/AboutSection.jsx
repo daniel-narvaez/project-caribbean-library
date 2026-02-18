@@ -12,7 +12,7 @@
  * - Background image preloading
  * - Smooth image transitions with flash effect
  * - Interactive text triggers for image changes
- * - Responsive design handling through ScreenSizeContext
+ * - Responsive design handling through DeviceContext
  * - Custom buttons integrated within text content
  * 
  * Technical Implementation:
@@ -22,17 +22,21 @@
  * - CSS-based animations using transitions
  * 
  * Dependencies:
- * - ScreenSizeContext for responsive handling
+ * - DeviceContext for responsive handling
  * - aboutMedia data source
  * - Button components for CTAs
  * - CSS modules for styling
  */
 
-import React, { useContext, useRef, useCallback, useEffect } from 'react';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { useContext, useRef, useCallback, useEffect } from 'react';
+import { DeviceContext } from '../../contexts/DeviceContext';
+
 import styles from './AboutSection.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
+
 import { getAboutItem, aboutMedia } from '../../data/aboutMedia';
-import { LinkButton } from '../Button/Button';
+import { LinkButton, PrimaryButton, SecondaryButton } from '../Button/Button';
 import { Chapter } from '../Chapter/Chapter';
 import { socialMediaData } from '../../data/appIcons';
 
@@ -41,7 +45,7 @@ import { socialMediaData } from '../../data/appIcons';
  * Manages image transitions and content display
  */
 export const AboutSection = () => {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
   const mediaRef = useRef(null);
   const sectionRef = useRef(null);
   const mediaContainerRef = useRef(null);  // New ref for the media container
@@ -133,7 +137,7 @@ export const AboutSection = () => {
   return (
     <Chapter
       id='about'
-      className={`${styles.aboutSection} ${styles[size]}`}
+      className={`${styles.aboutSection} ${styles[device]}`}
     >
       <div className={styles.aboutMedia}>
         <img
@@ -146,56 +150,47 @@ export const AboutSection = () => {
 
       <div className={styles.aboutContent}>
         <div className={styles.aboutInfo}>
-          <h2 className={`${styles.heading} ${styles[size]}`}>
+          <h2 className={`${typographies.h2} ${styles.heading} ${styles[device]}`}>
             About Myself
           </h2>
           
-          <p>
-            <span className='action' type='button' onClick={() => setMedia('default')}>Currently</span>
-            , I volunteer as a Transitional Fellow for the{' '}
-            <a target='_blank' href='https://www.egdcollective.org/transitional-program'>
+          <p className={`${typographies.b2}`}>
+            <a className={`${colors.nav2}`} type='button' onClick={() => setMedia('default')}>Currently</a>{' '}, I volunteer as a Transitional Fellow for the{' '}
+            <a className={`${colors.nav1}`} target='_blank' href='https://www.egdcollective.org/transitional-program'>
               EGD Collective's Game Studio Program
             </a> where I lead the design team's balancing division.
           </p>
           
-          <p>
-            I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}
-            <span className='action' type='button' onClick={() => setMedia('participate')}>
-              participate in game jams
-            </span>
-            {' '}to consistently improve my skills.
+          <p className={`${typographies.b2}`}>
+            I'm now seeking full-time opportunities to bring my design expertise to the video games industry. I{' '}<a className={`${colors.nav2}`} type='button' onClick={() => setMedia('participate')}>participate in game jams</a>{' '}
+            to consistently improve my skills.
           </p>
           
-          <p>
-            I{' '}
-            <span className='action' type='button' onClick={() => setMedia('graduated')}>
-              graduated from Parsons School of Design
-            </span>
-            {' '}in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
+          <p className={`${typographies.b2}`}>
+            I{' '}<a className={`${colors.nav2}`} type='button' onClick={() => setMedia('graduated')}>graduated from Parsons School of Design</a>{' '}
+            in Spring 2022 with a BFA in Design & Technology with a focus in Game Design.
           </p>
           
-          <p>
+          <p className={`${typographies.b2}`}>
             During the Summer of 2021 I interned as a Game Designer at{' '}
-            <a target='_blank' href='https://www.massdigi.org'>MassDigi</a>
+            <a className={`${colors.nav1}`} target='_blank' href='https://www.massdigi.org'>MassDigi</a>
             , where I prototyped & fine-tuned player progression systems for{' '}
-            <a href='game-projects/clock-out'><i>Clock Out!!</i></a>.
+            <a className={`${colors.nav1}`} href='game-projects/clock-out'><i>Clock Out!!</i></a>.
           </p>
           
-          <p>
+          <p className={`${typographies.b2}`}>
             In my spare time I enjoy reading books, lifting weights, and dancing Salsa at socials.
           </p>
         </div>
 
         <div className={`${styles.ctaMenu}`}>
-          <LinkButton
-            title="Read my résumé"
+          <PrimaryButton
             url='/resume'
-            style='solid'
+            title="Read my résumé"
           />
-          <LinkButton
-            title="Join My Network"
+          <SecondaryButton
             url={socialMediaData.linkedInIcon.profileUrl}
-            style='island'
+            title="Join My Network"
           />
         </div>
       </div>

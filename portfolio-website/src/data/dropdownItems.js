@@ -183,5 +183,5 @@ const homeItem = createDropdownItem({
 })
 
 /* Array of menu items */
-export const mainMenuData = [gamesItem, resumeItem, contactItem, homeItem];
+export const mainMenuData = [gamesItem, contactItem, homeItem];
 

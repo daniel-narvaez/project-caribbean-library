@@ -10,11 +10,11 @@
   position: relative;
   display: flex;
   width: fit-content;
-  padding: 5rem 2rem;
+  padding: var(--num-m20) var(--num-m8);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: var(--num-m20);
   /* transform: translateY(-2.5rem); */
   
   /* &.desktopCard::before,
@@ -23,7 +23,7 @@
     position: absolute;
     width: calc(100% - 20rem);
     height: 100%;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     background: var(--color-bg2-overlay);
     box-shadow: var(--fx-blockShadow);
   }
@@ -33,20 +33,20 @@
     position: absolute;
     width: calc(100% - 7.5rem);
     height: 100%;
-    border-radius: var(--number-cornerRadius);
+    border-radius: var(--num-brd-radius);
     background: var(--color-bg2-overlay);
     box-shadow: var(--fx-blockShadow);
   } */
 }
 
-.heading {
+/* .heading {
   z-index: 1;
-  /* color: var(--color-text1); */
+   color: var(--color-text1); 
   
-  &.Desktop {font-size: 2.5rem; }
+  &.Desktop { font-size: 2.5rem; }
 
   &.Mobile { font-size: 1.875rem; }
-}
+} */
 
 .projectArticles {
   z-index: 1;
@@ -57,15 +57,15 @@
   flex-wrap: wrap;
 
   &.desktopCard {
-    gap: 2rem 5rem;
+    gap: var(--num-m8) var(--num-m20);
   }
 
   &.mobileCard {
-    gap: 3.75rem 1.5rem;
+    gap: var(--num-m20) var(--num-m8);
   }
 
   &.mobileBanner {
-    gap: 1.5rem;
+    gap: var(--num-m8);
   }
 }
 

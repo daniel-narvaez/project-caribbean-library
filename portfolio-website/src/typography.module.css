@@ -1,0 +1,136 @@
+/**
+* Typography Styles
+* 
+* This file defines the core typography styles for the application.
+* It works in conjunction with Typography.jsx to create a responsive type system.
+*
+* @file typography.css
+* @requires variables.css - Contains color and font family variables
+*/
+
+@import './variables.css';
+
+/* 
+* Root Typeface Variables (tf)
+*/
+:root {
+  --tf-heading: var(--ff-libreBaskerville);
+  --tf-body: var(--ff-notoSans);
+  --tf-userInterface: var(--ff-outfit);
+}
+
+
+
+
+h1.h1, h2.h2,
+h3.h3, h4.h4 {
+  font-family: var(--tf-heading);
+  font-style: normal;
+
+  /* hs are bold by default */
+  font-weight: 700;
+
+  /* No italic for h text */
+}
+
+h1.h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+}
+
+h2.h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+h3.h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+h4.h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+
+p, li, tr, td, figcaption,
+input, textarea, select, option {
+  &.b1, &.b2, &.b3 {
+    font-family: var(--tf-body);
+    font-style: normal;
+  
+    a {
+      font-family: inherit;
+      text-decoration: underline;
+
+      &:not([href]) {
+        text-decoration: underline dotted;
+      }
+    }
+  
+    b {
+      font-family: inherit;
+      font-weight: 700;
+    }
+  
+    i {
+      font-family: inherit;
+      font-style: italic;
+    }
+  }
+
+  &.b1 {
+    font-size: var(--fs-b1);
+    line-height: var(--lh-b1);
+  }
+
+  /* Base size for body */
+  &.b2 {
+    font-size: var(--fs-b2);
+    line-height: var(--lh-b2);
+  }
+
+  &.b3 {
+    font-size: var(--fs-b3);
+    line-height: var(--lh-b3);
+  }
+}
+
+span, label, button {
+  &.ui1, &.ui2, &.ui3, 
+  &.ui4, &.ui5 {
+    font-family: var(--tf-userInterface);
+    font-style: normal;
+    text-decoration: none; 
+
+    /* The bold for user interface text is medium weight. */
+    b {
+      font-family: inherit;
+      font-weight: 500; 
+    }
+  
+    /* No italic for user interface text. */
+  }
+  
+  &.ui1 {
+    font-size: var(--fs-ui1);
+    line-height: var(--lh-ui1);
+  }
+  
+  &.ui2 {
+    font-size: var(--fs-ui2);
+    line-height: var(--lh-ui2);
+  }
+  
+  /* Base size for UI */
+  &.ui3 { 
+    font-size: var(--fs-ui3);
+    line-height: var(--lh-ui3);
+  }
+  
+  &.ui4 {
+    font-size: var(--fs-ui4);
+    line-height: var(--lh-ui4);
+  }
+}

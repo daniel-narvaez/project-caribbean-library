@@ -14,8 +14,11 @@ import Chapter from '../../components/Chapter/Chapter';
 import { Footer, FooterNav } from '../../components/Footer/Footer';
 import ScrollAnchor from '../../components/ScrollAnchor/ScrollAnchor';
 import { Slideshow } from '../../components/Slideshow/Slideshow';
-import { ScreenSizeContext } from '../../contexts/ScreenSize';
+import { DeviceContext } from '../../contexts/DeviceContext';
 import styles from './GameProjectPage.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
+
 
 /**
  * Utility to combine class names with size variant
@@ -65,12 +68,12 @@ const contentRenderers = {
         {element.content.map((item, index) => (
           <tr key={index}>
             <td 
-              className={getClasses('detail', size)} 
+              className={`${typographies.b2} ${colors.text1} ${getClasses('detail', size)}`} 
               style={{fontWeight: '700'}}
             >
               {formatText(item.key)}:
             </td>
-            <td className={getClasses('detail', size)}>
+            <td className={`${typographies.b2} ${colors.text1} ${getClasses('detail', size)}`}>
               {formatText(
                 typeof item.value === 'function' 
                   ? item.value({ urls: game.urls }) 
@@ -83,23 +86,23 @@ const contentRenderers = {
     </table>
   ),
 
-  heading: (element, key, size) => (
-    <h2 className={getClasses('heading', size)} key={key}>
+  heading2: (element, key, size) => (
+    <h2 className={`${typographies.h2} ${colors.text1} ${getClasses('', size)}`} key={key}>
       {element.content}
     </h2>
   ),
 
-  subheading: (element, key, size) => (
-    <h3 className={getClasses('subheading', size)} key={key}>
+  heading3: (element, key, size) => (
+    <h3 className={`${typographies.h3} ${colors.text1} ${getClasses('', size)}`} key={key}>
       {element.content}
     </h3>
   ),
 
-  paragraph: (element, key, size, game) => (  // added size parameter to match others
-    <p key={key}>
+  paragraph: (element, key, size, game) => (
+    <p className={`${typographies.b2} ${colors.text1}`} key={key}>
       {formatText(
         typeof element.content === 'function' 
-          ? element.content({ urls: game.urls })  // Reverted back to original
+          ? element.content({ urls: game.urls })
           : element.content
       )}
     </p>
@@ -107,15 +110,15 @@ const contentRenderers = {
 
   list: (element, key, size) => (
     element.content.type === 'bullet' ? (
-      <ul className={getClasses('list', size)} key={key}>
+      <ul className={`${getClasses('list', size)}`} key={key}>
           {element.content.items.map((item, index) => (
-            <li key={index}>{formatText(item)}</li>
+            <li className={`${typographies.b2} ${colors.text1}`} key={index}>{formatText(item)}</li>
           ))}
       </ul>
     ) : (
-      <ol className={getClasses('list', size)} key={key}>
+      <ol className={`${getClasses('list', size)}`} key={key}>
         {element.content.items.map((item, index) => (
-          <li key={index}>{formatText(item)}</li>
+          <li className={`${typographies.b2} ${colors.text1}`} key={index}>{formatText(item)}</li>
         ))}
       </ol>
     )
@@ -126,7 +129,7 @@ const contentRenderers = {
       {element.content.map((item, index) => (
         <figure className={getClasses('figure', size)} key={index}>
           <img src={item.src} alt={item.alt} />
-          <figcaption>
+          <figcaption className={`${typographies.b3}`}>
             <b>Figure {item.figId}:</b> <i>{item.caption}</i>
           </figcaption>
         </figure>
@@ -136,7 +139,7 @@ const contentRenderers = {
 
   gallery: (element, key, size) => (
     <figure className={getClasses('figure', size)} key={key}>
-      <figcaption>
+      <figcaption className={`${typographies.b3} ${colors.text1}`}>
         <b>Figure {element.content.figId}:</b> <i>{element.content.caption}</i>
       </figcaption>
       <Slideshow slides={element.content.items} playbackMode="manual" />
@@ -182,43 +185,43 @@ const renderContent = (element, key, game, size) => {
 * @param {Object} props.game - Game project data
 */
 export const GameProjectPage = memo(({ game }) => {
-  const { size } = useContext(ScreenSizeContext);
+  const { device } = useContext(DeviceContext);
 
   return (
     <>
     <Helmet>
       <title>{`${game.title} | Daniel Narvaez`}</title>
     </Helmet>
-    <div className={getClasses('GameProjectPage', size)}>
+    <div className={getClasses('GameProjectPage', device)}>
       <main>
         <h1 className='sr-only'>{game.title} Daniel Narvaez</h1>
         <Chapter id="moneyShot">
-            {renderContent(game.projectPage.main, 'main', game, size)}
+            {renderContent(game.projectPage.main, 'main', game, device)}
         </Chapter>
       </main>
       <Background>
         <ScrollAnchor />
-        <div className={getClasses('walkthrough', size)}>
+        <div className={getClasses('walkthrough', device)}>
           {game.projectPage.walkthrough.map((chapter, cIndex) => (
             <Chapter 
                 key={cIndex}
-                className={getClasses('chapter', size)}
+                className={getClasses('chapter', device)}
                 id={`chapter-${cIndex + 1}`}
             >
               {renderContent(
                 chapter.heading,
                 `heading-${cIndex}`,
                 game,
-                size
+                device
               )}
-              <div className={getClasses('content', size)}>
+              <div className={getClasses('content', device)}>
                 <div className={styles.left}>
                   {chapter.content.left.map((element, eIndex) => (
                     renderContent(
                       element,
                       `left-${cIndex}-${eIndex}`,
                       game,
-                      size
+                      device
                     )
                   ))}
                 </div>
@@ -229,7 +232,7 @@ export const GameProjectPage = memo(({ game }) => {
                         element,
                         `right-${cIndex}-${eIndex}`,
                         game,
-                        size
+                        device
                       )
                     ))}
                   </div>
