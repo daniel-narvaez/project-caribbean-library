@@ -79,7 +79,7 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  min-height: var(--num-m32);
+  /* min-height: var(--num-m32); */
   padding: 0 var(--num-m8);
 }
 
