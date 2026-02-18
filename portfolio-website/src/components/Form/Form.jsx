@@ -152,7 +152,7 @@ export const InputField = ({
               {...finalInputConfig}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className={`${typographies.ui4}`} htmlFor={finalInputConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalInputConfig.id}>
               {finalLabelConfig.text}
           </label>
           {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
@@ -218,7 +218,7 @@ export const SelectField = ({
                   </option>
               ))}
           </select>
-          <label className={`${typographies.ui4}`} htmlFor={finalSelectConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalSelectConfig.id}>
               {finalLabelConfig.text}
           </label>
           {error && <span className={`${typographies.ui4} ${styles.error}`}>{error}</span>}
@@ -283,7 +283,7 @@ export const TextBox = ({
               onChange={handleInput}
               onBlur={(e) => validateInput(e.target.value)}
           />
-          <label className={`${typographies.ui4}`} htmlFor={finalTextareaConfig.id}>
+          <label className={`${typographies.ui4} ${colors.uiText2}`} htmlFor={finalTextareaConfig.id}>
               {finalLabelConfig.text}
           </label>
           <span className={`${typographies.ui4} ${styles.charCount}`}>

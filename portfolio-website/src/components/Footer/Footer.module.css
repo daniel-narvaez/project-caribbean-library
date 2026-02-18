@@ -10,7 +10,7 @@
  */
 .footer {
   width: 100%;
-  color: var(--swt-sand);
+  color: var(--col-ui-text1);
 }
 /* Main container
   ============== */
@@ -101,7 +101,6 @@
 .footerBottom p {
   font-size: 0.75rem;
   line-height: 1rem;
-  color: var(--col-ui-nav1);
   text-align: center;
 }
 

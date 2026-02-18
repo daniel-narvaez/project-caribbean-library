@@ -49,7 +49,8 @@ export const ColorsProvider = ({children}) => {
       frame1: swatches.duneCrest,
       error1: swatches.magaflower,
       ui: {
-        text1: swatches.seaweed,
+        text1: swatches.sand,
+        text2: swatches.seaweed,
         nav1: {
           normal: swatches.sand,
           hover: swatches.duneCrest,
@@ -102,6 +103,7 @@ export const ColorsProvider = ({children}) => {
     rootCss.setProperty('--col-error1', colors[theme].error1);
 
     rootCss.setProperty('--col-ui-text1', colors[theme].ui.text1);
+    rootCss.setProperty('--col-ui-text2', colors[theme].ui.text2);
     rootCss.setProperty('--col-ui-nav1', colors[theme].ui.nav1.normal);
     rootCss.setProperty('--col-ui-nav1-hover', colors[theme].ui.nav1.hover);
     rootCss.setProperty('--col-ui-nav1-active', colors[theme].ui.nav1.active);

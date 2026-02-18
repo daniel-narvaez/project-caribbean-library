@@ -19,37 +19,8 @@
   --tf-userInterface: var(--ff-outfit);
 }
 
-a {
-  /* font-family: var(--tf-body); */
-  /* color: var(--color-link); */
-  transition: var(--menuControl-hover);
 
-  &:hover {
-    /* color: var(--color-link-hover)  */
-  }
 
-  &:active { 
-    /* color: var(--color-link-active); */
-    transition: var(--menuControl-active);
-  }
-}
-
-.action {
-  font-family: var(--tf-body);
-  font-size: inherit;
-  /* color: var(--color-action); */
-  transition: var(--menuControl-hover);
-  text-decoration: underline dotted;
-
-  &:hover { 
-    /* color: var(--color-action-hover)  */
-  }
-
-  &:active { 
-    /* color: var(--color-action-active); */
-    transition: var(--menuControl-active);
-  }
-}
 
 h1.h1, h2.h2,
 h3.h3, h4.h4 {
@@ -86,7 +57,6 @@ h4.h4 {
 p, li, tr, td, figcaption,
 input, textarea, select, option {
   &.b1, &.b2, &.b3 {
-    /* color: var(--color-text1); */
     font-family: var(--tf-body);
     font-style: normal;
   

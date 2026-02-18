@@ -49,7 +49,7 @@
   border-radius: var(--number-cornerRadius);
   box-shadow: var(--fx-boxShadow1);
   overflow: hidden;
-  background: var(--color-bg1-hover);
+  background: var(--col-frame1);
   
   /* Performance optimizations for image transitions */
   backface-visibility: hidden;

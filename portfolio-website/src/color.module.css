@@ -26,7 +26,8 @@
   --col-frame1: var(--swt-duneCrest);
   
   /* User Interface */
-  --col-ui-text1: var(--swt-seaweed);
+  --col-ui-text1: var(--swt-sand);
+  --col-ui-text2: var(--swt-seaweed);
   --col-ui-nav1: var(--swt-sand);
   --col-ui-nav1-hover: var(--swt-duneCrest);
   --col-ui-nav1-active: var(--swt-desertStone);
@@ -56,8 +57,10 @@ input, textarea, select, option {
   &.text1 { color: var(--col-text1); }
 }
 
-span {
+span, label, button {
   &.uiText1 { color: var(--col-ui-text1); }
+
+  &.uiText2 { color: var(--col-ui-text2); }
 }
 
 a {

@@ -73,7 +73,7 @@
   border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
-  color: var(--color-text1) !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
   transition: var(--menuControl-hover);
 }
@@ -94,7 +94,7 @@
   border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
-  color: var(--color-text1) !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
 }
 
@@ -117,7 +117,7 @@
   resize: vertical;
   font-size: 16px !important;
   line-height: 32px !important;
-  color: var(--color-text1) !important;
+  color: var(--col-text1) !important;
   text-decoration: none !important;
 }
 
@@ -215,7 +215,7 @@
    =================== */
 .error {
     position: absolute;
-    color: var(--color-error);
+    color: var(--col-error1);
     font-size: 12px !important;
     height: 16px;
 }
