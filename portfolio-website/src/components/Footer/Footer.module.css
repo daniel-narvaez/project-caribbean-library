@@ -11,6 +11,8 @@
 .footer {
   width: 100%;
   color: var(--col-ui-text1);
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 /* Main container
   ============== */
@@ -27,7 +29,8 @@
   padding: 64px 0 0;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: max(env(safe-area-inset-bottom), var(--num-m4));
+  margin-bottom: 0;
 }
 
 /* Wave animation elements
