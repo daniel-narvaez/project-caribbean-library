@@ -14,10 +14,12 @@ import { Background } from "../../components/Background/Background";
 import ScrollAnchor from "../../components/ScrollAnchor/ScrollAnchor";
 import { EmailForm } from "../../components/EmailForm/EmailForm";
 import { ContactBook } from "../../components/ContactItem/ContactItem";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer, FooterNav } from "../../components/Footer/Footer";
 import Chapter from "../../components/Chapter/Chapter";
 import { DeviceContext } from "../../contexts/DeviceContext";
 import styles from './Contact.module.css';
+import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 import { socialMediaData } from "../../data/appIcons";
 import { Helmet } from 'react-helmet';
 
@@ -61,10 +63,10 @@ function Contact() {
             className={`${styles.heroSection} ${styles[device]}`}
           >
             <div className={styles.heroContent}>
-              <h2 className={styles.headline}>
+              <h2 className={`${typographies.h2} ${colors.text1} ${styles.headline}`}>
                 Get in contact
               </h2>
-              <p className={styles.tagline}>
+              <p className={`${typographies.b1} ${colors.text1} ${styles.tagline}`}>
                 Want to reach out? <b>Write a <br/>
                 message</b> to my inbox, and <br/>
                 let's begin our conversation.
@@ -76,16 +78,16 @@ function Contact() {
           </Chapter>
 
           {/* Social Platforms Section */}
-          <Chapter
+          {/* <Chapter
             id="platforms"
             className={`${styles.platformsSection} ${styles[device]}`}
           >
             <div className={styles.platformsContent}>
-              <h2 className={styles.headline}>
+              <h2 className={`${typographies.h2} ${colors.text1} ${styles.headline}`}>
                 Let's connect <br/>
                 elsewhere
               </h2>
-              <p className={styles.tagline}>
+              <p className={`${typographies.b1} ${colors.text1} ${styles.tagline}`}>
                 <b>Select a book</b> to open my <br/>
                 profile on that platform.
               </p>
@@ -94,15 +96,17 @@ function Contact() {
               <div className={`${styles.bookshelf} ${styles[device]}`}>
               {Object.values(socialMediaData).map((icon) => (
                 <ContactBook
-                  key={icon.appName} // Assuming AppIconObject has an appName property
+                  key={icon.appName}
                   icon={icon}
                 />
               ))}
               </div>
             </div>
-          </Chapter>
+          </Chapter> */}
         </div>
-        <Footer />
+        <Footer>
+          <FooterNav />
+        </Footer>
       </Background>
     </>
   );

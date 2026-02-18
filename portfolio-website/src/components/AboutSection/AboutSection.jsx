@@ -155,10 +155,7 @@ export const AboutSection = () => {
           </h2>
           
           <p className={`${typographies.b2}`}>
-            <a className={`${colors.nav2}`} type='button' onClick={() => setMedia('default')}>Currently</a>{' '}, I volunteer as a Transitional Fellow for the{' '}
-            <a className={`${colors.nav1}`} target='_blank' href='https://www.egdcollective.org/transitional-program'>
-              EGD Collective's Game Studio Program
-            </a> where I lead the design team's balancing division.
+            <a className={`${colors.nav2}`} type='button' onClick={() => setMedia('default')}>Currently</a>, I have two roles: one as a Low Voltage Technician at{' '}<a className={`${colors.nav1}`} target='_blank' href='https://technologysandbox.com/corp/'>Technology Sandbox</a>, and the other as an Operations Intern at{' '}<a className={`${colors.nav1}`} target='_blank' href='https://www.everlakelife.com/'>Everlake Life</a>.
           </p>
           
           <p className={`${typographies.b2}`}>
@@ -172,10 +169,11 @@ export const AboutSection = () => {
           </p>
           
           <p className={`${typographies.b2}`}>
-            During the Summer of 2021 I interned as a Game Designer at{' '}
-            <a className={`${colors.nav1}`} target='_blank' href='https://www.massdigi.org'>MassDigi</a>
-            , where I prototyped & fine-tuned player progression systems for{' '}
-            <a className={`${colors.nav1}`} href='game-projects/clock-out'><i>Clock Out!!</i></a>.
+            Last year I volunteered as a Transitional Fellow for the{' '}
+            <a className={`${colors.nav1}`} target='_blank' href='https://www.egdcollective.org/transitional-program'>
+              EGD Collective's Game Studio Program
+            </a>, where I led the design team's balancing division for{' '}
+            <a className={`${colors.nav1}`} href='game-projects/dreamscape'><i>Project Dreamscape</i></a>.
           </p>
           
           <p className={`${typographies.b2}`}>
@@ -184,11 +182,11 @@ export const AboutSection = () => {
         </div>
 
         <div className={`${styles.ctaMenu}`}>
-          <PrimaryButton
+          {/* <PrimaryButton
             url='/resume'
             title="Read my résumé"
-          />
-          <SecondaryButton
+          /> */}
+          <PrimaryButton
             url={socialMediaData.linkedInIcon.profileUrl}
             title="Join My Network"
           />
