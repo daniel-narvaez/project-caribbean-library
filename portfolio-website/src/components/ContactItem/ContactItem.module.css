@@ -27,7 +27,7 @@
 /* Label styles
   =========== */
 .contactIcon span {
-color: var(--color-bg1);
+color: var(--col-ui-nav1);
 text-align: center;
 transition: var(--menuControl-hover);
 }
@@ -61,7 +61,7 @@ transition: var(--menuControl-hover);
   ================= */
 .contactIcon:hover span {
   opacity: 1;
-  color: var(--color-link-hover);
+  color: var(--col-ui-nav2-hover);
 }
 
 .contactIcon:active a {
@@ -71,7 +71,7 @@ transition: var(--menuControl-hover);
 
 .contactIcon:active span {
   opacity: 1;
-  color: var(--color-link-active);
+  color: var(--col-ui-nav2-active);
   transition: var(--menuControl-active);
 }
 
@@ -87,7 +87,7 @@ transition: var(--menuControl-hover);
 
   border-radius: var(--number-cornerRadius);
   overflow: hidden;
-  background: var(--color-bg1);
+  background: var(--col-ui-nav1);
   box-shadow: var(--fx-boxShadow1);
   transition: var(--menuControl-hover);
   
@@ -100,7 +100,7 @@ transition: var(--menuControl-hover);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--color-link);
+  background: var(--col-ui-nav2);
   transition: inherit;
   height: var(--num-m8);
 
@@ -117,19 +117,19 @@ transition: var(--menuControl-hover);
 }
 
 .contactBook:hover {
-  background: var(--color-bg1-hover);
+  background: var(--col-ui-nav1-hover);
 
   .spine {
-    background: var(--color-link-hover);
+    background: var(--col-ui-nav2-hover);
   }
 }
 
 .contactBook:active {
-  background: var(--color-bg1-active);
+  background: var(--col-ui-nav1-active);
   transition: var(--menuControl-active);
 
   .spine {
-    background: var(--color-link-active);
+    background: var(--col-ui-nav2-active);
     transition: inherit;
   }
 }
@@ -143,7 +143,7 @@ transition: var(--menuControl-hover);
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;
-  color: var(--color-bg1)
+  color: var(--col-ui-nav1)
 }
 
 @media (max-aspect-ratio: 1/1) {

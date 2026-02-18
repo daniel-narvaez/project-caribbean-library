@@ -17,8 +17,8 @@
 .footerContainer {
   /* Gradient background using theme colors */
   background-image: linear-gradient(
-    var(--color-link) 30%,
-    var(--color-link-active) 100%
+    var(--col-ui-bg1) 30%,
+    var(--col-ui-bg1-active) 100%
   );
   position: relative;
   margin-top: 64px;
@@ -101,7 +101,7 @@
 .footerBottom p {
   font-size: 0.75rem;
   line-height: 1rem;
-  color: var(--color-bg1-active);
+  color: var(--col-ui-nav1);
   text-align: center;
 }
 

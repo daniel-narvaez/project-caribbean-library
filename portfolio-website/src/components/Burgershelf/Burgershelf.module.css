@@ -10,15 +10,15 @@
   flex-shrink: 0;
   position: relative;
   transition: var(--trans-hover);
-  .icon span { background-color: var(--color-link); }
+  .icon span { background-color: var(--col-ui-bg1); }
 
   &:hover {
-    .icon span { background-color: var(--color-link-hover); }
+    .icon span { background-color: var(--col-ui-bg1-hover); }
   }
   
   &:active {
     transition: var(--trans-active);
-    .icon span { background-color: var(--color-link-active); }
+    .icon span { background-color: var(--col-ui-bg1-active); }
   }
   
   &.open {
@@ -26,15 +26,15 @@
     height: 36px;
     padding: 8px;
     transition: var(--trans-hover);
-    .icon span { background-color: var(--color-bg1); }
+    .icon span { background-color: var(--col-ui-nav1); }
 
     &:hover {
-      .icon span { background-color: var(--color-bg1-hover); }
+      .icon span { background-color: var(--col-ui-nav1-hover); }
     }
     
     &:active {
       transition: var(--trans-active);
-      .icon span { background-color: var(--color-bg1-active); }
+      .icon span { background-color: var(--col-ui-nav1-active); }
     }
 
     .icon {

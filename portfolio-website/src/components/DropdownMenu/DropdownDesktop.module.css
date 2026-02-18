@@ -104,7 +104,7 @@
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);
-      background-color: var(--color-link-hover);
+      background-color: var(--col-ui-bg1-hover);
     }
   
     /* Interactive states */
@@ -112,24 +112,24 @@
     &.menuLinkActive {
       &::before { 
         transform: scaleY(1); 
-        background-color: var(--color-link-active);
+        background-color: var(--col-ui-bg1-active);
       }
-      span { color: var(--color-bg1-active); }
+      span { color: var(--col-ui-nav1-active); }
     }
   
     &:hover {
       &::before { 
         transform: scaleY(1); 
-        background-color: var(--color-link-hover);
+        background-color: var(--col-ui-bg1-hover);
       }
-      span { color: var(--color-bg1-hover); }
+      span { color: var(--col-ui-nav1-hover); }
     }
   
     /* Click animation */
     &:active {
       transform: scale(92%);
       span { transform: scale(108.7%); /* Counteracts parent scale */ }
-      &::before { background-color: var(--color-link-active); }
+      &::before { background-color: var(--col-ui-bg1-active); }
     }
   }
   
@@ -165,21 +165,21 @@
     .menuButton,
     .menuLink {
       span {
-        color: var(--color-link);
+        color: var(--col-ui-nav2);
       }
     }
   
     /* Hover state */
     .menuButton:hover span,
     .menuLink:hover span {
-      color: var(--color-bg1-hover);
+      color: var(--col-ui-nav1-hover);
     }
   
     /* Active state */
     .menuButtonActive,
     .menuLinkActive {
       span {
-        color: var(--color-bg1-active);
+        color: var(--col-ui-nav1-active);
       }
     }
   
@@ -187,7 +187,7 @@
     .wrapper:has(.menuButtonActive),
     .wrapper:has(.menuLinkActive) {
       &::before {
-        background-color: var(--color-link);
+        background-color: var(--col-ui-nav2);
         box-shadow: var(--effect-poolShadow);
         opacity: 1;
         transform: translateY(0);
@@ -205,7 +205,7 @@
     /* Text styling for submenu items */
     .menuButton span,
     .menuLink span {
-      color: var(--color-bg1);
+      color: var(--col-ui-nav1);
     }
   
     /* Remove background from wrapper */
@@ -247,7 +247,7 @@
       bottom: calc(-1 * var(--num-m2));
       border-radius: var(--number-cornerRadius);
       z-index: 1;
-      background-color: var(--color-link);
+      background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);
     }
   }

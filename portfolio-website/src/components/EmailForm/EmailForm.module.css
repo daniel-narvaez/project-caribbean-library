@@ -24,7 +24,7 @@
   gap: var(--num-m8);
   align-self: center;
   border-radius: var(--number-cornerRadius);
-  background: var(--color-bg1-hover);
+  background: var(--col-frame1);
   box-shadow: var(--fx-boxShadow1);
   transform-style: preserve-3d;
   transition: transform 0.8s;
@@ -56,7 +56,7 @@
   text-align: center;
 
   .error {
-    color: var(--color-error);
+    color: var(--col-error1);
   }
 }
 
@@ -78,7 +78,7 @@
   padding: var(--num-m8);
   gap: var(--num-m2);
   transform: rotateY(180deg);
-  background: var(--color-bg1-hover);
+  background: var(--col-frame1);
   border-radius: var(--number-cornerRadius);
   justify-content: center;
 }

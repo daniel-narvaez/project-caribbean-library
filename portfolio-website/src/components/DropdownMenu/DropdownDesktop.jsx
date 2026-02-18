@@ -31,6 +31,7 @@ import { getLinkAttributes } from '../../utils/externalUrls';
 // Styles
 import styles from './DropdownDesktop.module.css';
 import typographies from '../../typography.module.css';
+import colors from '../../color.module.css';
 
 /**
  * Individual menu item component handling both regular items and submenus

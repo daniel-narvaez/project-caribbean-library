@@ -1,24 +1,4 @@
 :root {
-  --color-text1: #00052b; /* Midnight */
-  --color-text2: #202C22; /* Seaweed */
-  --color-heading1: #4a2512; /* Mahogany */
-  
-  --color-link: #0047ab; /* Cobalt */
-  --color-link-hover: #00a9ce; /* Sea & Sky */
-  --color-link-active: #007a99; /* Deep Reef */
-  
-  /* --color-action: #7b1fa2;
-  --color-action-hover: #ab47bc;
-  --color-action-active: #4e1953; */
-  
-  --color-bg1: #ece9e4; /* Sand */
-  --color-bg1-hover: #f7f5f2; /* Dune Crest */
-  --color-bg1-active: #dcd8d1; /* Desert Stone */
-  
-  --color-error: #d6111b; /* Brave Blood */
-  
-  --color-pointer-link: #b2ffff; /* Celeste */
-  --color-pointer-action: #dc9ba3; /* Lilac */
 
   /* Font Families (ff) */
   --ff-libreBaskerville: "Libre Baskerville", serif;

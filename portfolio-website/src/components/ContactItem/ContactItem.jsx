@@ -79,14 +79,14 @@ export const ContactIcon = ({ icon = appIcons.linkedin }) => {
       ...INITIAL_ITEM_CONFIG,
       COLORS: {
         CONTAINER: {
-          NORMAL: root.getPropertyValue('--color-bg1').trim(),
-          HOVER: root.getPropertyValue('--color-link-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-link-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg2').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         },
         ICON: {
-          NORMAL: root.getPropertyValue('--color-link').trim(),
-          HOVER: root.getPropertyValue('--color-bg1-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-bg1-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         }
       }
     };
@@ -162,14 +162,14 @@ export const ContactBook = ({ icon = appIcons.linkedin }) => {
       ...INITIAL_ITEM_CONFIG,
       COLORS: {
         CONTAINER: {
-          NORMAL: root.getPropertyValue('--color-bg1').trim(),
-          HOVER: root.getPropertyValue('--color-bg1-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-bg1-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         },
         ICON: {
-          NORMAL: root.getPropertyValue('--color-link').trim(),
-          HOVER: root.getPropertyValue('--color-link-hover').trim(),
-          ACTIVE: root.getPropertyValue('--color-link-active').trim()
+          NORMAL: root.getPropertyValue('--col-ui-bg1').trim(),
+          HOVER: root.getPropertyValue('--col-ui-bg1-hover').trim(),
+          ACTIVE: root.getPropertyValue('--col-ui-bg1-active').trim()
         }
       }
     };

@@ -70,7 +70,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
   color: var(--color-text1) !important;
@@ -91,7 +91,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
   font-size: 16px !important;
   line-height: 32px !important;
   color: var(--color-text1) !important;
@@ -113,7 +113,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  border-bottom: var(--number-cornerRadius) solid var(--color-bg1-active);
+  border-bottom: var(--number-cornerRadius) solid var(--col-bg2);
   resize: vertical;
   font-size: 16px !important;
   line-height: 32px !important;
@@ -126,7 +126,7 @@
 .textBox .charCount {
     position: absolute;
     right: 0;
-    color: var(--color-bg1-active);
+    color: var(--col-bg2);
     font-size: 12px;
     height: 16px;
     opacity: 0;
@@ -139,7 +139,7 @@
     background: linear-gradient(
         135deg,
         transparent 50%,
-        var(--color-bg1-active) 50%
+        var(--col-bg2) 50%
     ) no-repeat right var(--number-cornerRadius) bottom var(--number-cornerRadius) / 
     calc(100% - var(--number-cornerRadius)) calc(100% - var(--number-cornerRadius));
     background-color: transparent;
@@ -176,7 +176,7 @@
     height: 16px;
     font-size: 12px;
     line-height: 16px;
-    color: var(--color-bg1-active);
+    color: var(--col-bg2);
 }
 
 .inputField input:focus ~ label::after,
@@ -191,7 +191,7 @@
 .inputField input:disabled,
 .selectField select:disabled,
 .textBox textarea:disabled {
-  background: var(--color-bg1-active);
+  background: var(--col-bg2);
   opacity: 0.4;
   pointer-events: none;
 

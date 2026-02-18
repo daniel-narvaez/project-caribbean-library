@@ -138,7 +138,7 @@
   padding: var(--num-m2) var(--num-m4);
   width: max-content;
   border-radius: var(--number-cornerRadius);
-  background: var(--color-bg1-hover);
+  background: var(--col-frame1);
   box-shadow: var(--fx-boxShadow1);
   z-index: 50;
 }

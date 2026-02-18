@@ -39,7 +39,7 @@
       bottom: calc(-1 * var(--num-m2));
       border-radius: var(--number-cornerRadius);
       z-index: 0;
-      background-color: var(--color-link);
+      background-color: var(--col-ui-bg1);
       box-shadow: var(--effect-poolShadow);
     }
   }
@@ -114,13 +114,13 @@
       transition: var(--menuControl-hover);
       transform-origin: top;
       transform: scaleY(0);
-      background-color: var(--color-link-hover);
+      background-color: var(--col-ui-bg1-hover);
       z-index: -1;
     }
   
     /* Text Styling */
     span {
-      color: var(--color-bg1);
+      color: var(--col-ui-nav1);
       transition: var(--menuControl-active);
     }
   
@@ -128,9 +128,9 @@
     &:hover {
       &::before {
         transform: scaleY(1);
-        background-color: var(--color-link-hover);
+        background-color: var(--col-ui-bg1-hover);
       }
-      span { color: var(--color-bg1-hover); }
+      span { color: var(--col-ui-nav1-hover); }
       .chevron svg { fill: red; }
     }
   
@@ -139,17 +139,17 @@
     &.menuLinkActive {
       &::before {
         transform: scaleY(1);
-        background-color: var(--color-link-active);
+        background-color: var(--col-ui-bg1-active);
       }
-      span { color: var(--color-bg1-active); }
-      .chevron svg path { fill: var(--color-bg1-active); }
+      span { color: var(--col-ui-nav1-active); }
+      .chevron svg path { fill: var(--col-ui-nav1-active); }
     }
   
     /* Click Animation */
     &:active {
       transform: scale(96%);
       span { transform: scale(104.2%); /* Counteracts parent scale */ }
-      &::before { background-color: var(--color-link-active); }
+      &::before { background-color: var(--col-ui-bg1-active); }
     }
   }
   

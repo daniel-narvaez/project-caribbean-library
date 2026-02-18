@@ -16,11 +16,11 @@
   width: var(--num-m12);
   height: var(--num-m12);
   padding: var(--num-m2);
-  fill: var(--color-text1);
+  fill: var(--col-text1);
 }
 
 .fullName {
-  color: var(--color-text1) !important;
+  color: var(--col-text1) !important;
   font-size: 33px;
   font-weight: 315;
   text-align: center;

@@ -110,10 +110,10 @@ export const AnimatedCursor = () => {
       ...INITIAL_CURSOR_CONFIG,
       COLORS: {
         ...INITIAL_CURSOR_CONFIG.COLORS,
-        LINK: root.getPropertyValue('--color-pointer-link').trim(),
-        BUTTON: root.getPropertyValue('--color-pointer-action').trim(),
-        DEFAULT_FILL: root.getPropertyValue('--color-bg1').trim(),
-        DEFAULT_STROKE: root.getPropertyValue('--color-text1').trim()
+        LINK: root.getPropertyValue('--col-pointer-fill-hover1').trim(),
+        BUTTON: root.getPropertyValue('--col-pointer-fill-hover2').trim(),
+        DEFAULT_FILL: root.getPropertyValue('--col-pointer-fill').trim(),
+        DEFAULT_STROKE: root.getPropertyValue('--col-pointer-stroke').trim()
       }
     };
   }, []); // Empty dependency array since we only need to run this once on mount
