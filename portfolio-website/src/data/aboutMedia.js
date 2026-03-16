@@ -45,7 +45,13 @@ export const createAboutItem = ({
 export const aboutMedia = [
   createAboutItem({
     id: 'default',
-    src: `${ABOUT_IMAGES_PATH}/currently-polaroid.jpg`,
+    src: `${ABOUT_IMAGES_PATH}/currently-polaroid-2026.jpg`,
+    alt: "A portrait image of me smirking in a brown sweater with a light blue background behind me."
+  }),
+
+  createAboutItem({
+    id: 'currently-2025',
+    src: `${ABOUT_IMAGES_PATH}/currently-polaroid-2025.jpg`,
     alt: "A portrait image of me smiling in a black polo shirt. Behind me is a wall of grass."
   }),
   

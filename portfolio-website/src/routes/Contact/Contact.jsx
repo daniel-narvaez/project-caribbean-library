@@ -68,7 +68,7 @@ function Contact() {
               </h2>
               <p className={`${typographies.b1} ${colors.text1} ${styles.tagline}`}>
                 Want to reach out? <b>Write a <br/>
-                message</b> to my inbox, and <br/>
+                message</b> to my inbox, and <br/> 
                 let's begin our conversation.
               </p>
             </div>
